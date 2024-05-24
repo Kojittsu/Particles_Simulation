@@ -1,7 +1,7 @@
 #include <iostream>
 #include <vector>
 #include "particle.h"
-#include "simulation.h"
+#include "universe.h"
 
 int main() {
     // Parameters
@@ -14,9 +14,9 @@ int main() {
     std::vector<Particle> particles;
     particles.emplace_back(0.0, 10.0, 0.0, 0.0, 0.0, gravite); // Particle at 10m height with zero initial velocity
 
-    // Create and run simulation
-    Simulation simulation(particles, gravite, deltaTime, solY, coefficientRestitution);
-    simulation.run(1000, "simulation_output.csv");
+    // Create and run universe
+    Universe universe(particles, gravite, deltaTime, solY, coefficientRestitution);
+    universe.run(1000, "simulation_output.csv");
 
     return 0;
 }

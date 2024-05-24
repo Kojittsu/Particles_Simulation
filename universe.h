@@ -1,14 +1,14 @@
-#ifndef SIMULATION_H
-#define SIMULATION_H
+#ifndef UNIVERSE_H
+#define UNIVERSE_H
 
 #include <vector>
 #include "particle.h"
 #include <fstream>
 #include <string>
 
-class Simulation {
+class Universe {
 public:
-    Simulation(const std::vector<Particle>& particles, double gravite, double deltaTime, double solY, double coefficientRestitution);
+    Universe(const std::vector<Particle>& particles, double gravite, double deltaTime, double solY, double coefficientRestitution);
     void run(int steps, const std::string& filename = "");
 
 private:
@@ -21,4 +21,4 @@ private:
     bool allParticlesAtRest() const;
 };
 
-#endif // SIMULATION_H
+#endif // UNIVERSE_H

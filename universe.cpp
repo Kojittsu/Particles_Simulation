@@ -1,10 +1,10 @@
-#include "simulation.h"
+#include "universe.h"
 #include <iostream>
 
-Simulation::Simulation(const std::vector<Particle>& particles, double gravite, double deltaTime, double solY, double coefficientRestitution)
+Universe::Universe(const std::vector<Particle>& particles, double gravite, double deltaTime, double solY, double coefficientRestitution)
     : particles(particles), gravite(gravite), deltaTime(deltaTime), solY(solY), coefficientRestitution(coefficientRestitution) {}
 
-void Simulation::run(int steps, const std::string& filename) {
+void Universe::run(int steps, const std::string& filename) {
     std::ofstream file;
     if (!filename.empty()) {
         file.open(filename);
@@ -36,7 +36,7 @@ void Simulation::run(int steps, const std::string& filename) {
     }
 }
 
-bool Simulation::allParticlesAtRest() const {
+bool Universe::allParticlesAtRest() const {
     for (const Particle& particle : particles) {
         if (!particle.isAtRest(solY)) {
             return false;
