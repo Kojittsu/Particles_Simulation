@@ -30,3 +30,11 @@ void Particle::printState(double currentTime) const {
 bool Particle::isAtRest(double solY) const {
     return abs(y-solY) < 0.01 && abs(vy) < 0.01;
 }
+
+double Particle::getX() const {
+    return x;
+}
+
+double Particle::getY() const {
+    return y;
+}

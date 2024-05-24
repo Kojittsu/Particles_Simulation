@@ -18,6 +18,12 @@ public:
     // Detect if particle is at rest
     bool isAtRest(double solY) const;
 
+    // Getter for x
+    double getX() const;
+    
+    // Getter for y
+    double getY() const;
+
 private:
     double x, y;       // Position
     double vx, vy;     // Speed

@@ -16,7 +16,7 @@ int main() {
 
     // Create and run simulation
     Simulation simulation(particles, gravite, deltaTime, solY, coefficientRestitution);
-    simulation.run(1000);
+    simulation.run(1000, "simulation_output.csv");
 
     return 0;
 }
