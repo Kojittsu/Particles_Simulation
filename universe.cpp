@@ -20,7 +20,7 @@ void Universe::run(int steps, const std::string& filename) {
         for (Particle& particle : particles) {
             particle.update(deltaTime);
             particle.printState(currentTime);
-            handleBoxCollision(particle,-5.0, 5.0, 1.0, 100.0);
+            handleBoxCollision(particle, 0.0, 10.0, 0.0, 10.0);
             
             if (file.is_open()) {
                 file << currentTime << "," << particle.getX() << "," << particle.getY() << "\n";
