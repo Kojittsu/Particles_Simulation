@@ -2,30 +2,30 @@
 
 // Constructor
 Particle::Particle(double x, double y, double vx, double vy, double ax, double ay)
-    : x(x), y(y), vx(vx), vy(vy), ax(ax), ay(ay) {}
+    : position({x, y}), velocity({vx, vy}), acceleration({ax, ay}) {}
 
 // Getter for x
 double Particle::getX() const {
-    return x;
+    return position[0];
 }
 
 // Getter for y
 double Particle::getY() const {
-    return y;
+    return position[1];
 }
 
 // Update particle
 void Particle::update(double deltaTime, double solY, double coefficientRestitution) {
     // Mise à jour de la vitesse avec l'accélération
-    vx += ax * deltaTime;
-    vy += ay * deltaTime;
+    velocity[0] += acceleration[0] * deltaTime;
+    velocity[1] += acceleration[1] * deltaTime;
 
     // Mise à jour de la position avec la vitesse
-    x += vx * deltaTime;
-    y += vy * deltaTime;
+    position[0] += velocity[0] * deltaTime;
+    position[1] += velocity[1] * deltaTime;
 }
 
 // Print particle state
 void Particle::printState(double currentTime) const {
-    std::cout << "Temps: " << currentTime << "s, Position: (" << x << ", " << y << ")\n";
+    std::cout << "Temps: " << currentTime << "s, Position: (" << position[0] << ", " << position[1] << ")\n";
 }

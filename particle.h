@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <cmath>
+#include <array>
 
 class Particle {
 public:
@@ -22,9 +23,9 @@ public:
     void printState(double currentTime) const;
 
 private:
-    double x, y;       // Position
-    double vx, vy;     // Speed
-    double ax, ay;     // Acceleration
+    std::array<double, 2> position;
+    std::array<double, 2> velocity;
+    std::array<double, 2> acceleration;
 };
 
 #endif // PARTICLE_H
