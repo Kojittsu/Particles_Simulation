@@ -9,14 +9,15 @@
 
 class Universe {
 public:
-    Universe(const std::vector<Particle>& particles, double deltaTime);
+    Universe(const std::vector<Particle>& particles, const Box &box, double deltaTime);
     void run(int steps, const std::string& filename = "");
-    void handleBoxCollision(Particle &particle, const Box &box);
+    void handleBoxCollision(Particle &particle);
 
 private:
     double deltaTime;
     double coefficientRestitution;
     std::vector<Particle> particles;
+    Box box;
 };
 
 #endif // UNIVERSE_H

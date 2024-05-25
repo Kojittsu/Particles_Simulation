@@ -15,8 +15,11 @@ int main() {
 
     particles.emplace_back(particle_1);
 
+    // Box initialization
+    Box box_1(0.0, 10.0, 0.0, 10.0);
+
     // Create and run universe
-    Universe universe(particles, deltaTime);
+    Universe universe(particles, box_1, deltaTime);
     universe.run(1000, "");
     // universe.run(1000, "simulation_output.csv");
 
