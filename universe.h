@@ -10,6 +10,7 @@ class Universe {
 public:
     Universe(const std::vector<Particle>& particles, double deltaTime);
     void run(int steps, const std::string& filename = "");
+    void handleBoxCollision(Particle &particle,double xMin, double xMax, double yMin, double yMax);
 
 private:
     double deltaTime;

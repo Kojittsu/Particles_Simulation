@@ -4,15 +4,18 @@
 Particle::Particle(const std::array<double, 2>& position, const std::array<double, 2>& velocity, const std::array<double, 2>& acceleration)
     : position(position), velocity(velocity), acceleration(acceleration) {}
 
-// Getter for x
-double Particle::getX() const {
-    return position[0];
-}
+// Getters for position
+double Particle::getX() const {return position[0];}
+double Particle::getY() const {return position[1];}
 
-// Getter for y
-double Particle::getY() const {
-    return position[1];
-}
+
+// Getters for velocity
+double Particle::getVX() const {return velocity[0];}
+double Particle::getVY() const {return velocity[1];}
+
+// Setters for velocity
+void Particle::setVX(double vx) {velocity[0] = vx;}
+void Particle::setVY(double vy) {velocity[1] = vy;}
 
 // Update particle
 void Particle::update(double deltaTime) {

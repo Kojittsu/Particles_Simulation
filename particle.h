@@ -9,11 +9,18 @@ class Particle {
 public:
     // Constructor
     Particle(const std::array<double, 2>& position, const std::array<double, 2>& velocity, const std::array<double, 2>& acceleration);
-    // Getter for x
-    double getX() const;
     
-    // Getter for y
+    // Getters for position
+    double getX() const;
     double getY() const;
+
+    // Getters for velocity
+    double getVX() const;
+    double getVY() const;
+
+    // Setters for velocity
+    void setVX(double vx);
+    void setVY(double vy);
 
     // Update particle
     void update(double deltaTime);
