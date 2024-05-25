@@ -25,22 +25,9 @@ void Universe::run(int steps, const std::string& filename) {
                 file << currentTime << "," << particle.getX() << "," << particle.getY() << "\n";
             }
         }
-
-        if (allParticlesAtRest()) {
-            break;
-        }
     }
 
     if (file.is_open()) {
         file.close();
     }
-}
-
-bool Universe::allParticlesAtRest() const {
-    for (const Particle& particle : particles) {
-        if (!particle.isAtRest(solY)) {
-            return false;
-        }
-    }
-    return true;
 }

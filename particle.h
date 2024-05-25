@@ -9,20 +9,17 @@ public:
     // Constructor
     Particle(double x, double y, double vx, double vy, double ax, double ay);
 
-    // Update particle
-    void update(double deltaTime, double solY, double coefficientRestitution);
-
-    // Print particle state
-    void printState(double currentTime) const;
-
-    // Detect if particle is at rest
-    bool isAtRest(double solY) const;
-
     // Getter for x
     double getX() const;
     
     // Getter for y
     double getY() const;
+
+    // Update particle
+    void update(double deltaTime, double solY, double coefficientRestitution);
+
+    // Print particle state
+    void printState(double currentTime) const;
 
 private:
     double x, y;       // Position

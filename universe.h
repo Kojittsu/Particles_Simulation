@@ -17,8 +17,6 @@ private:
     double solY;
     double coefficientRestitution;
     std::vector<Particle> particles;
-
-    bool allParticlesAtRest() const;
 };
 
 #endif // UNIVERSE_H
