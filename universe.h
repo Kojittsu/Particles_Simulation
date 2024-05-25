@@ -8,11 +8,10 @@
 
 class Universe {
 public:
-    Universe(const std::vector<Particle>& particles, double gravite, double deltaTime, double solY, double coefficientRestitution);
+    Universe(const std::vector<Particle>& particles, double deltaTime, double solY, double coefficientRestitution);
     void run(int steps, const std::string& filename = "");
 
 private:
-    double gravite;
     double deltaTime;
     double solY;
     double coefficientRestitution;

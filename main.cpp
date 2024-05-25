@@ -15,7 +15,7 @@ int main() {
     particles.emplace_back(0.0, 10.0, 0.0, 0.0, 0.0, gravite); // Particle at 10m height with zero initial velocity
 
     // Create and run universe
-    Universe universe(particles, gravite, deltaTime, solY, coefficientRestitution);
+    Universe universe(particles, deltaTime, solY, coefficientRestitution);
     universe.run(1000, "simulation_output.csv");
 
     return 0;
