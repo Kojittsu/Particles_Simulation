@@ -1,27 +1,62 @@
+#include <iostream>
+#include <fstream>
+#include <vector>
+#include <array>
+#include <nlohmann/json.hpp>
 #include "particle.h"
 #include "universe.h"
 
-int main() {
-    // Parameters
-    const double deltaTime = 0.01; // Time step of simulation (s)
+using json = nlohmann::json;
 
-    // Particles initialization
+struct Config {
     std::vector<Particle> particles;
+    Box box;
+    double delta_time;
+    int step_numbers;
 
-    std::array<double, 2> position {0.0, 5.0};
-    std::array<double, 2> velocity {0.0, 0.0};
-    std::array<double, 2> acceleration {0.0, -9.81};
-    Particle particle_1(position, velocity, acceleration);
+    // Default constructor
+    Config() : particles(), box(0.0, 0.0, 0.0, 0.0), delta_time(0.0), step_numbers(0) {}
+};
 
-    particles.emplace_back(particle_1);
+bool readConfig(const std::string& filename, Config& config) {
+    std::ifstream file(filename);
+    if (!file.is_open()) {
+        std::cerr << "Error: Could not open config file " << filename << std::endl;
+        return false;
+    }
 
-    // Box initialization
-    Box box_1(0.0, 10.0, 0.0, 10.0);
+    json configJson;
+    file >> configJson;
+
+    for (const auto& particleJson : configJson["particles"]) {
+        std::array<double, 2> position = particleJson["position"];
+        std::array<double, 2> velocity = particleJson["velocity"];
+        std::array<double, 2> acceleration = particleJson["acceleration"];
+        Particle particle(position, velocity, acceleration);
+        config.particles.push_back(particle);
+    }
+
+    json boxJson = configJson["box"];
+    config.box = Box(boxJson["min_x"], boxJson["max_x"], boxJson["min_y"], boxJson["max_y"]);
+
+    config.delta_time = configJson["simulation"]["delta_time"];
+    config.step_numbers = configJson["simulation"]["step_numbers"];
+
+    return true;
+}
+
+
+
+int main() {
+    // Read configuration
+    Config config;
+    if (!readConfig("config.json", config)) {
+        return 1;
+    }
 
     // Create and run universe
-    Universe universe(particles, box_1, deltaTime);
-    universe.run(1000, "");
-    // universe.run(1000, "simulation_output.csv");
+    Universe universe(config.particles, config.box, config.delta_time);
+    universe.run(config.step_numbers, "");
 
     return 0;
 }

@@ -1,0 +1,19 @@
+{
+    "particles": [
+        {
+            "position": [0.0, 5.0],
+            "velocity": [0.0, 0.0],
+            "acceleration": [0.0, -9.81]
+        }
+    ],
+    "box": {
+        "min_x": 0.0,
+        "max_x": 10.0,
+        "min_y": 0.0,
+        "max_y": 10.0
+    },
+    "simulation": {
+        "delta_time": 0.01,
+        "step_numbers": 1000
+    }
+}
