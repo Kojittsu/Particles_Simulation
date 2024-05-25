@@ -15,7 +15,7 @@ double Particle::getY() const {
 }
 
 // Update particle
-void Particle::update(double deltaTime, double solY, double coefficientRestitution) {
+void Particle::update(double deltaTime) {
     // Mise à jour de la vitesse avec l'accélération
     velocity[0] += acceleration[0] * deltaTime;
     velocity[1] += acceleration[1] * deltaTime;

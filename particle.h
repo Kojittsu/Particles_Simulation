@@ -17,7 +17,7 @@ public:
     double getY() const;
 
     // Update particle
-    void update(double deltaTime, double solY, double coefficientRestitution);
+    void update(double deltaTime);
 
     // Print particle state
     void printState(double currentTime) const;

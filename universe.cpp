@@ -1,8 +1,8 @@
 #include "universe.h"
 #include <iostream>
 
-Universe::Universe(const std::vector<Particle>& particles, double deltaTime, double solY, double coefficientRestitution)
-    : particles(particles), deltaTime(deltaTime), solY(solY), coefficientRestitution(coefficientRestitution) {}
+Universe::Universe(const std::vector<Particle>& particles, double deltaTime)
+    : particles(particles), deltaTime(deltaTime) {}
 
 void Universe::run(int steps, const std::string& filename) {
     std::ofstream file;
@@ -18,7 +18,7 @@ void Universe::run(int steps, const std::string& filename) {
         double currentTime = i * deltaTime;
 
         for (Particle& particle : particles) {
-            particle.update(deltaTime, solY, coefficientRestitution);
+            particle.update(deltaTime);
             particle.printState(currentTime);
             
             if (file.is_open()) {
