@@ -1,5 +1,3 @@
-#include <iostream>
-#include <vector>
 #include "particle.h"
 #include "universe.h"
 
@@ -10,7 +8,15 @@ int main() {
 
     // Particles initialization
     std::vector<Particle> particles;
-    particles.emplace_back(0.0, 10.0, 0.0, 0.0, 0.0, gravite); // Particle at 10m height with zero initial velocity
+
+    std::array<double, 2> position {0.0, 10.0};
+    std::array<double, 2> velocity {0.0, 0.0};
+    std::array<double, 2> acceleration {0.0, gravite};
+
+
+    Particle particle_1(position, velocity, acceleration);
+
+    particles.emplace_back(particle_1); // Particle at 10m height with zero initial velocity
 
     // Create and run universe
     Universe universe(particles, deltaTime);

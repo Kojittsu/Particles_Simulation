@@ -8,8 +8,7 @@
 class Particle {
 public:
     // Constructor
-    Particle(double x, double y, double vx, double vy, double ax, double ay);
-
+    Particle(const std::array<double, 2>& position, const std::array<double, 2>& velocity, const std::array<double, 2>& acceleration);
     // Getter for x
     double getX() const;
     

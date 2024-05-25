@@ -1,8 +1,8 @@
 #include "particle.h"
 
 // Constructor
-Particle::Particle(double x, double y, double vx, double vy, double ax, double ay)
-    : position({x, y}), velocity({vx, vy}), acceleration({ax, ay}) {}
+Particle::Particle(const std::array<double, 2>& position, const std::array<double, 2>& velocity, const std::array<double, 2>& acceleration)
+    : position(position), velocity(velocity), acceleration(acceleration) {}
 
 // Getter for x
 double Particle::getX() const {
