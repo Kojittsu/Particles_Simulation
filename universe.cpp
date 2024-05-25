@@ -14,13 +14,15 @@ void Universe::run(int steps, const std::string& filename) {
         }
     }
 
+    Box box_1(0.0, 10.0, 0.0, 10.0);
+
     for (int i = 0; i < steps; ++i) {
         double currentTime = i * deltaTime;
 
         for (Particle& particle : particles) {
             particle.update(deltaTime);
             particle.printState(currentTime);
-            handleBoxCollision(particle, 0.0, 10.0, 0.0, 10.0);
+            handleBoxCollision(particle, box_1);
             
             if (file.is_open()) {
                 file << currentTime << "," << particle.getX() << "," << particle.getY() << "\n";
@@ -33,11 +35,11 @@ void Universe::run(int steps, const std::string& filename) {
     }
 }
 
-void Universe::handleBoxCollision(Particle &particle,double xMin, double xMax, double yMin, double yMax){
-    if (particle.getX() <= xMin || particle.getX() >= xMax){
+void Universe::handleBoxCollision(Particle &particle,const Box &box){
+    if (particle.getX() <= box.getXMIN() || particle.getX() >= box.getXMAX()){
         particle.setVX(-particle.getVX());
     }
-    if (particle.getY() <= yMin || particle.getY() >= yMax){
+    if (particle.getY() <= box.getYMIN() || particle.getY() >= box.getYMAX()){
         particle.setVY(-particle.getVY());
     }
 }
