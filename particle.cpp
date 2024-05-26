@@ -8,6 +8,9 @@ Particle::Particle(const std::array<double, 2>& position, const std::array<doubl
 double Particle::getX() const {return position[0];}
 double Particle::getY() const {return position[1];}
 
+// Setters for position
+void Particle::setX(double x) {position[0] = x;}
+void Particle::setY(double y) {position[1] = y;}
 
 // Getters for velocity
 double Particle::getVX() const {return velocity[0];}

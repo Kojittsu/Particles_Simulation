@@ -14,6 +14,10 @@ public:
     double getX() const;
     double getY() const;
 
+    // Setters for position
+    void setX(double x);
+    void setY(double y);
+
     // Getters for velocity
     double getVX() const;
     double getVY() const;

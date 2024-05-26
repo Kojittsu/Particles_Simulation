@@ -35,9 +35,15 @@ void Universe::run(int steps, const std::string& filename) {
 
 void Universe::handleBoxCollision(Particle &particle){
     if (particle.getX() <= box.getXMIN() || particle.getX() >= box.getXMAX()){
-        particle.setVX(-particle.getVX());
+        std::cout << "Collision: changing X-axis velocity sign"  << "\n";
+
+        particle.setX(0.0);
+        particle.setVX(-particle.getVX()*0.9);
     }
     if (particle.getY() <= box.getYMIN() || particle.getY() >= box.getYMAX()){
-        particle.setVY(-particle.getVY());
+        std::cout << "Collision: changing Y-axis velocity sign"  << "\n";
+
+        particle.setY(0.0);
+        particle.setVY(-particle.getVY()*0.9);
     }
 }

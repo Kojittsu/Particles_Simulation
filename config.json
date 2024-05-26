@@ -1,7 +1,7 @@
 {
     "particles": [
         {
-            "position": [0.0, 5.0],
+            "position": [5.0, 5.0],
             "velocity": [0.0, 0.0],
             "acceleration": [0.0, -9.81]
         }
