@@ -34,16 +34,25 @@ void Universe::run(int steps, const std::string& filename) {
 }
 
 void Universe::handleBoxCollision(Particle &particle){
-    if (particle.getX() <= box.getXMIN() || particle.getX() >= box.getXMAX()){
-        std::cout << "Collision: changing X-axis velocity sign"  << "\n";
 
-        particle.setX(0.0);
+    if(particle.getX() <= box.getXMIN()){
+        std::cout << "Collision (left): changing X-axis velocity sign"  << "\n";
+        particle.setX(box.getXMIN());
         particle.setVX(-particle.getVX()*0.9);
     }
-    if (particle.getY() <= box.getYMIN() || particle.getY() >= box.getYMAX()){
-        std::cout << "Collision: changing Y-axis velocity sign"  << "\n";
-
-        particle.setY(0.0);
+    if(particle.getX() >= box.getXMAX()){
+        std::cout << "Collision (right): changing X-axis velocity sign"  << "\n";
+        particle.setX(box.getXMAX());
+        particle.setVX(-particle.getVX()*0.9);
+    }
+    if(particle.getY() <= box.getYMIN()){
+        std::cout << "Collision (down): changing Y-axis velocity sign"  << "\n";
+        particle.setY(box.getYMIN());
+        particle.setVY(-particle.getVY()*0.9);
+    }
+    if(particle.getY() >= box.getYMAX()){
+        std::cout << "Collision (up): changing Y-axis velocity sign"  << "\n";
+        particle.setY(box.getYMAX());
         particle.setVY(-particle.getVY()*0.9);
     }
 }
