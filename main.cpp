@@ -55,7 +55,8 @@ int main() {
     }
 
     // Create and run universe
-    Universe universe(config.particles, config.box, config.delta_time);
+    double coefficientRestitution = 0.7;
+    Universe universe(config.particles, config.box, coefficientRestitution, config.delta_time);
     universe.run(config.step_numbers, "data.csv");
 
     return 0;
