@@ -56,7 +56,7 @@ int main() {
 
     // Create and run universe
     Universe universe(config.particles, config.box, config.delta_time);
-    universe.run(config.step_numbers, "");
+    universe.run(config.step_numbers, "data.csv");
 
     return 0;
 }

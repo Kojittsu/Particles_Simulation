@@ -12,6 +12,9 @@ public:
     double getXMAX() const;
     double getYMAX() const;
 
+    double getLength() const;
+    double getHeight() const;
+
 private:
     double xMin;
     double xMax;
