@@ -15,23 +15,32 @@ void Universe::run(int steps, const std::string& filename) {
     }
 
     for (int i = 0; i < steps; ++i) {
-        double currentTime = i * deltaTime;
-
-        for (Particle& particle : particles) {
-            particle.update(deltaTime);
-            particle.printState(currentTime);
-            handleBoxCollision(particle, coefficientRestitution);
-            
-            if (file.is_open()) {
-                file << currentTime << "," << particle.getX() << "," << particle.getY() << "\n";
-            }
-        }
+        make_step(i);
+        save_step(file, i);
     }
 
     if (file.is_open()) {
         file.close();
     }
 }
+
+void Universe::make_step(int i){
+    for (Particle& particle : particles) {
+        particle.update(deltaTime);
+        handleBoxCollision(particle, coefficientRestitution);
+    }
+}
+
+
+void Universe::save_step(std::ofstream &file, int step_number){
+    double currentTime = step_number * deltaTime;
+    for (Particle& particle : particles){
+        if (file.is_open()) {
+            file << currentTime << "," << particle.getX() << "," << particle.getY() << "\n";
+        }
+    }
+}
+
 
 void Universe::handleBoxCollision(Particle &particle, double coefficientRestitution){
 
