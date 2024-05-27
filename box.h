@@ -5,6 +5,9 @@ class Box {
 public:
     // Constructor
     Box(double xMin, double xMax, double yMin, double yMax);
+
+    // Default constructor
+    Box();
     
     // Getters
     double getXMIN() const;

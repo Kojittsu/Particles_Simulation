@@ -10,12 +10,9 @@ using json = nlohmann::json;
 
 struct Config {
     std::vector<Particle> particles;
-    Box box;
+    Box box = Box();
     double delta_time;
     int step_numbers;
-
-    // Default constructor
-    Config() : particles(), box(0.0, 0.0, 0.0, 0.0), delta_time(0.0), step_numbers(0) {}
 };
 
 bool readConfig(const std::string& filename, Config& config) {
