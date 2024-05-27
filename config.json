@@ -14,6 +14,7 @@
     },
     "simulation": {
         "delta_time": 0.01,
-        "step_numbers": 1000
+        "step_numbers": 1000,
+        "coefficientRestitution" : 0.7
     }
 }

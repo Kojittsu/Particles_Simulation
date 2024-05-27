@@ -13,6 +13,7 @@ struct Config {
     Box box = Box();
     double delta_time;
     int step_numbers;
+    double coefficientRestitution;
 };
 
 bool readConfig(const std::string& filename, Config& config) {
@@ -38,6 +39,7 @@ bool readConfig(const std::string& filename, Config& config) {
 
     config.delta_time = configJson["simulation"]["delta_time"];
     config.step_numbers = configJson["simulation"]["step_numbers"];
+    config.coefficientRestitution = configJson["simulation"]["coefficientRestitution"];
 
     return true;
 }
@@ -52,8 +54,7 @@ int main() {
     }
 
     // Create and run universe
-    double coefficientRestitution = 0.7;
-    Universe universe(config.particles, config.box, coefficientRestitution, config.delta_time);
+    Universe universe(config.particles, config.box, config.coefficientRestitution, config.delta_time);
     universe.run(config.step_numbers, "data.csv");
 
     return 0;
