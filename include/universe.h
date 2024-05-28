@@ -16,10 +16,11 @@ public:
     void handleBoxCollision(Particle &particle, double coefficientRestitution);
 
 private:
-    double deltaTime;
-    double coefficientRestitution;
     std::vector<Particle> particles;
     Box box;
+    double coefficientRestitution;
+    double deltaTime;
+    
 };
 
 #endif // UNIVERSE_H
