@@ -20,6 +20,9 @@ double Particle::getVY() const {return velocity[1];}
 void Particle::setVX(double vx) {velocity[0] = vx;}
 void Particle::setVY(double vy) {velocity[1] = vy;}
 
+// Getters for radius
+double Particle::getRadius() const {return radius;}
+
 // Update particle
 void Particle::update(double deltaTime) {
     // Mise à jour de la vitesse avec l'accélération

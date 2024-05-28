@@ -26,6 +26,9 @@ public:
     void setVX(double vx);
     void setVY(double vy);
 
+    // Getters for radius
+    double getRadius() const;
+
     // Update particle
     void update(double deltaTime);
 
