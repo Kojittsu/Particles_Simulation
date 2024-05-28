@@ -8,7 +8,7 @@
 class Particle {
 public:
     // Constructor
-    Particle(const std::array<double, 2>& position, const std::array<double, 2>& velocity, const std::array<double, 2>& acceleration);
+    Particle(const std::array<double, 2>& position, const std::array<double, 2>& velocity, const std::array<double, 2>& acceleration, const double radius);
     
     // Getters for position
     double getX() const;
@@ -36,6 +36,7 @@ private:
     std::array<double, 2> position;
     std::array<double, 2> velocity;
     std::array<double, 2> acceleration;
+    double radius;
 };
 
 #endif // PARTICLE_H

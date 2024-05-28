@@ -55,7 +55,8 @@ bool readConfig(const std::string& filename, Config& config) {
         std::array<double, 2> position = particleJson["position"];
         std::array<double, 2> velocity = particleJson["velocity"];
         std::array<double, 2> acceleration = particleJson["acceleration"];
-        Particle particle(position, velocity, acceleration);
+        double radius = particleJson["radius"];
+        Particle particle(position, velocity, acceleration, radius);
         config.particles.push_back(particle);
     }
 
