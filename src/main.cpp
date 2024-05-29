@@ -29,15 +29,11 @@ struct Coordinate {
     double y;
 };
 
-Coordinate coord_To_SFML_Coord(const Coordinate &coordinate, const Box &box, int window_length, int window_height){
-    Coordinate SFML_coord;
-    SFML_coord.time = coordinate.time;
-    SFML_coord.x = (coordinate.x * window_length / box.getLength());
-    SFML_coord.y = window_height - ((coordinate.y) * window_height / box.getHeight());
-
-    // Debbuging (temp)
-    // std::cout << "X: " << coordinate.x << ", Y: " << coordinate.y << " --> " << "X: " << SFML_coord.x << ", Y: " << SFML_coord.y << std::endl;
-
+std::array<double, 2> coord_To_SFML_Coord(const double x, const double y, const Box &box, int window_length, int window_height){
+    std::array<double, 2> SFML_coord;
+    SFML_coord[0] = x * window_length / box.getLength();
+    SFML_coord[1] = window_height - (y * window_height / box.getHeight());
+    // std::cout << "Coord: x=" << x << ", y=" << y << " | SFML_Coord: x=" << SFML_coord[0] << ", y=" << SFML_coord[1] << "\n";
     return SFML_coord;
 }
 
@@ -132,8 +128,8 @@ int main() {
 
         // Mise à jour de la position de la particule en fonction du temps écoulé
         if (index < coordinates.size() && clock.getElapsedTime().asSeconds() >= coordinates[index].time) {
-            Coordinate SFML_coord = coord_To_SFML_Coord(coordinates[index], box, window_length, window_height);
-            particle.setPosition(SFML_coord.x, SFML_coord.y);
+            std::array<double, 2> SFML_coord = coord_To_SFML_Coord(coordinates[index].x, coordinates[index].y, config.box, window_length, window_height);
+            particle.setPosition(SFML_coord[0], SFML_coord[1]);
             index++;
         }
 

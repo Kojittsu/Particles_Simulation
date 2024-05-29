@@ -44,24 +44,24 @@ void Universe::save_step(std::ofstream &file, int step_number){
 
 void Universe::handleBoxCollision(Particle &particle, double coefficientRestitution){
 
-    if(particle.getX() <= box.getXMIN()){
-        std::cout << "Collision (left): changing X-axis velocity sign"  << "\n";
-        particle.setX(box.getXMIN());
+    if(particle.getX() < box.getXMIN() + particle.getRadius()){
+        // std::cout << "Collision (left): changing X-axis velocity sign"  << "\n";
+        particle.setX(box.getXMIN() + particle.getRadius());
         particle.setVX(-particle.getVX()*coefficientRestitution);
     }
-    if(particle.getX() >= box.getXMAX()){
-        std::cout << "Collision (right): changing X-axis velocity sign"  << "\n";
-        particle.setX(box.getXMAX());
+    if(particle.getX() > box.getXMAX() - particle.getRadius()){
+        // std::cout << "Collision (right): changing X-axis velocity sign"  << "\n";
+        particle.setX(box.getXMAX() - particle.getRadius());
         particle.setVX(-particle.getVX()*coefficientRestitution);
     }
-    if(particle.getY() <= box.getYMIN()){
-        std::cout << "Collision (down): changing Y-axis velocity sign"  << "\n";
-        particle.setY(box.getYMIN());
+    if(particle.getY() < box.getYMIN() + particle.getRadius()){
+        // std::cout << "Collision (down): changing Y-axis velocity sign"  << "\n";
+        particle.setY(box.getYMIN() + particle.getRadius());
         particle.setVY(-particle.getVY()*coefficientRestitution);
     }
-    if(particle.getY() >= box.getYMAX()){
-        std::cout << "Collision (up): changing Y-axis velocity sign"  << "\n";
-        particle.setY(box.getYMAX());
+    if(particle.getY() > box.getYMAX() - particle.getRadius()){
+        // std::cout << "Collision (up): changing Y-axis velocity sign"  << "\n";
+        particle.setY(box.getYMAX() - particle.getRadius());
         particle.setVY(-particle.getVY()*coefficientRestitution);
     }
 }
