@@ -66,6 +66,38 @@ bool readConfig(const std::string& filename, Config& config) {
     return true;
 }
 
+sf::VertexArray compute_border(int window_length, int window_height){
+    // Création d'un tableau de sommets pour les lignes
+    sf::VertexArray lines(sf::Lines, 8);
+
+    // Définir les coins
+    sf::Vector2f top_left = sf::Vector2f(1, 0);
+    sf::Vector2f top_right = sf::Vector2f(window_length, 0);
+    sf::Vector2f bottom_right = sf::Vector2f(window_length, window_height-1);
+    sf::Vector2f bottom_left = sf::Vector2f(1, window_height-1);
+
+    lines[0].position = top_left;
+    lines[0].color = sf::Color::Red;
+    lines[1].position = top_right;
+    lines[1].color = sf::Color::Red;
+
+    lines[2].position = top_right;
+    lines[2].color = sf::Color::Red;
+    lines[3].position = bottom_right;
+    lines[3].color = sf::Color::Red;
+
+    lines[4].position = bottom_right;
+    lines[4].color = sf::Color::Red;
+    lines[5].position = bottom_left;
+    lines[5].color = sf::Color::Red;
+
+    lines[6].position = top_left;
+    lines[6].color = sf::Color::Red;
+    lines[7].position = bottom_left;
+    lines[7].color = sf::Color::Red;
+
+    return lines;
+}
 
 
 int main() {
@@ -109,6 +141,9 @@ int main() {
     // Create box
     Box box(0.0, 10.0, 0.0, 10.0);
 
+    //Create borders
+    sf::VertexArray borders = compute_border(window_length, window_height);
+
     // Create particle
     sf::CircleShape particle(10);
     particle.setFillColor(sf::Color::Red);
@@ -135,6 +170,7 @@ int main() {
 
         window.clear();
         window.draw(particle);
+        window.draw(borders);
         window.display();
     }
 
