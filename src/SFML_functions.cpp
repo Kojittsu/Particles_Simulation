@@ -41,3 +41,41 @@ sf::VertexArray compute_border(int window_length, int window_height){
 
     return lines;
 }
+
+void display_universe_SFML(std::vector<Coordinate> coordinates, Box box, int window_length, int window_height){
+	// Create SFML windows
+    sf::RenderWindow window(sf::VideoMode(window_length, window_height), "Particle Movement", sf::Style::Fullscreen);
+
+    //Create borders
+    sf::VertexArray borders = compute_border(window_length, window_height);
+
+    // Create particle
+    sf::CircleShape particle(10);
+    particle.setFillColor(sf::Color::Red);
+
+    // Index pour suivre la position actuelle de la particule
+    std::size_t index = 0;
+    sf::Clock clock;
+
+    while (window.isOpen())
+    {
+        sf::Event event;
+        while (window.pollEvent(event)) {
+            if (event.type == sf::Event::Closed) {
+                window.close();
+            }
+        }
+
+        // Mise à jour de la position de la particule en fonction du temps écoulé
+        if (index < coordinates.size() && clock.getElapsedTime().asSeconds() >= coordinates[index].time) {
+            std::array<double, 2> SFML_coord = coord_To_SFML_Coord(coordinates[index].x, coordinates[index].y, box, window_length, window_height);
+            particle.setPosition(SFML_coord[0], SFML_coord[1]);
+            index++;
+        }
+
+        window.clear();
+        window.draw(particle);
+        window.draw(borders);
+        window.display();
+    }
+}
