@@ -23,13 +23,6 @@ struct Config {
     double coefficientRestitution;
 };
 
-// Structure to store space and time coordinates
-// struct Coordinate {
-//     double time;
-//     double x;
-//     double y;
-// };
-
 
 bool readConfig(const std::string& filename, Config& config) {
     std::ifstream file(filename);
@@ -60,6 +53,27 @@ bool readConfig(const std::string& filename, Config& config) {
     return true;
 }
 
+std::vector<Coordinate> readFileData(){
+    // Vecteur pour stocker les coordonnées
+    std::vector<Coordinate> coordinates;
+    // Open file
+    std::ifstream file("data.csv");
+    if (file.is_open()) {
+        std::string line;
+
+        // Read data in file
+        while (std::getline(file, line)) {
+            std::stringstream ss(line);
+            Coordinate coord;
+            char comma;
+            ss >> coord.time >> comma >> coord.x >> comma >> coord.y;
+            coordinates.push_back(coord);
+        }
+    // Close file
+    file.close();
+    }
+    return coordinates;
+}
 
 int main() {
     // Read configuration
@@ -72,27 +86,7 @@ int main() {
     Universe universe(config.particles, config.box, config.coefficientRestitution, config.delta_time);
     universe.run(config.step_numbers, "data.csv");
 
-    // Open file
-    std::ifstream file("data.csv");
-    if (!file.is_open()) {
-        return -1;
-    }
-
-    // Vecteur pour stocker les coordonnées
-    std::vector<Coordinate> coordinates;
-    std::string line;
-
-    // Read data in file
-    while (std::getline(file, line)) {
-        std::stringstream ss(line);
-        Coordinate coord;
-        char comma;
-        ss >> coord.time >> comma >> coord.x >> comma >> coord.y;
-        coordinates.push_back(coord);
-    }
-
-    // Close file
-    file.close();
+    std::vector<Coordinate> coordinates = readFileData();
 
     display_universe_SFML(coordinates, config.box, 500, 500);
 
