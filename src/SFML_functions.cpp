@@ -44,7 +44,7 @@ sf::VertexArray compute_border(int window_length, int window_height){
 
 void display_universe_SFML(std::vector<Coordinate> coordinates, Box box, double radius, int window_length, int window_height){
 	// Create SFML windows
-    sf::RenderWindow window(sf::VideoMode(window_length, window_height), "Particle Movement", sf::Style::Fullscreen);
+    sf::RenderWindow window(sf::VideoMode(window_length, window_height), "Particle Movement", sf::Style::None);
 
     //Create borders
     sf::VertexArray borders = compute_border(window_length, window_height);
@@ -52,7 +52,7 @@ void display_universe_SFML(std::vector<Coordinate> coordinates, Box box, double 
     // Create particle
     double SFML_radius = radius * window_length / box.getLength();
     sf::CircleShape particle(SFML_radius);
-    particle.setFillColor(sf::Color::Green);
+    particle.setFillColor(sf::Color::White);
 
     // Index pour suivre la position actuelle de la particule
     std::size_t index = 0;
