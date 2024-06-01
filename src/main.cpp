@@ -53,7 +53,7 @@ bool readConfig(const std::string& filename, Config& config) {
     return true;
 }
 
-std::vector<std::vector<Coordinate>> readParticleMovements(const std::string& filename) {
+std::vector<std::vector<Coordinate>> readParticlesMovements(const std::string& filename) {
     std::ifstream file(filename);
     std::string line;
     std::map<int, std::vector<Coordinate>> particleMap;
@@ -100,18 +100,11 @@ int main() {
     Universe universe(config.particles, config.box, config.coefficientRestitution, config.delta_time);
     universe.run(config.step_numbers, "data.csv");
 
-    std::vector<std::vector<Coordinate>> particleMovements = readParticleMovements("data.csv");
+    // Read particles movements data in file
+    std::vector<std::vector<Coordinate>> particlesMovements = readParticlesMovements("data.csv");
 
-    // Print out the data to verify
-    for (size_t i = 0; i < particleMovements.size(); ++i) {
-        std::cout << "Particle " << i << ":\n";
-        for (const auto& coord : particleMovements[i]) {
-            std::cout << "time: " << coord.time << ", x: " << coord.x << ", y: " << coord.y << std::endl;
-        }
-    }
-
-
-    display_universe_SFML(particleMovements, config.box, config.particles[0].getRadius(), 500, 500);
+    // Display simulation in SMFL
+    display_universe_SFML(particlesMovements, config.box, config.particles[0].getRadius(), 500, 500);
 
     return 0;
 }
