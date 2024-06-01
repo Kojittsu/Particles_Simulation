@@ -53,26 +53,40 @@ bool readConfig(const std::string& filename, Config& config) {
     return true;
 }
 
-std::vector<Coordinate> readFileData(){
-    // Vecteur pour stocker les coordonnées
-    std::vector<Coordinate> coordinates;
-    // Open file
-    std::ifstream file("data.csv");
-    if (file.is_open()) {
-        std::string line;
+std::vector<std::vector<Coordinate>> readParticleMovements(const std::string& filename) {
+    std::ifstream file(filename);
+    std::string line;
+    std::map<int, std::vector<Coordinate>> particleMap;
 
-        // Read data in file
-        while (std::getline(file, line)) {
-            std::stringstream ss(line);
-            Coordinate coord;
-            char comma;
-            ss >> coord.time >> comma >> coord.x >> comma >> coord.y;
-            coordinates.push_back(coord);
+    while (std::getline(file, line)) {
+        std::istringstream iss(line);
+        std::string token;
+        std::vector<std::string> tokens;
+
+        while (std::getline(iss, token, ',')) {
+            tokens.push_back(token);
         }
-    // Close file
-    file.close();
+
+        if (tokens.size() != 4) {
+            std::cerr << "Error parsing line: " << line << std::endl;
+            continue; // skip invalid lines
+        }
+
+        double time = std::stod(tokens[0]);
+        int particle_number = std::stoi(tokens[1]);
+        double x = std::stod(tokens[2]);
+        double y = std::stod(tokens[3]);
+
+        Coordinate coord(time, x, y);
+        particleMap[particle_number].push_back(coord);
     }
-    return coordinates;
+
+    std::vector<std::vector<Coordinate>> particleMovements;
+    for (auto& pair : particleMap) {
+        particleMovements.push_back(std::move(pair.second));
+    }
+
+    return particleMovements;
 }
 
 int main() {
@@ -86,9 +100,18 @@ int main() {
     Universe universe(config.particles, config.box, config.coefficientRestitution, config.delta_time);
     universe.run(config.step_numbers, "data.csv");
 
-    std::vector<Coordinate> coordinates = readFileData();
+    std::vector<std::vector<Coordinate>> particleMovements = readParticleMovements("data.csv");
 
-    display_universe_SFML(coordinates, config.box, config.particles[0].getRadius(), 500, 500);
+    // Print out the data to verify
+    for (size_t i = 0; i < particleMovements.size(); ++i) {
+        std::cout << "Particle " << i << ":\n";
+        for (const auto& coord : particleMovements[i]) {
+            std::cout << "time: " << coord.time << ", x: " << coord.x << ", y: " << coord.y << std::endl;
+        }
+    }
+
+
+    display_universe_SFML(particleMovements, config.box, config.particles[0].getRadius(), 500, 500);
 
     return 0;
 }

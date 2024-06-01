@@ -5,6 +5,12 @@
             "velocity": [0.0, 0.0],
             "acceleration": [0.0, -9.81],
             "radius": 0.5
+        },
+        {
+            "position": [5.0, 0.0],
+            "velocity": [4.0, 0.0],
+            "acceleration": [0.0, -9.81],
+            "radius": 0.5
         }
     ],
     "box": {

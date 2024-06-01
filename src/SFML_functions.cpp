@@ -42,7 +42,10 @@ sf::VertexArray compute_border(int window_length, int window_height){
     return lines;
 }
 
-void display_universe_SFML(std::vector<Coordinate> coordinates, Box box, double radius, int window_length, int window_height){
+void display_universe_SFML(std::vector<std::vector<Coordinate>> particleMovements, Box box, double radius, int window_length, int window_height){
+
+    std::vector<Coordinate> coordinates = particleMovements[0]; // NEED TO WORK WITH MULTIPLE PARTICLE, ACTUALLY WORK WITH ONLY ONE.
+
 	// Create SFML windows
     sf::RenderWindow window(sf::VideoMode(window_length, window_height), "Particle Movement", sf::Style::None);
 

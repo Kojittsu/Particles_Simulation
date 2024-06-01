@@ -34,10 +34,12 @@ void Universe::make_step(int i){
 
 void Universe::save_step(std::ofstream &file, int step_number){
     double currentTime = step_number * deltaTime;
+    int particle_number = 1;
     for (Particle& particle : particles){
         if (file.is_open()) {
-            file << currentTime << "," << particle.getX() << "," << particle.getY() << "\n";
+            file << currentTime << "," << particle_number << "," << particle.getX() << "," << particle.getY() << "\n";
         }
+        particle_number += 1;
     }
 }
 
