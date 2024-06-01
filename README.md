@@ -16,8 +16,36 @@ Where `deltaTime` is the size of the time step used in the simulation.
 The explicit Euler method is simple to implement but can introduce approximation errors. More advanced numerical methods, such as Runge-Kutta methods or Verlet integration, can be employed to obtain more accurate results in certain cases.
 
 ## Features
+
 - Particle Initialization : Particles can be initialized with different positions, velocities, acceleration and radius.
 - Interaction Simulation : The project simulates interactions between particles and universe boundaries.
+
+## Configuration file
+
+This is the Configuration file structure :
+```json
+{
+    "particles": [
+        {
+            "position": ["float", "float"],
+            "velocity": ["float", "float"],
+            "acceleration": ["float", "float"],
+            "radius": "float"
+        }
+    ],
+    "box": {
+        "min_x": "float",
+        "max_x": "float",
+        "min_y": "float",
+        "max_y": "float"
+    },
+    "simulation": {
+        "delta_time": "float",
+        "step_numbers": "int",
+        "coefficientRestitution": "float"
+    }
+}
+```
 
 ## Compilation and Execution
 
