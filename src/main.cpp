@@ -8,9 +8,7 @@
 #include <string>
 #include <vector>
 
-#include "circle.h"
 #include "box.h"
-#include "boundaries.h"
 
 #include "particle.h"
 #include "universe.h"
