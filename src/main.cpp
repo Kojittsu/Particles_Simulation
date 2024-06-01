@@ -8,7 +8,10 @@
 #include <string>
 #include <vector>
 
+#include "circle.h"
 #include "box.h"
+#include "boundaries.h"
+
 #include "particle.h"
 #include "universe.h"
 #include "SFML_functions.h"
@@ -103,7 +106,7 @@ int main() {
     // Read particles movements data in file
     std::vector<std::vector<Coordinate>> particlesMovements = readParticlesMovements("data.csv");
 
-    // Display simulation in SMFL
+    // Display simulation in SFML
     display_universe_SFML(particlesMovements, config.box, config.particles[0].getRadius(), 500, 500);
 
     return 0;
