@@ -88,7 +88,7 @@ int main() {
 
     std::vector<Coordinate> coordinates = readFileData();
 
-    display_universe_SFML(coordinates, config.box, 500, 500);
+    display_universe_SFML(coordinates, config.box, config.particles[0].getRadius(), 500, 500);
 
     return 0;
 }

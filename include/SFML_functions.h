@@ -15,6 +15,6 @@ std::array<double, 2> coord_To_SFML_Coord(const double x, const double y, const 
 
 sf::VertexArray compute_border(int window_length, int window_height);
 
-void display_universe_SFML(std::vector<Coordinate> coordinates, Box box, int window_length, int window_height);
+void display_universe_SFML(std::vector<Coordinate> coordinates, Box box, double radius, int window_length, int window_height);
 
 #endif

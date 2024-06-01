@@ -42,7 +42,7 @@ sf::VertexArray compute_border(int window_length, int window_height){
     return lines;
 }
 
-void display_universe_SFML(std::vector<Coordinate> coordinates, Box box, int window_length, int window_height){
+void display_universe_SFML(std::vector<Coordinate> coordinates, Box box, double radius, int window_length, int window_height){
 	// Create SFML windows
     sf::RenderWindow window(sf::VideoMode(window_length, window_height), "Particle Movement", sf::Style::Fullscreen);
 
@@ -50,8 +50,9 @@ void display_universe_SFML(std::vector<Coordinate> coordinates, Box box, int win
     sf::VertexArray borders = compute_border(window_length, window_height);
 
     // Create particle
-    sf::CircleShape particle(10);
-    particle.setFillColor(sf::Color::Red);
+    double SFML_radius = radius * window_length / box.getLength();
+    sf::CircleShape particle(SFML_radius);
+    particle.setFillColor(sf::Color::Green);
 
     // Index pour suivre la position actuelle de la particule
     std::size_t index = 0;
@@ -69,13 +70,13 @@ void display_universe_SFML(std::vector<Coordinate> coordinates, Box box, int win
         // Mise à jour de la position de la particule en fonction du temps écoulé
         if (index < coordinates.size() && clock.getElapsedTime().asSeconds() >= coordinates[index].time) {
             std::array<double, 2> SFML_coord = coord_To_SFML_Coord(coordinates[index].x, coordinates[index].y, box, window_length, window_height);
-            particle.setPosition(SFML_coord[0], SFML_coord[1]);
+            particle.setPosition(SFML_coord[0]-SFML_radius, SFML_coord[1]-SFML_radius);
             index++;
         }
 
         window.clear();
-        window.draw(particle);
         window.draw(borders);
+        window.draw(particle);
         window.display();
     }
 }
