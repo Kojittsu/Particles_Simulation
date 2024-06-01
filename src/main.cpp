@@ -105,7 +105,10 @@ int main() {
     std::vector<std::vector<Coordinate>> particlesMovements = readParticlesMovements("data.csv");
 
     // Display simulation in SFML
-    display_universe_SFML(particlesMovements, config.box, config.particles[0].getRadius(), 500, 500);
+    int scaleFactorPixels = 50;
+    int windowLength = scaleFactorPixels*config.box.getLength(); 
+    int windowHeight = scaleFactorPixels*config.box.getHeight(); 
+    display_universe_SFML(particlesMovements, config.box, config.particles[0].getRadius(), windowLength, windowHeight);
 
     return 0;
 }
