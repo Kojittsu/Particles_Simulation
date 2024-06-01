@@ -4,7 +4,7 @@
 Box::Box(double xMin, double xMax, double yMin, double yMax) : xMin(xMin), xMax(xMax), yMin(yMin), yMax(yMax) {}
 
 // Default constructor
-Box::Box() {}
+Box::Box() : xMin(0.0), xMax(0.0), yMin(0.0), yMax(0.0){}
 
 // Getters
 double Box::getXMIN() const {return xMin;}
