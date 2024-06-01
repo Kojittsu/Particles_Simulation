@@ -2,14 +2,20 @@
     "particles": [
         {
             "position": [5.0, 5.0],
-            "velocity": [0.0, 0.0],
-            "acceleration": [0.0, -9.81],
+            "velocity": [1.0, 1.0],
+            "acceleration": [0.0, 0.0],
             "radius": 0.5
         },
         {
-            "position": [5.0, 0.0],
-            "velocity": [4.0, 0.0],
-            "acceleration": [0.0, -9.81],
+            "position": [5.0, 5.0],
+            "velocity": [4.0, 2.0],
+            "acceleration": [0.0, 0.0],
+            "radius": 0.5
+        },
+        {
+            "position": [5.0, 5.0],
+            "velocity": [2.0, 4.0],
+            "acceleration": [0.0, 0.0],
             "radius": 0.5
         }
     ],
@@ -22,6 +28,6 @@
     "simulation": {
         "delta_time": 0.01,
         "step_numbers": 1000,
-        "coefficientRestitution" : 0.7
+        "coefficientRestitution" : 1.1
     }
 }
