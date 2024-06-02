@@ -9,6 +9,7 @@
 #include <iostream>
 #include <cmath>
 #include "box.h"
+#include "circle.h"
 
 // Structure to store space and time coordinates
 struct Coordinate {
@@ -28,6 +29,6 @@ sf::VertexArray computeCircle(int windowLength, int windowHeight, int radius, in
 
 std::vector<std::vector<Coordinate>> readParticlesMovements(const std::string& filename);
 
-void display_universe_SFML(std::vector<std::vector<Coordinate>> particleMovements, Box box, std::vector<double> particlesRadius, int scaleFactorPixels);
+void display_universe_SFML(std::vector<std::vector<Coordinate>> particleMovements, Box box, Circle circle, std::vector<double> particlesRadius, int scaleFactorPixels);
 
 #endif

@@ -26,7 +26,7 @@ int main() {
     // Display simulation in SFML
     int scaleFactorPixels = 50;
     std::vector<double> particlesRadius = universe.getParticlesRadius(); // Get all radius
-    display_universe_SFML(particlesMovements, config.box, particlesRadius, scaleFactorPixels);
+    display_universe_SFML(particlesMovements, config.box, config.circle, particlesRadius, scaleFactorPixels);
 
     return 0;
 }

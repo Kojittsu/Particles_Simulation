@@ -99,7 +99,7 @@ std::vector<std::vector<Coordinate>> readParticlesMovements(const std::string& f
     return particleMovements;
 }
 
-void display_universe_SFML(std::vector<std::vector<Coordinate>> particlesMovements, Box box, std::vector<double> particlesRadius, int scaleFactorPixels){
+void display_universe_SFML(std::vector<std::vector<Coordinate>> particlesMovements, Box box, Circle circle, std::vector<double> particlesRadius, int scaleFactorPixels){
 
     // Set SFML dimensions proportional to Simulation dimensions
     int windowLength = scaleFactorPixels*box.getLength(); 
@@ -110,7 +110,7 @@ void display_universe_SFML(std::vector<std::vector<Coordinate>> particlesMovemen
 
     //Create borders
     sf::VertexArray borders = computeBorder(windowLength, windowHeight);
-    sf::VertexArray circle = computeCircle(windowLength, windowHeight, 2.5*scaleFactorPixels, 1000);
+    sf::VertexArray SFML_circle = computeCircle(windowLength, windowHeight, circle.getRadius()*scaleFactorPixels, 1000);
 
     // Get numbers of particles
     int particle_numbers = particlesMovements.size();
@@ -164,7 +164,7 @@ void display_universe_SFML(std::vector<std::vector<Coordinate>> particlesMovemen
         window.clear();
         for (sf::CircleShape particle : particles){window.draw(particle);}
         window.draw(borders);
-        window.draw(circle);
+        window.draw(SFML_circle);
         window.display();
     }
 }
