@@ -34,14 +34,14 @@ This is the Configuration file structure :
         }
     ],
     "box": {
-        "min_x": "float",
-        "max_x": "float",
-        "min_y": "float",
-        "max_y": "float"
+        "xMin": "float",
+        "xMax": "float",
+        "yMin": "float",
+        "yMax": "float"
     },
     "simulation": {
         "deltaTime": "float",
-        "step_numbers": "int",
+        "stepNumbers": "int",
         "coefficientRestitution": "float"
     }
 }

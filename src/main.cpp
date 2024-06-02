@@ -20,7 +20,7 @@ struct Config {
     std::vector<Particle> particles;
     Box box = Box();
     double deltaTime;
-    int step_numbers;
+    int stepNumbers;
     double coefficientRestitution;
 };
 
@@ -45,10 +45,10 @@ bool readConfig(const std::string& filename, Config& config) {
     }
 
     json boxJson = configJson["box"];
-    config.box = Box(boxJson["min_x"], boxJson["max_x"], boxJson["min_y"], boxJson["max_y"]);
+    config.box = Box(boxJson["xMin"], boxJson["xMax"], boxJson["yMin"], boxJson["yMax"]);
 
     config.deltaTime = configJson["simulation"]["deltaTime"];
-    config.step_numbers = configJson["simulation"]["step_numbers"];
+    config.stepNumbers = configJson["simulation"]["stepNumbers"];
     config.coefficientRestitution = configJson["simulation"]["coefficientRestitution"];
 
     return true;
@@ -107,7 +107,7 @@ int main() {
     // for(int i=0; i< 5; i++){universe.addRndParticle(maxVelocity, minRadius, maxRadius);}
     
     // Run universe
-    universe.run(config.step_numbers, "data.csv");
+    universe.run(config.stepNumbers, "data.csv");
 
     // Read particles movements data in file
     std::vector<std::vector<Coordinate>> particlesMovements = readParticlesMovements("data.csv");
