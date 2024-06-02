@@ -11,7 +11,7 @@
 class Universe {
 public:
     Universe(const Config& config);
-    void run(int steps, const std::string& filename = "");
+    void run(const std::string& filename = "");
     void makeStep();
     void saveStep(std::ofstream &file, int stepNumber);
     void addRndParticle(double maxVelocity, double minRadius, double maxRadius);
@@ -23,6 +23,7 @@ private:
     Box box;
     double coefficientRestitution;
     double deltaTime;
+    int stepNumbers;
     
 };
 

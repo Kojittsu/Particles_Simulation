@@ -3,9 +3,9 @@
 #include <iostream>
 
 Universe::Universe(const Config& config)
-    : particles(config.particles), box(config.box), coefficientRestitution(config.coefficientRestitution), deltaTime(config.deltaTime) {}
+    : particles(config.particles), box(config.box), coefficientRestitution(config.coefficientRestitution), deltaTime(config.deltaTime), stepNumbers(config.stepNumbers) {}
 
-void Universe::run(int steps, const std::string& filename) {
+void Universe::run(const std::string& filename) {
     std::ofstream file;
     if (!filename.empty()) {
         file.open(filename);
@@ -15,7 +15,7 @@ void Universe::run(int steps, const std::string& filename) {
         }
     }
 
-    for (int stepNumber = 0; stepNumber < steps; ++stepNumber) {
+    for (int stepNumber = 0; stepNumber < stepNumbers; ++stepNumber) {
         makeStep();
         saveStep(file, stepNumber);
     }

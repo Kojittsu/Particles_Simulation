@@ -94,13 +94,13 @@ int main() {
     Universe universe(config);
 
     // Add random particles
-    // double maxVelocity = 5.0;
-    // double minRadius = 0.1;
-    // double maxRadius = 2;
-    // for(int i=0; i< 5; i++){universe.addRndParticle(maxVelocity, minRadius, maxRadius);}
+    double maxVelocity = 5.0;
+    double minRadius = 0.1;
+    double maxRadius = 0.2;
+    for(int i=0; i< 100; i++){universe.addRndParticle(maxVelocity, minRadius, maxRadius);}
     
     // Run universe
-    universe.run(config.stepNumbers, "data.csv");
+    universe.run("data.csv");
 
     // Read particles movements data in file
     std::vector<std::vector<Coordinate>> particlesMovements = readParticlesMovements("data.csv");
