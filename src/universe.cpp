@@ -2,8 +2,8 @@
 #include "utils.h"
 #include <iostream>
 
-Universe::Universe(const std::vector<Particle>& particles, const Box &box, const double coefficientRestitution, double deltaTime)
-    : particles(particles), box(box), coefficientRestitution(coefficientRestitution), deltaTime(deltaTime) {}
+Universe::Universe(const Config& config)
+    : particles(config.particles), box(config.box), coefficientRestitution(config.coefficientRestitution), deltaTime(config.deltaTime) {}
 
 void Universe::run(int steps, const std::string& filename) {
     std::ofstream file;

@@ -8,21 +8,14 @@
 #include <string>
 #include <vector>
 
+#include "config.h"
 #include "box.h"
-
 #include "particle.h"
 #include "universe.h"
 #include "SFML_functions.h"
 
 using json = nlohmann::json;
 
-struct Config {
-    std::vector<Particle> particles;
-    Box box = Box();
-    double deltaTime;
-    int stepNumbers;
-    double coefficientRestitution;
-};
 
 
 bool readConfig(const std::string& filename, Config& config) {
@@ -98,7 +91,7 @@ int main() {
     }
 
     // Create universe
-    Universe universe(config.particles, config.box, config.coefficientRestitution, config.deltaTime);
+    Universe universe(config);
 
     // Add random particles
     // double maxVelocity = 5.0;

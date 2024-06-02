@@ -6,10 +6,11 @@
 #include <string>
 #include "particle.h"
 #include "box.h"
+#include "config.h"
 
 class Universe {
 public:
-    Universe(const std::vector<Particle>& particles, const Box &box, const double coefficientRestitution, double deltaTime);
+    Universe(const Config& config);
     void run(int steps, const std::string& filename = "");
     void makeStep();
     void saveStep(std::ofstream &file, int stepNumber);
