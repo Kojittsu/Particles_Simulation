@@ -1,6 +1,7 @@
 #ifndef SFML_FUNCTIONS
 #define SFML_FUNCTIONS
 
+#include <SFML/Graphics.hpp>
 #include <array>
 #include "box.h"
 

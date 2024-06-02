@@ -1,4 +1,3 @@
-#include <SFML/Graphics.hpp>
 #include "SFML_functions.h"
 
 std::array<double, 2> coord_To_SFML_Coord(const double x, const double y, const Box &box, int window_length, int window_height){
