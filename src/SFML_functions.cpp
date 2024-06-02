@@ -42,7 +42,7 @@ sf::VertexArray compute_border(int window_length, int window_height){
     return lines;
 }
 
-void display_universe_SFML(std::vector<std::vector<Coordinate>> particlesMovements, Box box, double radius, int window_length, int window_height){
+void display_universe_SFML(std::vector<std::vector<Coordinate>> particlesMovements, Box box, std::vector<double> particlesRadius, int window_length, int window_height){
 
 	// Create SFML windows
     sf::RenderWindow window(sf::VideoMode(window_length, window_height), "Particle Movement", sf::Style::None);
@@ -53,14 +53,18 @@ void display_universe_SFML(std::vector<std::vector<Coordinate>> particlesMovemen
     // Get numbers of particles
     int particle_numbers = particlesMovements.size();
 
-    // Create particles
-    double SFML_radius = radius * window_length / box.getLength(); // Same radius for all particles (for now)
+    // Creating vector of radius particles
+    std::vector<double> SFML_particlesRadius;
+    for (double& radius : particlesRadius){
+        double SFML_radius = radius * window_length / box.getLength();
+        SFML_particlesRadius.push_back(SFML_radius);
+    }
 
     // Creation of SFML particles
     std::vector<sf::CircleShape> particles;
     for (int i = 0; i < particle_numbers; ++i) {
         sf::CircleShape particule;
-        particule.setRadius(SFML_radius);
+        particule.setRadius(SFML_particlesRadius[i]);
         particule.setFillColor(sf::Color::White);
         particles.push_back(particule);
     }
@@ -89,7 +93,7 @@ void display_universe_SFML(std::vector<std::vector<Coordinate>> particlesMovemen
             // Mise à jour de la position de la particule en fonction du temps écoulé
             if (index < coordinates.size() && clock.getElapsedTime().asSeconds() >= coordinates[index].time) {
                 std::array<double, 2> SFML_coord = coord_To_SFML_Coord(coordinates[index].x, coordinates[index].y, box, window_length, window_height);
-                particles[i].setPosition(SFML_coord[0]-SFML_radius, SFML_coord[1]-SFML_radius);
+                particles[i].setPosition(SFML_coord[0]-SFML_particlesRadius[i], SFML_coord[1]-SFML_particlesRadius[i]);
                 window.draw(particles[i]);
                 index++;
             }

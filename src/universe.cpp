@@ -53,6 +53,15 @@ void Universe::addRndParticle(double maxVelocity, double minRadius, double maxRa
     particles.push_back(particle);
 }
 
+std::vector<double> Universe::getParticlesRadius(){
+    std::vector<double> particlesRadius;
+    for (Particle& particle : particles){
+        particlesRadius.push_back(particle.getRadius());
+        std::cout << particle.getRadius() << "\n";
+    }
+    return particlesRadius;
+}
+
 
 void Universe::handleBoxCollision(Particle &particle, double coefficientRestitution){
 

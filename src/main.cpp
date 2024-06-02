@@ -115,8 +115,9 @@ int main() {
     // Display simulation in SFML
     int scaleFactorPixels = 50;
     int windowLength = scaleFactorPixels*config.box.getLength(); 
-    int windowHeight = scaleFactorPixels*config.box.getHeight(); 
-    display_universe_SFML(particlesMovements, config.box, config.particles[0].getRadius(), windowLength, windowHeight);
+    int windowHeight = scaleFactorPixels*config.box.getHeight();
+    std::vector<double> particlesRadius = universe.getParticlesRadius(); // Get all radius
+    display_universe_SFML(particlesMovements, config.box, particlesRadius, windowLength, windowHeight);
 
     return 0;
 }
