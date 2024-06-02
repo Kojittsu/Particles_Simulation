@@ -74,12 +74,12 @@ std::vector<std::vector<Coordinate>> readParticlesMovements(const std::string& f
         }
 
         double time = std::stod(tokens[0]);
-        int particle_number = std::stoi(tokens[1]);
+        int particleNumber = std::stoi(tokens[1]);
         double x = std::stod(tokens[2]);
         double y = std::stod(tokens[3]);
 
         Coordinate coord(time, x, y);
-        particleMap[particle_number].push_back(coord);
+        particleMap[particleNumber].push_back(coord);
     }
 
     std::vector<std::vector<Coordinate>> particleMovements;
