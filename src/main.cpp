@@ -101,10 +101,10 @@ int main() {
     Universe universe(config.particles, config.box, config.coefficientRestitution, config.delta_time);
 
     // Add random particles
-    double maxVelocity = 5.0;
-    double minRadius = 0.1;
-    double maxRadius = 2;
-    for(int i=0; i< 5; i++){universe.addRndParticle(maxVelocity, minRadius, maxRadius);}
+    // double maxVelocity = 5.0;
+    // double minRadius = 0.1;
+    // double maxRadius = 2;
+    // for(int i=0; i< 5; i++){universe.addRndParticle(maxVelocity, minRadius, maxRadius);}
     
     // Run universe
     universe.run(config.step_numbers, "data.csv");
@@ -114,10 +114,8 @@ int main() {
 
     // Display simulation in SFML
     int scaleFactorPixels = 50;
-    int windowLength = scaleFactorPixels*config.box.getLength(); 
-    int windowHeight = scaleFactorPixels*config.box.getHeight();
     std::vector<double> particlesRadius = universe.getParticlesRadius(); // Get all radius
-    display_universe_SFML(particlesMovements, config.box, particlesRadius, windowLength, windowHeight);
+    display_universe_SFML(particlesMovements, config.box, particlesRadius, scaleFactorPixels);
 
     return 0;
 }

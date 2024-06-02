@@ -18,6 +18,6 @@ std::array<double, 2> coord_To_SFML_Coord(const double x, const double y, const 
 
 sf::VertexArray compute_border(int window_length, int window_height);
 
-void display_universe_SFML(std::vector<std::vector<Coordinate>> particleMovements, Box box, std::vector<double> particlesRadius, int window_length, int window_height);
+void display_universe_SFML(std::vector<std::vector<Coordinate>> particleMovements, Box box, std::vector<double> particlesRadius, int scaleFactorPixels);
 
 #endif
