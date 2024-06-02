@@ -15,41 +15,38 @@ void Universe::run(int steps, const std::string& filename) {
         }
     }
 
-    for (int i = 0; i < steps; ++i) {
-        make_step();
-        save_step(file, i);
+    for (int stepNumber = 0; stepNumber < steps; ++stepNumber) {
+        makeStep();
+        saveStep(file, stepNumber);
     }
 
-    if (file.is_open()) {
-        file.close();
-    }
+    if (file.is_open()) {file.close();}
 }
 
-void Universe::make_step(){
+void Universe::makeStep(){
     for (Particle& particle : particles) {
         particle.update(deltaTime);
         handleBoxCollision(particle, coefficientRestitution);
     }
 }
 
-
-void Universe::save_step(std::ofstream &file, int step_number){
-    double currentTime = step_number * deltaTime;
-    int particle_number = 1;
+void Universe::saveStep(std::ofstream &file, int stepNumber){
+    double currentTime = stepNumber * deltaTime;
+    int particleNumber = 1;
     for (Particle& particle : particles){
         if (file.is_open()) {
-            file << currentTime << "," << particle_number << "," << particle.getX() << "," << particle.getY() << "\n";
+            file << currentTime << "," << particleNumber << "," << particle.getX() << "," << particle.getY() << "\n";
         }
-        particle_number += 1;
+        particleNumber += 1;
     }
 }
 
 void Universe::addRndParticle(double maxVelocity, double minRadius, double maxRadius){
-    std::array<double, 2> position = {RndNumber(box.getXMIN(), box.getXMAX()), RndNumber(box.getYMIN(), box.getYMAX())};
-    std::array<double, 2> velocity = {RndNumber(-maxVelocity, maxVelocity), RndNumber(-maxVelocity, maxVelocity)};
+    std::array<double, 2> position = {rndNumber(box.getXMIN(), box.getXMAX()), rndNumber(box.getYMIN(), box.getYMAX())};
+    std::array<double, 2> velocity = {rndNumber(-maxVelocity, maxVelocity), rndNumber(-maxVelocity, maxVelocity)};
     std::array<double, 2> acceleration = {0.0, 0.0};
 
-    Particle particle(position, velocity, acceleration, RndNumber(minRadius, maxRadius));
+    Particle particle(position, velocity, acceleration, rndNumber(minRadius, maxRadius));
     particles.push_back(particle);
 }
 

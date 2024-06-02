@@ -11,8 +11,8 @@ class Universe {
 public:
     Universe(const std::vector<Particle>& particles, const Box &box, const double coefficientRestitution, double deltaTime);
     void run(int steps, const std::string& filename = "");
-    void make_step();
-    void save_step(std::ofstream &file, int step_number);
+    void makeStep();
+    void saveStep(std::ofstream &file, int stepNumber);
     void addRndParticle(double maxVelocity, double minRadius, double maxRadius);
     std::vector<double> getParticlesRadius();
     void handleBoxCollision(Particle &particle, double coefficientRestitution);
