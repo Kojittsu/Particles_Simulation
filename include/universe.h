@@ -7,6 +7,7 @@
 #include "particle.h"
 #include "box.h"
 #include "config.h"
+#include "utils.h"
 
 class Universe {
 public:

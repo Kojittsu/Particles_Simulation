@@ -1,6 +1,4 @@
 #include "universe.h"
-#include "utils.h"
-#include <iostream>
 
 Universe::Universe(const Config& config)
     : particles(config.particles), box(config.box), coefficientRestitution(config.coefficientRestitution), deltaTime(config.deltaTime), stepNumbers(config.stepNumbers) {}

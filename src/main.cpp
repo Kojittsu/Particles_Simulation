@@ -1,15 +1,7 @@
 #include <SFML/Graphics.hpp>
 
-#include <array>
-#include <fstream>
-#include <iostream>
 #include <sstream>
-#include <string>
-#include <vector>
 
-#include "config.h"
-#include "box.h"
-#include "particle.h"
 #include "universe.h"
 #include "SFML_functions.h"
 
