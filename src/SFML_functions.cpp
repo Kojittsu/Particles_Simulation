@@ -1,21 +1,21 @@
 #include "SFML_functions.h"
 
-std::array<double, 2> coord_To_SFML_Coord(const double x, const double y, const Box &box, int window_length, int window_height){
+std::array<double, 2> coord_To_SFML_Coord(const double x, const double y, const Box &box, int windowLength, int windowHeight){
     std::array<double, 2> SFML_coord;
-    SFML_coord[0] = x * window_length / box.getLength();
-    SFML_coord[1] = window_height - (y * window_height / box.getHeight());
+    SFML_coord[0] = x * windowLength / box.getLength();
+    SFML_coord[1] = windowHeight - (y * windowHeight / box.getHeight());
     return SFML_coord;
 }
 
-sf::VertexArray compute_border(int window_length, int window_height){
-    // Création d'un tableau de sommets pour les lignes
+sf::VertexArray computeBorder(int windowLength, int windowHeight){
+    // Create array of vertices for lines
     sf::VertexArray lines(sf::Lines, 8);
 
-    // Définir les coins
+    // Define 4 corners
     sf::Vector2f top_left = sf::Vector2f(1, 0);
-    sf::Vector2f top_right = sf::Vector2f(window_length, 0);
-    sf::Vector2f bottom_right = sf::Vector2f(window_length, window_height-1);
-    sf::Vector2f bottom_left = sf::Vector2f(1, window_height-1);
+    sf::Vector2f top_right = sf::Vector2f(windowLength, 0);
+    sf::Vector2f bottom_right = sf::Vector2f(windowLength, windowHeight-1);
+    sf::Vector2f bottom_left = sf::Vector2f(1, windowHeight-1);
 
     lines[0].position = top_left;
     lines[0].color = sf::Color::Red;
@@ -86,7 +86,7 @@ void display_universe_SFML(std::vector<std::vector<Coordinate>> particlesMovemen
     sf::RenderWindow window(sf::VideoMode(windowLength, windowHeight), "Particle Movement", sf::Style::None);
 
     //Create borders
-    sf::VertexArray borders = compute_border(windowLength, windowHeight);
+    sf::VertexArray borders = computeBorder(windowLength, windowHeight);
 
     // Get numbers of particles
     int particle_numbers = particlesMovements.size();
