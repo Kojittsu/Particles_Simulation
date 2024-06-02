@@ -19,7 +19,7 @@ using json = nlohmann::json;
 struct Config {
     std::vector<Particle> particles;
     Box box = Box();
-    double delta_time;
+    double deltaTime;
     int step_numbers;
     double coefficientRestitution;
 };
@@ -47,7 +47,7 @@ bool readConfig(const std::string& filename, Config& config) {
     json boxJson = configJson["box"];
     config.box = Box(boxJson["min_x"], boxJson["max_x"], boxJson["min_y"], boxJson["max_y"]);
 
-    config.delta_time = configJson["simulation"]["delta_time"];
+    config.deltaTime = configJson["simulation"]["deltaTime"];
     config.step_numbers = configJson["simulation"]["step_numbers"];
     config.coefficientRestitution = configJson["simulation"]["coefficientRestitution"];
 
@@ -98,7 +98,7 @@ int main() {
     }
 
     // Create universe
-    Universe universe(config.particles, config.box, config.coefficientRestitution, config.delta_time);
+    Universe universe(config.particles, config.box, config.coefficientRestitution, config.deltaTime);
 
     // Add random particles
     // double maxVelocity = 5.0;

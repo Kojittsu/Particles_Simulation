@@ -40,7 +40,7 @@ This is the Configuration file structure :
         "max_y": "float"
     },
     "simulation": {
-        "delta_time": "float",
+        "deltaTime": "float",
         "step_numbers": "int",
         "coefficientRestitution": "float"
     }
