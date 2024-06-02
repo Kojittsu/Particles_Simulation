@@ -16,7 +16,7 @@ void Universe::run(int steps, const std::string& filename) {
     }
 
     for (int i = 0; i < steps; ++i) {
-        make_step(i);
+        make_step();
         save_step(file, i);
     }
 
@@ -25,7 +25,7 @@ void Universe::run(int steps, const std::string& filename) {
     }
 }
 
-void Universe::make_step(int i){
+void Universe::make_step(){
     for (Particle& particle : particles) {
         particle.update(deltaTime);
         handleBoxCollision(particle, coefficientRestitution);
