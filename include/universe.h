@@ -13,6 +13,7 @@ public:
     void run(int steps, const std::string& filename = "");
     void make_step(int i);
     void save_step(std::ofstream &file, int step_number);
+    void addRndParticle(double maxVelocity, double minRadius, double maxRadius);
     void handleBoxCollision(Particle &particle, double coefficientRestitution);
 
 private:

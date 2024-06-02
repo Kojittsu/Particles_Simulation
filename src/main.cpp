@@ -97,8 +97,16 @@ int main() {
         return 1;
     }
 
-    // Create and run universe
+    // Create universe
     Universe universe(config.particles, config.box, config.coefficientRestitution, config.delta_time);
+
+    // Add random particles
+    double maxVelocity = 5.0;
+    double minRadius = 0.1;
+    double maxRadius = 2;
+    for(int i=0; i< 5; i++){universe.addRndParticle(maxVelocity, minRadius, maxRadius);}
+    
+    // Run universe
     universe.run(config.step_numbers, "data.csv");
 
     // Read particles movements data in file
