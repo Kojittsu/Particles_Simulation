@@ -13,4 +13,6 @@ struct Config {
     double coefficientRestitution;
 };
 
+bool readConfig(const std::string& filename, Config& config);
+
 #endif // CONFIG_H
