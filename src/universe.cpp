@@ -1,7 +1,7 @@
 #include "universe.h"
 
 Universe::Universe(const Config& config)
-    : particles(config.particles), box(config.box), coefficientRestitution(config.coefficientRestitution), deltaTime(config.deltaTime), stepNumbers(config.stepNumbers) {}
+    : particles(config.particles), box(config.box), circle(config.circle), coefficientRestitution(config.coefficientRestitution), deltaTime(config.deltaTime), stepNumbers(config.stepNumbers) {}
 
 void Universe::run(const std::string& filename) {
     std::ofstream file;
@@ -24,7 +24,8 @@ void Universe::run(const std::string& filename) {
 void Universe::makeStep(){
     for (Particle& particle : particles) {
         particle.update(deltaTime);
-        handleBoxCollision(particle, coefficientRestitution);
+        // handleBoxCollision(particle, coefficientRestitution);
+        handleCircleCollision(particle, coefficientRestitution);
     }
 }
 
@@ -78,5 +79,38 @@ void Universe::handleBoxCollision(Particle &particle, double coefficientRestitut
     if(particle.getY() > box.getYMAX() - particle.getRadius()){
         particle.setY(box.getYMAX() - particle.getRadius());
         particle.setVY(-particle.getVY()*coefficientRestitution);
+    }
+}
+
+void Universe::handleCircleCollision(Particle &particle, double coefficientRestitution){
+    // Calculate distance beetwen particle and circle center
+    double dx = particle.getX() - circle.getCenterX();
+    double dy = particle.getY() - circle.getCenterY();
+    double distance = sqrt(dx * dx + dy * dy);
+    
+    // Check if particle collide with circle
+    if (distance > circle.getRadius() - particle.getRadius()) {
+        // Normalize collision vector
+        double nx = dx / distance;
+        double ny = dy / distance;
+
+        // Move particle to the circle surface
+        particle.setX(circle.getCenterX() + nx * (circle.getRadius() - particle.getRadius()));
+        particle.setY(circle.getCenterY() + ny * (circle.getRadius() - particle.getRadius()));
+
+        // Calculate particle velocity in the normal direction
+        double dotProduct = particle.getVX() * nx + particle.getVY() * ny;
+
+        // Calculate the normal component of velocity
+        double vnx = dotProduct * nx;
+        double vny = dotProduct * ny;
+
+        // Reverse the normal component of the velocity and apply the coefficient of restitution
+        double newVx = particle.getVX() - 2 * vnx * coefficientRestitution;
+        double newVy = particle.getVY() - 2 * vny * coefficientRestitution;
+
+        // Update particle velocity
+        particle.setVX(newVx);
+        particle.setVY(newVy);
     }
 }

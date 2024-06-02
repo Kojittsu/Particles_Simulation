@@ -22,6 +22,9 @@ bool readConfig(const std::string& filename, Config& config) {
     json boxJson = configJson["box"];
     config.box = Box(boxJson["xMin"], boxJson["xMax"], boxJson["yMin"], boxJson["yMax"]);
 
+    json circleJson = configJson["circle"];
+    config.circle = Circle(circleJson["centerX"], circleJson["centerY"], circleJson["radius"]);
+
     config.deltaTime = configJson["simulation"]["deltaTime"];
     config.stepNumbers = configJson["simulation"]["stepNumbers"];
     config.coefficientRestitution = configJson["simulation"]["coefficientRestitution"];

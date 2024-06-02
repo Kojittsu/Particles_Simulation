@@ -6,6 +6,7 @@
 #include <string>
 #include "particle.h"
 #include "box.h"
+#include "circle.h"
 #include "config.h"
 #include "utils.h"
 
@@ -18,10 +19,12 @@ public:
     void addRndParticle(double maxVelocity, double minRadius, double maxRadius);
     std::vector<double> getParticlesRadius();
     void handleBoxCollision(Particle &particle, double coefficientRestitution);
+    void handleCircleCollision(Particle &particle, double coefficientRestitution);
 
 private:
     std::vector<Particle> particles;
     Box box;
+    Circle circle;
     double coefficientRestitution;
     double deltaTime;
     int stepNumbers;
