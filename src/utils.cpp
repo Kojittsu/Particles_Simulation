@@ -1,5 +1,4 @@
 #include "utils.h"
-#include <random>
 
 double rndNumber(double min, double max) {
     static std::random_device rd;  // Obtient une graine initiale à partir du matériel
