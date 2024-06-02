@@ -2,6 +2,10 @@
 #define CONFIG_H
 
 #include <vector>
+#include <fstream>
+#include <nlohmann/json.hpp>
+using json = nlohmann::json;
+
 #include "particle.h"
 #include "box.h"
 

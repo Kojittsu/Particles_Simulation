@@ -1,9 +1,5 @@
 #include "config.h"
 
-#include <fstream>
-#include <nlohmann/json.hpp>
-using json = nlohmann::json;
-
 bool readConfig(const std::string& filename, Config& config) {
     std::ifstream file(filename);
     if (!file.is_open()) {
