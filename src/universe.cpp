@@ -57,7 +57,6 @@ std::vector<double> Universe::getParticlesRadius(){
     std::vector<double> particlesRadius;
     for (Particle& particle : particles){
         particlesRadius.push_back(particle.getRadius());
-        std::cout << particle.getRadius() << "\n";
     }
     return particlesRadius;
 }
