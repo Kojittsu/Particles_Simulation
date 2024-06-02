@@ -40,6 +40,29 @@ sf::VertexArray computeBorder(int windowLength, int windowHeight){
     return lines;
 }
 
+sf::VertexArray computeCircle(int windowLength, int windowHeight, int radius, int pointCount) {
+    // Create array of vertices for lines
+    sf::VertexArray circle(sf::LineStrip, pointCount + 1);
+
+    // Center of the circle
+    sf::Vector2f center(windowLength / 2, windowHeight / 2);
+
+    for (int i = 0; i < pointCount; ++i) {
+        float angle = i * 2 * M_PI / pointCount;
+        float x = center.x + radius * std::cos(angle);
+        float y = center.y + radius * std::sin(angle);
+
+        circle[i].position = sf::Vector2f(x, y);
+        circle[i].color = sf::Color::Red;
+    }
+
+    // Close the circle
+    circle[pointCount].position = circle[0].position;
+    circle[pointCount].color = sf::Color::Red;
+
+    return circle;
+}
+
 std::vector<std::vector<Coordinate>> readParticlesMovements(const std::string& filename) {
     std::ifstream file(filename);
     std::string line;
@@ -87,6 +110,7 @@ void display_universe_SFML(std::vector<std::vector<Coordinate>> particlesMovemen
 
     //Create borders
     sf::VertexArray borders = computeBorder(windowLength, windowHeight);
+    sf::VertexArray circle = computeCircle(windowLength, windowHeight, 2.5*scaleFactorPixels, 1000);
 
     // Get numbers of particles
     int particle_numbers = particlesMovements.size();
@@ -140,6 +164,7 @@ void display_universe_SFML(std::vector<std::vector<Coordinate>> particlesMovemen
         window.clear();
         for (sf::CircleShape particle : particles){window.draw(particle);}
         window.draw(borders);
+        window.draw(circle);
         window.display();
     }
 }

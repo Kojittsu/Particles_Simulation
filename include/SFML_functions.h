@@ -7,6 +7,7 @@
 #include <sstream>
 #include <fstream>
 #include <iostream>
+#include <cmath>
 #include "box.h"
 
 // Structure to store space and time coordinates
@@ -22,6 +23,8 @@ struct Coordinate {
 std::array<double, 2> coord_To_SFML_Coord(const double x, const double y, const Box &box, int window_length, int window_height);
 
 sf::VertexArray computeBorder(int window_length, int window_height);
+
+sf::VertexArray computeCircle(int windowLength, int windowHeight, int radius, int pointCount);
 
 std::vector<std::vector<Coordinate>> readParticlesMovements(const std::string& filename);
 
