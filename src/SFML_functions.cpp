@@ -63,6 +63,15 @@ sf::VertexArray computeCircle(int windowLength, int windowHeight, int radius, in
     return circle;
 }
 
+static sf::Color getRainbow(float t) {
+    const float r = sin(t);
+    const float g = sin(t + 0.33f * 2.0f * M_PI);
+    const float b = sin(t + 0.66f * 2.0f * M_PI);
+    return {static_cast<uint8_t>(255.0f * r * r),
+            static_cast<uint8_t>(255.0f * g * g),
+            static_cast<uint8_t>(255.0f * b * b)};
+}
+
 std::vector<std::vector<Coordinate>> readParticlesMovements(const std::string& filename) {
     std::ifstream file(filename);
     std::string line;
@@ -127,7 +136,7 @@ void display_universe_SFML(std::vector<std::vector<Coordinate>> particlesMovemen
     for (int i = 0; i < particle_numbers; ++i) {
         sf::CircleShape particule;
         particule.setRadius(SFML_particlesRadius[i]);
-        particule.setFillColor(sf::Color::White);
+        particule.setFillColor(getRainbow(i));
         particles.push_back(particule);
     }
 

@@ -8,6 +8,7 @@
 #include <fstream>
 #include <iostream>
 #include <cmath>
+#include <cstdint>
 #include "box.h"
 #include "circle.h"
 
