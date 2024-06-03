@@ -12,7 +12,7 @@ int main() {
     Universe universe(config);
 
     // Add random particles
-    double maxVelocity = 5.0;
+    double maxVelocity = 1.0;
     double minRadius = 0.1;
     double maxRadius = 0.2;
     for(int i=0; i< 100; i++){universe.addRndParticle(maxVelocity, minRadius, maxRadius);}
@@ -24,7 +24,7 @@ int main() {
     std::vector<std::vector<Coordinate>> particlesMovements = readParticlesMovements("data.csv");
 
     // Display simulation in SFML
-    int scaleFactorPixels = 50;
+    int scaleFactorPixels = 100;
     std::vector<double> particlesRadius = universe.getParticlesRadius(); // Get all radius
     display_universe_SFML(particlesMovements, config.box, config.circle, particlesRadius, scaleFactorPixels);
 

@@ -27,6 +27,7 @@ void Universe::makeStep(){
         // handleBoxCollision(particle, coefficientRestitution);
         handleCircleCollision(particle, coefficientRestitution);
     }
+    handleParticleCollisions(coefficientRestitution);
 }
 
 void Universe::saveStep(std::ofstream &file, int stepNumber){
@@ -57,6 +58,53 @@ std::vector<double> Universe::getParticlesRadius(){
     return particlesRadius;
 }
 
+void Universe::handleParticleCollisions(double coefficientRestitution) {
+    for (size_t i = 0; i < particles.size(); ++i) {
+        for (size_t j = i + 1; j < particles.size(); ++j) {
+            Particle& p1 = particles[i];
+            Particle& p2 = particles[j];
+            
+            // Calculate distance beetwen particles
+            double dx = p1.getX() - p2.getX();
+            double dy = p1.getY() - p2.getY();
+            double distance = std::sqrt(dx * dx + dy * dy);
+            double minDistance = p1.getRadius() + p2.getRadius();
+
+            // Check if particles collide
+            if (distance < minDistance) {
+                // Normalize collision vector
+                double nx = dx / distance;
+                double ny = dy / distance;
+
+                // Move particles so they no longer overlap
+                double overlap = minDistance - distance;
+                p1.setX(p1.getX() + nx * (overlap / 2));
+                p1.setY(p1.getY() + ny * (overlap / 2));
+                p2.setX(p2.getX() - nx * (overlap / 2));
+                p2.setY(p2.getY() - ny * (overlap / 2));
+
+                // Calculate relative velocities
+                double vx1 = p1.getVX();
+                double vy1 = p1.getVY();
+                double vx2 = p2.getVX();
+                double vy2 = p2.getVY();
+
+                // Calculate relative speed in the normal direction
+                double relativeVelocity = (vx2 - vx1) * nx + (vy2 - vy1) * ny;
+
+                // Calculate the collision impulse
+                double impulse = (2 * relativeVelocity) / (p1.getRadius() + p2.getRadius());
+
+                // Update particle velocities taking into account the coefficient of restitution
+                // We suppose here that radius is proportionnal to mass, so mass was replaced by particles radius.
+                p1.setVX(vx1 + impulse * nx * p2.getRadius() * coefficientRestitution);
+                p1.setVY(vy1 + impulse * ny * p2.getRadius() * coefficientRestitution);
+                p2.setVX(vx2 - impulse * nx * p1.getRadius() * coefficientRestitution);
+                p2.setVY(vy2 - impulse * ny * p1.getRadius() * coefficientRestitution);
+            }
+        }
+    }
+}
 
 void Universe::handleBoxCollision(Particle &particle, double coefficientRestitution){
 
