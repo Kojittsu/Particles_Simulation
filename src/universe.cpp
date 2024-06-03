@@ -41,6 +41,10 @@ void Universe::saveStep(std::ofstream &file, int stepNumber){
     }
 }
 
+void Universe::addParticle(Particle &particle){
+    particles.push_back(particle);
+}
+
 void Universe::addRndParticle(double maxVelocity, double minRadius, double maxRadius){
     std::array<double, 2> position = {rndNumber(box.getXMIN(), box.getXMAX()), rndNumber(box.getYMIN(), box.getYMAX())};
     std::array<double, 2> velocity = {rndNumber(-maxVelocity, maxVelocity), rndNumber(-maxVelocity, maxVelocity)};
