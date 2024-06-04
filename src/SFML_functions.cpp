@@ -7,39 +7,6 @@ std::array<double, 2> coord_To_SFML_Coord(const double x, const double y, const 
     return SFML_coord;
 }
 
-sf::VertexArray computeBorder(int windowLength, int windowHeight){
-    // Create array of vertices for lines
-    sf::VertexArray lines(sf::Lines, 8);
-
-    // Define 4 corners
-    sf::Vector2f top_left = sf::Vector2f(1, 0);
-    sf::Vector2f top_right = sf::Vector2f(windowLength, 0);
-    sf::Vector2f bottom_right = sf::Vector2f(windowLength, windowHeight-1);
-    sf::Vector2f bottom_left = sf::Vector2f(1, windowHeight-1);
-
-    lines[0].position = top_left;
-    lines[0].color = sf::Color::Red;
-    lines[1].position = top_right;
-    lines[1].color = sf::Color::Red;
-
-    lines[2].position = top_right;
-    lines[2].color = sf::Color::Red;
-    lines[3].position = bottom_right;
-    lines[3].color = sf::Color::Red;
-
-    lines[4].position = bottom_right;
-    lines[4].color = sf::Color::Red;
-    lines[5].position = bottom_left;
-    lines[5].color = sf::Color::Red;
-
-    lines[6].position = top_left;
-    lines[6].color = sf::Color::Red;
-    lines[7].position = bottom_left;
-    lines[7].color = sf::Color::Red;
-
-    return lines;
-}
-
 sf::VertexArray computeCircle(int windowLength, int windowHeight, int radius, int pointCount) {
     // Create array of vertices for lines
     sf::VertexArray circle(sf::LineStrip, pointCount + 1);
@@ -117,8 +84,7 @@ void display_universe_SFML(std::vector<std::vector<Coordinate>> particlesMovemen
 	// Create SFML windows
     sf::RenderWindow window(sf::VideoMode(windowLength, windowHeight), "Particle Movement", sf::Style::None);
 
-    //Create borders
-    sf::VertexArray borders = computeBorder(windowLength, windowHeight);
+    //Create circle
     sf::VertexArray SFML_circle = computeCircle(windowLength, windowHeight, circle.getRadius()*scaleFactorPixels, 1000);
 
     // Get numbers of particles
@@ -172,7 +138,6 @@ void display_universe_SFML(std::vector<std::vector<Coordinate>> particlesMovemen
 
         window.clear();
         for (sf::CircleShape particle : particles){window.draw(particle);}
-        window.draw(borders);
         window.draw(SFML_circle);
         window.display();
     }
