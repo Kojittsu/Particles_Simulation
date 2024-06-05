@@ -24,8 +24,8 @@ void Universe::run(const std::string& filename) {
 void Universe::makeStep(){
     for (Particle& particle : particles) {
         particle.update(deltaTime);
-        handleBoxCollision(particle, coefficientRestitution);
-        // handleCircleCollision(particle, coefficientRestitution);
+        // handleBoxCollision(particle, coefficientRestitution);
+        handleCircleCollision(particle, coefficientRestitution);
     }
     handleParticleCollisions(coefficientRestitution);
 }

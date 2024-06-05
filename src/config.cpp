@@ -10,24 +10,47 @@ bool readConfig(const std::string& filename, Config& config) {
     json configJson;
     file >> configJson;
 
-    for (const auto& particleJson : configJson["particles"]) {
-        std::array<double, 2> position = particleJson["position"];
-        std::array<double, 2> velocity = particleJson["velocity"];
-        std::array<double, 2> acceleration = particleJson["acceleration"];
-        double radius = particleJson["radius"];
-        Particle particle(position, velocity, acceleration, radius);
-        config.particles.push_back(particle);
+    if (configJson.contains("particles")) {
+        std::cout << "There are particles" << "\n";
+        for (const auto& particleJson : configJson["particles"]) {
+            std::array<double, 2> position = particleJson.value("position", std::array<double, 2>{0.0, 0.0});
+            std::array<double, 2> velocity = particleJson.value("velocity", std::array<double, 2>{0.0, 0.0});
+            std::array<double, 2> acceleration = particleJson.value("acceleration", std::array<double, 2>{0.0, 0.0});
+            double radius = particleJson.value("radius", 1.0);
+            Particle particle(position, velocity, acceleration, radius);
+            config.particles.push_back(particle);
+        }
     }
 
-    json boxJson = configJson["box"];
-    config.box = Box(boxJson["xMin"], boxJson["xMax"], boxJson["yMin"], boxJson["yMax"]);
+    if (configJson.contains("box")) {
+        json boxJson = configJson["box"];
+        config.box = Box(
+            boxJson.value("xMin", 0.0),
+            boxJson.value("xMax", 1.0),
+            boxJson.value("yMin", 0.0),
+            boxJson.value("yMax", 1.0)
+        );
+    }
 
-    json circleJson = configJson["circle"];
-    config.circle = Circle(circleJson["centerX"], circleJson["centerY"], circleJson["radius"]);
+    if (configJson.contains("circle")) {
+        json circleJson = configJson["circle"];
+        config.circle = Circle(
+            circleJson.value("centerX", 0.0),
+            circleJson.value("centerY", 0.0),
+            circleJson.value("radius", 1.0)
+        );
+    }
 
-    config.deltaTime = configJson["simulation"]["deltaTime"];
-    config.stepNumbers = configJson["simulation"]["stepNumbers"];
-    config.coefficientRestitution = configJson["simulation"]["coefficientRestitution"];
+    if (configJson.contains("simulation")) {
+        json simulationJson = configJson["simulation"];
+        config.deltaTime = simulationJson.value("deltaTime", 0.01);
+        config.stepNumbers = simulationJson.value("stepNumbers", 1000);
+        config.coefficientRestitution = simulationJson.value("coefficientRestitution", 0.9);
+    } else {
+        config.deltaTime = 0.01; // default value
+        config.stepNumbers = 1000; // default value
+        config.coefficientRestitution = 0.9; // default value
+    }
 
     return true;
 }
