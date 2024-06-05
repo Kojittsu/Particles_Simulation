@@ -24,6 +24,11 @@ int main() {
     for(int i=0; i< randomParticleNumbers; i++){
         universe.addRndParticle(maxVelocityX, maxVelocityY, minRadius, maxRadius);
     }
+
+    // Apply gravity to all particles
+    double AccelerationX = 0.0;
+    double AccelerationY = -9.81;
+    universe.applyGravityToParticles( AccelerationX, AccelerationY);
     
     // Run universe
     universe.run("data.csv");

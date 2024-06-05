@@ -26,6 +26,10 @@ public:
     void setVX(double vx);
     void setVY(double vy);
 
+    // Setters for acceleration
+    void setAX(double ax);
+    void setAY(double ay);
+
     // Getters for radius
     double getRadius() const;
 

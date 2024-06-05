@@ -20,6 +20,10 @@ double Particle::getVY() const {return velocity[1];}
 void Particle::setVX(double vx) {velocity[0] = vx;}
 void Particle::setVY(double vy) {velocity[1] = vy;}
 
+// Setters for acceleration
+void Particle::setAX(double ax) {acceleration[0] = ax;}
+void Particle::setAY(double ay) {acceleration[1] = ay;}
+
 // Getters for radius
 double Particle::getRadius() const {return radius;}
 
