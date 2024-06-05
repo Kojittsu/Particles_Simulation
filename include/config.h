@@ -17,6 +17,7 @@ struct Config {
     double deltaTime;
     int stepNumbers;
     double coefficientRestitution;
+    int scaleFactorPixels;
 };
 
 bool readConfig(const std::string& filename, Config& config);

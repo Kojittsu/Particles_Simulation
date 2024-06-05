@@ -11,7 +11,6 @@ bool readConfig(const std::string& filename, Config& config) {
     file >> configJson;
 
     if (configJson.contains("particles")) {
-        std::cout << "There are particles" << "\n";
         for (const auto& particleJson : configJson["particles"]) {
             std::array<double, 2> position = particleJson.value("position", std::array<double, 2>{0.0, 0.0});
             std::array<double, 2> velocity = particleJson.value("velocity", std::array<double, 2>{0.0, 0.0});
@@ -46,6 +45,7 @@ bool readConfig(const std::string& filename, Config& config) {
         config.deltaTime = simulationJson.value("deltaTime", 0.01);
         config.stepNumbers = simulationJson.value("stepNumbers", 1000);
         config.coefficientRestitution = simulationJson.value("coefficientRestitution", 0.9);
+        config.scaleFactorPixels = simulationJson.value("scaleFactorPixels", 50);
     } else {
         config.deltaTime = 0.01; // default value
         config.stepNumbers = 1000; // default value
