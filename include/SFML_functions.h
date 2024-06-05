@@ -22,14 +22,14 @@ struct Coordinate {
     Coordinate(double time, double x, double y) : time(time), x(x), y(y) {}
 };
 
-std::array<double, 2> coord_To_SFML_Coord(const double x, const double y, const Box &box, int window_length, int window_height);
+std::array<double, 2> Calculate_SFML_Coord(const double x, const double y, const Box &box, int window_length, int window_height);
 
 sf::VertexArray computeBorder(int window_length, int window_height);
 
 sf::VertexArray computeCircle(int windowLength, int windowHeight, int radius, int pointCount);
 
-std::vector<std::vector<Coordinate>> readParticlesMovements(const std::string& filename);
+std::vector<std::vector<Coordinate>> readParticleMovements(const std::string& filename);
 
-void display_universe_SFML(std::vector<std::vector<Coordinate>> particleMovements, Box box, Circle circle, std::vector<double> particlesRadius, int scaleFactorPixels);
+void RenderParticleMovements(std::vector<std::vector<Coordinate>> particleMovements, Box box, Circle circle, std::vector<double> particlesRadius, int scaleFactorPixels);
 
 #endif
