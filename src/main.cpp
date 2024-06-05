@@ -11,11 +11,19 @@ int main() {
     // Create universe
     Universe universe(config);
 
-    // Add random particles
-    double maxVelocity = 1.0;
+    // Random particle parameters
+    int randomParticleNumbers = 100;
+
+    double maxVelocityX = 0.0;
+    double maxVelocityY = 0.0;
+
     double minRadius = 0.1;
     double maxRadius = 0.2;
-    for(int i=0; i< 100; i++){universe.addRndParticle(maxVelocity, minRadius, maxRadius);}
+
+    // Add random particles
+    for(int i=0; i< randomParticleNumbers; i++){
+        universe.addRndParticle(maxVelocityX, maxVelocityY, minRadius, maxRadius);
+    }
     
     // Run universe
     universe.run("data.csv");
