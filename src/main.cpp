@@ -24,7 +24,6 @@ int main() {
     std::vector<std::vector<Coordinate>> particlesMovements = readParticlesMovements("data.csv");
 
     // Display simulation in SFML
-    // int scaleFactorPixels = 100;
     std::vector<double> particlesRadius = universe.getParticlesRadius(); // Get all radius
     display_universe_SFML(particlesMovements, config.box, config.circle, particlesRadius, config.scaleFactorPixels);
 
