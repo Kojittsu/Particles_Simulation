@@ -11,14 +11,16 @@ int main() {
     // Create universe
     Universe universe(config);
 
+    // Parameters
     // Random particle parameters
     int randomParticleNumbers = 100;
-
     double maxVelocityX = 0.0;
     double maxVelocityY = 0.0;
-
     double minRadius = 0.1;
     double maxRadius = 0.2;
+    // Gravity parameters
+    double AccelerationX = 0.0;
+    double AccelerationY = -9.81;
 
     // Add random particles
     for(int i=0; i< randomParticleNumbers; i++){
@@ -26,8 +28,6 @@ int main() {
     }
 
     // Apply gravity to all particles
-    double AccelerationX = 0.0;
-    double AccelerationY = -9.81;
     universe.applyGravityToParticles( AccelerationX, AccelerationY);
     
     // Run universe
