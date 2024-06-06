@@ -48,9 +48,8 @@ void Universe::addParticle(Particle &particle){
 void Universe::addRndParticle(double maxVelocityX, double maxVelocityY, double minRadius, double maxRadius){
     std::array<double, 2> position = {rndNumber(box.getXMIN(), box.getXMAX()), rndNumber(box.getYMIN(), box.getYMAX())};
     std::array<double, 2> velocity = {rndNumber(-maxVelocityX, maxVelocityX), rndNumber(-maxVelocityY, maxVelocityY)};
-    std::array<double, 2> acceleration = {0.0, 0.0};
 
-    Particle particle(position, velocity, acceleration, rndNumber(minRadius, maxRadius));
+    Particle particle(position, velocity, rndNumber(minRadius, maxRadius));
     particles.push_back(particle);
 }
 
