@@ -9,8 +9,8 @@ In this particle simulation, the explicit Euler method is employed to resolve pa
 For more details see [Euler method Wiki Page](https://en.wikipedia.org/wiki/Euler_method).
 
 In our case, the formula for updating the position and velocity of particles using the explicit Euler method can be expressed as follows:\
-For position : `newPosition = currentPosition + velocity * deltaTime`\
 For velocity : `newVelocity = currentVelocity + acceleration * deltaTime`\
+For position : `newPosition = currentPosition + velocity * deltaTime`\
 Where `deltaTime` is the size of the time step used in the simulation.
 
 The explicit Euler method is simple to implement but can introduce approximation errors. More advanced numerical methods, such as Runge-Kutta methods or Verlet integration, can be employed to obtain more accurate results in certain cases.
@@ -88,25 +88,6 @@ To clean up the object files and the generated binary:
 make clean
 ```
 
-## Files Structure
-
-- `src/` : Contains the source files (.cpp) of the project.
-  - `main.cpp` : Entry point of the program.
-  - `particle.cpp` : Implementation of the Particle class.
-  - `universe.cpp` : Implementation of the Universe class.
-  - `box.cpp` : Implementation of the Box class.
-
-- `include/` : Contains the header files (.h) of the project.
-  - `particle.h` : Declaration of the Particle class.
-  - `universe.h` : Declaration of the Universe class.
-  - `box.h` : Declaration of the Box class.
-
-- `Makefile` : Configuration file for `make`, facilitating the compilation of the project.
-
-- `README.md` : This file provide a description and instructions for the project.
-
-- `config.json` : configuartion file containing simulation parameters.
-
 ## Main Classes
 
 ### Particle
@@ -116,7 +97,7 @@ The `Particle` class represents a particle in the simulated universe.
 **Header file:** `include/particle.h`  
 **Source file:** `src/particle.cpp`
 
-<!--
+
 #### Attributes
 
 - `std::array<double, 2> position;`
@@ -137,7 +118,7 @@ The `Particle` class represents a particle in the simulated universe.
 - `double getRadius() const;`
 - `void update(double deltaTime);`
 - `void printState(double currentTime) const;`
--->
+
 
 ### Universe
 
@@ -146,7 +127,7 @@ The `Universe` class represents the universe containing the particles. It manage
 **Header file:** `include/universe.h`  
 **Source file:** `src/universe.cpp`
 
-<!--
+
 #### Attributes
 
 - `std::vector<Particle> particles;`
@@ -160,7 +141,7 @@ The `Universe` class represents the universe containing the particles. It manage
 - `void make_step(int i);`
 - `void save_step(std::ofstream &file, int step_number);`
 - `void handleBoxCollision(Particle &particle, double coefficientRestitution);`
--->
+
 
 ### Box
 
@@ -169,7 +150,7 @@ The `Box` class represents a box in which the particles lives (i.e. simulation s
 **Header file:** `include/box.h`  
 **Source file:** `src/box.cpp`
 
-<!--
+
 #### Attributes
 
 - `double xMin;`
@@ -185,4 +166,4 @@ The `Box` class represents a box in which the particles lives (i.e. simulation s
 - `double getYMAX() const;`
 - `double getLength() const;`
 - `double getHeight() const;`
--->
+
