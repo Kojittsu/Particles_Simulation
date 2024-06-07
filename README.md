@@ -29,7 +29,6 @@ This is the Configuration file structure :
         {
             "position": ["float", "float"],
             "velocity": ["float", "float"],
-            "acceleration": ["float", "float"],
             "radius": "float"
         }
     ],
@@ -39,10 +38,18 @@ This is the Configuration file structure :
         "yMin": "float",
         "yMax": "float"
     },
+    "circle": {
+        "centerX": "float",
+        "centerY": "float",
+        "radius": "float"
+    },
     "simulation": {
         "deltaTime": "float",
         "stepNumbers": "int",
-        "coefficientRestitution": "float"
+        "AccelerationX": "float",
+        "AccelerationY": "float",
+        "coefficientRestitution" : "float",
+        "scaleFactorPixels" : "int"
     }
 }
 ```
@@ -99,10 +106,6 @@ make clean
 - `README.md` : This file provide a description and instructions for the project.
 
 - `config.json` : configuartion file containing simulation parameters.
-
-## UML
-
-![UML](UML.svg)
 
 ## Main Classes
 
