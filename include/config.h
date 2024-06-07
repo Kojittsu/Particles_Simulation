@@ -16,6 +16,8 @@ struct Config {
     Circle circle = Circle();
     double deltaTime;
     int stepNumbers;
+    double AccelerationX;
+    double AccelerationY;
     double coefficientRestitution;
     int scaleFactorPixels;
 };
