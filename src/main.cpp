@@ -28,7 +28,7 @@ int main() {
     }
 
     // Apply gravity to all particles
-    universe.applyGravityToParticles(AccelerationX, AccelerationY);
+    universe.applyAccelerationToParticles(AccelerationX, AccelerationY);
     
     // Run universe
     universe.run("data.csv");

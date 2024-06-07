@@ -53,7 +53,7 @@ void Universe::addRndParticle(double maxVelocityX, double maxVelocityY, double m
     particles.push_back(particle);
 }
 
-void Universe::applyGravityToParticles(double ax, double ay){
+void Universe::applyAccelerationToParticles(double ax, double ay){
         for (Particle& particle : particles){
             particle.setAX(ax);
             particle.setAY(ay);

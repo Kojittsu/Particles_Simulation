@@ -18,7 +18,7 @@ public:
     void saveStep(std::ofstream &file, int stepNumber);
     void addParticle(Particle &particle);
     void addRndParticle(double maxVelocityX, double maxVelocityY, double minRadius, double maxRadius);
-    void applyGravityToParticles(double ax, double ay);
+    void applyAccelerationToParticles(double ax, double ay);
     std::vector<double> getParticlesRadius();
     void handleParticleCollisions(double coefficientRestitution);
     void handleBoxCollision(Particle &particle, double coefficientRestitution);
