@@ -1,9 +1,7 @@
 #include "SFML_functions.h"
 
 std::array<double, 2> Calculate_SFML_Coord(const double x, const double y, const Box &box, int windowLength, int windowHeight){
-    std::array<double, 2> SFML_coord;
-    SFML_coord[0] = x * windowLength / box.getLength();
-    SFML_coord[1] = windowHeight - (y * windowHeight / box.getHeight());
+    std::array<double, 2> SFML_coord = {x * windowLength / box.getLength(), windowHeight - (y * windowHeight / box.getHeight())};
     return SFML_coord;
 }
 
