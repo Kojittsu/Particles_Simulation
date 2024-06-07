@@ -136,8 +136,6 @@ void RenderParticleMovements(std::vector<std::vector<Coordinate>> particleMoveme
                 // function sets the upper left corner of the circle to the position provided.
                 particles[i].setPosition(SFML_coord[0]-SFML_particleRadius[i], SFML_coord[1]-SFML_particleRadius[i]);
 
-                // window.draw(particles[i]);
-
                 index++;
             }
         }
