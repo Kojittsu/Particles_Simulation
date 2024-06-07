@@ -138,7 +138,7 @@ The `Universe` class represents the universe containing the particles. It manage
 #### Methods
 
 - `void run(int steps, const std::string& filename = "");`
-- `void make_step(int i);`
+- `void make_step();`
 - `void save_step(std::ofstream &file, int step_number);`
 - `void handleBoxCollision(Particle &particle, double coefficientRestitution);`
 
