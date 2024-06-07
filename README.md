@@ -88,7 +88,7 @@ To clean up the object files and the generated binary:
 make clean
 ```
 
-## Main Classes
+## Class attributes and methods
 
 ### Particle
 
