@@ -29,13 +29,8 @@ double Particle::getRadius() const {return radius;}
 
 // Update particle
 void Particle::update(double deltaTime) {
-    // Mise à jour de la vitesse avec l'accélération
-    velocity[0] += acceleration[0] * deltaTime;
-    velocity[1] += acceleration[1] * deltaTime;
-
-    // Mise à jour de la position avec la vitesse
-    position[0] += velocity[0] * deltaTime;
-    position[1] += velocity[1] * deltaTime;
+    velocity += acceleration * deltaTime;
+    position += velocity * deltaTime;
 }
 
 // Print particle state

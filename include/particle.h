@@ -4,6 +4,7 @@
 #include <iostream>
 #include <cmath>
 #include <array>
+#include "array.h"
 
 class Particle {
 public:
