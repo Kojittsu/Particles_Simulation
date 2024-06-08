@@ -32,6 +32,8 @@ private:
     double coefficientRestitution;
     double deltaTime;
     int stepNumbers;
+    double AccelerationX;
+    double AccelerationY;
     
 };
 

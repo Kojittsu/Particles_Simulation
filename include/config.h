@@ -19,7 +19,7 @@ struct Config {
     double AccelerationX;
     double AccelerationY;
     double coefficientRestitution;
-    int scaleFactorPixels;
+    double scaleFactorPixels;
 };
 
 bool readConfig(const std::string& filename, Config& config);

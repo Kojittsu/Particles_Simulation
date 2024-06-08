@@ -30,6 +30,6 @@ sf::VertexArray computeCircle(int windowLength, int windowHeight, int radius, in
 
 std::vector<std::vector<Coordinate>> readParticleMovements(const std::string& filename);
 
-void RenderParticleMovements(std::vector<std::vector<Coordinate>> particleMovements, Box box, Circle circle, std::vector<double> particlesRadius, int scaleFactorPixels);
+void RenderParticleMovements(std::vector<std::vector<Coordinate>> particleMovements, Box box, Circle circle, std::vector<double> particlesRadius, double scaleFactorPixels);
 
 #endif

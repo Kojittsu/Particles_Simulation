@@ -1,7 +1,7 @@
 #include "universe.h"
 
 Universe::Universe(const Config& config)
-    : particles(config.particles), box(config.box), circle(config.circle), coefficientRestitution(config.coefficientRestitution), deltaTime(config.deltaTime), stepNumbers(config.stepNumbers) {}
+    : particles(config.particles), box(config.box), circle(config.circle), coefficientRestitution(config.coefficientRestitution), deltaTime(config.deltaTime), stepNumbers(config.stepNumbers), AccelerationX(config.AccelerationX), AccelerationY(config.AccelerationY) {}
 
 void Universe::run(const std::string& filename) {
     std::ofstream file;
@@ -12,6 +12,9 @@ void Universe::run(const std::string& filename) {
             return;
         }
     }
+
+    // Apply acceleration to all particles
+    applyAccelerationToParticles(AccelerationX, AccelerationY);
 
     for (int stepNumber = 0; stepNumber < stepNumbers; ++stepNumber) {
         makeStep();
@@ -74,7 +77,7 @@ void Universe::computeGravitationalForces() {
     const double G = 6.67430e-11;
     
     for (size_t i = 0; i < particles.size(); ++i) {
-        particles[i].setAcceleration({0.0, 0.0}); // Reset force
+        particles[i].setAcceleration({AccelerationX, AccelerationY}); // Reset acceleration
 
         for (size_t j = 0; j < particles.size(); ++j) {
             if (i != j) {

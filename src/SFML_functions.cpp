@@ -1,6 +1,8 @@
 #include "SFML_functions.h"
 
 std::array<double, 2> Calculate_SFML_Coord(const double x, const double y, const Box &box, int windowLength, int windowHeight){
+    // Work only when box start at origin, need to be fix
+    // maybe rework box with origin, length height args
     std::array<double, 2> SFML_coord = {x * windowLength / box.getLength(), windowHeight - (y * windowHeight / box.getHeight())};
     return SFML_coord;
 }
@@ -73,11 +75,11 @@ std::vector<std::vector<Coordinate>> readParticleMovements(const std::string& fi
     return particleMovements;
 }
 
-void RenderParticleMovements(std::vector<std::vector<Coordinate>> particleMovements, Box box, Circle circle, std::vector<double> particlesRadius, int scaleFactorPixels){
+void RenderParticleMovements(std::vector<std::vector<Coordinate>> particleMovements, Box box, Circle circle, std::vector<double> particlesRadius, double scaleFactorPixels){
 
     // Set window size
-    int windowLength = scaleFactorPixels*box.getLength(); 
-    int windowHeight = scaleFactorPixels*box.getHeight();
+    int windowLength = std::floor(scaleFactorPixels*box.getLength());
+    int windowHeight = std::floor(scaleFactorPixels*box.getHeight());
 
 	// Create window
     sf::RenderWindow window(sf::VideoMode(windowLength, windowHeight), "Particle Movement", sf::Style::None);

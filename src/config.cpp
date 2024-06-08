@@ -47,13 +47,14 @@ bool readConfig(const std::string& filename, Config& config) {
         config.AccelerationX = simulationJson.value("AccelerationX", 0.0);
         config.AccelerationY = simulationJson.value("AccelerationY", 0.0);
         config.coefficientRestitution = simulationJson.value("coefficientRestitution", 0.9);
-        config.scaleFactorPixels = simulationJson.value("scaleFactorPixels", 50);
+        config.scaleFactorPixels = simulationJson.value("scaleFactorPixels", 50.0);
     } else {
         config.deltaTime = 0.01;
         config.stepNumbers = 1000;
         config.AccelerationX = 0.0;
         config.AccelerationY = 0.0;
         config.coefficientRestitution = 0.9;
+        config.scaleFactorPixels = 50.0;
     }
 
     return true;

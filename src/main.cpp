@@ -18,15 +18,36 @@ int main() {
     double maxVelocityY       = 0.0;
     double minRadius          = 0.1;
     double maxRadius          = 0.2;
-    double maxMass          = 100;
+    double maxMass            = 100;
+
+
+
+
+    // // Set earth
+    // std::array<double, 2> earthPosition = {0.0, 0.0};
+    // std::array<double, 2> earthVelocity = {0.0, 0.0};
+    // double earthMass = 5.972e24;
+    // double earthRadius = 6378100.0;
+    // Particle earth(earthPosition, earthVelocity, earthRadius, earthMass);
+
+    // // Set moon
+    // std::array<double, 2> moonPosition = {384400000.0, 0.0};
+    // std::array<double, 2> moonVelocity = {0.0, 1022.0};
+    // double moonMass = 7.348e22;
+    // double moonRadius = 1738100.0;
+    // Particle moon(moonPosition, moonVelocity, moonRadius, moonMass);
+
+    // universe.addParticle(earth);
+    // universe.addParticle(moon);
+
+
+
+
 
     // Add random particles
     for(int i=0; i< randomParticleNumbers; i++){
         universe.addRndParticle(maxVelocityX, maxVelocityY, minRadius, maxRadius, maxMass);
     }
-
-    // Apply gravity to all particles
-    universe.applyAccelerationToParticles(config.AccelerationX, config.AccelerationY);
     
     // Run universe
     universe.run("data.csv");
