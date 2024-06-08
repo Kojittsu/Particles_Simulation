@@ -25,11 +25,11 @@ void Universe::run(const std::string& filename) {
 }
 
 void Universe::makeStep(){
+    
+    // Apply Newton's law of universal gravitation
+    computeGravitationalForces();
+    
     for (Particle& particle : particles) {
-
-        // Apply Newton's law of universal gravitation
-        computeGravitationalForces();
-        
         // Update particle
         particle.update(deltaTime);
 
