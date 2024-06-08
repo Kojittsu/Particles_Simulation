@@ -79,16 +79,21 @@ void Universe::computeGravitationalForces() {
     const double G = 6.67430e-11;
     
     for (size_t i = 0; i < particles.size(); ++i) {
-        particles[i].setAcceleration({AccelerationX, AccelerationY}); // Reset acceleration
+         // Reset acceleration
+        particles[i].setAcceleration({0,0});
 
         for (size_t j = 0; j < particles.size(); ++j) {
             if (i != j) {
-                std::array<double, 2> direction = particles[j].getPosition() - particles[i].getPosition();
-                double distance = getMagnitude(direction);
+                std::array<double, 2> forceDirection = particles[j].getPosition() - particles[i].getPosition();
+                double distance = getMagnitude(forceDirection);
                 if (distance > 0) {
                     double forceMagnitude = G * particles[i].getMass() * particles[j].getMass() / (distance * distance);
-                    std::array<double, 2> force = direction * (forceMagnitude / distance);
-                    particles[i].setAcceleration((particles[i].getAcceleration() + force) * (1 / particles[i].getRadius()));
+                    
+                    // Divide by distance in order to normalize forceDirection
+                    std::array<double, 2> force = forceDirection * (forceMagnitude / distance);
+                    
+                    // Add force to acceleration (divide by mass because 2nd Newton's law).
+                    particles[i].setAcceleration(particles[i].getAcceleration() + force * (1 / particles[i].getMass()));
                 }
             }
         }
