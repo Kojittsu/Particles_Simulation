@@ -5,6 +5,11 @@ std::array<double, 2> operator+(const std::array<double, 2>& lhs, const std::arr
     return {lhs[0] + rhs[0], lhs[1] + rhs[1]};
 }
 
+// Implementation of the - operator overload
+std::array<double, 2> operator-(const std::array<double, 2>& lhs, const std::array<double, 2>& rhs) {
+    return {lhs[0] - rhs[0], lhs[1] - rhs[1]};
+}
+
 // Implementation of the * operator overload
 std::array<double, 2> operator*(const std::array<double, 2>& lhs, const std::array<double, 2>& rhs) {
     return {lhs[0] * rhs[0], lhs[1] * rhs[1]};
@@ -26,3 +31,7 @@ std::array<double, 2>& operator+=(std::array<double, 2>& lhs, const std::array<d
     lhs[1] += rhs[1];
     return lhs;
 }
+
+double getMagnitude(const std::array<double, 2> array) {
+        return std::sqrt(array[0] * array[0] + array[1] * array[1]);
+    }

@@ -1,10 +1,11 @@
 #include "particle.h"
 
 // Constructor
-Particle::Particle(const std::array<double, 2>& position, const std::array<double, 2>& velocity, const double radius)
-    : position(position), velocity(velocity), radius(radius) {}
+Particle::Particle(const std::array<double, 2>& position, const std::array<double, 2>& velocity, const double radius, const double mass)
+    : position(position), velocity(velocity), radius(radius), mass(mass) {}
 
 // Getters for position
+std::array<double, 2> Particle::getPosition() const {return position;}
 double Particle::getX() const {return position[0];}
 double Particle::getY() const {return position[1];}
 
@@ -21,11 +22,16 @@ void Particle::setVX(double vx) {velocity[0] = vx;}
 void Particle::setVY(double vy) {velocity[1] = vy;}
 
 // Setters for acceleration
+std::array<double, 2> Particle::getAcceleration() const {return acceleration;}
+void Particle::setAcceleration(std::array<double, 2> newAcceleration) {acceleration = newAcceleration;}
 void Particle::setAX(double ax) {acceleration[0] = ax;}
 void Particle::setAY(double ay) {acceleration[1] = ay;}
 
 // Getters for radius
 double Particle::getRadius() const {return radius;}
+
+// Getters for mass
+double Particle::getMass() const {return mass;}
 
 // Update particle
 void Particle::update(double deltaTime) {

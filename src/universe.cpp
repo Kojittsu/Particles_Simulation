@@ -23,10 +23,18 @@ void Universe::run(const std::string& filename) {
 
 void Universe::makeStep(){
     for (Particle& particle : particles) {
+
+        // Apply Newton's law of universal gravitation
+        computeGravitationalForces();
+        
+        // Update particle
         particle.update(deltaTime);
+
+        // Handle boundaries collisions
         // handleBoxCollision(particle, coefficientRestitution);
         handleCircleCollision(particle, coefficientRestitution);
     }
+    // Handle particles collisions
     handleParticleCollisions(coefficientRestitution);
 }
 
@@ -45,11 +53,12 @@ void Universe::addParticle(Particle &particle){
     particles.push_back(particle);
 }
 
-void Universe::addRndParticle(double maxVelocityX, double maxVelocityY, double minRadius, double maxRadius){
+void Universe::addRndParticle(double maxVelocityX, double maxVelocityY, double minRadius, double maxRadius, double maxMass){
     std::array<double, 2> position = {rndNumber(box.getXMIN(), box.getXMAX()), rndNumber(box.getYMIN(), box.getYMAX())};
     std::array<double, 2> velocity = {rndNumber(-maxVelocityX, maxVelocityX), rndNumber(-maxVelocityY, maxVelocityY)};
+    double mass = rndNumber(0.0, maxMass);
 
-    Particle particle(position, velocity, rndNumber(minRadius, maxRadius));
+    Particle particle(position, velocity, rndNumber(minRadius, maxRadius), mass);
     particles.push_back(particle);
 }
 
@@ -59,6 +68,27 @@ void Universe::applyAccelerationToParticles(double ax, double ay){
             particle.setAY(ay);
         }
     }
+
+void Universe::computeGravitationalForces() {
+    // Constante gravitationnelle (Need to be in universe class)
+    const double G = 6.67430e-11;
+    
+    for (size_t i = 0; i < particles.size(); ++i) {
+        particles[i].setAcceleration({0.0, 0.0}); // Reset force
+
+        for (size_t j = 0; j < particles.size(); ++j) {
+            if (i != j) {
+                std::array<double, 2> direction = particles[j].getPosition() - particles[i].getPosition();
+                double distance = getMagnitude(direction);
+                if (distance > 0) {
+                    double forceMagnitude = G * particles[i].getMass() * particles[j].getMass() / (distance * distance);
+                    std::array<double, 2> force = direction * (forceMagnitude / distance);
+                    particles[i].setAcceleration((particles[i].getAcceleration() + force) * (1 / particles[i].getRadius()));
+                }
+            }
+        }
+    }
+}
 
 std::vector<double> Universe::getParticlesRadius(){
     std::vector<double> particlesRadius;

@@ -18,10 +18,11 @@ int main() {
     double maxVelocityY       = 0.0;
     double minRadius          = 0.1;
     double maxRadius          = 0.2;
+    double maxMass          = 100;
 
     // Add random particles
     for(int i=0; i< randomParticleNumbers; i++){
-        universe.addRndParticle(maxVelocityX, maxVelocityY, minRadius, maxRadius);
+        universe.addRndParticle(maxVelocityX, maxVelocityY, minRadius, maxRadius, maxMass);
     }
 
     // Apply gravity to all particles
