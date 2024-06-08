@@ -85,7 +85,10 @@ void RenderParticleMovements(std::vector<std::vector<Coordinate>> particleMoveme
     sf::RenderWindow window(sf::VideoMode(windowLength, windowHeight), "Particle Movement", sf::Style::None);
 
     // Create circle
-    sf::VertexArray SFML_circle = computeCircle(windowLength, windowHeight, circle.getRadius()*scaleFactorPixels, 1000);
+    sf::VertexArray SFML_circle;
+    if (circle.getRadius()){
+        SFML_circle = computeCircle(windowLength, windowHeight, circle.getRadius()*scaleFactorPixels, 1000);
+    }
 
     // Get number of particles
     int particleNumbers = particleMovements.size();
@@ -148,7 +151,8 @@ void RenderParticleMovements(std::vector<std::vector<Coordinate>> particleMoveme
         for (sf::CircleShape particle : particles){window.draw(particle);}
 
         // Draw circle
-        window.draw(SFML_circle);
+        if (circle.getRadius()){window.draw(SFML_circle);}
+
         window.display();
     }
 }

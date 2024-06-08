@@ -33,9 +33,11 @@ void Universe::makeStep(){
         // Update particle
         particle.update(deltaTime);
 
-        // Handle boundaries collisions
-        // handleBoxCollision(particle, coefficientRestitution);
-        handleCircleCollision(particle, coefficientRestitution);
+        // Handle box collisions
+        handleBoxCollision(particle, coefficientRestitution);
+
+        // Handle circle collisions if circle radius isn't null.
+        if (circle.getRadius()) {handleCircleCollision(particle, coefficientRestitution);}
     }
     // Handle particles collisions
     handleParticleCollisions(coefficientRestitution);
