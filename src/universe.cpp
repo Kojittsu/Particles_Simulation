@@ -75,8 +75,6 @@ void Universe::applyAccelerationToParticles(double ax, double ay){
     }
 
 void Universe::computeGravitationalForces() {
-    // Constante gravitationnelle (Need to be in universe class)
-    const double G = 6.67430e-11;
     
     for (size_t i = 0; i < particles.size(); ++i) {
          // Reset acceleration

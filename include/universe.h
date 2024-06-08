@@ -34,6 +34,7 @@ private:
     int stepNumbers;
     double AccelerationX;
     double AccelerationY;
+    const double G = 6.67430e-11; // gravitational constant
     
 };
 
