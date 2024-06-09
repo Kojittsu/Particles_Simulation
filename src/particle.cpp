@@ -24,8 +24,10 @@ void Particle::setVelocity(std::array<double, 2> newVelocity) {velocity = newVel
 void Particle::setVX(double vx) {velocity[0] = vx;}
 void Particle::setVY(double vy) {velocity[1] = vy;}
 
-// Setters for acceleration
+// Getters for acceleration
 std::array<double, 2> Particle::getAcceleration() const {return acceleration;}
+
+// Setters for acceleration
 void Particle::setAcceleration(std::array<double, 2> newAcceleration) {acceleration = newAcceleration;}
 void Particle::setAX(double ax) {acceleration[0] = ax;}
 void Particle::setAY(double ay) {acceleration[1] = ay;}

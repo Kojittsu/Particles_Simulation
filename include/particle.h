@@ -31,8 +31,10 @@ public:
     void setVX(double vx);
     void setVY(double vy);
 
-    // Setters for acceleration
+    // Getters for acceleration
     std::array<double, 2> getAcceleration() const;
+
+    // Setters for acceleration
     void setAcceleration(std::array<double, 2> newAcceleration);
     void setAX(double ax);
     void setAY(double ay);
