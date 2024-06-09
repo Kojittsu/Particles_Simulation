@@ -40,7 +40,7 @@ void Universe::makeStep(){
         if (circle.getRadius()) {handleCircleCollision(particle, coefficientRestitution);}
     }
     // Handle particles collisions
-    handleParticleCollisions(coefficientRestitution);
+    handleParticleCollisions();
 }
 
 void Universe::saveStep(std::ofstream &file, int stepNumber){
@@ -106,49 +106,49 @@ std::vector<double> Universe::getParticlesRadius(){
     return particlesRadius;
 }
 
-void Universe::handleParticleCollisions(double coefficientRestitution) {
+void Universe::handleParticleCollisions() {
     for (size_t i = 0; i < particles.size(); ++i) {
         for (size_t j = i + 1; j < particles.size(); ++j) {
             Particle& p1 = particles[i];
             Particle& p2 = particles[j];
             
-            // Calculate distance beetwen particles
-            double dx = p1.getX() - p2.getX();
-            double dy = p1.getY() - p2.getY();
-            double distance = std::sqrt(dx * dx + dy * dy);
+            // Calculate collision vector beetwen 2 particles
+            std::array<double, 2> distanceVector = p1.getPosition() - p2.getPosition();
+
+            // Calculate distance beetwen 2 particles
+            double distance = getMagnitude(distanceVector);
+            
             double minDistance = p1.getRadius() + p2.getRadius();
 
             // Check if particles collide
             if (distance < minDistance) {
                 // Normalize collision vector
-                double nx = dx / distance;
-                double ny = dy / distance;
+                std::array<double, 2> distanceVectorNormalized = distanceVector * (1/distance);
 
-                // Move particles so they no longer overlap
+                // Move particles so they don't overlap anymore
                 double overlap = minDistance - distance;
-                p1.setX(p1.getX() + nx * (overlap / 2));
-                p1.setY(p1.getY() + ny * (overlap / 2));
-                p2.setX(p2.getX() - nx * (overlap / 2));
-                p2.setY(p2.getY() - ny * (overlap / 2));
+                p1.setPosition(p1.getPosition() + distanceVectorNormalized * (overlap / 2));
+                p2.setPosition(p2.getPosition() - distanceVectorNormalized * (overlap / 2));
 
-                // Calculate relative velocities
-                double vx1 = p1.getVX();
-                double vy1 = p1.getVY();
-                double vx2 = p2.getVX();
-                double vy2 = p2.getVY();
+                // Get velocities
+                std::array<double, 2> v1 = p1.getVelocity();
+                std::array<double, 2> v2 = p2.getVelocity();
 
-                // Calculate relative speed in the normal direction
-                double relativeVelocity = (vx2 - vx1) * nx + (vy2 - vy1) * ny;
+                // Calculate relative velocity in normal direction
+                std::array<double, 2> diffVelocity = v2 - v1;
+                double relativeVelocity = dotProduct(diffVelocity, distanceVectorNormalized);
 
-                // Calculate the collision impulse
-                double impulse = (2 * relativeVelocity) / (p1.getRadius() + p2.getRadius());
+                // Get masses
+                double m1 = p1.getMass();
+                double m2 = p2.getMass();
+                double massSum = m1 + m2;
 
-                // Update particle velocities taking into account the coefficient of restitution
-                // We suppose here that radius is proportionnal to mass, so mass was replaced by particles radius.
-                p1.setVX(vx1 + impulse * nx * p2.getRadius() * coefficientRestitution);
-                p1.setVY(vy1 + impulse * ny * p2.getRadius() * coefficientRestitution);
-                p2.setVX(vx2 - impulse * nx * p1.getRadius() * coefficientRestitution);
-                p2.setVY(vy2 - impulse * ny * p1.getRadius() * coefficientRestitution);
+                // Calculate collision impulsion
+                double impulse = (2 * relativeVelocity) / massSum;
+
+                // Update particle velocities taking into account mass and coefficient of restitution
+                p1.setVelocity(v1 + impulse * m2 * distanceVectorNormalized * coefficientRestitution);
+                p2.setVelocity(v2 - impulse * m1 * distanceVectorNormalized * coefficientRestitution);
             }
         }
     }

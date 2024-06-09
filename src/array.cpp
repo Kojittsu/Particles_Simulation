@@ -35,3 +35,8 @@ std::array<double, 2>& operator+=(std::array<double, 2>& lhs, const std::array<d
 double getMagnitude(const std::array<double, 2> array) {
         return std::sqrt(array[0] * array[0] + array[1] * array[1]);
     }
+
+// Implementation of the scalar product function
+double dotProduct(const std::array<double, 2>& lhs, const std::array<double, 2>& rhs) {
+    return lhs[0] * rhs[0] + lhs[1] * rhs[1];
+}

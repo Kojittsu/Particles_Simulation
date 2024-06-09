@@ -21,7 +21,7 @@ public:
     void applyAccelerationToParticles(double ax, double ay);
     void computeGravitationalForces();
     std::vector<double> getParticlesRadius();
-    void handleParticleCollisions(double coefficientRestitution);
+    void handleParticleCollisions();
     void handleBoxCollision(Particle &particle, double coefficientRestitution);
     void handleCircleCollision(Particle &particle, double coefficientRestitution);
 

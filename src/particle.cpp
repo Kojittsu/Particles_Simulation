@@ -10,14 +10,17 @@ double Particle::getX() const {return position[0];}
 double Particle::getY() const {return position[1];}
 
 // Setters for position
+void Particle::setPosition(std::array<double, 2> newPosition) {position = newPosition;}
 void Particle::setX(double x) {position[0] = x;}
 void Particle::setY(double y) {position[1] = y;}
 
 // Getters for velocity
+std::array<double, 2> Particle::getVelocity() const {return velocity;}
 double Particle::getVX() const {return velocity[0];}
 double Particle::getVY() const {return velocity[1];}
 
 // Setters for velocity
+void Particle::setVelocity(std::array<double, 2> newVelocity) {velocity = newVelocity;}
 void Particle::setVX(double vx) {velocity[0] = vx;}
 void Particle::setVY(double vy) {velocity[1] = vy;}
 

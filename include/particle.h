@@ -17,14 +17,17 @@ public:
     double getY() const;
 
     // Setters for position
+    void setPosition(std::array<double, 2> newPosition);
     void setX(double x);
     void setY(double y);
 
     // Getters for velocity
+    std::array<double, 2> getVelocity() const ;
     double getVX() const;
     double getVY() const;
 
     // Setters for velocity
+    void setVelocity(std::array<double, 2> newVelocity);
     void setVX(double vx);
     void setVY(double vy);
 
