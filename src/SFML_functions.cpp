@@ -70,7 +70,7 @@ std::vector<std::vector<Coordinate>> readParticleMovements(const std::string& fi
     return particleMovements;
 }
 
-void RenderParticleMovements(std::vector<std::vector<Coordinate>> particleMovements, Box box, Circle circle, std::vector<double> particlesRadius, double scaleFactorPixels){
+void RenderParticleMovements(std::vector<std::vector<Coordinate>> particleMovements, Box box, Circle circle, std::vector<double> particlesRadius, double scaleFactorPixels, double speedFactor){
 
     // Set window size
     int windowLength = std::floor(scaleFactorPixels*box.getLength());
@@ -78,6 +78,20 @@ void RenderParticleMovements(std::vector<std::vector<Coordinate>> particleMoveme
 
 	// Create window
     sf::RenderWindow window(sf::VideoMode(windowLength, windowHeight), "Particle Movement", sf::Style::None);
+
+    // Load font
+    sf::Font font;
+    if (!font.loadFromFile("Roboto-Regular.ttf")) {
+        std::cerr << "Error loading font\n";
+        return;
+    }
+
+    // Create text object for displaying simulation time
+    sf::Text timeText;
+    timeText.setFont(font);
+    timeText.setCharacterSize(24);
+    timeText.setFillColor(sf::Color::White);
+    timeText.setPosition(10, 10); // Position at the top-left corner
 
     // Create circle
     sf::VertexArray SFML_circle;
@@ -131,8 +145,8 @@ void RenderParticleMovements(std::vector<std::vector<Coordinate>> particleMoveme
             // Get particle movement
             std::vector<Coordinate> particleMovement = particleMovements[i];
 
-            // Update particle position depending on elapsed time
-            if (index < particleMovement.size() && clock.getElapsedTime().asSeconds() >= particleMovement[index].time) {
+            // Update particle position depending on elapsed time. taking account of speedFactor
+            if (index < particleMovement.size() && clock.getElapsedTime().asSeconds() * speedFactor >= particleMovement[index].time) {
 
                 std::array<double, 2> SFML_coord = Calculate_SFML_Coord(particleMovement[index].x, particleMovement[index].y, box, scaleFactorPixels);
                 
@@ -144,6 +158,10 @@ void RenderParticleMovements(std::vector<std::vector<Coordinate>> particleMoveme
             }
         }
 
+        // Update the simulation time text
+        double simulationTime = clock.getElapsedTime().asSeconds() * speedFactor;
+        timeText.setString("Time: " + std::to_string(simulationTime) + " s");
+
         window.clear();
 
         // Draw particles
@@ -151,6 +169,9 @@ void RenderParticleMovements(std::vector<std::vector<Coordinate>> particleMoveme
 
         // Draw circle
         if (circle.getRadius()){window.draw(SFML_circle);}
+
+        // Draw the simulation time text
+        window.draw(timeText);
 
         window.display();
     }
