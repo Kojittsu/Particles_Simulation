@@ -22,7 +22,7 @@ struct Coordinate {
     Coordinate(double time, double x, double y) : time(time), x(x), y(y) {}
 };
 
-std::array<double, 2> Calculate_SFML_Coord(const double x, const double y, const Box &box, int window_length, int window_height);
+std::array<double, 2> Calculate_SFML_Coord(const double x, const double y, const Box &box, double scaleFactorPixels);
 
 sf::VertexArray computeBorder(int window_length, int window_height);
 

@@ -1,9 +1,7 @@
 #include "SFML_functions.h"
 
-std::array<double, 2> Calculate_SFML_Coord(const double x, const double y, const Box &box, int windowLength, int windowHeight){
-    // Work only when box start at origin, need to be fix
-    // maybe rework box with origin, length height args
-    std::array<double, 2> SFML_coord = {x * windowLength / box.getLength(), windowHeight - (y * windowHeight / box.getHeight())};
+std::array<double, 2> Calculate_SFML_Coord(const double x, const double y, const Box &box, double scaleFactorPixels){
+    std::array<double, 2> SFML_coord = {(x-box.getXOrigin()) * scaleFactorPixels, (box.getHeight()-(y-box.getYOrigin())) * scaleFactorPixels};
     return SFML_coord;
 }
 
@@ -135,7 +133,7 @@ void RenderParticleMovements(std::vector<std::vector<Coordinate>> particleMoveme
             // Update particle position depending on elapsed time
             if (index < particleMovement.size() && clock.getElapsedTime().asSeconds() >= particleMovement[index].time) {
 
-                std::array<double, 2> SFML_coord = Calculate_SFML_Coord(particleMovement[index].x, particleMovement[index].y, box, windowLength, windowHeight);
+                std::array<double, 2> SFML_coord = Calculate_SFML_Coord(particleMovement[index].x, particleMovement[index].y, box, scaleFactorPixels);
                 
                 // Set the position of the SFML particle and offset it because the SFML setPosition() 
                 // function sets the upper left corner of the circle to the position provided.
