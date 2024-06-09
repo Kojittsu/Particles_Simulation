@@ -5,17 +5,14 @@ std::array<double, 2> Calculate_SFML_Coord(const double x, const double y, const
     return SFML_coord;
 }
 
-sf::VertexArray computeCircle(int windowLength, int windowHeight, int radius, int pointCount) {
+sf::VertexArray computeCircle(double centerX, double centerY, int radius, int pointCount) {
     // Create array of vertices for lines
     sf::VertexArray circle(sf::LineStrip, pointCount + 1);
 
-    // Center of the circle
-    sf::Vector2f center(windowLength / 2, windowHeight / 2);
-
     for (int i = 0; i < pointCount; ++i) {
         float angle = i * 2 * M_PI / pointCount;
-        float x = center.x + radius * std::cos(angle);
-        float y = center.y + radius * std::sin(angle);
+        float x = centerX + radius * std::cos(angle);
+        float y = centerY + radius * std::sin(angle);
 
         circle[i].position = sf::Vector2f(x, y);
         circle[i].color = sf::Color::Red;
@@ -85,7 +82,11 @@ void RenderParticleMovements(std::vector<std::vector<Coordinate>> particleMoveme
     // Create circle
     sf::VertexArray SFML_circle;
     if (circle.getRadius()){
-        SFML_circle = computeCircle(windowLength, windowHeight, circle.getRadius()*scaleFactorPixels, 1000);
+        // calculate center SFML position
+        std::array<double, 2> SFML_center = Calculate_SFML_Coord(circle.getCenterX(), circle.getCenterY(), box, scaleFactorPixels);
+        
+        // pre-compute circle
+        SFML_circle = computeCircle(SFML_center[0], SFML_center[1], circle.getRadius()*scaleFactorPixels, 1000);
     }
 
     // Get number of particles

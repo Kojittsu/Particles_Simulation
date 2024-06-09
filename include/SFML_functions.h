@@ -26,7 +26,7 @@ std::array<double, 2> Calculate_SFML_Coord(const double x, const double y, const
 
 sf::VertexArray computeBorder(int window_length, int window_height);
 
-sf::VertexArray computeCircle(int windowLength, int windowHeight, int radius, int pointCount);
+sf::VertexArray computeCircle(double centerX, double centerY, int radius, int pointCount);
 
 std::vector<std::vector<Coordinate>> readParticleMovements(const std::string& filename);
 
