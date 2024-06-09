@@ -1,16 +1,16 @@
 #include "box.h"
 
 // Constructor
-Box::Box(double xMin, double xMax, double yMin, double yMax) : xMin(xMin), xMax(xMax), yMin(yMin), yMax(yMax) {}
+Box::Box(double xOrigin, double yOrigin, double length, double height) : xOrigin(xOrigin), yOrigin(yOrigin), length(length), height(height) {}
 
 // Default constructor
-Box::Box() : xMin(0.0), xMax(0.0), yMin(0.0), yMax(0.0){}
+Box::Box() : xOrigin(0.0), yOrigin(0.0), length(0.0), height(0.0){}
 
 // Getters
-double Box::getXMIN() const {return xMin;}
-double Box::getYMIN() const {return yMin;}
-double Box::getXMAX() const {return xMax;}
-double Box::getYMAX() const {return yMax;}
+double Box::getXOrigin() const {return xOrigin;}
+double Box::getYOrigin() const {return yOrigin;}
+double Box::getLength() const{return length;}
+double Box::getHeight() const{return height;}
 
-double Box::getLength() const{return xMax - xMin;}
-double Box::getHeight() const{return yMax - yMin;}
+double Box::getXMAX() const {return xOrigin + length;}
+double Box::getYMAX() const {return yOrigin + height;}

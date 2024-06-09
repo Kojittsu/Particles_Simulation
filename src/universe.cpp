@@ -59,7 +59,7 @@ void Universe::addParticle(Particle &particle){
 }
 
 void Universe::addRndParticle(double maxVelocityX, double maxVelocityY, double minRadius, double maxRadius, double maxMass){
-    std::array<double, 2> position = {rndNumber(box.getXMIN(), box.getXMAX()), rndNumber(box.getYMIN(), box.getYMAX())};
+    std::array<double, 2> position = {rndNumber(box.getXOrigin(), box.getXMAX()), rndNumber(box.getYOrigin(), box.getYMAX())};
     std::array<double, 2> velocity = {rndNumber(-maxVelocityX, maxVelocityX), rndNumber(-maxVelocityY, maxVelocityY)};
     double mass = rndNumber(0.0, maxMass);
 
@@ -157,8 +157,8 @@ void Universe::handleParticleCollisions(double coefficientRestitution) {
 void Universe::handleBoxCollision(Particle &particle, double coefficientRestitution){
 
     // Left collision
-    if(particle.getX() < box.getXMIN() + particle.getRadius()){
-        particle.setX(box.getXMIN() + particle.getRadius());
+    if(particle.getX() < box.getXOrigin() + particle.getRadius()){
+        particle.setX(box.getXOrigin() + particle.getRadius());
         particle.setVX(-particle.getVX()*coefficientRestitution);
     }
     // Right collision
@@ -167,8 +167,8 @@ void Universe::handleBoxCollision(Particle &particle, double coefficientRestitut
         particle.setVX(-particle.getVX()*coefficientRestitution);
     }
     // Down collision
-    if(particle.getY() < box.getYMIN() + particle.getRadius()){
-        particle.setY(box.getYMIN() + particle.getRadius());
+    if(particle.getY() < box.getYOrigin() + particle.getRadius()){
+        particle.setY(box.getYOrigin() + particle.getRadius());
         particle.setVY(-particle.getVY()*coefficientRestitution);
     }
     // Up collision

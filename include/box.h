@@ -4,25 +4,25 @@
 class Box {
 public:
     // Constructor
-    Box(double xMin, double xMax, double yMin, double yMax);
+    Box(double xOrigin, double yOrigin, double length, double height);
 
     // Default constructor
     Box();
     
     // Getters
-    double getXMIN() const;
-    double getYMIN() const;
-    double getXMAX() const;
-    double getYMAX() const;
-
+    double getXOrigin() const;
+    double getYOrigin() const;
     double getLength() const;
     double getHeight() const;
 
+    double getXMAX() const;
+    double getYMAX() const;
+
 private:
-    double xMin;
-    double xMax;
-    double yMin;
-    double yMax;
+    double xOrigin;
+    double yOrigin;
+    double length;
+    double height;
 };
 
 #endif

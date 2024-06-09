@@ -24,10 +24,10 @@ bool readConfig(const std::string& filename, Config& config) {
     if (configJson.contains("box")) {
         json boxJson = configJson["box"];
         config.box = Box(
-            boxJson.value("xMin", 0.0),
-            boxJson.value("xMax", 1.0),
-            boxJson.value("yMin", 0.0),
-            boxJson.value("yMax", 1.0)
+            boxJson.value("xOrigin", 0.0),
+            boxJson.value("yOrigin", 0.0),
+            boxJson.value("length", 0.0),
+            boxJson.value("height", 0.0)
         );
     }
 
