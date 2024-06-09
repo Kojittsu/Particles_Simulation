@@ -57,5 +57,12 @@ bool readConfig(const std::string& filename, Config& config) {
         config.scaleFactorPixels = 50.0;
     }
 
+    if (configJson.contains("visualization")) {
+        json visualizationJson = configJson["visualization"];
+        config.speedFactor = visualizationJson.value("speedFactor", 1.0);
+    } else {
+        config.speedFactor = 1.0;
+    }
+
     return true;
 }

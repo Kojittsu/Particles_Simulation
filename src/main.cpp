@@ -33,8 +33,7 @@ int main() {
 
     // Display simulation in SFML
     std::vector<double> particlesRadius = universe.getParticlesRadius(); // Get all radius
-    double speedFactor = 39312; // to get moon full orbit animation in 60sec
-    RenderParticleMovements(particleMovements, config.box, config.circle, particlesRadius, config.scaleFactorPixels, speedFactor);
+    RenderParticleMovements(particleMovements, config.box, config.circle, particlesRadius, config.scaleFactorPixels, config.speedFactor);
 
     return 0;
 }
