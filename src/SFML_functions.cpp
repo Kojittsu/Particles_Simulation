@@ -98,13 +98,12 @@ std::string formatedTime(double seconds) {
     return oss.str();
 }
 
-void RenderParticleMovements(std::vector<std::vector<Coordinate>> particleMovements, Box box, Circle circle, std::vector<double> particlesRadius, double scaleFactorPixels, double speedFactor){
-
+void RenderParticleMovements(std::vector<std::vector<Coordinate>> particleMovements, Box box, Circle circle, std::vector<double> particlesRadius, double scaleFactorPixels, double speedFactor) {
     // Set window size
-    int windowLength = std::floor(scaleFactorPixels*box.getLength());
-    int windowHeight = std::floor(scaleFactorPixels*box.getHeight());
+    int windowLength = std::floor(scaleFactorPixels * box.getLength());
+    int windowHeight = std::floor(scaleFactorPixels * box.getHeight());
 
-	// Create window
+    // Create window
     sf::RenderWindow window(sf::VideoMode(windowLength, windowHeight), "Particle Movement", sf::Style::None);
 
     // Load font
@@ -123,12 +122,12 @@ void RenderParticleMovements(std::vector<std::vector<Coordinate>> particleMoveme
 
     // Create circle
     sf::VertexArray SFML_circle;
-    if (circle.getRadius()){
-        // calculate center SFML position
+    if (circle.getRadius()) {
+        // Calculate center SFML position
         std::array<double, 2> SFML_center = Calculate_SFML_Coord(circle.getCenterX(), circle.getCenterY(), box, scaleFactorPixels);
-        
-        // pre-compute circle
-        SFML_circle = computeCircle(SFML_center[0], SFML_center[1], circle.getRadius()*scaleFactorPixels, 1000);
+
+        // Pre-compute circle
+        SFML_circle = computeCircle(SFML_center[0], SFML_center[1], circle.getRadius() * scaleFactorPixels, 1000);
     }
 
     // Get number of particles
@@ -136,7 +135,7 @@ void RenderParticleMovements(std::vector<std::vector<Coordinate>> particleMoveme
 
     // Creating vector of SFML radius particles
     std::vector<double> SFML_particleRadius;
-    for (double& radius : particlesRadius){
+    for (double& radius : particlesRadius) {
         double SFML_radius = radius * scaleFactorPixels;
         SFML_particleRadius.push_back(SFML_radius);
     }
@@ -150,14 +149,16 @@ void RenderParticleMovements(std::vector<std::vector<Coordinate>> particleMoveme
         particles.push_back(particle);
     }
 
-    // Index vector for following particles position 
+    // Index vector for following particles position
     std::vector<std::size_t> indexes(particleNumbers, 0);
+
+    // Vector to store particle trails
+    std::vector<std::vector<sf::Vertex>> particleTrails(particleNumbers);
 
     // Set SFML Clock
     sf::Clock clock;
 
-    while (window.isOpen())
-    {
+    while (window.isOpen()) {
         sf::Event event;
         while (window.pollEvent(event)) {
             if (event.type == sf::Event::Closed) {
@@ -166,21 +167,27 @@ void RenderParticleMovements(std::vector<std::vector<Coordinate>> particleMoveme
         }
 
         // Set SFML particle positions
-        for (int i=0;i<particleNumbers;i++){
+        for (int i = 0; i < particleNumbers; i++) {
             // Get particle index
-            std::size_t &index = indexes[i];
-            
+            std::size_t& index = indexes[i];
+
             // Get particle movement
             std::vector<Coordinate> particleMovement = particleMovements[i];
 
-            // Update particle position depending on elapsed time. taking account of speedFactor
+            // Update particle position depending on elapsed time. Taking account of speedFactor
             if (index < particleMovement.size() && clock.getElapsedTime().asSeconds() * speedFactor >= particleMovement[index].time) {
-
                 std::array<double, 2> SFML_coord = Calculate_SFML_Coord(particleMovement[index].x, particleMovement[index].y, box, scaleFactorPixels);
-                
-                // Set the position of the SFML particle and offset it because the SFML setPosition() 
+
+                // Add the current position to the trail
+                if (index > 0) {
+                    std::array<double, 2> previous_SFML_coord = Calculate_SFML_Coord(particleMovement[index - 1].x, particleMovement[index - 1].y, box, scaleFactorPixels);
+                    particleTrails[i].push_back(sf::Vertex(sf::Vector2f(previous_SFML_coord[0], previous_SFML_coord[1]), getRainbow(i)));
+                    particleTrails[i].push_back(sf::Vertex(sf::Vector2f(SFML_coord[0], SFML_coord[1]), getRainbow(i)));
+                }
+
+                // Set the position of the SFML particle and offset it because the SFML setPosition()
                 // function sets the upper left corner of the circle to the position provided.
-                particles[i].setPosition(SFML_coord[0]-SFML_particleRadius[i], SFML_coord[1]-SFML_particleRadius[i]);
+                particles[i].setPosition(SFML_coord[0] - SFML_particleRadius[i], SFML_coord[1] - SFML_particleRadius[i]);
 
                 index++;
             }
@@ -192,11 +199,20 @@ void RenderParticleMovements(std::vector<std::vector<Coordinate>> particleMoveme
 
         window.clear();
 
+        // Draw particle trails
+        for (const auto& trail : particleTrails) {
+            window.draw(&trail[0], trail.size(), sf::Lines);
+        }
+
         // Draw particles
-        for (sf::CircleShape particle : particles){window.draw(particle);}
+        for (sf::CircleShape& particle : particles) {
+            window.draw(particle);
+        }
 
         // Draw circle
-        if (circle.getRadius()){window.draw(SFML_circle);}
+        if (circle.getRadius()) {
+            window.draw(SFML_circle);
+        }
 
         // Draw the simulation time text
         window.draw(timeText);
