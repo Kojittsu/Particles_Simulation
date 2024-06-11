@@ -3,8 +3,7 @@
 
 #include <vector>
 #include <fstream>
-#include <nlohmann/json.hpp>
-using json = nlohmann::json;
+#include <yaml-cpp/yaml.h>
 
 #include "particle.h"
 #include "box.h"

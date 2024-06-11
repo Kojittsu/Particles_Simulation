@@ -9,7 +9,7 @@ OBJ_DIR = obj
 # Compilator and options
 CXX = g++
 CXXFLAGS = -Wall -I$(INC_DIR) -std=c++11
-LDFLAGS = -lsfml-graphics -lsfml-window -lsfml-system
+LDFLAGS = -lsfml-graphics -lsfml-window -lsfml-system -lyaml-cpp
 
 # Source and objects files list
 SRCS = $(wildcard $(SRC_DIR)/*.cpp)

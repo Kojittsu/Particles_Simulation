@@ -4,7 +4,7 @@
 int main() {
     // Read configuration
     Config config;
-    if (!readConfig("config.json", config)) {
+    if (!readConfig("config.yaml", config)) {
         return 1;
     }
 

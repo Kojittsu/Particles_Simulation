@@ -1,68 +1,41 @@
 #include "config.h"
 
 bool readConfig(const std::string& filename, Config& config) {
-    std::ifstream file(filename);
-    if (!file.is_open()) {
-        std::cerr << "Error: Could not open config file " << filename << std::endl;
-        return false;
+    YAML::Node yaml = YAML::LoadFile(filename);
+
+    // Load particles
+    for (const auto& particleNode : yaml["particles"]) {
+        std::array<double, 2> position = particleNode["position"].as<std::array<double, 2>>();
+        std::array<double, 2> velocity = particleNode["velocity"].as<std::array<double, 2>>();
+        double radius = particleNode["radius"].as<double>();
+        double mass = particleNode["mass"].as<double>();
+        Particle particle(position, velocity, radius, mass);
+        config.particles.push_back(particle);
     }
 
-    json configJson;
-    file >> configJson;
+    // Load box
+    double xOrigin = yaml["box"]["xOrigin"].as<double>();
+    double yOrigin = yaml["box"]["yOrigin"].as<double>();
+    double length = yaml["box"]["length"].as<double>();
+    double height = yaml["box"]["height"].as<double>();
+    config.box = Box(xOrigin, yOrigin, length, height);
 
-    if (configJson.contains("particles")) {
-        for (const auto& particleJson : configJson["particles"]) {
-            std::array<double, 2> position = particleJson.value("position", std::array<double, 2>{0.0, 0.0});
-            std::array<double, 2> velocity = particleJson.value("velocity", std::array<double, 2>{0.0, 0.0});
-            double radius = particleJson.value("radius", 1.0);
-            double mass = particleJson.value("mass", 1.0);
-            Particle particle(position, velocity, radius, mass);
-            config.particles.push_back(particle);
-        }
-    }
+    // Load circle
+    double centerX = yaml["circle"]["centerX"].as<double>();
+    double centerY = yaml["circle"]["centerY"].as<double>();
+    double radius = yaml["circle"]["radius"].as<double>();
+    config.circle = Circle(centerX, centerY, radius);
 
-    if (configJson.contains("box")) {
-        json boxJson = configJson["box"];
-        config.box = Box(
-            boxJson.value("xOrigin", 0.0),
-            boxJson.value("yOrigin", 0.0),
-            boxJson.value("length", 0.0),
-            boxJson.value("height", 0.0)
-        );
-    }
+    // Load simulation parameters
+    config.deltaTime = yaml["simulation"]["deltaTime"].as<double>();
+    config.stepNumbers = yaml["simulation"]["stepNumbers"].as<int>();
+    config.AccelerationX = yaml["simulation"]["AccelerationX"].as<double>();
+    config.AccelerationY = yaml["simulation"]["AccelerationY"].as<double>();
+    config.coefficientRestitution = yaml["simulation"]["coefficientRestitution"].as<double>();
 
-    if (configJson.contains("circle")) {
-        json circleJson = configJson["circle"];
-        config.circle = Circle(
-            circleJson.value("centerX", 0.0),
-            circleJson.value("centerY", 0.0),
-            circleJson.value("radius", 1.0)
-        );
-    }
-
-    if (configJson.contains("simulation")) {
-        json simulationJson = configJson["simulation"];
-        config.deltaTime = simulationJson.value("deltaTime", 0.01);
-        config.stepNumbers = simulationJson.value("stepNumbers", 1000);
-        config.AccelerationX = simulationJson.value("AccelerationX", 0.0);
-        config.AccelerationY = simulationJson.value("AccelerationY", 0.0);
-        config.coefficientRestitution = simulationJson.value("coefficientRestitution", 0.9);
-    } else {
-        config.deltaTime = 0.01;
-        config.stepNumbers = 1000;
-        config.AccelerationX = 0.0;
-        config.AccelerationY = 0.0;
-        config.coefficientRestitution = 0.9;
-    }
-
-    if (configJson.contains("visualization")) {
-        json visualizationJson = configJson["visualization"];
-        config.speedFactor = visualizationJson.value("speedFactor", 1.0);
-        config.scaleFactorPixels = visualizationJson.value("scaleFactorPixels", 1.0);
-    } else {
-        config.speedFactor = 1.0;
-        config.scaleFactorPixels = 1.0;
-    }
+    // Load visualization parameters
+    config.speedFactor = yaml["visualization"]["speedFactor"].as<double>();
+    config.scaleFactorPixels = yaml["visualization"]["scaleFactorPixels"].as<double>();
 
     return true;
 }
