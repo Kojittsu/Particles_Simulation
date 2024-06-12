@@ -14,7 +14,8 @@ struct Config {
     Box box = Box();
     Circle circle = Circle();
     double deltaTime;
-    int stepNumbers;
+    // int stepNumbers;
+    double simulationTime;
     double AccelerationX;
     double AccelerationY;
     double coefficientRestitution;

@@ -48,7 +48,7 @@ circle:
 
 simulation:
   deltaTime: double
-  stepNumbers: int
+  simulationTime: double
   AccelerationX: double
   AccelerationY: double
   coefficientRestitution: double
