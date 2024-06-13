@@ -1,10 +1,17 @@
 #include "universe.h"
 #include "SFML_functions.h"
 
-int main() {
+int main(int argc, char* argv[]) {
+    
+    // Check if the configuration file name is provided
+    if (argc < 2) {
+        std::cerr << "Usage: " << argv[0] << " <config_file>" << std::endl;
+        return 1;
+    }
+
     // Read configuration
     Config config;
-    if (!readConfig("config.yaml", config)) {
+    if (!readConfig(argv[1], config)) {
         return 1;
     }
 
