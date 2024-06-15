@@ -33,6 +33,6 @@ std::vector<std::vector<Coordinate>> readParticleMovements(const std::string& fi
 
 std::string formatedTime(double seconds);
 
-void RenderParticleMovements(std::vector<std::vector<Coordinate>> particleMovements, Box box, Circle circle, std::vector<double> particlesRadius, double scaleFactorPixels, double speedFactor, double simulationTime);
+void RenderParticleMovements(std::vector<std::vector<Coordinate>> particleMovements, Box box, Circle circle, std::vector<double> particlesRadius, double scaleFactorPixels, double speedFactor,double drawTrails, double simulationTime);
 
 #endif

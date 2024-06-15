@@ -21,6 +21,7 @@ struct Config {
     double coefficientRestitution;
     double scaleFactorPixels;
     double speedFactor;
+    bool drawTrails;
 };
 
 bool readConfig(const std::string& filename, Config& config);

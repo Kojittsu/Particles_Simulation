@@ -98,7 +98,7 @@ std::string formatedTime(double seconds) {
     return oss.str();
 }
 
-void RenderParticleMovements(std::vector<std::vector<Coordinate>> particleMovements, Box box, Circle circle, std::vector<double> particlesRadius, double scaleFactorPixels, double speedFactor, double simulationTime) {
+void RenderParticleMovements(std::vector<std::vector<Coordinate>> particleMovements, Box box, Circle circle, std::vector<double> particlesRadius, double scaleFactorPixels, double speedFactor, double drawTrails, double simulationTime) {
     // Set window size
     int windowLength = std::floor(scaleFactorPixels * box.getLength());
     int windowHeight = std::floor(scaleFactorPixels * box.getHeight());
@@ -184,7 +184,7 @@ void RenderParticleMovements(std::vector<std::vector<Coordinate>> particleMoveme
                     std::array<double, 2> SFML_coord = Calculate_SFML_Coord(particleMovement[index].x, particleMovement[index].y, box, scaleFactorPixels);
 
                     // Add the current position to the trail
-                    if (index > 0) {
+                    if (index > 0 && drawTrails) {
                         std::array<double, 2> previous_SFML_coord = Calculate_SFML_Coord(particleMovement[index - 1].x, particleMovement[index - 1].y, box, scaleFactorPixels);
                         particleTrails[i].push_back(sf::Vertex(sf::Vector2f(previous_SFML_coord[0], previous_SFML_coord[1]), getRainbow(i)));
                         particleTrails[i].push_back(sf::Vertex(sf::Vector2f(SFML_coord[0], SFML_coord[1]), getRainbow(i)));
@@ -210,8 +210,10 @@ void RenderParticleMovements(std::vector<std::vector<Coordinate>> particleMoveme
         window.clear();
 
         // Draw particle trails
-        for (const auto& trail : particleTrails) {
-            window.draw(&trail[0], trail.size(), sf::Lines);
+        if (drawTrails){
+            for (const auto& trail : particleTrails) {
+                window.draw(&trail[0], trail.size(), sf::Lines);
+            }
         }
 
         // Draw particles

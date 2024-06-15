@@ -38,6 +38,7 @@ bool readConfig(const std::string& filename, Config& config) {
     // Load visualization parameters
     config.speedFactor = yaml["visualization"]["speedFactor"].as<double>();
     config.scaleFactorPixels = yaml["visualization"]["scaleFactorPixels"].as<double>();
+    config.drawTrails = yaml["visualization"]["drawTrails"].as<bool>();
 
     return true;
 }
