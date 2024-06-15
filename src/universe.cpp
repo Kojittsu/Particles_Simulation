@@ -69,17 +69,15 @@ void Universe::addRndParticle(double maxVelocityX, double maxVelocityY, double m
 
 void Universe::applyAccelerationToParticles(double ax, double ay){
         for (Particle& particle : particles){
-            particle.setAX(ax);
-            particle.setAY(ay);
+            std::array<double, 2> acceleration = particle.getAcceleration();
+            particle.setAX(acceleration[0] + ax);
+            particle.setAY(acceleration[1] + ay);
         }
     }
 
 void Universe::computeGravitationalForces() {
     
     for (size_t i = 0; i < particles.size(); ++i) {
-         // Reset acceleration
-        particles[i].setAcceleration({0,0});
-
         for (size_t j = 0; j < particles.size(); ++j) {
             if (i != j) {
                 std::array<double, 2> forceDirection = particles[j].getPosition() - particles[i].getPosition();
