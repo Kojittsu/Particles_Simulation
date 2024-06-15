@@ -98,7 +98,7 @@ std::string formatedTime(double seconds) {
     return oss.str();
 }
 
-void RenderParticleMovements(std::vector<std::vector<Coordinate>> particleMovements, Box box, Circle circle, std::vector<double> particlesRadius, double scaleFactorPixels, double speedFactor) {
+void RenderParticleMovements(std::vector<std::vector<Coordinate>> particleMovements, Box box, Circle circle, std::vector<double> particlesRadius, double scaleFactorPixels, double speedFactor, double simulationTime) {
     // Set window size
     int windowLength = std::floor(scaleFactorPixels * box.getLength());
     int windowHeight = std::floor(scaleFactorPixels * box.getHeight());
@@ -157,6 +157,8 @@ void RenderParticleMovements(std::vector<std::vector<Coordinate>> particleMoveme
 
     // Set SFML Clock
     sf::Clock clock;
+    double elapsedSimulationTime = 0.0;
+    bool paused = false;
 
     while (window.isOpen()) {
         sf::Event event;
@@ -166,36 +168,44 @@ void RenderParticleMovements(std::vector<std::vector<Coordinate>> particleMoveme
             }
         }
 
-        // Set SFML particle positions
-        for (int i = 0; i < particleNumbers; i++) {
-            // Get particle index
-            std::size_t& index = indexes[i];
+        if (!paused) {
+            double currentTime = elapsedSimulationTime + clock.getElapsedTime().asSeconds() * speedFactor;
 
-            // Get particle movement
-            std::vector<Coordinate> particleMovement = particleMovements[i];
+            // Set SFML particle positions
+            for (int i = 0; i < particleNumbers; i++) {
+                // Get particle index
+                std::size_t& index = indexes[i];
 
-            // Update particle position depending on elapsed time. Taking account of speedFactor
-            if (index < particleMovement.size() && clock.getElapsedTime().asSeconds() * speedFactor >= particleMovement[index].time) {
-                std::array<double, 2> SFML_coord = Calculate_SFML_Coord(particleMovement[index].x, particleMovement[index].y, box, scaleFactorPixels);
+                // Get particle movement
+                std::vector<Coordinate> particleMovement = particleMovements[i];
 
-                // Add the current position to the trail
-                if (index > 0) {
-                    std::array<double, 2> previous_SFML_coord = Calculate_SFML_Coord(particleMovement[index - 1].x, particleMovement[index - 1].y, box, scaleFactorPixels);
-                    particleTrails[i].push_back(sf::Vertex(sf::Vector2f(previous_SFML_coord[0], previous_SFML_coord[1]), getRainbow(i)));
-                    particleTrails[i].push_back(sf::Vertex(sf::Vector2f(SFML_coord[0], SFML_coord[1]), getRainbow(i)));
+                // Update particle position depending on elapsed time. Taking account of speedFactor
+                if (index < particleMovement.size() && currentTime >= particleMovement[index].time) {
+                    std::array<double, 2> SFML_coord = Calculate_SFML_Coord(particleMovement[index].x, particleMovement[index].y, box, scaleFactorPixels);
+
+                    // Add the current position to the trail
+                    if (index > 0) {
+                        std::array<double, 2> previous_SFML_coord = Calculate_SFML_Coord(particleMovement[index - 1].x, particleMovement[index - 1].y, box, scaleFactorPixels);
+                        particleTrails[i].push_back(sf::Vertex(sf::Vector2f(previous_SFML_coord[0], previous_SFML_coord[1]), getRainbow(i)));
+                        particleTrails[i].push_back(sf::Vertex(sf::Vector2f(SFML_coord[0], SFML_coord[1]), getRainbow(i)));
+                    }
+
+                    // Set the position of the SFML particle and offset it because the SFML setPosition()
+                    // function sets the upper left corner of the circle to the position provided.
+                    particles[i].setPosition(SFML_coord[0] - SFML_particleRadius[i], SFML_coord[1] - SFML_particleRadius[i]);
+
+                    index++;
                 }
+            }
 
-                // Set the position of the SFML particle and offset it because the SFML setPosition()
-                // function sets the upper left corner of the circle to the position provided.
-                particles[i].setPosition(SFML_coord[0] - SFML_particleRadius[i], SFML_coord[1] - SFML_particleRadius[i]);
+            // Update the simulation time text
+            timeText.setString(formatedTime(currentTime));
 
-                index++;
+            // Check if simulation end
+            if (currentTime > simulationTime) {
+                paused = true;
             }
         }
-
-        // Update the simulation time text
-        double simulationTime = clock.getElapsedTime().asSeconds() * speedFactor;
-        timeText.setString(formatedTime(simulationTime));
 
         window.clear();
 
