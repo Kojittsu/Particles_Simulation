@@ -2,7 +2,11 @@
 
 // Constructor
 Particle::Particle(const std::array<double, 2>& position, const std::array<double, 2>& velocity, const double radius, const double mass)
-    : position(position), velocity(velocity), radius(radius), mass(mass) {}
+    : position(position),
+      velocity(velocity),
+      radius(radius),
+      mass(mass)
+      {}
 
 // Getters for position
 std::array<double, 2> Particle::getPosition() const {return position;}

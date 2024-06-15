@@ -1,7 +1,16 @@
 #include "universe.h"
 
 Universe::Universe(const Config& config)
-    : particles(config.particles), box(config.box), circle(config.circle), coefficientRestitution(config.coefficientRestitution), deltaTime(config.deltaTime), simulationTime(config.simulationTime), applyGravity(config.applyGravity), AccelerationX(config.AccelerationX), AccelerationY(config.AccelerationY) {}
+    : particles(config.particles),
+      box(config.box),
+      circle(config.circle),
+      coefficientRestitution(config.coefficientRestitution),
+      deltaTime(config.deltaTime),
+      simulationTime(config.simulationTime),
+      applyGravity(config.applyGravity),
+      AccelerationX(config.AccelerationX),
+      AccelerationY(config.AccelerationY)
+      {}
 
 void Universe::run(const std::string& filename) {
     std::ofstream file;
