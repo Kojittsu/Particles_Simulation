@@ -157,7 +157,6 @@ void RenderParticleMovements(std::vector<std::vector<Coordinate>> particleMoveme
 
     // Set SFML Clock
     sf::Clock clock;
-    double elapsedSimulationTime = 0.0;
     bool paused = false;
 
     while (window.isOpen()) {
@@ -169,7 +168,7 @@ void RenderParticleMovements(std::vector<std::vector<Coordinate>> particleMoveme
         }
 
         if (!paused) {
-            double currentTime = elapsedSimulationTime + clock.getElapsedTime().asSeconds() * speedFactor;
+            double currentTime = clock.getElapsedTime().asSeconds() * speedFactor;
 
             // Set SFML particle positions
             for (int i = 0; i < particleNumbers; i++) {
