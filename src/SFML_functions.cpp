@@ -180,7 +180,11 @@ void RenderParticleMovements(std::vector<std::vector<Coordinate>> particleMoveme
 
                 // Update particle position depending on elapsed time. Taking account of speedFactor
                 if (index < particleMovement.size() && currentTime >= particleMovement[index].time) {
+
+                    // Set the position of the SFML particle and offset it because the SFML setPosition()
+                    // function sets the upper left corner of the circle to the position provided.
                     std::array<double, 2> SFML_coord = Calculate_SFML_Coord(particleMovement[index].x, particleMovement[index].y, box, scaleFactorPixels);
+                    particles[i].setPosition(SFML_coord[0] - SFML_particleRadius[i], SFML_coord[1] - SFML_particleRadius[i]);
 
                     // Add the current position to the trail
                     if (index > 0 && drawTrails) {
@@ -188,10 +192,6 @@ void RenderParticleMovements(std::vector<std::vector<Coordinate>> particleMoveme
                         particleTrails[i].push_back(sf::Vertex(sf::Vector2f(previous_SFML_coord[0], previous_SFML_coord[1]), getRainbow(i)));
                         particleTrails[i].push_back(sf::Vertex(sf::Vector2f(SFML_coord[0], SFML_coord[1]), getRainbow(i)));
                     }
-
-                    // Set the position of the SFML particle and offset it because the SFML setPosition()
-                    // function sets the upper left corner of the circle to the position provided.
-                    particles[i].setPosition(SFML_coord[0] - SFML_particleRadius[i], SFML_coord[1] - SFML_particleRadius[i]);
 
                     index++;
                 }
