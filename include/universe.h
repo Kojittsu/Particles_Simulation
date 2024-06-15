@@ -17,7 +17,7 @@ public:
     void makeStep();
     void saveStep(std::ofstream &file, int stepNumber);
     void addParticle(Particle &particle);
-    void addRndParticle(double maxVelocityX, double maxVelocityY, double minRadius, double maxRadius, double maxMass);
+    void addRndParticle(double maxVelocityX, double maxVelocityY, double minRadius, double maxRadius, double minMass, double maxMass);
     void applyAccelerationToParticles(double ax, double ay);
     void computeGravitationalForces();
     std::vector<double> getParticlesRadius();
