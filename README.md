@@ -49,6 +49,7 @@ circle:
 simulation:
   deltaTime: double
   simulationTime: double
+  applyGravity: bool
   AccelerationX: double
   AccelerationY: double
   coefficientRestitution: double

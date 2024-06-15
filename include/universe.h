@@ -31,8 +31,8 @@ private:
     Circle circle;
     double coefficientRestitution;
     double deltaTime;
-    // int stepNumbers;
     double simulationTime;
+    bool applyGravity;
     double AccelerationX;
     double AccelerationY;
     const double G = 6.67430e-11; // gravitational constant

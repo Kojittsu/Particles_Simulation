@@ -30,6 +30,7 @@ bool readConfig(const std::string& filename, Config& config) {
     config.deltaTime = yaml["simulation"]["deltaTime"].as<double>();
     // config.stepNumbers = yaml["simulation"]["stepNumbers"].as<int>();
     config.simulationTime = yaml["simulation"]["simulationTime"].as<double>();
+    config.applyGravity = yaml["simulation"]["applyGravity"].as<bool>();
     config.AccelerationX = yaml["simulation"]["AccelerationX"].as<double>();
     config.AccelerationY = yaml["simulation"]["AccelerationY"].as<double>();
     config.coefficientRestitution = yaml["simulation"]["coefficientRestitution"].as<double>();

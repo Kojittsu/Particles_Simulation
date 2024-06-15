@@ -1,7 +1,7 @@
 #include "universe.h"
 
 Universe::Universe(const Config& config)
-    : particles(config.particles), box(config.box), circle(config.circle), coefficientRestitution(config.coefficientRestitution), deltaTime(config.deltaTime), simulationTime(config.simulationTime), AccelerationX(config.AccelerationX), AccelerationY(config.AccelerationY) {}
+    : particles(config.particles), box(config.box), circle(config.circle), coefficientRestitution(config.coefficientRestitution), deltaTime(config.deltaTime), simulationTime(config.simulationTime), applyGravity(config.applyGravity), AccelerationX(config.AccelerationX), AccelerationY(config.AccelerationY) {}
 
 void Universe::run(const std::string& filename) {
     std::ofstream file;
@@ -27,7 +27,7 @@ void Universe::run(const std::string& filename) {
 void Universe::makeStep(){
     
     // Apply Newton's law of universal gravitation
-    computeGravitationalForces();
+    if(applyGravity){computeGravitationalForces();}
     
     for (Particle& particle : particles) {
         // Update particle
