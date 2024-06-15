@@ -18,19 +18,9 @@ int main(int argc, char* argv[]) {
     // Create universe
     Universe universe(config);
 
-    // Parameters
-    // Random particle parameters
-    int randomParticleNumbers = 0;
-    double maxVelocityX       = 0.0;
-    double maxVelocityY       = 0.0;
-    double minRadius          = 0.1;
-    double maxRadius          = 0.2;
-    double minMass            = 1;
-    double maxMass            = 100;
-
     // Add random particles
-    for(int i=0; i< randomParticleNumbers; i++){
-        universe.addRndParticle(maxVelocityX, maxVelocityY, minRadius, maxRadius, minMass, maxMass);
+    for(int i=0; i< config.rndParticle_numbers; i++){
+        universe.addRndParticle(config.rndParticle_maxVelocityX, config.rndParticle_maxVelocityY, config.rndParticle_minRadius, config.rndParticle_maxRadius, config.rndParticle_minMass, config.rndParticle_maxMass);
     }
     
     // Run universe

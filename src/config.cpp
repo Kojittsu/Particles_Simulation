@@ -13,6 +13,15 @@ bool readConfig(const std::string& filename, Config& config) {
         config.particles.push_back(particle);
     }
 
+    // Random particles
+    config.rndParticle_numbers = yaml["randomParticles"]["numbers"].as<int>();
+    config.rndParticle_maxVelocityX = yaml["randomParticles"]["maxVelocityX"].as<double>();
+    config.rndParticle_maxVelocityY = yaml["randomParticles"]["maxVelocityY"].as<double>();
+    config.rndParticle_minRadius = yaml["randomParticles"]["minRadius"].as<double>();
+    config.rndParticle_maxRadius = yaml["randomParticles"]["maxRadius"].as<double>();
+    config.rndParticle_minMass = yaml["randomParticles"]["minMass"].as<double>();
+    config.rndParticle_maxMass = yaml["randomParticles"]["maxMass"].as<double>();
+
     // Load box
     double xOrigin = yaml["box"]["xOrigin"].as<double>();
     double yOrigin = yaml["box"]["yOrigin"].as<double>();

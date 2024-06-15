@@ -11,14 +11,26 @@
 
 struct Config {
     std::vector<Particle> particles;
+
+    int rndParticle_numbers;
+    double rndParticle_maxVelocityX;
+    double rndParticle_maxVelocityY;
+    double rndParticle_minRadius;
+    double rndParticle_maxRadius;
+    double rndParticle_minMass;
+    double rndParticle_maxMass;
+    
     Box box = Box();
+    
     Circle circle = Circle();
+    
     double deltaTime;
     double simulationTime;
     bool applyGravity;
     double AccelerationX;
     double AccelerationY;
     double coefficientRestitution;
+    
     double scaleFactorPixels;
     double speedFactor;
     bool drawTrails;
