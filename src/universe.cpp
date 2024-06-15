@@ -79,6 +79,9 @@ void Universe::applyAccelerationToParticles(double ax, double ay){
 void Universe::computeGravitationalForces() {
     
     for (size_t i = 0; i < particles.size(); ++i) {
+         // Reset acceleration to global acceleration
+        particles[i].setAcceleration({AccelerationX, AccelerationY});
+
         for (size_t j = 0; j < particles.size(); ++j) {
             if (i != j) {
                 std::array<double, 2> forceDirection = particles[j].getPosition() - particles[i].getPosition();
