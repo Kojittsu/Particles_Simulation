@@ -8,8 +8,7 @@ Universe::Universe(const Config& config)
       deltaTime(config.deltaTime),
       simulationTime(config.simulationTime),
       applyGravity(config.applyGravity),
-      AccelerationX(config.AccelerationX),
-      AccelerationY(config.AccelerationY)
+      globalAcceleration(config.globalAcceleration)
       {}
 
 void Universe::run(const std::string& filename) {
@@ -23,7 +22,7 @@ void Universe::run(const std::string& filename) {
     }
 
     // Apply acceleration to all particles
-    applyAccelerationToParticles(AccelerationX, AccelerationY);
+    applyAccelerationToParticles(globalAcceleration);
 
     for (int stepNumber = 0; stepNumber * deltaTime < simulationTime; ++stepNumber) {
         makeStep();
@@ -77,11 +76,10 @@ void Universe::addRndParticle(double maxVelocityX, double maxVelocityY, double m
     particles.push_back(particle);
 }
 
-void Universe::applyAccelerationToParticles(double ax, double ay){
+void Universe::applyAccelerationToParticles(std::array<double, 2> &globalAcceleration){
         for (Particle& particle : particles){
             std::array<double, 2> acceleration = particle.getAcceleration();
-            particle.setAX(acceleration[0] + ax);
-            particle.setAY(acceleration[1] + ay);
+            particle.setAcceleration(acceleration + globalAcceleration);
         }
     }
 
@@ -89,7 +87,7 @@ void Universe::computeGravitationalForces() {
     
     for (size_t i = 0; i < particles.size(); ++i) {
          // Reset acceleration to global acceleration
-        particles[i].setAcceleration({AccelerationX, AccelerationY});
+        particles[i].setAcceleration(globalAcceleration);
 
         for (size_t j = 0; j < particles.size(); ++j) {
             if (i != j) {

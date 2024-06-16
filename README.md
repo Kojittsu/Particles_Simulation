@@ -50,8 +50,7 @@ simulation:
   deltaTime: double
   simulationTime: double
   applyGravity: bool
-  AccelerationX: double
-  AccelerationY: double
+  globalAcceleration: [double,double]
   coefficientRestitution: double
 
 visualization:

@@ -18,7 +18,7 @@ public:
     void saveStep(std::ofstream &file, int stepNumber);
     void addParticle(Particle &particle);
     void addRndParticle(double maxVelocityX, double maxVelocityY, double minRadius, double maxRadius, double minMass, double maxMass);
-    void applyAccelerationToParticles(double ax, double ay);
+    void applyAccelerationToParticles(std::array<double, 2> &globalAcceleration);
     void computeGravitationalForces();
     std::vector<double> getParticlesRadius();
     void handleParticleCollisions();
@@ -33,8 +33,7 @@ private:
     double deltaTime;
     double simulationTime;
     bool applyGravity;
-    double AccelerationX;
-    double AccelerationY;
+    std::array<double, 2> globalAcceleration;
     const double G = 6.67430e-11; // gravitational constant
     
 };

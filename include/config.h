@@ -27,8 +27,7 @@ struct Config {
     double deltaTime;
     double simulationTime;
     bool applyGravity;
-    double AccelerationX;
-    double AccelerationY;
+    std::array<double, 2> globalAcceleration;
     double coefficientRestitution;
     
     double scaleFactorPixels;
