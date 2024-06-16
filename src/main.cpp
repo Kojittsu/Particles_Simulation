@@ -30,7 +30,7 @@ int main(int argc, char* argv[]) {
     universe.run(dataFileName);
 
     // Read particles movements data in file
-    std::vector<std::vector<Coordinate>> particleMovements = readParticleMovements("data.csv");
+    std::vector<std::vector<Coordinate>> particleMovements = readParticleMovements(dataFileName);
 
     // Display simulation in SFML
     std::vector<double> particlesRadius = universe.getParticlesRadius(); // Get all radius
