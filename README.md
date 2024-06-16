@@ -54,7 +54,7 @@ simulation:
   coefficientRestitution: double
 
 visualization:
-  speedFactor: double
+  visualizationTime: double
   scaleFactorPixels: double
 ```
 
