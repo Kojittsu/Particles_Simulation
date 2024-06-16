@@ -4,14 +4,17 @@
 int main(int argc, char* argv[]) {
     
     // Check if the configuration file name is provided
-    if (argc < 2) {
-        std::cerr << "Usage: " << argv[0] << " <config_file>" << std::endl;
+    if (argc != 3) {
+        std::cerr << "Usage: " << argv[0] << " <config_file>" << " <data_file> " << std::endl;
         return 1;
     }
 
+    const std::string configFile = argv[1];
+    const std::string dataFileName = argv[2];
+
     // Read configuration
     Config config;
-    if (!readConfig(argv[1], config)) {
+    if (!readConfig(configFile, config)) {
         return 1;
     }
 
@@ -24,7 +27,7 @@ int main(int argc, char* argv[]) {
     }
     
     // Run universe
-    universe.run("data.csv");
+    universe.run(dataFileName);
 
     // Read particles movements data in file
     std::vector<std::vector<Coordinate>> particleMovements = readParticleMovements("data.csv");

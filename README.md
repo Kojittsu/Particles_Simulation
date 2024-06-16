@@ -82,8 +82,9 @@ make
 
 To run the simulation, execute the compiled binary:
 ```bash
-./ExecuteSimu
+./ExecuteSimu <config_file> <data_file>
 ```
+where `config_file` is your configuration file and `data_file` is your simulation data output file.
 
 ## Cleaning
 
