@@ -117,11 +117,17 @@ void RenderParticleMovements(std::vector<std::vector<Coordinate>> particleMoveme
     }
 
     // Create text object for displaying simulation time
-    sf::Text timeText;
-    timeText.setFont(font);
-    timeText.setCharacterSize(24);
-    timeText.setFillColor(sf::Color::White);
-    timeText.setPosition(10, 10); // Position at the top-left corner
+    sf::Text currentTimeText;
+    currentTimeText.setFont(font);
+    currentTimeText.setCharacterSize(16);
+    currentTimeText.setFillColor(sf::Color::White);
+    currentTimeText.setPosition(10, 10); // Position at the top-left corner
+
+    sf::Text realTimeText;
+    realTimeText.setFont(font);
+    realTimeText.setCharacterSize(16);
+    realTimeText.setFillColor(sf::Color::White);
+    realTimeText.setPosition(10, 30); // Position at the top-left corner
 
     // Create circle
     sf::VertexArray SFML_circle;
@@ -172,7 +178,8 @@ void RenderParticleMovements(std::vector<std::vector<Coordinate>> particleMoveme
 
         if (!paused) {
             double currentTime = clock.getElapsedTime().asSeconds() * speedFactor;
-
+            double realTime = clock.getElapsedTime().asSeconds();
+            
             // Set SFML particle positions
             for (int i = 0; i < particleNumbers; i++) {
                 // Get particle index
@@ -201,7 +208,8 @@ void RenderParticleMovements(std::vector<std::vector<Coordinate>> particleMoveme
             }
 
             // Update the simulation time text
-            timeText.setString(formatedTime(currentTime));
+            currentTimeText.setString("simulation time : " + formatedTime(currentTime));
+            realTimeText.setString("real time : " + formatedTime(realTime));
 
             // Check if simulation end
             if (currentTime > simulationTime) {
@@ -229,7 +237,8 @@ void RenderParticleMovements(std::vector<std::vector<Coordinate>> particleMoveme
         }
 
         // Draw the simulation time text
-        window.draw(timeText);
+        window.draw(currentTimeText);
+        window.draw(realTimeText);
 
         window.display();
     }
