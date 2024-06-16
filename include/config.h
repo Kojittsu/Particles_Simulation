@@ -31,7 +31,7 @@ struct Config {
     double coefficientRestitution;
     
     double scaleFactorPixels;
-    double speedFactor;
+    double visualizationTime;
     bool drawTrails;
 };
 

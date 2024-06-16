@@ -34,7 +34,7 @@ int main(int argc, char* argv[]) {
 
     // Display simulation in SFML
     std::vector<double> particlesRadius = universe.getParticlesRadius(); // Get all radius
-    RenderParticleMovements(particleMovements, config.box, config.circle, particlesRadius, config.scaleFactorPixels, config.speedFactor, config.drawTrails, config.simulationTime);
+    RenderParticleMovements(particleMovements, config.box, config.circle, particlesRadius, config.scaleFactorPixels, config.drawTrails, config.simulationTime, config.visualizationTime);
 
     return 0;
 }

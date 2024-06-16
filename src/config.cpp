@@ -37,14 +37,13 @@ bool readConfig(const std::string& filename, Config& config) {
 
     // Load simulation parameters
     config.deltaTime = yaml["simulation"]["deltaTime"].as<double>();
-    // config.stepNumbers = yaml["simulation"]["stepNumbers"].as<int>();
     config.simulationTime = yaml["simulation"]["simulationTime"].as<double>();
     config.applyGravity = yaml["simulation"]["applyGravity"].as<bool>();
     config.globalAcceleration = yaml["simulation"]["globalAcceleration"].as<std::array<double, 2>>();
     config.coefficientRestitution = yaml["simulation"]["coefficientRestitution"].as<double>();
 
     // Load visualization parameters
-    config.speedFactor = yaml["visualization"]["speedFactor"].as<double>();
+    config.visualizationTime = yaml["visualization"]["visualizationTime"].as<double>();
     config.scaleFactorPixels = yaml["visualization"]["scaleFactorPixels"].as<double>();
     config.drawTrails = yaml["visualization"]["drawTrails"].as<bool>();
 

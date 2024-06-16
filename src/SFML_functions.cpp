@@ -98,7 +98,10 @@ std::string formatedTime(double seconds) {
     return oss.str();
 }
 
-void RenderParticleMovements(std::vector<std::vector<Coordinate>> particleMovements, Box box, Circle circle, std::vector<double> particlesRadius, double scaleFactorPixels, double speedFactor, double drawTrails, double simulationTime) {
+void RenderParticleMovements(std::vector<std::vector<Coordinate>> particleMovements, Box box, Circle circle, std::vector<double> particlesRadius, double scaleFactorPixels, double drawTrails, double simulationTime, double visualizationTime) {
+    // Calculate speedFactor
+    double speedFactor = simulationTime / visualizationTime;
+
     // Set window size
     int windowLength = std::floor(scaleFactorPixels * box.getLength());
     int windowHeight = std::floor(scaleFactorPixels * box.getHeight());
