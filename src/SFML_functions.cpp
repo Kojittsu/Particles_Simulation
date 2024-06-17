@@ -153,6 +153,7 @@ void RenderParticleMovements(std::vector<std::vector<Coordinate>> particleMoveme
     std::vector<sf::CircleShape> particles;
     for (int i = 0; i < particleNumbers; ++i) {
         sf::CircleShape particle;
+        particle.setOrigin(SFML_particleRadius[i], SFML_particleRadius[i]);
         particle.setRadius(SFML_particleRadius[i]);
         particle.setFillColor(getRainbow(i));
         particles.push_back(particle);
@@ -191,10 +192,9 @@ void RenderParticleMovements(std::vector<std::vector<Coordinate>> particleMoveme
                 // Update particle position depending on elapsed time. Taking account of speedFactor
                 if (index < particleMovement.size() && currentTime >= particleMovement[index].time) {
 
-                    // Set the position of the SFML particle and offset it because the SFML setPosition()
-                    // function sets the upper left corner of the circle to the position provided.
+                    // Set the position of the SFML particle
                     std::array<double, 2> SFML_coord = Calculate_SFML_Coord(particleMovement[index].x, particleMovement[index].y, box, scaleFactorPixels);
-                    particles[i].setPosition(SFML_coord[0] - SFML_particleRadius[i], SFML_coord[1] - SFML_particleRadius[i]);
+                    particles[i].setPosition(SFML_coord[0], SFML_coord[1]);
 
                     // Add the current position to the trail
                     if (index > 0 && drawTrails) {
