@@ -1,4 +1,5 @@
 #include "universe.h"
+#include "renderer.hpp"
 
 Universe::Universe(const Config& config)
     : particles(config.particles),
@@ -8,7 +9,8 @@ Universe::Universe(const Config& config)
       deltaTime(config.deltaTime),
       simulationTime(config.simulationTime),
       applyGravity(config.applyGravity),
-      globalAcceleration(config.globalAcceleration)
+      globalAcceleration(config.globalAcceleration),
+      scaleFactorPixels(config.scaleFactorPixels)
       {}
 
 void Universe::run(const std::string& filename) {
@@ -32,6 +34,43 @@ void Universe::run(const std::string& filename) {
     if (file.is_open()) {file.close();}
 }
 
+void Universe::runAndRender() {
+    
+    // Apply global acceleration
+    applyAccelerationToParticles(globalAcceleration);
+
+    // Set window size
+    int windowLength = std::floor(scaleFactorPixels * box.getLength());
+    int windowHeight = std::floor(scaleFactorPixels * box.getHeight());
+
+    sf::ContextSettings settings;
+    settings.antialiasingLevel = 1;
+    
+    sf::RenderWindow window(sf::VideoMode(windowLength, windowHeight), "Verlet", sf::Style::None, settings);
+
+    Renderer renderer(window, box, scaleFactorPixels);
+
+    // Set SFML Clock
+    sf::Clock clock;
+    
+    // // Main loop
+    while (window.isOpen()) {
+        sf::Event event{};
+        while (window.pollEvent(event)) {
+            if (event.type == sf::Event::Closed || sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) {
+                window.close();
+            }
+        }
+
+        if(clock.getElapsedTime().asSeconds() > runTime){
+            makeStep();
+            window.clear(sf::Color::Black);
+            renderer.render(*this);
+            window.display(); 
+        }
+    }
+}
+
 void Universe::makeStep(){
     
     // Apply Newton's law of universal gravitation
@@ -45,10 +84,12 @@ void Universe::makeStep(){
         handleBoxCollision(particle, coefficientRestitution);
 
         // Handle circle collisions if circle radius isn't null.
-        if (circle.getRadius()) {handleCircleCollision(particle, coefficientRestitution);}
+        if (circle.getRadius() != 0) {handleCircleCollision(particle, coefficientRestitution);}
     }
     // Handle particles collisions
     handleParticleCollisions();
+
+    runTime += deltaTime;
 }
 
 void Universe::saveStep(std::ofstream &file, int stepNumber){
@@ -218,4 +259,24 @@ void Universe::handleCircleCollision(Particle &particle, double coefficientResti
         particle.setVX(newVx);
         particle.setVY(newVy);
     }
+}
+
+// Getter for circle
+Circle Universe::getCircle() const {
+    return circle;
+}
+
+// Getter for box
+Box Universe::getBox() const {
+    return box;
+}
+
+// Getter for particles vector
+std::vector<Particle> const& Universe::getParticles() const{
+    return particles;
+}
+
+// Getter for display runTime in renderer
+double Universe::getRunTime() const{
+    return runTime;
 }

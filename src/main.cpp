@@ -1,5 +1,4 @@
 #include "universe.h"
-#include "SFML_functions.h"
 
 int main(int argc, char* argv[]) {
     
@@ -25,16 +24,9 @@ int main(int argc, char* argv[]) {
     for(int i=0; i< config.rndParticle_numbers; i++){
         universe.addRndParticle(config.rndParticle_maxVelocityX, config.rndParticle_maxVelocityY, config.rndParticle_minRadius, config.rndParticle_maxRadius, config.rndParticle_minMass, config.rndParticle_maxMass);
     }
-    
+
     // Run universe
-    universe.run(dataFileName);
-
-    // Read particles movements data in file
-    std::vector<std::vector<Coordinate>> particleMovements = readParticleMovements(dataFileName);
-
-    // Display simulation in SFML
-    std::vector<double> particlesRadius = universe.getParticlesRadius(); // Get all radius
-    RenderParticleMovements(particleMovements, config.box, config.circle, particlesRadius, config.scaleFactorPixels, config.drawTrails, config.simulationTime, config.visualizationTime);
+    universe.runAndRender();
 
     return 0;
 }

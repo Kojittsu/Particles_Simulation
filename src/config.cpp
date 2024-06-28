@@ -43,9 +43,7 @@ bool readConfig(const std::string& filename, Config& config) {
     config.coefficientRestitution = yaml["simulation"]["coefficientRestitution"].as<double>();
 
     // Load visualization parameters
-    config.visualizationTime = yaml["visualization"]["visualizationTime"].as<double>();
     config.scaleFactorPixels = yaml["visualization"]["scaleFactorPixels"].as<double>();
-    config.drawTrails = yaml["visualization"]["drawTrails"].as<bool>();
 
     return true;
 }

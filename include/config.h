@@ -31,8 +31,6 @@ struct Config {
     double coefficientRestitution;
     
     double scaleFactorPixels;
-    double visualizationTime;
-    bool drawTrails;
 };
 
 bool readConfig(const std::string& filename, Config& config);

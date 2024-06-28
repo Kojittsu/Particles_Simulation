@@ -14,6 +14,7 @@ class Universe {
 public:
     Universe(const Config& config);
     void run(const std::string& filename = "");
+    void runAndRender();
     void makeStep();
     void saveStep(std::ofstream &file, int stepNumber);
     void addParticle(Particle &particle);
@@ -24,6 +25,10 @@ public:
     void handleParticleCollisions();
     void handleBoxCollision(Particle &particle, double coefficientRestitution);
     void handleCircleCollision(Particle &particle, double coefficientRestitution);
+    Circle getCircle() const;
+    Box getBox() const;
+    std::vector<Particle> const& getParticles() const;
+    double getRunTime() const;
 
 private:
     std::vector<Particle> particles;
@@ -34,7 +39,9 @@ private:
     double simulationTime;
     bool applyGravity;
     std::array<double, 2> globalAcceleration;
+    double scaleFactorPixels;
     const double G = 6.67430e-11; // gravitational constant
+    double runTime = 0;
     
 };
 
