@@ -28,6 +28,7 @@ struct Config {
     bool applyGravity;
     std::array<double, 2> globalAcceleration;
     double coefficientRestitution;
+    std::string dataFileName;
     
     double scaleFactorPixels;
 };

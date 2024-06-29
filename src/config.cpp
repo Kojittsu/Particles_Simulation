@@ -40,6 +40,7 @@ bool readConfig(const std::string& filename, Config& config) {
     config.applyGravity = yaml["simulation"]["applyGravity"].as<bool>();
     config.globalAcceleration = yaml["simulation"]["globalAcceleration"].as<std::array<double, 2>>();
     config.coefficientRestitution = yaml["simulation"]["coefficientRestitution"].as<double>();
+    config.dataFileName = yaml["simulation"]["dataFileName"].as<std::string>();
 
     // Load visualization parameters
     config.scaleFactorPixels = yaml["visualization"]["scaleFactorPixels"].as<double>();
