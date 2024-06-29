@@ -57,6 +57,9 @@ void Renderer::render(const Universe& universe) const {
         std::array<double, 2> s_position = s_coordinates(position[0], position[1]);
         double s_radius = radius * m_scaleFactorPixels;
 
+        // make particle singular pixel if radius too small to render
+        if (s_radius < 1){s_radius=1;}
+
         s_particle.setPosition(s_position[0], s_position[1]);
         s_particle.setScale(s_radius, s_radius);
         s_particle.setFillColor(sf::Color(color[0], color[1], color[2]));
