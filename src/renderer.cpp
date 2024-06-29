@@ -49,6 +49,9 @@ void Renderer::render(const Universe& universe) const {
         // Get particle infos
         double radius = particle.getRadius();
         std::array<double, 2> position = particle.getPosition();
+
+        // Get particle color
+        std::array<int, 3> color = particle.getColor();
         
         // Transform in SFML coordinates
         std::array<double, 2> s_position = s_coordinates(position[0], position[1]);
@@ -56,7 +59,7 @@ void Renderer::render(const Universe& universe) const {
 
         s_particle.setPosition(s_position[0], s_position[1]);
         s_particle.setScale(s_radius, s_radius);
-        s_particle.setFillColor(sf::Color::Red);
+        s_particle.setFillColor(sf::Color(color[0], color[1], color[2]));
         m_target.draw(s_particle);
     }
 

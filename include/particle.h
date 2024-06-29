@@ -9,7 +9,7 @@
 class Particle {
 public:
     // Constructor
-    Particle(const std::array<double, 2>& position, const std::array<double, 2>& velocity, const double radius, const double mass);
+    Particle(const std::array<double, 2>& position, const std::array<double, 2>& velocity, const double radius, const double mass, const std::array<int, 3>& color);
     
     // Getters for position
     std::array<double, 2> getPosition() const;
@@ -45,6 +45,9 @@ public:
     // Getters for mass
     double getMass() const;
 
+    // Getters for color
+    std::array<int, 3> getColor() const;
+
     // Update particle
     void update(double deltaTime);
 
@@ -57,6 +60,7 @@ private:
     std::array<double, 2> acceleration = {0.0, 0.0};
     double radius;
     double mass;
+    std::array<int, 3> color;  // RGB particle color
 };
 
 #endif // PARTICLE_H

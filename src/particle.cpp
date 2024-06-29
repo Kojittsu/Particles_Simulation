@@ -1,11 +1,12 @@
 #include "particle.h"
 
 // Constructor
-Particle::Particle(const std::array<double, 2>& position, const std::array<double, 2>& velocity, const double radius, const double mass)
+Particle::Particle(const std::array<double, 2>& position, const std::array<double, 2>& velocity, const double radius, const double mass, const std::array<int, 3>& color)
     : position(position),
       velocity(velocity),
       radius(radius),
-      mass(mass)
+      mass(mass),
+      color(color)
       {}
 
 // Getters for position
@@ -41,6 +42,9 @@ double Particle::getRadius() const {return radius;}
 
 // Getters for mass
 double Particle::getMass() const {return mass;}
+
+// Getters for color
+std::array<int, 3> Particle::getColor() const {return color;}
 
 // Update particle
 void Particle::update(double deltaTime) {

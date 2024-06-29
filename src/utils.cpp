@@ -38,3 +38,17 @@ std::string formatedTime(double seconds) {
 
     return oss.str();
 }
+
+float time_counter = 0.0;
+
+std::array<int, 3> getRainbow() {
+    time_counter += 0.1f;
+    
+    const float r = sin(time_counter);
+    const float g = sin(time_counter + 0.33f * 2.0f * M_PI);
+    const float b = sin(time_counter + 0.66f * 2.0f * M_PI);
+    
+    return {static_cast<int>(255.0f * r * r),
+            static_cast<int>(255.0f * g * g),
+            static_cast<int>(255.0f * b * b)};
+}

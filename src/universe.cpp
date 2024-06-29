@@ -110,7 +110,7 @@ void Universe::addRndParticle(double maxVelocityX, double maxVelocityY, double m
     double radius = rndNumber(minRadius, maxRadius);
     double mass = rndNumber(minMass, maxMass);
 
-    Particle particle(position, velocity, radius, mass);
+    Particle particle(position, velocity, radius, mass, getRainbow());
     particles.push_back(particle);
 }
 
