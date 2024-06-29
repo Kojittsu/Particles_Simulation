@@ -3,13 +3,12 @@
 int main(int argc, char* argv[]) {
     
     // Check if the configuration file name is provided
-    if (argc != 2 && argc != 3) {
-        std::cerr << "Usage: " << argv[0] << " <config_file>" << " <data_file> " << std::endl;
+    if (argc != 2 ) {
+        std::cerr << "Usage: " << argv[0] << " <config_file>" << std::endl;
         return 1;
     }
 
     const std::string configFile = argv[1];
-    const std::string& dataFileName = argv[2];
 
     // Read configuration
     Config config;

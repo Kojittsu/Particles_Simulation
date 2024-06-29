@@ -23,7 +23,6 @@ void Universe::run() {
             return;
         }
     }
-
     int stepNumber = 0;
 
     
@@ -55,11 +54,14 @@ void Universe::run() {
 
         if(clock.getElapsedTime().asSeconds() > runTime){
             makeStep();
-            saveStep(file, stepNumber);
             window.clear(sf::Color::Black);
             renderer.render(*this);
             window.display();
-            stepNumber++;
+
+            if (file.is_open()){
+                saveStep(file, stepNumber);
+                stepNumber++;
+            }
         }
     }
     if (file.is_open()) {file.close();}
