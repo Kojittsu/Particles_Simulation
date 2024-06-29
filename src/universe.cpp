@@ -142,14 +142,6 @@ void Universe::computeGravitationalForces() {
     }
 }
 
-std::vector<double> Universe::getParticlesRadius(){
-    std::vector<double> particlesRadius;
-    for (Particle& particle : particles){
-        particlesRadius.push_back(particle.getRadius());
-    }
-    return particlesRadius;
-}
-
 void Universe::handleParticleCollisions() {
     for (size_t i = 0; i < particles.size(); ++i) {
         for (size_t j = i + 1; j < particles.size(); ++j) {

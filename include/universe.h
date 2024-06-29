@@ -20,7 +20,6 @@ public:
     void addRndParticle(double maxVelocityX, double maxVelocityY, double minRadius, double maxRadius, double minMass, double maxMass);
     void applyAccelerationToParticles(std::array<double, 2> &globalAcceleration);
     void computeGravitationalForces();
-    std::vector<double> getParticlesRadius();
     void handleParticleCollisions();
     void handleBoxCollision(Particle &particle, double coefficientRestitution);
     void handleCircleCollision(Particle &particle, double coefficientRestitution);
