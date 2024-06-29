@@ -26,7 +26,7 @@ int main(int argc, char* argv[]) {
     }
 
     // Run universe
-    universe.runAndRender(dataFileName);
+    universe.run(dataFileName);
 
     return 0;
 }

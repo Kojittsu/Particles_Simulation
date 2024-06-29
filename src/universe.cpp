@@ -13,7 +13,7 @@ Universe::Universe(const Config& config)
       scaleFactorPixels(config.scaleFactorPixels)
       {}
 
-void Universe::runAndRender(const std::string& dataFileName) {
+void Universe::run(const std::string& dataFileName) {
 
     std::ofstream file;
     if (!dataFileName.empty()) {
