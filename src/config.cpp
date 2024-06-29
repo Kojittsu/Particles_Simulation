@@ -44,6 +44,8 @@ bool readConfig(const std::string& filename, Config& config) {
 
     // Load visualization parameters
     config.scaleFactorPixels = yaml["visualization"]["scaleFactorPixels"].as<double>();
+    config.speedFactor       = yaml["visualization"]["speedFactor"].as<double>();
+
 
     return true;
 }

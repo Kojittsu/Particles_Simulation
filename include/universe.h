@@ -38,6 +38,7 @@ private:
     bool applyGravity;
     std::array<double, 2> globalAcceleration;
     double scaleFactorPixels;
+    double speedFactor;
     const std::string dataFileName;
     const double G = 6.67430e-11; // gravitational constant
     double runTime = 0;

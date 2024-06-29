@@ -61,6 +61,7 @@ simulation:
 
 visualization:
   scaleFactorPixels: double
+  speedFactor: double
 ```
 
 ## Compilation and Execution

@@ -31,6 +31,7 @@ struct Config {
     std::string dataFileName;
     
     double scaleFactorPixels;
+    double speedFactor;
 };
 
 bool readConfig(const std::string& filename, Config& config);

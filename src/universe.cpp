@@ -10,6 +10,7 @@ Universe::Universe(const Config& config)
       applyGravity(config.applyGravity),
       globalAcceleration(config.globalAcceleration),
       scaleFactorPixels(config.scaleFactorPixels),
+      speedFactor(config.speedFactor),
       dataFileName(config.dataFileName)
       {}
 
@@ -52,11 +53,13 @@ void Universe::run() {
             }
         }
 
-        if(clock.getElapsedTime().asSeconds() > runTime){
+        if(clock.getElapsedTime().asSeconds() * speedFactor > runTime){
             makeStep();
             window.clear(sf::Color::Black);
             renderer.render(*this);
             window.display();
+
+            runTime += deltaTime;
 
             if (file.is_open()){
                 saveStep(file, stepNumber);
@@ -84,8 +87,6 @@ void Universe::makeStep(){
     }
     // Handle particles collisions
     handleParticleCollisions();
-
-    runTime += deltaTime;
 }
 
 void Universe::saveStep(std::ofstream &file, int stepNumber){
