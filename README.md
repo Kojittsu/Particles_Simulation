@@ -25,32 +25,32 @@ The explicit Euler method is simple to implement but can introduce approximation
 This is the YAML configuration file structure :
 ```yaml
 particles:
-  - position: [double, double]
-    velocity: [double, double]
-    radius: double
-    mass: double
+  - position: [double, double] # Particle position in meters
+    velocity: [double, double] # Particle velocity in meters
+    radius: double             # Particle radius in meters
+    mass: double               # Particle mass in kilograms
 
   # Add as many particles as you want
 
 randomParticles:
   numbers: int
-  maxVelocityX: double
-  maxVelocityY: double
-  minRadius: double
-  maxRadius: double
-  minMass: double
-  maxMass: double
+  maxVelocityX: double # Particle max X random velocity in meters/second
+  maxVelocityY: double # Particle max Y random velocity in meters/second
+  minRadius: double    # Particle min random radius in meters
+  maxRadius: double    # Particle max random radius in meters
+  minMass: double      # Particle min random mass in kilograms
+  maxMass: double      # Particle max random mass in kilograms
 
 box:
-  xOrigin: double
-  yOrigin: double
-  length: double
-  height: double
+  xOrigin: double # Box X origin in meters
+  yOrigin: double # Box Y origin in meters
+  length: double  # Box length in meters
+  height: double  # Box height in meters
 
 circle:
-  centerX: double
-  centerY: double
-  radius: double
+  centerX: double # Circle X center in meters
+  centerY: double # Circle X center in meters
+  radius: double  # Circle radius in meters
 
 simulation:
   deltaTime: double
