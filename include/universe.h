@@ -13,8 +13,7 @@
 class Universe {
 public:
     Universe(const Config& config);
-    void run(const std::string& filename = "");
-    void runAndRender();
+    void runAndRender(const std::string& dataFileName);
     void makeStep();
     void saveStep(std::ofstream &file, int stepNumber);
     void addParticle(Particle &particle);
@@ -40,6 +39,7 @@ private:
     bool applyGravity;
     std::array<double, 2> globalAcceleration;
     double scaleFactorPixels;
+    const std::string dataFileName;
     const double G = 6.67430e-11; // gravitational constant
     double runTime = 0;
     

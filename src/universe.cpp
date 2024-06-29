@@ -13,28 +13,19 @@ Universe::Universe(const Config& config)
       scaleFactorPixels(config.scaleFactorPixels)
       {}
 
-void Universe::run(const std::string& filename) {
+void Universe::runAndRender(const std::string& dataFileName) {
+
     std::ofstream file;
-    if (!filename.empty()) {
-        file.open(filename);
+    if (!dataFileName.empty()) {
+        file.open(dataFileName);
         if (!file.is_open()) {
-            std::cerr << "Error opening file: " << filename << std::endl;
+            std::cerr << "Error opening file: " << dataFileName << std::endl;
             return;
         }
     }
 
-    // Apply acceleration to all particles
-    applyAccelerationToParticles(globalAcceleration);
+    int stepNumber = 0;
 
-    for (int stepNumber = 0; stepNumber * deltaTime < simulationTime; ++stepNumber) {
-        makeStep();
-        saveStep(file, stepNumber);
-    }
-
-    if (file.is_open()) {file.close();}
-}
-
-void Universe::runAndRender() {
     
     // Apply global acceleration
     applyAccelerationToParticles(globalAcceleration);
@@ -64,11 +55,14 @@ void Universe::runAndRender() {
 
         if(clock.getElapsedTime().asSeconds() > runTime){
             makeStep();
+            saveStep(file, stepNumber);
             window.clear(sf::Color::Black);
             renderer.render(*this);
-            window.display(); 
+            window.display();
+            stepNumber++;
         }
     }
+    if (file.is_open()) {file.close();}
 }
 
 void Universe::makeStep(){
