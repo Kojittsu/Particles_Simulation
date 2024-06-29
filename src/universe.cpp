@@ -7,7 +7,7 @@ Universe::Universe(const Config& config)
       circle(config.circle),
       coefficientRestitution(config.coefficientRestitution),
       deltaTime(config.deltaTime),
-      simulationTime(config.simulationTime),
+      // simulationTime(config.simulationTime),
       applyGravity(config.applyGravity),
       globalAcceleration(config.globalAcceleration),
       scaleFactorPixels(config.scaleFactorPixels)

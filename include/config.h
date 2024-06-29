@@ -25,7 +25,6 @@ struct Config {
     Circle circle = Circle();
     
     double deltaTime;
-    double simulationTime;
     bool applyGravity;
     std::array<double, 2> globalAcceleration;
     double coefficientRestitution;
