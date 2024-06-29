@@ -30,10 +30,16 @@ particles:
     radius: double
     mass: double
 
-  - position: [double, double]
-    velocity: [double, double]
-    radius: double
-    mass: double
+  # Add as many particles as you want
+
+randomParticles:
+  numbers: int
+  maxVelocityX: double
+  maxVelocityY: double
+  minRadius: double
+  maxRadius: double
+  minMass: double
+  maxMass: double
 
 box:
   xOrigin: double
@@ -48,13 +54,12 @@ circle:
 
 simulation:
   deltaTime: double
-  simulationTime: double
-  applyGravity: bool
-  globalAcceleration: [double,double]
-  coefficientRestitution: double
+  applyGravity: bool                   # Compute Newton's law of universal gravitation
+  globalAcceleration: [double, double] # Global acceleration applied to all objects
+  coefficientRestitution: double       # Energy restitution during collision (1.0 mean energy conservation)
+  dataFileName: string                 # data file name for saving particles positions through time
 
 visualization:
-  visualizationTime: double
   scaleFactorPixels: double
 ```
 
@@ -82,9 +87,9 @@ make
 
 To run the simulation, execute the compiled binary:
 ```bash
-./ExecuteSimu <config_file> <data_file>
+./ExecuteSimu <config_file>
 ```
-where `config_file` is your configuration file and `data_file` is your simulation data output file.
+where `config_file` is your configuration file.
 
 ## Cleaning
 
