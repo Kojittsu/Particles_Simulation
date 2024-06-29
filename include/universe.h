@@ -13,7 +13,7 @@
 class Universe {
 public:
     Universe(const Config& config);
-    void run(const std::string& dataFileName);
+    void run();
     void makeStep();
     void saveStep(std::ofstream &file, int stepNumber);
     void addParticle(Particle &particle);

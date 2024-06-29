@@ -7,13 +7,13 @@ Universe::Universe(const Config& config)
       circle(config.circle),
       coefficientRestitution(config.coefficientRestitution),
       deltaTime(config.deltaTime),
-      // simulationTime(config.simulationTime),
       applyGravity(config.applyGravity),
       globalAcceleration(config.globalAcceleration),
-      scaleFactorPixels(config.scaleFactorPixels)
+      scaleFactorPixels(config.scaleFactorPixels),
+      dataFileName(config.dataFileName)
       {}
 
-void Universe::run(const std::string& dataFileName) {
+void Universe::run() {
 
     std::ofstream file;
     if (!dataFileName.empty()) {
