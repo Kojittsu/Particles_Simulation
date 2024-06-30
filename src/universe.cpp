@@ -2,58 +2,59 @@
 #include "renderer.hpp"
 
 Universe::Universe(const Config& config)
-    : boxOriginX(config.boxOriginX),
-      boxOriginY(config.boxOriginY),
-      boxLength(config.boxLength),
-      boxHeight(config.boxHeight),
+    :
+      m_boxOriginX(config.boxOriginX),
+      m_boxOriginY(config.boxOriginY),
+      m_boxLength(config.boxLength),
+      m_boxHeight(config.boxHeight),
 
-      circleX(config.circleX),
-      circleY(config.circleY),
-      circleRadius(config.circleRadius),
+      m_circleX(config.circleX),
+      m_circleY(config.circleY),
+      m_circleRadius(config.circleRadius),
 
-      scaleFactorPixels(config.scaleFactorPixels),
+      m_scaleFactorPixels(config.scaleFactorPixels),
 
-      particles(config.particles),
-      coefficientRestitution(config.coefficientRestitution),
-      deltaTime(config.deltaTime),
-      applyGravity(config.applyGravity),
-      globalAcceleration(config.globalAcceleration),
-      speedFactor(config.speedFactor),
-      dataFileName(config.dataFileName)
+      m_particles(config.particles),
+      m_coefficientRestitution(config.coefficientRestitution),
+      m_deltaTime(config.deltaTime),
+      m_applyGravity(config.applyGravity),
+      m_globalAcceleration(config.globalAcceleration),
+      m_speedFactor(config.speedFactor),
+      m_dataFileName(config.dataFileName)
       {
         // Add random particles to universe
         for(int i=0; i< config.rndParticle_numbers; i++){
             addRndParticle(config.rndParticle_maxVelocityX, config.rndParticle_maxVelocityY, config.rndParticle_minRadius, config.rndParticle_maxRadius, config.rndParticle_minMass, config.rndParticle_maxMass);
         }
-        applyAccelerationToParticles(globalAcceleration);
+        applyAccelerationToParticles(m_globalAcceleration);
       }
 
 void Universe::makeStep(){
     
     // Apply Newton's law of universal gravitation
-    if(applyGravity){computeGravitationalForces();}
+    if(m_applyGravity){computeGravitationalForces();}
     
-    for (Particle& particle : particles) {
+    for (Particle& particle : m_particles) {
         // Update particle
-        particle.update(deltaTime);
+        particle.update(m_deltaTime);
 
         // Handle box collisions
-        handleBoxCollision(particle, coefficientRestitution);
+        handleBoxCollision(particle);
 
         // Handle circle collisions if circle radius isn't null.
-        if (circleRadius != 0) {handleCircleCollision(particle, coefficientRestitution);}
+        if (m_circleRadius != 0) {handleCircleCollision(particle);}
     }
     // Handle particles collisions
     handleParticleCollisions();
 
     // Update runtime
-    runTime += deltaTime;
+    m_runTime += m_deltaTime;
 }
 
 void Universe::saveStep(std::ofstream &file, int stepNumber){
-    double currentTime = stepNumber * deltaTime;
+    double currentTime = stepNumber * m_deltaTime;
     int particleNumber = 1;
-    for (Particle& particle : particles){
+    for (Particle& particle : m_particles){
         if (file.is_open()) {
             file << currentTime << "," << particleNumber << "," << particle.getX() << "," << particle.getY() << "\n";
         }
@@ -62,21 +63,21 @@ void Universe::saveStep(std::ofstream &file, int stepNumber){
 }
 
 void Universe::addParticle(Particle &particle){
-    particles.push_back(particle);
+    m_particles.push_back(particle);
 }
 
 void Universe::addRndParticle(double maxVelocityX, double maxVelocityY, double minRadius, double maxRadius, double minMass, double maxMass){
-    std::array<double, 2> position = {rndNumber(boxOriginX, boxOriginX + boxLength), rndNumber(boxOriginY, boxOriginY + boxHeight)};
+    std::array<double, 2> position = {rndNumber(m_boxOriginX, m_boxOriginX + m_boxLength), rndNumber(m_boxOriginY, m_boxOriginY + m_boxHeight)};
     std::array<double, 2> velocity = {rndNumber(-maxVelocityX, maxVelocityX), rndNumber(-maxVelocityY, maxVelocityY)};
     double radius = rndNumber(minRadius, maxRadius);
     double mass = rndNumber(minMass, maxMass);
 
     Particle particle(position, velocity, radius, mass, getRainbow());
-    particles.push_back(particle);
+    m_particles.push_back(particle);
 }
 
 void Universe::applyAccelerationToParticles(const std::array<double, 2> &accelerationContribution){
-        for (Particle& particle : particles){
+        for (Particle& particle : m_particles){
             std::array<double, 2> acceleration = particle.getAcceleration();
             particle.setAcceleration(acceleration + accelerationContribution);
         }
@@ -84,22 +85,22 @@ void Universe::applyAccelerationToParticles(const std::array<double, 2> &acceler
 
 void Universe::computeGravitationalForces() {
     
-    for (size_t i = 0; i < particles.size(); ++i) {
+    for (size_t i = 0; i < m_particles.size(); ++i) {
          // Reset acceleration to global acceleration
-        particles[i].setAcceleration(globalAcceleration);
+        m_particles[i].setAcceleration(m_globalAcceleration);
 
-        for (size_t j = 0; j < particles.size(); ++j) {
+        for (size_t j = 0; j < m_particles.size(); ++j) {
             if (i != j) {
-                std::array<double, 2> forceDirection = particles[j].getPosition() - particles[i].getPosition();
+                std::array<double, 2> forceDirection = m_particles[j].getPosition() - m_particles[i].getPosition();
                 double distance = getMagnitude(forceDirection);
                 if (distance > 0) {
-                    double forceMagnitude = G * particles[i].getMass() * particles[j].getMass() / (distance * distance);
+                    double forceMagnitude = m_G * m_particles[i].getMass() * m_particles[j].getMass() / (distance * distance);
                     
                     // Divide by distance in order to normalize forceDirection
                     std::array<double, 2> force = forceDirection * (forceMagnitude / distance);
                     
                     // Add force to acceleration (divide by mass because 2nd Newton's law).
-                    particles[i].setAcceleration(particles[i].getAcceleration() + force * (1 / particles[i].getMass()));
+                    m_particles[i].setAcceleration(m_particles[i].getAcceleration() + force * (1 / m_particles[i].getMass()));
                 }
             }
         }
@@ -107,10 +108,10 @@ void Universe::computeGravitationalForces() {
 }
 
 void Universe::handleParticleCollisions() {
-    for (size_t i = 0; i < particles.size(); ++i) {
-        for (size_t j = i + 1; j < particles.size(); ++j) {
-            Particle& p1 = particles[i];
-            Particle& p2 = particles[j];
+    for (size_t i = 0; i < m_particles.size(); ++i) {
+        for (size_t j = i + 1; j < m_particles.size(); ++j) {
+            Particle& p1 = m_particles[i];
+            Particle& p2 = m_particles[j];
             
             // Calculate collision vector beetwen 2 particles
             std::array<double, 2> distanceVector = p1.getPosition() - p2.getPosition();
@@ -147,52 +148,52 @@ void Universe::handleParticleCollisions() {
                 double impulse = (2 * relativeVelocity) / massSum;
 
                 // Update particle velocities taking into account mass and coefficient of restitution
-                p1.setVelocity(v1 + impulse * m2 * distanceVectorNormalized * coefficientRestitution);
-                p2.setVelocity(v2 - impulse * m1 * distanceVectorNormalized * coefficientRestitution);
+                p1.setVelocity(v1 + impulse * m2 * distanceVectorNormalized * m_coefficientRestitution);
+                p2.setVelocity(v2 - impulse * m1 * distanceVectorNormalized * m_coefficientRestitution);
             }
         }
     }
 }
 
-void Universe::handleBoxCollision(Particle &particle, double coefficientRestitution){
+void Universe::handleBoxCollision(Particle &particle){
 
     // Left collision
-    if(particle.getX() < boxOriginX + particle.getRadius()){
-        particle.setX(boxOriginX + particle.getRadius());
-        particle.setVX(-particle.getVX()*coefficientRestitution);
+    if(particle.getX() < m_boxOriginX + particle.getRadius()){
+        particle.setX(m_boxOriginX + particle.getRadius());
+        particle.setVX(-particle.getVX() * m_coefficientRestitution);
     }
     // Right collision
-    if(particle.getX() > boxOriginX + boxLength - particle.getRadius()){
-        particle.setX(boxOriginX + boxLength - particle.getRadius());
-        particle.setVX(-particle.getVX()*coefficientRestitution);
+    if(particle.getX() > m_boxOriginX + m_boxLength - particle.getRadius()){
+        particle.setX(m_boxOriginX + m_boxLength - particle.getRadius());
+        particle.setVX(-particle.getVX() * m_coefficientRestitution);
     }
     // Down collision
-    if(particle.getY() < boxOriginY + particle.getRadius()){
-        particle.setY(boxOriginY + particle.getRadius());
-        particle.setVY(-particle.getVY()*coefficientRestitution);
+    if(particle.getY() < m_boxOriginY + particle.getRadius()){
+        particle.setY(m_boxOriginY + particle.getRadius());
+        particle.setVY(-particle.getVY() * m_coefficientRestitution);
     }
     // Up collision
-    if(particle.getY() > boxOriginY + boxHeight - particle.getRadius()){
-        particle.setY(boxOriginY + boxHeight - particle.getRadius());
-        particle.setVY(-particle.getVY()*coefficientRestitution);
+    if(particle.getY() > m_boxOriginY + m_boxHeight - particle.getRadius()){
+        particle.setY(m_boxOriginY + m_boxHeight - particle.getRadius());
+        particle.setVY(-particle.getVY() * m_coefficientRestitution);
     }
 }
 
-void Universe::handleCircleCollision(Particle &particle, double coefficientRestitution){
+void Universe::handleCircleCollision(Particle &particle){
     // Calculate distance beetwen particle and circle center
-    double dx = particle.getX() - circleX;
-    double dy = particle.getY() - circleY;
+    double dx = particle.getX() - m_circleX;
+    double dy = particle.getY() - m_circleY;
     double distance = sqrt(dx * dx + dy * dy);
     
     // Check if particle collide with circle
-    if (distance > circleRadius - particle.getRadius()) {
+    if (distance > m_circleRadius - particle.getRadius()) {
         // Normalize collision vector
         double nx = dx / distance;
         double ny = dy / distance;
 
         // Move particle to the circle surface
-        particle.setX(circleX + nx * (circleRadius - particle.getRadius()));
-        particle.setY(circleY + ny * (circleRadius - particle.getRadius()));
+        particle.setX(m_circleX + nx * (m_circleRadius - particle.getRadius()));
+        particle.setY(m_circleY + ny * (m_circleRadius - particle.getRadius()));
 
         // Calculate particle velocity in the normal direction
         double dotProduct = particle.getVX() * nx + particle.getVY() * ny;
@@ -202,8 +203,8 @@ void Universe::handleCircleCollision(Particle &particle, double coefficientResti
         double vny = dotProduct * ny;
 
         // Reverse the normal component of the velocity and apply the coefficient of restitution
-        double newVx = particle.getVX() - 2 * vnx * coefficientRestitution;
-        double newVy = particle.getVY() - 2 * vny * coefficientRestitution;
+        double newVx = particle.getVX() - 2 * vnx * m_coefficientRestitution;
+        double newVy = particle.getVY() - 2 * vny * m_coefficientRestitution;
 
         // Update particle velocity
         particle.setVX(newVx);
@@ -213,5 +214,5 @@ void Universe::handleCircleCollision(Particle &particle, double coefficientResti
 
 // Getter for particles vector
 std::vector<Particle> const& Universe::getParticles() const{
-    return particles;
+    return m_particles;
 }

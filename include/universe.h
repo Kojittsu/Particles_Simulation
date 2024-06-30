@@ -19,36 +19,36 @@ public:
     void applyAccelerationToParticles(const std::array<double, 2> &accelerationContribution);
     void computeGravitationalForces();
     void handleParticleCollisions();
-    void handleBoxCollision(Particle &particle, double coefficientRestitution);
-    void handleCircleCollision(Particle &particle, double coefficientRestitution);
+    void handleBoxCollision(Particle &particle);
+    void handleCircleCollision(Particle &particle);
     std::vector<Particle> const& getParticles() const;
 
     // Box
-    const double boxOriginX;
-    const double boxOriginY;
-    const double boxLength;
-    const double boxHeight;
+    const double m_boxOriginX;
+    const double m_boxOriginY;
+    const double m_boxLength;
+    const double m_boxHeight;
 
     // Circle
-    const double circleX;
-    const double circleY;
-    const double circleRadius;
+    const double m_circleX;
+    const double m_circleY;
+    const double m_circleRadius;
 
     // Visualization
-    const double scaleFactorPixels;
+    const double m_scaleFactorPixels;
 
     // Simulation parameters
-    double runTime = 0;
+    double m_runTime = 0;
 
 private:
-    std::vector<Particle> particles;
-    double coefficientRestitution;
-    double deltaTime;
-    bool applyGravity;
-    std::array<double, 2> globalAcceleration;
-    double speedFactor;
-    const std::string dataFileName;
-    const double G = 6.67430e-11; // gravitational constant
+    std::vector<Particle> m_particles;
+    double m_coefficientRestitution;
+    double m_deltaTime;
+    bool m_applyGravity;
+    std::array<double, 2> m_globalAcceleration;
+    double m_speedFactor;
+    const std::string m_dataFileName;
+    const double m_G = 6.67430e-11; // gravitational constant
 
 };
 

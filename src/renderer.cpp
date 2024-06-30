@@ -21,9 +21,9 @@ void Renderer::render(const Universe& universe) const {
     currentTimeText.setPosition(10, 10); // Position at the top-left corner
 
     // Render constraint
-    if(universe.circleRadius != 0){
-        std::array<double, 2> s_center = s_coordinates(universe.circleX, universe.circleY, universe);
-        double s_circleRadius = universe.circleRadius * universe.scaleFactorPixels;
+    if(universe.m_circleRadius != 0){
+        std::array<double, 2> s_center = s_coordinates(universe.m_circleX, universe.m_circleY, universe);
+        double s_circleRadius = universe.m_circleRadius * universe.m_scaleFactorPixels;
         sf::CircleShape constraint_background(s_circleRadius);
         constraint_background.setOrigin(s_circleRadius, s_circleRadius);
         constraint_background.setFillColor(sf::Color::White);
@@ -50,7 +50,7 @@ void Renderer::render(const Universe& universe) const {
         
         // Transform in SFML coordinates
         std::array<double, 2> s_position = s_coordinates(position[0], position[1], universe);
-        double s_radius = radius * universe.scaleFactorPixels;
+        double s_radius = radius * universe.m_scaleFactorPixels;
 
         // make particle singular pixel if radius too small to render
         if (s_radius < 1){s_radius=1;}
@@ -62,7 +62,7 @@ void Renderer::render(const Universe& universe) const {
     }
 
     // Update the simulation time text
-    currentTimeText.setString("simulation time : " + formatedTime(universe.runTime));
+    currentTimeText.setString("simulation time : " + formatedTime(universe.m_runTime));
 
     // Draw the simulation time text
     m_target.draw(currentTimeText);
@@ -70,8 +70,8 @@ void Renderer::render(const Universe& universe) const {
 
 std::array<double, 2> Renderer::s_coordinates(const double x, const double y, const Universe& universe) const {
     std::array<double, 2> s_coord = {
-        (x - universe.boxOriginX) * universe.scaleFactorPixels,
-        (universe.boxHeight - (y - universe.boxOriginY)) * universe.scaleFactorPixels
+        (x - universe.m_boxOriginX) * universe.m_scaleFactorPixels,
+        (universe.m_boxHeight - (y - universe.m_boxOriginY)) * universe.m_scaleFactorPixels
     };
     return s_coord;
 }

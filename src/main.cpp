@@ -33,8 +33,8 @@ int main(int argc, char* argv[]) {
     int stepNumberSaved = 0;
 
     // Set window size
-    int windowLength = std::floor(config.scaleFactorPixels * universe.boxLength);
-    int windowHeight = std::floor(config.scaleFactorPixels * universe.boxHeight);
+    int windowLength = std::floor(config.scaleFactorPixels * universe.m_boxLength);
+    int windowHeight = std::floor(config.scaleFactorPixels * universe.m_boxHeight);
 
     sf::ContextSettings settings;
     settings.antialiasingLevel = 1;
@@ -55,7 +55,7 @@ int main(int argc, char* argv[]) {
             }
         }
 
-        if(clock.getElapsedTime().asSeconds() * config.speedFactor > universe.runTime){
+        if(clock.getElapsedTime().asSeconds() * config.speedFactor > universe.m_runTime){
             universe.makeStep();
             window.clear(sf::Color::Black);
             renderer.render(universe);
