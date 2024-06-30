@@ -2,52 +2,48 @@
 
 // Constructor
 Particle::Particle(const std::array<double, 2>& position, const std::array<double, 2>& velocity, const double radius, const double mass, const std::array<int, 3>& color)
-    : position(position),
-      velocity(velocity),
-      radius(radius),
-      mass(mass),
-      color(color)
-      {}
+    : m_position(position), m_velocity(velocity), m_radius(radius), m_mass(mass), m_color(color)
+    {}
 
 // Getters for position
-std::array<double, 2> Particle::getPosition() const {return position;}
-double Particle::getX() const {return position[0];}
-double Particle::getY() const {return position[1];}
+std::array<double, 2> Particle::getPosition() const {return m_position;}
+double Particle::getX() const {return m_position[0];}
+double Particle::getY() const {return m_position[1];}
 
 // Setters for position
-void Particle::setPosition(std::array<double, 2> newPosition) {position = newPosition;}
-void Particle::setX(double x) {position[0] = x;}
-void Particle::setY(double y) {position[1] = y;}
+void Particle::setPosition(std::array<double, 2> position) {m_position = position;}
+void Particle::setX(double x) {m_position[0] = x;}
+void Particle::setY(double y) {m_position[1] = y;}
 
 // Getters for velocity
-std::array<double, 2> Particle::getVelocity() const {return velocity;}
-double Particle::getVX() const {return velocity[0];}
-double Particle::getVY() const {return velocity[1];}
+std::array<double, 2> Particle::getVelocity() const {return m_velocity;}
+double Particle::getVX() const {return m_velocity[0];}
+double Particle::getVY() const {return m_velocity[1];}
 
 // Setters for velocity
-void Particle::setVelocity(std::array<double, 2> newVelocity) {velocity = newVelocity;}
-void Particle::setVX(double vx) {velocity[0] = vx;}
-void Particle::setVY(double vy) {velocity[1] = vy;}
+void Particle::setVelocity(std::array<double, 2> velocity) {m_velocity = velocity;}
+void Particle::setVX(double vx) {m_velocity[0] = vx;}
+void Particle::setVY(double vy) {m_velocity[1] = vy;}
 
 // Getters for acceleration
-std::array<double, 2> Particle::getAcceleration() const {return acceleration;}
+std::array<double, 2> Particle::getAcceleration() const {return m_acceleration;}
 
 // Setters for acceleration
-void Particle::setAcceleration(std::array<double, 2> newAcceleration) {acceleration = newAcceleration;}
-void Particle::setAX(double ax) {acceleration[0] = ax;}
-void Particle::setAY(double ay) {acceleration[1] = ay;}
+void Particle::setAcceleration(std::array<double, 2> acceleration) {m_acceleration = acceleration;}
+void Particle::setAX(double ax) {m_acceleration[0] = ax;}
+void Particle::setAY(double ay) {m_acceleration[1] = ay;}
 
 // Getters for radius
-double Particle::getRadius() const {return radius;}
+double Particle::getRadius() const {return m_radius;}
 
 // Getters for mass
-double Particle::getMass() const {return mass;}
+double Particle::getMass() const {return m_mass;}
 
 // Getters for color
-std::array<int, 3> Particle::getColor() const {return color;}
+std::array<int, 3> Particle::getColor() const {return m_color;}
 
 // Update particle
 void Particle::update(double deltaTime) {
-    velocity += acceleration * deltaTime;
-    position += velocity * deltaTime;
+    m_velocity += m_acceleration * deltaTime;
+    m_position += m_velocity * deltaTime;
 }

@@ -17,7 +17,7 @@ public:
     double getY() const;
 
     // Setters for position
-    void setPosition(std::array<double, 2> newPosition);
+    void setPosition(std::array<double, 2> position);
     void setX(double x);
     void setY(double y);
 
@@ -27,7 +27,7 @@ public:
     double getVY() const;
 
     // Setters for velocity
-    void setVelocity(std::array<double, 2> newVelocity);
+    void setVelocity(std::array<double, 2> velocity);
     void setVX(double vx);
     void setVY(double vy);
 
@@ -35,7 +35,7 @@ public:
     std::array<double, 2> getAcceleration() const;
 
     // Setters for acceleration
-    void setAcceleration(std::array<double, 2> newAcceleration);
+    void setAcceleration(std::array<double, 2> acceleration);
     void setAX(double ax);
     void setAY(double ay);
 
@@ -52,12 +52,12 @@ public:
     void update(double deltaTime);
 
 private:
-    std::array<double, 2> position;
-    std::array<double, 2> velocity;
-    std::array<double, 2> acceleration = {0.0, 0.0};
-    double radius;
-    double mass;
-    std::array<int, 3> color;  // RGB particle color
+    std::array<double, 2> m_position;
+    std::array<double, 2> m_velocity;
+    std::array<double, 2> m_acceleration = {0.0, 0.0};
+    double m_radius;
+    double m_mass;
+    std::array<int, 3> m_color;  // RGB particle color
 };
 
 #endif // PARTICLE_H
