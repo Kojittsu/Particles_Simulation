@@ -20,12 +20,7 @@ int main(int argc, char* argv[]) {
     // Create universe
     Universe universe(config);
 
-    // Add random particles to universe
-    for(int i=0; i< config.rndParticle_numbers; i++){
-        universe.addRndParticle(config.rndParticle_maxVelocityX, config.rndParticle_maxVelocityY, config.rndParticle_minRadius, config.rndParticle_maxRadius, config.rndParticle_minMass, config.rndParticle_maxMass);
-    }
-
-    // Open file
+    // Open dataFile
     std::ofstream file;
     if (!config.dataFileName.empty()) {
         file.open(config.dataFileName);
