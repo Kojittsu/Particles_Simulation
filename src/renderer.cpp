@@ -1,7 +1,7 @@
 #include "renderer.hpp"
 
-Renderer::Renderer(sf::RenderTarget& target, double scaleFactorPixels)
-    : m_target(target), m_scaleFactorPixels(scaleFactorPixels)
+Renderer::Renderer(sf::RenderTarget& target)
+    : m_target(target)
     {}
 
 void Renderer::render(const Universe& universe) const {
@@ -23,7 +23,7 @@ void Renderer::render(const Universe& universe) const {
     // Render constraint
     if(universe.circleRadius != 0){
         std::array<double, 2> s_center = s_coordinates(universe.circleX, universe.circleY, universe);
-        double s_circleRadius = universe.circleRadius * m_scaleFactorPixels;
+        double s_circleRadius = universe.circleRadius * universe.scaleFactorPixels;
         sf::CircleShape constraint_background(s_circleRadius);
         constraint_background.setOrigin(s_circleRadius, s_circleRadius);
         constraint_background.setFillColor(sf::Color::White);
@@ -50,7 +50,7 @@ void Renderer::render(const Universe& universe) const {
         
         // Transform in SFML coordinates
         std::array<double, 2> s_position = s_coordinates(position[0], position[1], universe);
-        double s_radius = radius * m_scaleFactorPixels;
+        double s_radius = radius * universe.scaleFactorPixels;
 
         // make particle singular pixel if radius too small to render
         if (s_radius < 1){s_radius=1;}
@@ -70,8 +70,8 @@ void Renderer::render(const Universe& universe) const {
 
 std::array<double, 2> Renderer::s_coordinates(const double x, const double y, const Universe& universe) const {
     std::array<double, 2> s_coord = {
-        (x - universe.boxOriginX) * m_scaleFactorPixels,
-        (universe.boxHeight - (y - universe.boxOriginY)) * m_scaleFactorPixels
+        (x - universe.boxOriginX) * universe.scaleFactorPixels,
+        (universe.boxHeight - (y - universe.boxOriginY)) * universe.scaleFactorPixels
     };
     return s_coord;
 }

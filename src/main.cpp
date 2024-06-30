@@ -49,7 +49,7 @@ int main(int argc, char* argv[]) {
     
     sf::RenderWindow window(sf::VideoMode(windowLength, windowHeight), "Verlet", sf::Style::None, settings);
 
-    Renderer renderer(window, config.scaleFactorPixels);
+    Renderer renderer(window);
 
     // Set SFML Clock
     sf::Clock clock;

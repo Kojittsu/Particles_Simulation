@@ -26,15 +26,19 @@ public:
     double getScaleFactorPixels() const;
     void setRunTime(double newRunTime);
 
-
+    // Box
     double boxOriginX;
     double boxOriginY;
     double boxLength;
     double boxHeight;
 
+    // Circle
     double circleX;
     double circleY;
     double circleRadius;
+
+    // Visualization
+    double scaleFactorPixels;
 
 private:
     std::vector<Particle> particles;
@@ -42,7 +46,6 @@ private:
     double deltaTime;
     bool applyGravity;
     std::array<double, 2> globalAcceleration;
-    double scaleFactorPixels;
     double speedFactor;
     const std::string dataFileName;
     const double G = 6.67430e-11; // gravitational constant

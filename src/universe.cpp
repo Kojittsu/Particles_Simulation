@@ -9,12 +9,12 @@ Universe::Universe(const Config& config)
       circleX(config.circleX),
       circleY(config.circleY),
       circleRadius(config.circleRadius),
+      scaleFactorPixels(config.scaleFactorPixels),
       particles(config.particles),
       coefficientRestitution(config.coefficientRestitution),
       deltaTime(config.deltaTime),
       applyGravity(config.applyGravity),
       globalAcceleration(config.globalAcceleration),
-      scaleFactorPixels(config.scaleFactorPixels),
       speedFactor(config.speedFactor),
       dataFileName(config.dataFileName)
       {}
