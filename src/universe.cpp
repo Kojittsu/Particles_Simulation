@@ -25,6 +25,7 @@ Universe::Universe(const Config& config)
         for(int i=0; i< config.rndParticle_numbers; i++){
             addRndParticle(config.rndParticle_maxVelocityX, config.rndParticle_maxVelocityY, config.rndParticle_minRadius, config.rndParticle_maxRadius, config.rndParticle_minMass, config.rndParticle_maxMass);
         }
+        applyAccelerationToParticles(globalAcceleration);
       }
 
 void Universe::makeStep(){
@@ -74,10 +75,10 @@ void Universe::addRndParticle(double maxVelocityX, double maxVelocityY, double m
     particles.push_back(particle);
 }
 
-void Universe::applyAccelerationToParticles(std::array<double, 2> &globalAcceleration){
+void Universe::applyAccelerationToParticles(const std::array<double, 2> &accelerationContribution){
         for (Particle& particle : particles){
             std::array<double, 2> acceleration = particle.getAcceleration();
-            particle.setAcceleration(acceleration + globalAcceleration);
+            particle.setAcceleration(acceleration + accelerationContribution);
         }
     }
 

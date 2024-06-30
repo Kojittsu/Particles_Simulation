@@ -20,7 +20,7 @@ int main(int argc, char* argv[]) {
     // Create universe
     Universe universe(config);
 
-    // Open dataFile
+    // Open dataFile if dataFileName provided
     std::ofstream file;
     if (!config.dataFileName.empty()) {
         file.open(config.dataFileName);
@@ -31,9 +31,6 @@ int main(int argc, char* argv[]) {
     }
 
     int stepNumberSaved = 0;
-    
-    // Apply global acceleration
-    universe.applyAccelerationToParticles(config.globalAcceleration);
 
     // Set window size
     int windowLength = std::floor(config.scaleFactorPixels * universe.boxLength);
