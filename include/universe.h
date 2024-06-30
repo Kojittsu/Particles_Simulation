@@ -35,7 +35,6 @@ private:
     Circle circle;
     double coefficientRestitution;
     double deltaTime;
-    // double simulationTime;
     bool applyGravity;
     std::array<double, 2> globalAcceleration;
     double scaleFactorPixels;
