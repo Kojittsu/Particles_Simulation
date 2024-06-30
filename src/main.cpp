@@ -63,13 +63,11 @@ int main(int argc, char* argv[]) {
             }
         }
 
-        if(clock.getElapsedTime().asSeconds() * config.speedFactor > universe.getRunTime()){
+        if(clock.getElapsedTime().asSeconds() * config.speedFactor > universe.runTime){
             universe.makeStep();
             window.clear(sf::Color::Black);
             renderer.render(universe);
             window.display();
-
-            universe.setRunTime(universe.getRunTime() + config.deltaTime);
 
             if (file.is_open()){
                 universe.saveStep(file, stepNumberSaved);

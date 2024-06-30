@@ -36,6 +36,9 @@ void Universe::makeStep(){
     }
     // Handle particles collisions
     handleParticleCollisions();
+
+    // Update runtime
+    runTime += deltaTime;
 }
 
 void Universe::saveStep(std::ofstream &file, int stepNumber){
@@ -202,14 +205,4 @@ void Universe::handleCircleCollision(Particle &particle, double coefficientResti
 // Getter for particles vector
 std::vector<Particle> const& Universe::getParticles() const{
     return particles;
-}
-
-// Getter for display runTime in renderer
-double Universe::getRunTime() const{
-    return runTime;
-}
-
-// Setter for runTime
-void Universe::setRunTime(double newRunTime) {
-    runTime = newRunTime;
 }

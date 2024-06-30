@@ -62,7 +62,7 @@ void Renderer::render(const Universe& universe) const {
     }
 
     // Update the simulation time text
-    currentTimeText.setString("simulation time : " + formatedTime(universe.getRunTime()));
+    currentTimeText.setString("simulation time : " + formatedTime(universe.runTime));
 
     // Draw the simulation time text
     m_target.draw(currentTimeText);

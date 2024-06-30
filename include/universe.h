@@ -22,8 +22,6 @@ public:
     void handleBoxCollision(Particle &particle, double coefficientRestitution);
     void handleCircleCollision(Particle &particle, double coefficientRestitution);
     std::vector<Particle> const& getParticles() const;
-    double getRunTime() const;
-    void setRunTime(double newRunTime);
 
     // Box
     const double boxOriginX;
@@ -39,6 +37,9 @@ public:
     // Visualization
     const double scaleFactorPixels;
 
+    // Simulation parameters
+    double runTime = 0;
+
 private:
     std::vector<Particle> particles;
     double coefficientRestitution;
@@ -48,7 +49,6 @@ private:
     double speedFactor;
     const std::string dataFileName;
     const double G = 6.67430e-11; // gravitational constant
-    double runTime = 0;
 
 };
 
