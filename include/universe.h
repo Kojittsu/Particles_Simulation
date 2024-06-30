@@ -26,18 +26,18 @@ public:
     void setRunTime(double newRunTime);
 
     // Box
-    double boxOriginX;
-    double boxOriginY;
-    double boxLength;
-    double boxHeight;
+    const double boxOriginX;
+    const double boxOriginY;
+    const double boxLength;
+    const double boxHeight;
 
     // Circle
-    double circleX;
-    double circleY;
-    double circleRadius;
+    const double circleX;
+    const double circleY;
+    const double circleRadius;
 
     // Visualization
-    double scaleFactorPixels;
+    const double scaleFactorPixels;
 
 private:
     std::vector<Particle> particles;
