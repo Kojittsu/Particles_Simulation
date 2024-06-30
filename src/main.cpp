@@ -41,16 +41,15 @@ int main(int argc, char* argv[]) {
     universe.applyAccelerationToParticles(config.globalAcceleration);
 
     // Set window size
-    int windowLength = std::floor(config.scaleFactorPixels * universe.getBox().getLength());
-    int windowHeight = std::floor(config.scaleFactorPixels * universe.getBox().getHeight());
+    int windowLength = std::floor(config.scaleFactorPixels * universe.boxLength);
+    int windowHeight = std::floor(config.scaleFactorPixels * universe.boxHeight);
 
     sf::ContextSettings settings;
     settings.antialiasingLevel = 1;
     
     sf::RenderWindow window(sf::VideoMode(windowLength, windowHeight), "Verlet", sf::Style::None, settings);
 
-    Box box_test = universe.getBox();
-    Renderer renderer(window, box_test, config.scaleFactorPixels);
+    Renderer renderer(window, config.scaleFactorPixels);
 
     // Set SFML Clock
     sf::Clock clock;

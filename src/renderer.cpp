@@ -1,7 +1,7 @@
 #include "renderer.hpp"
 
-Renderer::Renderer(sf::RenderTarget& target, const Box& box, double scaleFactorPixels)
-    : m_target(target), m_box(box), m_scaleFactorPixels(scaleFactorPixels)
+Renderer::Renderer(sf::RenderTarget& target, double scaleFactorPixels)
+    : m_target(target), m_scaleFactorPixels(scaleFactorPixels)
     {}
 
 void Renderer::render(const Universe& universe) const {
@@ -22,7 +22,7 @@ void Renderer::render(const Universe& universe) const {
 
     // Render constraint
     if(universe.circleRadius != 0){
-        std::array<double, 2> s_center = s_coordinates(universe.circleX, universe.circleY);
+        std::array<double, 2> s_center = s_coordinates(universe.circleX, universe.circleY, universe);
         double s_circleRadius = universe.circleRadius * m_scaleFactorPixels;
         sf::CircleShape constraint_background(s_circleRadius);
         constraint_background.setOrigin(s_circleRadius, s_circleRadius);
@@ -49,7 +49,7 @@ void Renderer::render(const Universe& universe) const {
         std::array<int, 3> color = particle.getColor();
         
         // Transform in SFML coordinates
-        std::array<double, 2> s_position = s_coordinates(position[0], position[1]);
+        std::array<double, 2> s_position = s_coordinates(position[0], position[1], universe);
         double s_radius = radius * m_scaleFactorPixels;
 
         // make particle singular pixel if radius too small to render
@@ -68,7 +68,10 @@ void Renderer::render(const Universe& universe) const {
     m_target.draw(currentTimeText);
 }
 
-std::array<double, 2> Renderer::s_coordinates(const double x, const double y) const {
-    std::array<double, 2> s_coord = {(x-m_box.getXOrigin()) * m_scaleFactorPixels, (m_box.getHeight()-(y-m_box.getYOrigin())) * m_scaleFactorPixels};
+std::array<double, 2> Renderer::s_coordinates(const double x, const double y, const Universe& universe) const {
+    std::array<double, 2> s_coord = {
+        (x - universe.boxOriginX) * m_scaleFactorPixels,
+        (universe.boxHeight - (y - universe.boxOriginY)) * m_scaleFactorPixels
+    };
     return s_coord;
 }

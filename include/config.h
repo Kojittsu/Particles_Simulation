@@ -6,7 +6,6 @@
 #include <yaml-cpp/yaml.h>
 
 #include "particle.h"
-#include "box.h"
 
 struct Config {
     std::vector<Particle> particles;
@@ -19,9 +18,11 @@ struct Config {
     double rndParticle_minMass;
     double rndParticle_maxMass;
     
-    Box box = Box();
+    double boxOriginX;
+    double boxOriginY;
+    double boxLength;
+    double boxHeight;
     
-    // Circle circle = Circle();
     double circleX;
     double circleY;
     double circleRadius;

@@ -25,15 +25,14 @@ bool readConfig(const std::string& filename, Config& config) {
     config.rndParticle_maxMass      = yaml["randomParticles"]["maxMass"].as<double>();
 
     // Load box
-    double xOrigin = yaml["box"]["xOrigin"].as<double>();
-    double yOrigin = yaml["box"]["yOrigin"].as<double>();
-    double length  = yaml["box"]["length"].as<double>();
-    double height  = yaml["box"]["height"].as<double>();
-    config.box     = Box(xOrigin, yOrigin, length, height);
+    config.boxOriginX = yaml["box"]["xOrigin"].as<double>();
+    config.boxOriginY = yaml["box"]["yOrigin"].as<double>();
+    config.boxLength  = yaml["box"]["length"].as<double>();
+    config.boxHeight  = yaml["box"]["height"].as<double>();
 
     // Load circle
-    config.circleX = yaml["circle"]["centerX"].as<double>();
-    config.circleY = yaml["circle"]["centerY"].as<double>();
+    config.circleX       = yaml["circle"]["centerX"].as<double>();
+    config.circleY       = yaml["circle"]["centerY"].as<double>();
     config.circleRadius  = yaml["circle"]["radius"].as<double>();
 
     // Load simulation parameters

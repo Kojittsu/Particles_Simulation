@@ -4,8 +4,8 @@
 #include <vector>
 #include <fstream>
 #include <string>
+
 #include "particle.h"
-#include "box.h"
 #include "config.h"
 #include "utils.h"
 
@@ -21,11 +21,16 @@ public:
     void handleParticleCollisions();
     void handleBoxCollision(Particle &particle, double coefficientRestitution);
     void handleCircleCollision(Particle &particle, double coefficientRestitution);
-    Box getBox() const;
     std::vector<Particle> const& getParticles() const;
     double getRunTime() const;
     double getScaleFactorPixels() const;
     void setRunTime(double newRunTime);
+
+
+    double boxOriginX;
+    double boxOriginY;
+    double boxLength;
+    double boxHeight;
 
     double circleX;
     double circleY;
@@ -33,7 +38,6 @@ public:
 
 private:
     std::vector<Particle> particles;
-    Box box;
     double coefficientRestitution;
     double deltaTime;
     bool applyGravity;

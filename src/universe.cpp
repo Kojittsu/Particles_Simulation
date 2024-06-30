@@ -2,11 +2,14 @@
 #include "renderer.hpp"
 
 Universe::Universe(const Config& config)
-    : circleX(config.circleX),
+    : boxOriginX(config.boxOriginX),
+      boxOriginY(config.boxOriginY),
+      boxLength(config.boxLength),
+      boxHeight(config.boxHeight),
+      circleX(config.circleX),
       circleY(config.circleY),
       circleRadius(config.circleRadius),
       particles(config.particles),
-      box(config.box),
       coefficientRestitution(config.coefficientRestitution),
       deltaTime(config.deltaTime),
       applyGravity(config.applyGravity),
@@ -51,7 +54,7 @@ void Universe::addParticle(Particle &particle){
 }
 
 void Universe::addRndParticle(double maxVelocityX, double maxVelocityY, double minRadius, double maxRadius, double minMass, double maxMass){
-    std::array<double, 2> position = {rndNumber(box.getXOrigin(), box.getXMAX()), rndNumber(box.getYOrigin(), box.getYMAX())};
+    std::array<double, 2> position = {rndNumber(boxOriginX, boxOriginX + boxLength), rndNumber(boxOriginY, boxOriginY + boxHeight)};
     std::array<double, 2> velocity = {rndNumber(-maxVelocityX, maxVelocityX), rndNumber(-maxVelocityY, maxVelocityY)};
     double radius = rndNumber(minRadius, maxRadius);
     double mass = rndNumber(minMass, maxMass);
@@ -142,23 +145,23 @@ void Universe::handleParticleCollisions() {
 void Universe::handleBoxCollision(Particle &particle, double coefficientRestitution){
 
     // Left collision
-    if(particle.getX() < box.getXOrigin() + particle.getRadius()){
-        particle.setX(box.getXOrigin() + particle.getRadius());
+    if(particle.getX() < boxOriginX + particle.getRadius()){
+        particle.setX(boxOriginX + particle.getRadius());
         particle.setVX(-particle.getVX()*coefficientRestitution);
     }
     // Right collision
-    if(particle.getX() > box.getXMAX() - particle.getRadius()){
-        particle.setX(box.getXMAX() - particle.getRadius());
+    if(particle.getX() > boxOriginX + boxLength - particle.getRadius()){
+        particle.setX(boxOriginX + boxLength - particle.getRadius());
         particle.setVX(-particle.getVX()*coefficientRestitution);
     }
     // Down collision
-    if(particle.getY() < box.getYOrigin() + particle.getRadius()){
-        particle.setY(box.getYOrigin() + particle.getRadius());
+    if(particle.getY() < boxOriginY + particle.getRadius()){
+        particle.setY(boxOriginY + particle.getRadius());
         particle.setVY(-particle.getVY()*coefficientRestitution);
     }
     // Up collision
-    if(particle.getY() > box.getYMAX() - particle.getRadius()){
-        particle.setY(box.getYMAX() - particle.getRadius());
+    if(particle.getY() > boxOriginY + boxHeight - particle.getRadius()){
+        particle.setY(boxOriginY + boxHeight - particle.getRadius());
         particle.setVY(-particle.getVY()*coefficientRestitution);
     }
 }
@@ -194,11 +197,6 @@ void Universe::handleCircleCollision(Particle &particle, double coefficientResti
         particle.setVX(newVx);
         particle.setVY(newVy);
     }
-}
-
-// Getter for box
-Box Universe::getBox() const {
-    return box;
 }
 
 // Getter for particles vector
