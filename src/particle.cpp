@@ -51,8 +51,3 @@ void Particle::update(double deltaTime) {
     velocity += acceleration * deltaTime;
     position += velocity * deltaTime;
 }
-
-// Print particle state
-void Particle::printState(double currentTime) const {
-    std::cout << "Temps: " << currentTime << "s, Position: (" << position[0] << ", " << position[1] << ")\n";
-}

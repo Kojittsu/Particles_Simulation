@@ -51,9 +51,6 @@ public:
     // Update particle
     void update(double deltaTime);
 
-    // Print particle state
-    void printState(double currentTime) const;
-
 private:
     std::array<double, 2> position;
     std::array<double, 2> velocity;

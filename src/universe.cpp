@@ -6,10 +6,13 @@ Universe::Universe(const Config& config)
       boxOriginY(config.boxOriginY),
       boxLength(config.boxLength),
       boxHeight(config.boxHeight),
+
       circleX(config.circleX),
       circleY(config.circleY),
       circleRadius(config.circleRadius),
+
       scaleFactorPixels(config.scaleFactorPixels),
+      
       particles(config.particles),
       coefficientRestitution(config.coefficientRestitution),
       deltaTime(config.deltaTime),
