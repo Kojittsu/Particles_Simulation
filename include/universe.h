@@ -23,7 +23,6 @@ public:
     void handleCircleCollision(Particle &particle, double coefficientRestitution);
     std::vector<Particle> const& getParticles() const;
     double getRunTime() const;
-    double getScaleFactorPixels() const;
     void setRunTime(double newRunTime);
 
     // Box

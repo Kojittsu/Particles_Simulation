@@ -213,8 +213,3 @@ double Universe::getRunTime() const{
 void Universe::setRunTime(double newRunTime) {
     runTime = newRunTime;
 }
-
-// Getter for scaleFactorPixels
-double Universe::getScaleFactorPixels() const{
-    return scaleFactorPixels;
-}
