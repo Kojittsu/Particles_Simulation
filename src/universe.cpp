@@ -14,62 +14,6 @@ Universe::Universe(const Config& config)
       dataFileName(config.dataFileName)
       {}
 
-void Universe::run() {
-
-    std::ofstream file;
-    if (!dataFileName.empty()) {
-        file.open(dataFileName);
-        if (!file.is_open()) {
-            std::cerr << "Error opening file: " << dataFileName << std::endl;
-            return;
-        }
-    }
-    int stepNumber = 0;
-
-    
-    // Apply global acceleration
-    applyAccelerationToParticles(globalAcceleration);
-
-    // Set window size
-    int windowLength = std::floor(scaleFactorPixels * box.getLength());
-    int windowHeight = std::floor(scaleFactorPixels * box.getHeight());
-
-    sf::ContextSettings settings;
-    settings.antialiasingLevel = 1;
-    
-    sf::RenderWindow window(sf::VideoMode(windowLength, windowHeight), "Verlet", sf::Style::None, settings);
-
-    Renderer renderer(window, box, scaleFactorPixels);
-
-    // Set SFML Clock
-    sf::Clock clock;
-    
-    // // Main loop
-    while (window.isOpen()) {
-        sf::Event event{};
-        while (window.pollEvent(event)) {
-            if (event.type == sf::Event::Closed || sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) {
-                window.close();
-            }
-        }
-
-        if(clock.getElapsedTime().asSeconds() * speedFactor > runTime){
-            makeStep();
-            window.clear(sf::Color::Black);
-            renderer.render(*this);
-            window.display();
-
-            runTime += deltaTime;
-
-            if (file.is_open()){
-                saveStep(file, stepNumber);
-                stepNumber++;
-            }
-        }
-    }
-    if (file.is_open()) {file.close();}
-}
-
 void Universe::makeStep(){
     
     // Apply Newton's law of universal gravitation
@@ -268,4 +212,14 @@ std::vector<Particle> const& Universe::getParticles() const{
 // Getter for display runTime in renderer
 double Universe::getRunTime() const{
     return runTime;
+}
+
+// Setter for runTime
+void Universe::setRunTime(double newRunTime) {
+    runTime = newRunTime;
+}
+
+// Getter for scaleFactorPixels
+double Universe::getScaleFactorPixels() const{
+    return scaleFactorPixels;
 }

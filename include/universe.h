@@ -13,7 +13,6 @@
 class Universe {
 public:
     Universe(const Config& config);
-    void run();
     void makeStep();
     void saveStep(std::ofstream &file, int stepNumber);
     void addParticle(Particle &particle);
@@ -27,6 +26,8 @@ public:
     Box getBox() const;
     std::vector<Particle> const& getParticles() const;
     double getRunTime() const;
+    double getScaleFactorPixels() const;
+    void setRunTime(double newRunTime);
 
 private:
     std::vector<Particle> particles;
@@ -42,7 +43,7 @@ private:
     const std::string dataFileName;
     const double G = 6.67430e-11; // gravitational constant
     double runTime = 0;
-    
+
 };
 
 #endif // UNIVERSE_H
