@@ -48,7 +48,7 @@ void Universe::saveStep(std::ofstream &file, int stepNumber){
         if (file.is_open()) {
             file << currentTime << "," << particleNumber << "," << particle.getX() << "," << particle.getY() << "\n";
         }
-        particleNumber += 1;
+        particleNumber++;
     }
 }
 
