@@ -32,10 +32,9 @@ bool readConfig(const std::string& filename, Config& config) {
     config.box     = Box(xOrigin, yOrigin, length, height);
 
     // Load circle
-    double centerX = yaml["circle"]["centerX"].as<double>();
-    double centerY = yaml["circle"]["centerY"].as<double>();
-    double radius  = yaml["circle"]["radius"].as<double>();
-    config.circle  = Circle(centerX, centerY, radius);
+    config.circleX = yaml["circle"]["centerX"].as<double>();
+    config.circleY = yaml["circle"]["centerY"].as<double>();
+    config.circleRadius  = yaml["circle"]["radius"].as<double>();
 
     // Load simulation parameters
     config.deltaTime              = yaml["simulation"]["deltaTime"].as<double>();

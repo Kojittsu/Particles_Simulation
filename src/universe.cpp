@@ -2,9 +2,11 @@
 #include "renderer.hpp"
 
 Universe::Universe(const Config& config)
-    : particles(config.particles),
+    : circleX(config.circleX),
+      circleY(config.circleY),
+      circleRadius(config.circleRadius),
+      particles(config.particles),
       box(config.box),
-      circle(config.circle),
       coefficientRestitution(config.coefficientRestitution),
       deltaTime(config.deltaTime),
       applyGravity(config.applyGravity),
@@ -27,7 +29,7 @@ void Universe::makeStep(){
         handleBoxCollision(particle, coefficientRestitution);
 
         // Handle circle collisions if circle radius isn't null.
-        if (circle.getRadius() != 0) {handleCircleCollision(particle, coefficientRestitution);}
+        if (circleRadius != 0) {handleCircleCollision(particle, coefficientRestitution);}
     }
     // Handle particles collisions
     handleParticleCollisions();
@@ -163,19 +165,19 @@ void Universe::handleBoxCollision(Particle &particle, double coefficientRestitut
 
 void Universe::handleCircleCollision(Particle &particle, double coefficientRestitution){
     // Calculate distance beetwen particle and circle center
-    double dx = particle.getX() - circle.getCenterX();
-    double dy = particle.getY() - circle.getCenterY();
+    double dx = particle.getX() - circleX;
+    double dy = particle.getY() - circleY;
     double distance = sqrt(dx * dx + dy * dy);
     
     // Check if particle collide with circle
-    if (distance > circle.getRadius() - particle.getRadius()) {
+    if (distance > circleRadius - particle.getRadius()) {
         // Normalize collision vector
         double nx = dx / distance;
         double ny = dy / distance;
 
         // Move particle to the circle surface
-        particle.setX(circle.getCenterX() + nx * (circle.getRadius() - particle.getRadius()));
-        particle.setY(circle.getCenterY() + ny * (circle.getRadius() - particle.getRadius()));
+        particle.setX(circleX + nx * (circleRadius - particle.getRadius()));
+        particle.setY(circleY + ny * (circleRadius - particle.getRadius()));
 
         // Calculate particle velocity in the normal direction
         double dotProduct = particle.getVX() * nx + particle.getVY() * ny;
@@ -192,11 +194,6 @@ void Universe::handleCircleCollision(Particle &particle, double coefficientResti
         particle.setVX(newVx);
         particle.setVY(newVy);
     }
-}
-
-// Getter for circle
-Circle Universe::getCircle() const {
-    return circle;
 }
 
 // Getter for box

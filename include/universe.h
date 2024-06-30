@@ -6,7 +6,6 @@
 #include <string>
 #include "particle.h"
 #include "box.h"
-#include "circle.h"
 #include "config.h"
 #include "utils.h"
 
@@ -22,17 +21,19 @@ public:
     void handleParticleCollisions();
     void handleBoxCollision(Particle &particle, double coefficientRestitution);
     void handleCircleCollision(Particle &particle, double coefficientRestitution);
-    Circle getCircle() const;
     Box getBox() const;
     std::vector<Particle> const& getParticles() const;
     double getRunTime() const;
     double getScaleFactorPixels() const;
     void setRunTime(double newRunTime);
 
+    double circleX;
+    double circleY;
+    double circleRadius;
+
 private:
     std::vector<Particle> particles;
     Box box;
-    Circle circle;
     double coefficientRestitution;
     double deltaTime;
     bool applyGravity;

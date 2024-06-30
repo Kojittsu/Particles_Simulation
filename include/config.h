@@ -7,7 +7,6 @@
 
 #include "particle.h"
 #include "box.h"
-#include "circle.h"
 
 struct Config {
     std::vector<Particle> particles;
@@ -22,7 +21,10 @@ struct Config {
     
     Box box = Box();
     
-    Circle circle = Circle();
+    // Circle circle = Circle();
+    double circleX;
+    double circleY;
+    double circleRadius;
     
     double deltaTime;
     bool applyGravity;

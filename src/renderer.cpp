@@ -20,15 +20,10 @@ void Renderer::render(const Universe& universe) const {
     currentTimeText.setFillColor(sf::Color::Blue);
     currentTimeText.setPosition(10, 10); // Position at the top-left corner
 
-    // Get constraint
-    Circle circle = universe.getCircle();
-    double centerX = circle.getCenterX();
-    double centerY = circle.getCenterY();
-
     // Render constraint
-    if(circle.getRadius() != 0){
-        std::array<double, 2> s_center = s_coordinates(centerX, centerY);
-        double s_circleRadius = circle.getRadius() * m_scaleFactorPixels;
+    if(universe.circleRadius != 0){
+        std::array<double, 2> s_center = s_coordinates(universe.circleX, universe.circleY);
+        double s_circleRadius = universe.circleRadius * m_scaleFactorPixels;
         sf::CircleShape constraint_background(s_circleRadius);
         constraint_background.setOrigin(s_circleRadius, s_circleRadius);
         constraint_background.setFillColor(sf::Color::White);
