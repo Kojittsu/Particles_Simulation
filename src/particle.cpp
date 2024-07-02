@@ -1,10 +1,11 @@
 #include "particle.h"
 
 // Constructor
-Particle::Particle(const std::array<double, 2>& position, const std::array<double, 2>& velocity, const double radius, const double mass, const std::array<int, 3>& color)
+Particle::Particle(const std::array<double, 2>& position, const std::array<double, 2>& velocity, const std::array<double, 2>& acceleration, const double radius, const double mass, const std::array<int, 3>& color)
     : 
       m_position(position),
       m_velocity(velocity),
+      m_acceleration(acceleration),
       m_radius(radius),
       m_mass(mass),
       m_color(color)
