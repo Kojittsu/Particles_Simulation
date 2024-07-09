@@ -1,27 +1,25 @@
 #include "renderer.hpp"
+#include <stdexcept>
 
+// Constructor
 Renderer::Renderer(sf::RenderTarget& target)
     : m_target(target)
-    {}
-
-void Renderer::render(const Universe& universe) const {
-
-    // Load font
-    sf::Font font;
-    if (!font.loadFromFile("Roboto-Regular.ttf")) {
-        std::cerr << "Error loading font\n";
-        return;
+{
+    // Load font once in constructor
+    if (!m_font.loadFromFile("Roboto-Regular.ttf")) {
+        throw std::runtime_error("Error loading font");
     }
+    
+    // Initialize text object for displaying simulation time
+    m_currentTimeText.setFont(m_font);
+    m_currentTimeText.setCharacterSize(16);
+    m_currentTimeText.setFillColor(sf::Color::Blue);
+    m_currentTimeText.setPosition(10, 10); // Position at the top-left corner
+}
 
-    // Create text object for displaying simulation time
-    sf::Text currentTimeText;
-    currentTimeText.setFont(font);
-    currentTimeText.setCharacterSize(16);
-    currentTimeText.setFillColor(sf::Color::Blue);
-    currentTimeText.setPosition(10, 10); // Position at the top-left corner
-
+void Renderer::render(const Universe& universe) {
     // Render constraint
-    if(universe.m_circleRadius != 0){
+    if(universe.m_circleRadius != 0) {
         std::array<double, 2> s_center = s_coordinates(universe.m_circleX, universe.m_circleY, universe);
         double s_circleRadius = universe.m_circleRadius * universe.m_scaleFactorPixels;
         sf::CircleShape constraint_background(s_circleRadius);
@@ -32,28 +30,25 @@ void Renderer::render(const Universe& universe) const {
         m_target.draw(constraint_background);
     }
 
-    //Render objects
+    // Render objects
     const std::vector<Particle>& particles = universe.getParticles();
 
     sf::CircleShape s_particle{1.0f};
     s_particle.setPointCount(32);
     s_particle.setOrigin(1.0f, 1.0f);
-    
-    for (const Particle& particle : particles) {
 
+    for (const Particle& particle : particles) {
         // Get particle infos
         double radius = particle.getRadius();
-        std::array<double, 2> position = particle.getPosition();
+        const std::array<double, 2>& position = particle.getPosition();
+        const std::array<int, 3>& color = particle.getColor();
 
-        // Get particle color
-        std::array<int, 3> color = particle.getColor();
-        
         // Transform in SFML coordinates
         std::array<double, 2> s_position = s_coordinates(position[0], position[1], universe);
         double s_radius = radius * universe.m_scaleFactorPixels;
 
-        // make particle singular pixel if radius too small to render
-        if (s_radius < 1){s_radius=1;}
+        // Make particle singular pixel if radius too small to render
+        if (s_radius < 1) { s_radius = 1; }
 
         s_particle.setPosition(s_position[0], s_position[1]);
         s_particle.setScale(s_radius, s_radius);
@@ -62,16 +57,15 @@ void Renderer::render(const Universe& universe) const {
     }
 
     // Update the simulation time text
-    currentTimeText.setString("simulation time : " + formatedTime(universe.m_runTime));
+    m_currentTimeText.setString("simulation time : " + formatedTime(universe.m_runTime));
 
     // Draw the simulation time text
-    m_target.draw(currentTimeText);
+    m_target.draw(m_currentTimeText);
 }
 
 std::array<double, 2> Renderer::s_coordinates(const double x, const double y, const Universe& universe) const {
-    std::array<double, 2> s_coord = {
+    return {
         (x - universe.m_boxOriginX) * universe.m_scaleFactorPixels,
         (universe.m_boxHeight - (y - universe.m_boxOriginY)) * universe.m_scaleFactorPixels
     };
-    return s_coord;
 }
