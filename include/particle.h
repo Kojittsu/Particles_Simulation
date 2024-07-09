@@ -60,4 +60,4 @@ private:
     std::array<int, 3> m_color;  // RGB particle color
 };
 
-#endif // PARTICLE_H
+#endif

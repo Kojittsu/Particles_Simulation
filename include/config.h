@@ -39,4 +39,4 @@ struct Config {
 
 bool readConfig(const std::string& filename, Config& config);
 
-#endif // CONFIG_H
+#endif

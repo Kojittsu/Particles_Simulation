@@ -12,4 +12,4 @@ std::string formatedTime(double seconds);
 
 std::array<int, 3> getRainbow();
 
-#endif // UTILS_H
+#endif
