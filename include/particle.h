@@ -17,7 +17,7 @@ public:
     double getY() const;
 
     // Setters for position
-    void setPosition(std::array<double, 2> position);
+    void setPosition(const std::array<double, 2>& position);
     void setX(double x);
     void setY(double y);
 
@@ -27,7 +27,7 @@ public:
     double getVY() const;
 
     // Setters for velocity
-    void setVelocity(std::array<double, 2> velocity);
+    void setVelocity(const std::array<double, 2>& velocity);
     void setVX(double vx);
     void setVY(double vy);
 
@@ -35,7 +35,7 @@ public:
     std::array<double, 2> getAcceleration() const;
 
     // Setters for acceleration
-    void setAcceleration(std::array<double, 2> acceleration);
+    void setAcceleration(const std::array<double, 2>& acceleration);
     void setAX(double ax);
     void setAY(double ay);
 
