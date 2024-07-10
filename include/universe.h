@@ -13,14 +13,14 @@ class Universe {
 public:
     Universe(const Config& config);
     void makeStep();
-    void saveStep(std::ofstream &file, int stepNumber);
-    void addParticle(Particle &particle);
+    void saveStep(std::ofstream& file, int stepNumber);
+    void addParticle(const Particle& particle);
     void addRndParticle(double maxVelocityX, double maxVelocityY, double minRadius, double maxRadius, double minMass, double maxMass);
-    void applyAccelerationToParticles(const std::array<double, 2> &accelerationContribution);
+    void applyAccelerationToParticles(const std::array<double, 2>& accelerationContribution);
     void computeGravitationalForces();
     void handleParticleCollisions();
-    void handleBoxCollision(Particle &particle);
-    void handleCircleCollision(Particle &particle);
+    void handleBoxCollision(Particle& particle);
+    void handleCircleCollision(Particle& particle);
     std::vector<Particle> const& getParticles() const;
 
     // Box
