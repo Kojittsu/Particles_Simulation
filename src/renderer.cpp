@@ -1,5 +1,4 @@
 #include "renderer.hpp"
-#include <stdexcept>
 
 // Constructor
 Renderer::Renderer(sf::RenderTarget& target)

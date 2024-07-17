@@ -1,5 +1,6 @@
 #include "universe.h"
 #include "renderer.hpp"
+#include "button.hpp"
 
 int main(int argc, char* argv[]) {
     
@@ -45,29 +46,58 @@ int main(int argc, char* argv[]) {
 
     // Set SFML Clock
     sf::Clock clock;
+    sf::Time elapsedTime = sf::Time::Zero;
 
-    // // Main loop
+    // Play / Pause button
+    Button PlayPause(
+        sf::Vector2f(100, 20),
+        sf::Vector2f(10, 50),
+        "Play / Pause",
+        [&universe, &clock, &elapsedTime]() { 
+            universe.m_isRunning = !universe.m_isRunning; 
+            if (universe.m_isRunning) {
+                clock.restart();
+            } else {
+                elapsedTime += clock.getElapsedTime();
+            }
+        }
+    );
+
+    // Main loop
     while (window.isOpen()) {
         sf::Event event{};
         while (window.pollEvent(event)) {
             if (event.type == sf::Event::Closed || sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) {
                 window.close();
             }
+            PlayPause.handleEvent(event);
         }
 
-        if(clock.getElapsedTime().asSeconds() * config.speedFactor > universe.m_runTime){
-            universe.makeStep();
-            window.clear(sf::Color::Black);
-            renderer.render(universe);
-            window.display();
+        if (universe.m_isRunning) {
+            if ((elapsedTime + clock.getElapsedTime()).asSeconds() * config.speedFactor > universe.m_runTime) {
+                
+                universe.makeStep();
 
-            if (file.is_open()){
-                universe.saveStep(file, stepNumberSaved);
-                stepNumberSaved++;
+                window.clear(sf::Color::Black);
+                renderer.render(universe);
+                PlayPause.draw(window);
+                window.display();
+
+                if (file.is_open()) {
+                    universe.saveStep(file, stepNumberSaved);
+                    stepNumberSaved++;
+                }
             }
         }
+        else {
+            window.clear(sf::Color::Black);
+            renderer.render(universe);
+            PlayPause.draw(window);
+            window.display();
+        }
     }
-    if (file.is_open()) {file.close();}
+
+    if (file.is_open()) { file.close(); }
 
     return 0;
 }

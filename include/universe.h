@@ -39,6 +39,7 @@ public:
 
     // Simulation parameters
     double m_runTime = 0;
+    bool m_isRunning;
 
 private:
     std::vector<Particle> m_particles;

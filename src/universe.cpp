@@ -14,6 +14,7 @@ Universe::Universe(const Config& config)
       m_circleY(config.circleY),
       m_circleRadius(config.circleRadius),
       m_scaleFactorPixels(config.scaleFactorPixels),
+      m_isRunning(false),
       m_particles(config.particles),
       m_coefficientRestitution(config.coefficientRestitution),
       m_deltaTime(config.deltaTime),
