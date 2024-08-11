@@ -17,8 +17,38 @@ The explicit Euler method is simple to implement but can introduce approximation
 
 ## Features
 
-- Particle Initialization : Particles can be initialized with different positions, velocities, acceleration and radius.
-- Interaction Simulation : The project simulates interactions between particles and universe boundaries.
+- Particle initialization :
+  - Particles are initialized with different parameters, acceleration is set to zero.
+
+- Random particles initialization :
+  - Random particles are initialized with different parameters.
+  - Position is randomly set in the box.
+  - Velocity is randomly set in [-maxVelocity, maxVelocity] for each components.
+  - Radius is randomly set in [minRadius, maxRadius].
+  - Mass is randomly set in [minMass, maxMass].
+  - Acceleration is set to globalAcceleration.
+  - Color is randomly set.
+  - Name is empty.
+
+- Universe initialization :
+  - Universe is initialized with different parameters.
+
+- Universe simulation :
+  - Particle-particle collisions
+  - Particle-box collisions.
+  - Particle-circle collisions if circle radius is not zero.
+  - Global acceleration set to all particles.
+  - Energy restitution must be set in [0,1], 0 mean all energy is loss, 1 mean energy conservation.
+
+- Universe rendering :
+  - Create a window that display universe simulation.
+  - Window's dimensions are set to the dimensions of the box multiplied by a scale factor pixels (1 mean that one pixel is equivalent to one meters).
+  - Simulation speed is set to a speed factor (1 mean real time simulation).
+  - Display simulation time in runtime.
+  - GUI clickable buttons.
+
+- Miscellaneous :
+  - A datafile name can be set to save particles motions over time.
 
 ## Configuration file
 
@@ -29,11 +59,13 @@ particles:
     velocity: [double, double] # Particle velocity in meters
     radius: double             # Particle radius in meters
     mass: double               # Particle mass in kilograms
+    color: [int, int, int]     # Particle color in RGB format
+    name: string               # Particle name (can be empty)
 
   # Add as many particles as you want
 
 randomParticles:
-  numbers: int
+  numbers: int         # Number of random particles
   maxVelocityX: double # Particle max X random velocity in meters/second
   maxVelocityY: double # Particle max Y random velocity in meters/second
   minRadius: double    # Particle min random radius in meters
@@ -57,7 +89,7 @@ simulation:
   applyGravity: bool                   # Compute Newton's law of universal gravitation
   globalAcceleration: [double, double] # Global acceleration applied to all objects
   coefficientRestitution: double       # Energy restitution during collision (1.0 mean energy conservation)
-  dataFileName: string                 # data file name for saving particles positions through time
+  dataFileName: string                 # data file name for saving particles positions through time (can be empty)
 
 visualization:
   scaleFactorPixels: double

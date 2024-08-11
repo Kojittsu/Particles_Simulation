@@ -10,8 +10,9 @@ bool readConfig(const std::string& filename, Config& config) {
         double radius                  = particleNode["radius"].as<double>();
         double mass                    = particleNode["mass"].as<double>();
         std::array<int, 3> color       = particleNode["color"].as<std::array<int, 3>>();
+        std::string name               = particleNode["name"].as<std::string>();
         
-        Particle particle(position, velocity, config.globalAcceleration, radius, mass, color);
+        Particle particle(position, velocity, config.globalAcceleration, radius, mass, color, name);
         config.particles.push_back(particle);
     }
 

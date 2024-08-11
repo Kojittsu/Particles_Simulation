@@ -42,23 +42,30 @@ void Renderer::render(const Universe& universe) {
         const std::array<double, 2>& position = particle.getPosition();
         const std::array<int, 3>& color = particle.getColor();
 
-        // Transform in SFML coordinates
+        // Transform in SFML coordinates / format
         std::array<double, 2> s_position = s_coordinates(position[0], position[1], universe);
         double s_radius = radius * universe.m_scaleFactorPixels;
+        sf::Color s_color(color[0], color[1], color[2]);
 
         // Make particle singular pixel if radius too small to render
-        if (s_radius < 1) { s_radius = 1; }
+        if (s_radius < 1) { s_radius = 2; }
 
         s_particle.setPosition(s_position[0], s_position[1]);
         s_particle.setScale(s_radius, s_radius);
-        s_particle.setFillColor(sf::Color(color[0], color[1], color[2]));
+        s_particle.setFillColor(sf::Color(s_color));
+
+        // Render label
+        if(!particle.m_name.empty()){
+            sf::Vector2f position(s_position[0], s_position[1]);
+            textBox particleNameTextBox(12, position, particle.m_name, s_color);
+            m_target.draw(particleNameTextBox.m_text);
+        }
+
         m_target.draw(s_particle);
     }
 
-    // Update the simulation time text
+    // Update and render simulation time text
     m_currentTimeText.setString("simulation time : " + formatedTime(universe.m_runTime));
-
-    // Draw the simulation time text
     m_target.draw(m_currentTimeText);
 }
 

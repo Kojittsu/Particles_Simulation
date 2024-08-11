@@ -9,7 +9,14 @@
 class Particle {
 public:
     // Constructor
-    Particle(const std::array<double, 2>& position, const std::array<double, 2>& velocity, const std::array<double, 2>& acceleration, const double radius, const double mass, const std::array<int, 3>& color);
+    Particle(
+        const std::array<double, 2>& position,
+        const std::array<double, 2>& velocity,
+        const std::array<double, 2>& acceleration,
+        const double radius, const double mass,
+        const std::array<int, 3>& color,
+        const std::string& name
+        );
     
     // Getters for position
     std::array<double, 2> getPosition() const;
@@ -57,7 +64,10 @@ private:
     std::array<double, 2> m_acceleration;
     double m_radius;
     double m_mass;
-    std::array<int, 3> m_color;  // RGB particle color
+    std::array<int, 3> m_color;
+
+public:
+    const std::string m_name;
 };
 
 #endif

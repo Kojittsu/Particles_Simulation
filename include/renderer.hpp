@@ -3,6 +3,7 @@
 
 #include <SFML/Graphics.hpp>
 #include "universe.h"
+#include "textBox.hpp"
 
 
 class Renderer {
