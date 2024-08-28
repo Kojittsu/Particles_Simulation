@@ -1,6 +1,6 @@
 # Particle Simulation
 
-This project is a particle simulation using the C++ programming language. It models the interaction of particles in a 2D universe.
+This project is a particle simulation using the C++ programming language. It models the interaction of particles in a 3D universe.
 
 
 ## Explicit Euler for Particle Dynamics Resolution
@@ -36,16 +36,13 @@ The explicit Euler method is simple to implement but can introduce approximation
 - Universe simulation :
   - Particle-particle collisions
   - Particle-box collisions.
-  - Particle-circle collisions if circle radius is not zero.
   - Global acceleration set to all particles.
   - Energy restitution must be set in [0,1], 0 mean all energy is loss, 1 mean energy conservation.
 
 - Universe rendering :
   - Create a window that display universe simulation.
-  - Window's dimensions are set to the dimensions of the box multiplied by a scale factor pixels (1 mean that one pixel is equivalent to one meters).
   - Simulation speed is set to a speed factor (1 mean real time simulation).
   - Display simulation time in runtime.
-  - GUI clickable buttons.
 
 - Miscellaneous :
   - A datafile name can be set to save particles motions over time.
@@ -55,12 +52,12 @@ The explicit Euler method is simple to implement but can introduce approximation
 This is the YAML configuration file structure :
 ```yaml
 particles:
-  - position: [double, double] # Particle position in meters
-    velocity: [double, double] # Particle velocity in meters
-    radius: double             # Particle radius in meters
-    mass: double               # Particle mass in kilograms
-    color: [int, int, int]     # Particle color in RGB format
-    name: string               # Particle name (can be empty)
+  - position: [double, double, double] # Particle position in meters
+    velocity: [double, double, double] # Particle velocity in meters
+    radius: double                     # Particle radius in meters
+    mass: double                       # Particle mass in kilograms
+    color: [int, int, int]             # Particle color in RGB format
+    name: string                       # Particle name (can be empty)
 
   # Add as many particles as you want
 
@@ -68,6 +65,7 @@ randomParticles:
   numbers: int         # Number of random particles
   maxVelocityX: double # Particle max X random velocity in meters/second
   maxVelocityY: double # Particle max Y random velocity in meters/second
+  maxVelocityZ: double # Particle max Z random velocity in meters/second
   minRadius: double    # Particle min random radius in meters
   maxRadius: double    # Particle max random radius in meters
   minMass: double      # Particle min random mass in kilograms
@@ -76,23 +74,19 @@ randomParticles:
 box:
   xOrigin: double # Box X origin in meters
   yOrigin: double # Box Y origin in meters
+  zOrigin: double # Box Z origin in meters
   length: double  # Box length in meters
   height: double  # Box height in meters
-
-circle:
-  centerX: double # Circle X center in meters
-  centerY: double # Circle X center in meters
-  radius: double  # Circle radius in meters
+  depth: double   # Box depth in meters
 
 simulation:
   deltaTime: double
-  applyGravity: bool                   # Compute Newton's law of universal gravitation
-  globalAcceleration: [double, double] # Global acceleration applied to all objects
-  coefficientRestitution: double       # Energy restitution during collision (1.0 mean energy conservation)
-  dataFileName: string                 # data file name for saving particles positions through time (can be empty)
+  applyGravity: bool                           # Compute Newton's law of universal gravitation
+  globalAcceleration: [double, double, double] # Global acceleration applied to all objects
+  coefficientRestitution: double               # Energy restitution during collision (1.0 mean energy conservation)
+  dataFileName: string                         # data file name for saving particles positions through time (can be empty)
 
 visualization:
-  scaleFactorPixels: double
   speedFactor: double
 ```
 

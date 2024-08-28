@@ -13,7 +13,7 @@ INC_SUBDIRS = $(INC_DIR)/core $(INC_DIR)/gui
 # Compilator and options
 CXX = g++
 CXXFLAGS = -Wall -I$(INC_DIR) -I$(INC_DIR)/core -I$(INC_DIR)/gui -std=c++11
-LDFLAGS = -lsfml-graphics -lsfml-window -lsfml-system -lyaml-cpp
+LDFLAGS = -lglfw -lGLU -lGL -lyaml-cpp
 
 # Source and object files list
 SRCS = $(foreach dir,$(SRC_SUBDIRS),$(wildcard $(dir)/*.cpp))

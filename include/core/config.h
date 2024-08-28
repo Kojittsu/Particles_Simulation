@@ -13,6 +13,7 @@ struct Config {
     int rndParticle_numbers;
     double rndParticle_maxVelocityX;
     double rndParticle_maxVelocityY;
+    double rndParticle_maxVelocityZ;
     double rndParticle_minRadius;
     double rndParticle_maxRadius;
     double rndParticle_minMass;
@@ -20,20 +21,17 @@ struct Config {
     
     double boxOriginX;
     double boxOriginY;
+    double boxOriginZ;
     double boxLength;
     double boxHeight;
-    
-    double circleX;
-    double circleY;
-    double circleRadius;
+    double boxDepth;
     
     double deltaTime;
     bool applyGravity;
-    std::array<double, 2> globalAcceleration;
+    std::array<double, 3> globalAcceleration;
     double coefficientRestitution;
     std::string dataFileName;
     
-    double scaleFactorPixels;
     double speedFactor;
 };
 
