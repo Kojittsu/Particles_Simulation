@@ -30,9 +30,6 @@ public:
     const double m_boxHeight;
     const double m_boxDepth;
 
-    // Visualization
-    const double m_scaleFactorPixels;
-
     // Simulation parameters
     double m_runTime = 0;
 

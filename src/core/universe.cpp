@@ -11,7 +11,6 @@ Universe::Universe(const Config& config)
       m_boxLength(config.boxLength),
       m_boxHeight(config.boxHeight),
       m_boxDepth(config.boxDepth),
-      m_scaleFactorPixels(config.scaleFactorPixels),
       m_particles(config.particles),
       m_coefficientRestitution(config.coefficientRestitution),
       m_deltaTime(config.deltaTime),

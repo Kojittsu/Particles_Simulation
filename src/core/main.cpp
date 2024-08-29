@@ -2,6 +2,56 @@
 #include <GLFW/glfw3.h>
 #include <GL/glu.h>  // Include GLU in order to use gluPerspective
 #include <vector>
+#include <cmath>
+
+// Variables for angles of rotation
+float azimuth = 0.0f;
+float elevation = 0.0f;
+float radius = 50.0f;
+
+// Initial cursor position (center of window)
+float lastX = 400.0f;
+float lastY = 300.0f;
+bool firstMouse = true;
+
+void mouse_callback(GLFWwindow* window, double xpos, double ypos) {
+    if (firstMouse) {
+        lastX = xpos;
+        lastY = ypos;
+        firstMouse = false;
+    }
+
+    float xoffset = xpos - lastX;
+    float yoffset = lastY - ypos; // Reverse the Y offset so that the upward movement is positive
+
+    lastX = xpos;
+    lastY = ypos;
+
+    float sensitivity = 0.1f;
+    xoffset *= sensitivity;
+    yoffset *= sensitivity;
+
+    azimuth += xoffset;
+    elevation += yoffset;
+
+    if (elevation > 89.0f) elevation = 89.0f;
+    if (elevation < -89.0f) elevation = -89.0f;
+}
+
+void updateCameraView() {
+    glLoadIdentity();
+
+    float azimuthRad = azimuth * (M_PI / 180.0f);
+    float elevationRad = elevation * (M_PI / 180.0f);
+
+    float x = radius * cos(elevationRad) * cos(azimuthRad);
+    float y = radius * sin(elevationRad);
+    float z = radius * cos(elevationRad) * sin(azimuthRad);
+
+    gluLookAt(x, y, z,
+              0.0, 0.0, 0.0,
+              0.0, 1.0, 0.0);
+}
 
 // Callback to resize window
 void framebuffer_size_callback(GLFWwindow* window, int width, int height) {
@@ -37,7 +87,7 @@ void renderParticles(const std::vector<Particle>& particles) {
 
         glPushMatrix();
         glTranslated(position[0], position[1], position[2]);
-        gluSphere(quad, radius, 32, 32); // Raise up segments for more details
+        gluSphere(quad, radius, 16, 16); // Raise up segments for more details
         glPopMatrix();
     }
     gluDeleteQuadric(quad);
@@ -120,6 +170,9 @@ int main(int argc, char* argv[]) {
     glfwMakeContextCurrent(window);
     glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
 
+    glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+    glfwSetCursorPosCallback(window, mouse_callback);
+
     glEnable(GL_DEPTH_TEST);
 
     glEnable(GL_LIGHTING);
@@ -147,10 +200,8 @@ int main(int argc, char* argv[]) {
             universe.makeStep();
 
             glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-            glLoadIdentity();
-            gluLookAt(0.0, 0.0, 50.0,  // camera position
-                      0.0, 0.0, 0.0,   // Where the camera looks
-                      0.0, 1.0, 0.0);  // Camera orientation (upwards)
+
+            updateCameraView();
 
             renderParticles(universe.getParticles());
 
