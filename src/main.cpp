@@ -14,6 +14,10 @@ float lastX = 400.0f;
 float lastY = 300.0f;
 bool firstMouse = true;
 
+// Render distance parameters
+constexpr float minRenderDistance = 0.1;
+constexpr float maxRenderDistance = 1000;
+
 void mouse_callback(GLFWwindow* window, double xpos, double ypos) {
     if (firstMouse) {
         lastX = xpos;
@@ -63,7 +67,7 @@ void framebuffer_size_callback(GLFWwindow* window, int width, int height) {
     double aspectRatio = static_cast<double>(width) / static_cast<double>(height);
     
     // Configure 45 degrees view angle perspective
-    gluPerspective(45.0, aspectRatio, 0.1, 100.0);
+    gluPerspective(45.0, aspectRatio, minRenderDistance, maxRenderDistance);
     
     glMatrixMode(GL_MODELVIEW);
 }
