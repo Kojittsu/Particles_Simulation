@@ -7,12 +7,12 @@ INC_DIR = include
 OBJ_DIR = obj
 
 # Subdirectories for core and gui
-SRC_SUBDIRS = $(SRC_DIR)/core $(SRC_DIR)/gui
-INC_SUBDIRS = $(INC_DIR)/core $(INC_DIR)/gui
+SRC_SUBDIRS = $(SRC_DIR)/core $(SRC_DIR)
+INC_SUBDIRS = $(INC_DIR)/core $(INC_DIR)
 
 # Compilator and options
 CXX = g++
-CXXFLAGS = -Wall -I$(INC_DIR) -I$(INC_DIR)/core -I$(INC_DIR)/gui -std=c++11
+CXXFLAGS = -Wall -I$(INC_DIR) -I$(INC_DIR) -I$(INC_DIR) -std=c++11
 LDFLAGS = -lglfw -lGLU -lGL -lyaml-cpp
 
 # Source and object files list
