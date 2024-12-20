@@ -89,30 +89,35 @@ simulation:
 visualization:
   speedFactor: double
 ```
+## Dependencies
 
-## Compilation and Execution
+- Nix package manager installed on your system.
 
-### Prerequisites
+## Setup
 
-- A C++ compiler compatible with C++11 or higher (e.g., g++).
-- `make` installed on your system.
-
-### Compilation Instructions
-
-1. Clone this GitHub repository to your local machine:
+1. Clone the repository
 ```bash
 git clone https://github.com/lboudet/Particles_Simulation.git
+```
+
+2. Access the repository
+```bash
 cd Particles_simulation
 ```
 
-2. Compile the project using make:
+3. Enter Nix development environment
+```bash
+nix-shell --pure shell.nix
+```
+
+4. Compile
 ```bash
 make
 ```
 
-### Execution Instructions
+## Execution
 
-To run the simulation, execute the compiled binary:
+To execute the simulation type
 ```bash
 ./ExecuteSimu <config_file>
 ```
@@ -120,7 +125,7 @@ where `config_file` is your configuration file.
 
 ## Cleaning
 
-To clean up the object files and the generated binary:
+To clean up the generated files type
 ```bash
 make clean
 ```

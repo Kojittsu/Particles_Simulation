@@ -106,6 +106,20 @@ void drawBox(double xOrigin, double yOrigin, double zOrigin, double length, doub
     float y1 = y0 + height;
     float z1 = z0 + depth;
 
+    // Désactiver la lumière pour dessiner la boîte
+    glDisable(GL_LIGHTING);
+    glColor3f(1.0f, 1.0f, 1.0f);  // Couleur blanche
+
+
+    // Define material properties
+    GLfloat neutral_diffuse[] = { 1.0f, 1.0f, 1.0f, 1.0f };
+    GLfloat neutral_specular[] = { 0.0f, 0.0f, 0.0f, 1.0f };
+    GLfloat neutral_shininess[] = { 0.0f };
+
+    glMaterialfv(GL_FRONT, GL_DIFFUSE, neutral_diffuse);
+    glMaterialfv(GL_FRONT, GL_SPECULAR, neutral_specular);
+    glMaterialfv(GL_FRONT, GL_SHININESS, neutral_shininess);
+
     glBegin(GL_LINES);
 
     // Front panel vertices (z = z0)
@@ -127,6 +141,8 @@ void drawBox(double xOrigin, double yOrigin, double zOrigin, double length, doub
     glVertex3f(x0, y1, z0); glVertex3f(x0, y1, z1);
 
     glEnd();
+
+    glEnable(GL_LIGHTING);  // Réactiver la lumière après
 }
 
 int main(int argc, char* argv[]) {
@@ -183,7 +199,7 @@ int main(int argc, char* argv[]) {
     glEnable(GL_LIGHT0); // Set light number 0
 
     // Configure light properties
-    GLfloat light_pos[] = {1.0f, 1.0f, 1.0f, 0.0f};
+    GLfloat light_pos[] = {1.0f, 1.0f, 1.0f, 1.0f};
     GLfloat light_diffuse[] = {1.0f, 1.0f, 1.0f, 1.0f};
     GLfloat light_specular[] = {1.0f, 1.0f, 1.0f, 1.0f};
 
