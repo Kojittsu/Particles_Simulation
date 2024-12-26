@@ -6,6 +6,8 @@ pkgs.mkShell {
   ];
 
   buildInputs = with pkgs; [
+    glm
+    git
     glew
     glfw
     yaml-cpp

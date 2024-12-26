@@ -86,20 +86,61 @@ void Renderer::mouse_callback(GLFWwindow* window, double xpos, double ypos) {
 
     if (m_elevation > 89.0f) m_elevation = 89.0f;
     if (m_elevation < -89.0f) m_elevation = -89.0f;
+
+    float azimuthRad = glm::radians(m_azimuth);
+    float elevationRad = glm::radians(m_elevation);
+
+    m_cameraFront = glm::normalize(glm::vec3(
+        cos(elevationRad) * cos(azimuthRad),
+        sin(elevationRad),
+        cos(elevationRad) * sin(azimuthRad)
+    ));
+
+    m_cameraRight = glm::normalize(glm::cross(m_cameraFront, m_cameraUp));
 }
+
+
+void Renderer::processKeyboardInput() {
+    float currentFrame = glfwGetTime();
+    float deltaTime = currentFrame - m_lastFrameTime;
+    m_lastFrameTime = currentFrame;
+
+    float velocity = m_cameraSpeed * deltaTime;
+
+    if (glfwGetKey(m_window, GLFW_KEY_W) == GLFW_PRESS) {
+        m_cameraPosition += m_cameraFront * velocity;
+    }
+    if (glfwGetKey(m_window, GLFW_KEY_S) == GLFW_PRESS) {
+        m_cameraPosition -= m_cameraFront * velocity;
+    }
+    if (glfwGetKey(m_window, GLFW_KEY_A) == GLFW_PRESS) {
+        m_cameraPosition -= m_cameraRight * velocity;
+    }
+    if (glfwGetKey(m_window, GLFW_KEY_D) == GLFW_PRESS) {
+        m_cameraPosition += m_cameraRight * velocity;
+    }
+    if (glfwGetKey(m_window, GLFW_KEY_SPACE) == GLFW_PRESS) {
+        m_cameraPosition += m_cameraUp * velocity;
+    }
+    if (glfwGetKey(m_window, GLFW_KEY_LEFT_SHIFT) == GLFW_PRESS) {
+        m_cameraPosition -= m_cameraUp * velocity;
+    }
+}
+
 
 void Renderer::updateCameraView() {
     glLoadIdentity();
 
-    float azimuthRad = m_azimuth * (M_PI / 180.0f);
-    float elevationRad = m_elevation * (M_PI / 180.0f);
+    glm::vec3 cameraTarget = m_cameraPosition + m_cameraFront;
 
-    float x = m_radius * cos(elevationRad) * cos(azimuthRad);
-    float y = m_radius * sin(elevationRad);
-    float z = m_radius * cos(elevationRad) * sin(azimuthRad);
-
-    gluLookAt(x, y, z, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
+    gluLookAt(
+        m_cameraPosition.x, m_cameraPosition.y, m_cameraPosition.z, // Position de la caméra
+        cameraTarget.x, cameraTarget.y, cameraTarget.z,             // Point ciblé par la caméra
+        m_cameraUp.x, m_cameraUp.y, m_cameraUp.z                    // Vecteur "Up"
+    );
 }
+
+
 
 void Renderer::render(const Universe& universe) {
 

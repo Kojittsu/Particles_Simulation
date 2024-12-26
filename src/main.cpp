@@ -57,6 +57,8 @@ int main(int argc, char* argv[]) {
 
             universe.makeStep();
 
+            renderer.processKeyboardInput();
+
             // Clear screen
             renderer.clear();
 
