@@ -16,14 +16,15 @@ public:
     void framebufferSizeCallback(GLFWwindow* window, int width, int height);
     void cursorPosCallback(GLFWwindow* window, double xpos, double ypos);
     void keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods);
+
     void processInput();
     void updateCameraView();
+
     void render(const Universe& universe);
+    void drawBox();
     void clear();
-    void drawBox(double xOrigin, double yOrigin, double zOrigin, double length, double height, double depth);
 
 private:
-    GLFWwindow* m_window;
     const Config& m_config;
     GLUquadric* m_quadric;
 

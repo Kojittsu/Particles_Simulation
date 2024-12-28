@@ -62,7 +62,7 @@ int main(int argc, char* argv[]) {
             universe.makeStep();
             renderer.updateCameraView();
             renderer.render(universe);
-            renderer.drawBox(config.boxOriginX, config.boxOriginY, config.boxOriginZ, config.boxLength, config.boxHeight, config.boxDepth);
+            renderer.drawBox();
 
             // Swap buffers
             glfwSwapBuffers(window);

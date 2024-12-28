@@ -2,7 +2,7 @@
 #include <cmath>
 
 Renderer::Renderer(GLFWwindow* window, const Config& config)
-    : m_window(window), m_config(config), m_quadric(nullptr) {
+    : m_config(config), m_quadric(nullptr) {
     m_quadric = gluNewQuadric();
 
     glfwMakeContextCurrent(window);
@@ -189,14 +189,14 @@ void Renderer::clear() {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 }
 
-void Renderer::drawBox(double xOrigin, double yOrigin, double zOrigin, double length, double height, double depth) {
-    float x0 = xOrigin;
-    float y0 = yOrigin;
-    float z0 = zOrigin;
+void Renderer::drawBox() {
+    float x0 = m_config.boxOriginX;
+    float y0 = m_config.boxOriginY;
+    float z0 = m_config.boxOriginZ;
 
-    float x1 = x0 + length;
-    float y1 = y0 + height;
-    float z1 = z0 + depth;
+    float x1 = x0 + m_config.boxLength;
+    float y1 = y0 + m_config.boxHeight;
+    float z1 = z0 + m_config.boxDepth;
 
     glDisable(GL_LIGHTING);
     glColor3f(1.0f, 1.0f, 1.0f);
