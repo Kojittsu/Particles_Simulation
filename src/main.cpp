@@ -45,7 +45,7 @@ int main(int argc, char* argv[]) {
         return -1;
     }
 
-    // Initialiser le rendu
+    // Create renderer
     Renderer renderer(window, config);
 
     // Main loop
@@ -55,20 +55,13 @@ int main(int argc, char* argv[]) {
 
         if (currentTime * config.speedFactor > universe.m_runTime) {
 
-            universe.makeStep();
-
-            renderer.processKeyboardInput();
-
-            // Clear screen
             renderer.clear();
 
-            // update view
+            renderer.processInput();
+
+            universe.makeStep();
             renderer.updateCameraView();
-
-            // Render particles
             renderer.render(universe);
-
-            // Draw box
             renderer.drawBox(config.boxOriginX, config.boxOriginY, config.boxOriginZ, config.boxLength, config.boxHeight, config.boxDepth);
 
             // Swap buffers
@@ -85,10 +78,8 @@ int main(int argc, char* argv[]) {
         }
     }
 
-    // Nettoyer GLFW
     glfwTerminate();
 
-    // Fermer le fichier de sortie
     if (file.is_open()) {
         file.close();
     }

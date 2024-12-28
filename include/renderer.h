@@ -13,9 +13,10 @@ public:
     Renderer(GLFWwindow* window, const Config& config);
     ~Renderer();
 
-    void framebuffer_size_callback(GLFWwindow* window, int width, int height);
-    void mouse_callback(GLFWwindow* window, double xpos, double ypos);
-    void processKeyboardInput();
+    void framebufferSizeCallback(GLFWwindow* window, int width, int height);
+    void cursorPosCallback(GLFWwindow* window, double xpos, double ypos);
+    void keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods);
+    void processInput();
     void updateCameraView();
     void render(const Universe& universe);
     void clear();
@@ -46,6 +47,8 @@ private:
     glm::vec3 m_cameraRight;
 
     double m_lastFrameTime = 0.0;
+
+    bool m_keyStates[1024] = {false};
 };
 
 #endif // RENDERER_H

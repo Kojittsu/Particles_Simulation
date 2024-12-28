@@ -7,22 +7,30 @@ Renderer::Renderer(GLFWwindow* window, const Config& config)
 
     glfwMakeContextCurrent(window);
 
-    // Associer l'instance actuelle à la fenêtre
+    // Associate actual instance to the window
     glfwSetWindowUserPointer(window, this);
 
-    // Wrapper pour framebuffer_size_callback
+    // Wrapper pour framebufferSizeCallback
     glfwSetFramebufferSizeCallback(window, [](GLFWwindow* win, int width, int height) {
         auto renderer = static_cast<Renderer*>(glfwGetWindowUserPointer(win));
         if (renderer) {
-            renderer->framebuffer_size_callback(win, width, height);
+            renderer->framebufferSizeCallback(win, width, height);
         }
     });
 
-    // Wrapper pour mouse_callback
+    // Wrapper pour cursorPosCallback
     glfwSetCursorPosCallback(window, [](GLFWwindow* win, double xpos, double ypos) {
         auto renderer = static_cast<Renderer*>(glfwGetWindowUserPointer(win));
         if (renderer) {
-            renderer->mouse_callback(win, xpos, ypos);
+            renderer->cursorPosCallback(win, xpos, ypos);
+        }
+    });
+
+    // Wrapper pour keyCallback
+    glfwSetKeyCallback(window, [](GLFWwindow* win, int key, int scancode, int action, int mods) {
+        auto renderer = static_cast<Renderer*>(glfwGetWindowUserPointer(win));
+        if (renderer) {
+            renderer->keyCallback(win, key, scancode, action, mods);
         }
     });
 
@@ -50,7 +58,7 @@ Renderer::~Renderer() {
 }
 
 // Callback to resize window
-void Renderer::framebuffer_size_callback(GLFWwindow* window, int width, int height) {
+void Renderer::framebufferSizeCallback(GLFWwindow* window, int width, int height) {
     
     glViewport(0, 0, width, height);
     glMatrixMode(GL_PROJECTION);
@@ -64,7 +72,8 @@ void Renderer::framebuffer_size_callback(GLFWwindow* window, int width, int heig
     glMatrixMode(GL_MODELVIEW);
 }
 
-void Renderer::mouse_callback(GLFWwindow* window, double xpos, double ypos) {
+void Renderer::cursorPosCallback(GLFWwindow* window, double xpos, double ypos) {
+
     if (m_firstMouse) {
         m_lastX = xpos;
         m_lastY = ypos;
@@ -100,29 +109,39 @@ void Renderer::mouse_callback(GLFWwindow* window, double xpos, double ypos) {
 }
 
 
-void Renderer::processKeyboardInput() {
+void Renderer::keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods) {
+    if (key >= 0 && key < 1024) { // Vérifie que la touche est dans les limites
+        if (action == GLFW_PRESS) {
+            m_keyStates[key] = true;
+        } else if (action == GLFW_RELEASE) {
+            m_keyStates[key] = false;
+        }
+    }
+}
+
+void Renderer::processInput() {
+
     float currentFrame = glfwGetTime();
     float deltaTime = currentFrame - m_lastFrameTime;
     m_lastFrameTime = currentFrame;
-
     float velocity = m_cameraSpeed * deltaTime;
 
-    if (glfwGetKey(m_window, GLFW_KEY_W) == GLFW_PRESS) {
+    if (m_keyStates[GLFW_KEY_W]) {
         m_cameraPosition += m_cameraFront * velocity;
     }
-    if (glfwGetKey(m_window, GLFW_KEY_S) == GLFW_PRESS) {
+    if (m_keyStates[GLFW_KEY_S]) {
         m_cameraPosition -= m_cameraFront * velocity;
     }
-    if (glfwGetKey(m_window, GLFW_KEY_A) == GLFW_PRESS) {
+    if (m_keyStates[GLFW_KEY_A]) {
         m_cameraPosition -= m_cameraRight * velocity;
     }
-    if (glfwGetKey(m_window, GLFW_KEY_D) == GLFW_PRESS) {
+    if (m_keyStates[GLFW_KEY_D]) {
         m_cameraPosition += m_cameraRight * velocity;
     }
-    if (glfwGetKey(m_window, GLFW_KEY_SPACE) == GLFW_PRESS) {
+    if (m_keyStates[GLFW_KEY_SPACE]) {
         m_cameraPosition += m_cameraUp * velocity;
     }
-    if (glfwGetKey(m_window, GLFW_KEY_LEFT_SHIFT) == GLFW_PRESS) {
+    if (m_keyStates[GLFW_KEY_LEFT_SHIFT]) {
         m_cameraPosition -= m_cameraUp * velocity;
     }
 }
