@@ -125,7 +125,6 @@ void Renderer::cursorPosCallback(GLFWwindow* window, double xpos, double ypos) {
     m_cameraRight = glm::normalize(glm::cross(m_cameraFront, m_cameraUp));
 }
 
-
 void Renderer::keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods) {
     if (key >= 0 && key < 1024) { // Vérifie que la touche est dans les limites
         if (action == GLFW_PRESS) {
@@ -163,7 +162,6 @@ void Renderer::processInput() {
     }
 }
 
-
 void Renderer::updateCameraView() {
     glLoadIdentity();
 
@@ -175,8 +173,6 @@ void Renderer::updateCameraView() {
         m_cameraUp.x, m_cameraUp.y, m_cameraUp.z                    // Vecteur "Up"
     );
 }
-
-
 
 void Renderer::render(const Universe& universe) {
 
@@ -240,18 +236,15 @@ void Renderer::drawBox() {
     glEnable(GL_LIGHTING);
 }
 
-void Renderer::renderImGui() {
-
-    float sliderTestValue = 0.0f;
+void Renderer::renderImGui(Universe& universe) {
 
     // Start new ImGui frame
     ImGui_ImplOpenGL3_NewFrame();
     ImGui_ImplGlfw_NewFrame();
     ImGui::NewFrame();
-    
+
     ImGui::Begin("Contrôles", nullptr, ImGuiWindowFlags_AlwaysAutoResize);
-    ImGui::Text("sliderTestValue : %f", 0.0);
-    ImGui::SliderFloat("sliderTest", &sliderTestValue, -5.0f, 5.0f);
+    if (ImGui::Button("Spawn particle")) {universe.addRndParticle(m_config.rndParticle_maxVelocityX, m_config.rndParticle_maxVelocityY, m_config.rndParticle_maxVelocityZ, m_config.rndParticle_minRadius, m_config.rndParticle_maxRadius, m_config.rndParticle_minMass, m_config.rndParticle_maxMass);}
     ImGui::End();
 
     // Render ImGui

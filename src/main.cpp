@@ -63,7 +63,7 @@ int main(int argc, char* argv[]) {
             renderer.updateCameraView();
             renderer.render(universe);
             renderer.drawBox();
-            renderer.renderImGui();
+            renderer.renderImGui(universe);
 
             // Swap buffers
             glfwSwapBuffers(window);
