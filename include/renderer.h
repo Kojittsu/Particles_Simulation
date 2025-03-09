@@ -22,6 +22,7 @@ public:
 
     void render(const Universe& universe);
     void drawBox();
+    void renderImGui(); 
     void clear();
 
 private:

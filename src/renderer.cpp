@@ -1,6 +1,10 @@
 #include "renderer.h"
 #include <cmath>
 
+#include "imgui.h"
+#include "imgui_impl_glfw.h"
+#include "imgui_impl_opengl3.h"
+
 Renderer::Renderer(GLFWwindow* window, const Config& config)
     : m_config(config), m_quadric(nullptr) {
     m_quadric = gluNewQuadric();
@@ -49,6 +53,19 @@ Renderer::Renderer(GLFWwindow* window, const Config& config)
     glLightfv(GL_LIGHT0, GL_SPECULAR, light_specular);
 
     glfwSetTime(0.0);
+
+    // Setup Dear ImGui context
+    IMGUI_CHECKVERSION();
+    ImGui::CreateContext();
+    ImGuiIO& io = ImGui::GetIO();
+    io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;
+
+    // Setup Dear ImGui style
+    ImGui::StyleColorsDark();
+
+    // ImGui/Glfw bindings
+    ImGui_ImplGlfw_InitForOpenGL(window, true);
+    ImGui_ImplOpenGL3_Init("#version 330");
 }
 
 Renderer::~Renderer() {
@@ -221,4 +238,23 @@ void Renderer::drawBox() {
     glEnd();
 
     glEnable(GL_LIGHTING);
+}
+
+void Renderer::renderImGui() {
+
+    float sliderTestValue = 0.0f;
+
+    // Start new ImGui frame
+    ImGui_ImplOpenGL3_NewFrame();
+    ImGui_ImplGlfw_NewFrame();
+    ImGui::NewFrame();
+    
+    ImGui::Begin("Contrôles", nullptr, ImGuiWindowFlags_AlwaysAutoResize);
+    ImGui::Text("sliderTestValue : %f", 0.0);
+    ImGui::SliderFloat("sliderTest", &sliderTestValue, -5.0f, 5.0f);
+    ImGui::End();
+
+    // Render ImGui
+    ImGui::Render();
+    ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 }
