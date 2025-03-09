@@ -244,7 +244,8 @@ void Renderer::renderImGui(Universe& universe) {
     ImGui::NewFrame();
 
     ImGui::Begin("Contrôles", nullptr, ImGuiWindowFlags_AlwaysAutoResize);
-    if (ImGui::Button("Spawn particle")) {universe.addRndParticle(m_config.rndParticle_maxVelocityX, m_config.rndParticle_maxVelocityY, m_config.rndParticle_maxVelocityZ, m_config.rndParticle_minRadius, m_config.rndParticle_maxRadius, m_config.rndParticle_minMass, m_config.rndParticle_maxMass);}
+    if (ImGui::Button("Spawn particle")) {universe.addRndParticle();}
+    if (ImGui::Button("Toggle gravity")) {universe.toggleGravity();}
     ImGui::End();
 
     // Render ImGui
