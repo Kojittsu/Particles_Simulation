@@ -22,6 +22,7 @@ public:
     void handleBoxCollision(Particle& particle);
     std::vector<Particle> const& getParticles() const;
     void toggleGravity();
+    bool getIsGravity();
 
     const Config m_config;
 

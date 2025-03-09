@@ -179,3 +179,7 @@ const std::vector<Particle>& Universe::getParticles() const {
 void Universe::toggleGravity() {
     m_applyGravity = !m_applyGravity;
 }
+
+bool Universe::getIsGravity(){
+    return m_applyGravity;
+}

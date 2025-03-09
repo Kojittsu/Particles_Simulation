@@ -245,7 +245,10 @@ void Renderer::renderImGui(Universe& universe) {
 
     ImGui::Begin("Contrôles", nullptr, ImGuiWindowFlags_AlwaysAutoResize);
     if (ImGui::Button("Spawn particle")) {universe.addRndParticle();}
+    
     if (ImGui::Button("Toggle gravity")) {universe.toggleGravity();}
+    ImGui::SameLine();
+    ImGui::Text(universe.getIsGravity() ? "Gravity ON" : "Gravity OFF");
     ImGui::End();
 
     // Render ImGui
