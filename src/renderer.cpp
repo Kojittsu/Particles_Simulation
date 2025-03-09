@@ -34,7 +34,7 @@ Renderer::Renderer(GLFWwindow* window, const Config& config)
         }
     });
 
-    glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+    glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
 
     glEnable(GL_DEPTH_TEST);
     glEnable(GL_LIGHTING);

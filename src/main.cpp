@@ -4,6 +4,10 @@
 #include <iostream>
 #include <fstream>
 
+#include "imgui.h"
+#include "imgui_impl_glfw.h"
+#include "imgui_impl_opengl3.h"
+
 int main(int argc, char* argv[]) {
     // Check if the configuration file name is provided
     if (argc != 2 ) {
@@ -48,6 +52,23 @@ int main(int argc, char* argv[]) {
     // Create renderer
     Renderer renderer(window, config);
 
+    // Setup Dear ImGui context
+    IMGUI_CHECKVERSION();
+    ImGui::CreateContext();
+    ImGuiIO& io = ImGui::GetIO();
+    io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;
+
+    // Setup Dear ImGui style
+    ImGui::StyleColorsDark();
+
+    glfwMakeContextCurrent(window);
+
+    // ImGui/Glfw bindings
+    ImGui_ImplGlfw_InitForOpenGL(window, true);
+    ImGui_ImplOpenGL3_Init("#version 330");
+
+    float sliderTestValue = 0.0f;
+
     // Main loop
     while (!glfwWindowShouldClose(window)) {
 
@@ -63,6 +84,20 @@ int main(int argc, char* argv[]) {
             renderer.updateCameraView();
             renderer.render(universe);
             renderer.drawBox();
+
+
+            // Start new ImGui frame
+            ImGui_ImplOpenGL3_NewFrame();
+            ImGui_ImplGlfw_NewFrame();
+            ImGui::NewFrame();
+            ImGui::Begin("Contrôles", nullptr, ImGuiWindowFlags_AlwaysAutoResize);
+            ImGui::Text("sliderTestValue : %f", sliderTestValue);
+            ImGui::SliderFloat("sliderTest", &sliderTestValue, -5.0f, 5.0f);
+            ImGui::End();
+
+            // Render ImGui
+            ImGui::Render();
+            ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 
             // Swap buffers
             glfwSwapBuffers(window);
