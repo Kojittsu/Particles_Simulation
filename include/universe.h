@@ -24,12 +24,12 @@ public:
     void toggleGravity();
     bool getIsGravity();
 
-    const Config m_config;
 
     // Simulation parameters
     double m_runTime = 0;
 
 private:
+    const Config m_config;
     std::vector<Particle> m_particles;
     bool m_applyGravity;
     std::array<double, 3> m_globalAcceleration;
