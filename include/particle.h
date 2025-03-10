@@ -15,7 +15,7 @@ public:
         const std::array<double, 3>& acceleration,
         const double radius, const double mass,
         const std::array<int, 3>& color,
-        const std::string& name
+        const std::string& name = ""
         );
     
     // Getters for position

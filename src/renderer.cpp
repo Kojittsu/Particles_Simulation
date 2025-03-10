@@ -299,7 +299,7 @@ void Renderer::renderImGui(Universe& universe) {
         ImGui::InputInt("B", &color[2]);
 
         if (ImGui::Button("Confirm")) {
-            Particle particle(position, velocity, acceleration, radius, mass, color, "test");
+            Particle particle(position, velocity, acceleration, radius, mass, color);
             universe.addParticle(particle);
         }
 
