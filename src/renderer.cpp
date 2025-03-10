@@ -238,18 +238,73 @@ void Renderer::drawBox() {
 
 void Renderer::renderImGui(Universe& universe) {
 
+    static bool showParticleConfig = false;
+    static std::array<double, 3> position     = {0.0, 0.0, 0.0};
+    static std::array<double, 3> velocity     = {0.0, 0.0, 0.0};
+    static std::array<double, 3> acceleration = {0.0, 0.0, 0.0};
+    static double radius = 0.0;
+    static double mass   = 0.0;
+    static std::array<int, 3> color = {0, 0, 0};
+
     // Start new ImGui frame
     ImGui_ImplOpenGL3_NewFrame();
     ImGui_ImplGlfw_NewFrame();
     ImGui::NewFrame();
 
-    ImGui::Begin("Contrôles", nullptr, ImGuiWindowFlags_AlwaysAutoResize);
-    if (ImGui::Button("Spawn particle")) {universe.addRndParticle();}
+    ImGui::Begin("Controls", nullptr, ImGuiWindowFlags_AlwaysAutoResize);
     
-    if (ImGui::Button("Toggle gravity")) {universe.toggleGravity();}
+    if (ImGui::Button("Spawn random particle")) {
+        universe.addRndParticle();
+    }
+
+    if (ImGui::Button("Toggle gravity")) {
+        universe.toggleGravity();
+    }
     ImGui::SameLine();
     ImGui::Text(universe.getIsGravity() ? "Gravity ON" : "Gravity OFF");
+
+    if (ImGui::Button("Add particle")) {
+        showParticleConfig = true;
+    }
+
     ImGui::End();
+
+    if (showParticleConfig) {
+        ImGui::Begin("New particle configuration", &showParticleConfig, ImGuiWindowFlags_AlwaysAutoResize);
+        
+        ImGui::Text("Position:");
+        ImGui::InputDouble("X (m)", &position[0]);
+        ImGui::InputDouble("Y (m)", &position[1]);
+        ImGui::InputDouble("Z (m)", &position[2]);
+
+        ImGui::Text("Velocity:");
+        ImGui::InputDouble("Vx (m/s)", &velocity[0]);
+        ImGui::InputDouble("Vy (m/s)", &velocity[1]);
+        ImGui::InputDouble("Vz (m/s)", &velocity[2]);
+
+        ImGui::Text("Acceleration:");
+        ImGui::InputDouble("Ax (m/s^2)", &acceleration[0]);
+        ImGui::InputDouble("Ay (m/s^2)", &acceleration[1]);
+        ImGui::InputDouble("Az (m/s^2)", &acceleration[2]);
+
+        ImGui::Text("Radius:");
+        ImGui::InputDouble("Radius (m)", &radius);
+
+        ImGui::Text("Mass:");
+        ImGui::InputDouble("Mass (Kg)", &mass);
+
+        ImGui::Text("Color:");
+        ImGui::InputInt("R", &color[0]);
+        ImGui::InputInt("G", &color[1]);
+        ImGui::InputInt("B", &color[2]);
+
+        if (ImGui::Button("Confirm")) {
+            Particle particle(position, velocity, acceleration, radius, mass, color, "test");
+            universe.addParticle(particle);
+        }
+
+        ImGui::End();
+    }
 
     // Render ImGui
     ImGui::Render();
