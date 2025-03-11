@@ -6,16 +6,16 @@
 #include "imgui_impl_opengl3.h"
 
 Renderer::Renderer(GLFWwindow* window, const Config& config)
-    : m_config(config), m_quadric(nullptr) {
+    : m_window(window), m_config(config), m_quadric(nullptr) {
     m_quadric = gluNewQuadric();
 
-    glfwMakeContextCurrent(window);
+    glfwMakeContextCurrent(m_window);
 
     // Associate actual instance to the window
-    glfwSetWindowUserPointer(window, this);
+    glfwSetWindowUserPointer(m_window, this);
 
     // Wrapper pour framebufferSizeCallback
-    glfwSetFramebufferSizeCallback(window, [](GLFWwindow* win, int width, int height) {
+    glfwSetFramebufferSizeCallback(m_window, [](GLFWwindow* win, int width, int height) {
         auto renderer = static_cast<Renderer*>(glfwGetWindowUserPointer(win));
         if (renderer) {
             renderer->framebufferSizeCallback(win, width, height);
@@ -23,22 +23,22 @@ Renderer::Renderer(GLFWwindow* window, const Config& config)
     });
 
     // Wrapper pour cursorPosCallback
-    glfwSetCursorPosCallback(window, [](GLFWwindow* win, double xpos, double ypos) {
+    glfwSetCursorPosCallback(m_window, [](GLFWwindow* win, double xpos, double ypos) {
         auto renderer = static_cast<Renderer*>(glfwGetWindowUserPointer(win));
-        if (renderer) {
+        if (renderer && renderer->m_isSpectatorMode) {
             renderer->cursorPosCallback(win, xpos, ypos);
         }
     });
 
     // Wrapper pour keyCallback
-    glfwSetKeyCallback(window, [](GLFWwindow* win, int key, int scancode, int action, int mods) {
+    glfwSetKeyCallback(m_window, [](GLFWwindow* win, int key, int scancode, int action, int mods) {
         auto renderer = static_cast<Renderer*>(glfwGetWindowUserPointer(win));
-        if (renderer) {
+        if (renderer && renderer->m_isSpectatorMode) {
             renderer->keyCallback(win, key, scancode, action, mods);
         }
     });
 
-    glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
+    glfwSetInputMode(m_window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
 
     glEnable(GL_DEPTH_TEST);
     glEnable(GL_LIGHTING);
@@ -64,7 +64,7 @@ Renderer::Renderer(GLFWwindow* window, const Config& config)
     ImGui::StyleColorsDark();
 
     // ImGui/Glfw bindings
-    ImGui_ImplGlfw_InitForOpenGL(window, true);
+    ImGui_ImplGlfw_InitForOpenGL(m_window, true);
     ImGui_ImplOpenGL3_Init("#version 330");
 }
 
@@ -236,6 +236,16 @@ void Renderer::drawBox() {
     glEnable(GL_LIGHTING);
 }
 
+void Renderer::toggleSpectatorMode() {
+    m_isSpectatorMode = !m_isSpectatorMode;
+    if (m_isSpectatorMode) {
+       glfwSetInputMode(m_window, GLFW_CURSOR, GLFW_CURSOR_DISABLED); 
+    }
+    else {
+        glfwSetInputMode(m_window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
+    }
+}
+
 void Renderer::renderImGui(Universe& universe) {
 
     static bool showParticleConfig = false;
@@ -265,6 +275,10 @@ void Renderer::renderImGui(Universe& universe) {
 
     if (ImGui::Button("Add particle")) {
         showParticleConfig = true;
+    }
+
+    if (ImGui::Button("Toggle spectator mode")) {
+        toggleSpectatorMode();
     }
 
     ImGui::End();

@@ -22,10 +22,12 @@ public:
 
     void render(const Universe& universe);
     void drawBox();
+    void toggleSpectatorMode();
     void renderImGui(Universe& universe); 
     void clear();
 
 private:
+    GLFWwindow* m_window;
     const Config& m_config;
     GLUquadric* m_quadric;
 
@@ -51,6 +53,8 @@ private:
     double m_lastFrameTime = 0.0;
 
     bool m_keyStates[1024] = {false};
+
+    bool m_isSpectatorMode = false;
 };
 
 #endif // RENDERER_H
