@@ -308,9 +308,9 @@ void Renderer::renderImGui(Universe& universe) {
         ImGui::InputDouble("Mass (Kg)", &mass);
 
         ImGui::Text("Color:");
-        ImGui::InputInt("R", &color[0]);
-        ImGui::InputInt("G", &color[1]);
-        ImGui::InputInt("B", &color[2]);
+        ImGui::SliderInt("R", &color[0], 0, 255);
+        ImGui::SliderInt("G", &color[1], 0, 255);
+        ImGui::SliderInt("B", &color[2], 0, 255);
 
         if (ImGui::Button("Confirm")) {
             Particle particle(position, velocity, acceleration, radius, mass, color);
