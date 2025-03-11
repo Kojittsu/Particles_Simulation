@@ -13,9 +13,9 @@ public:
     Renderer(GLFWwindow* window, const Config& config);
     ~Renderer();
 
-    void framebufferSizeCallback(GLFWwindow* window, int width, int height);
-    void cursorPosCallback(GLFWwindow* window, double xpos, double ypos);
-    void keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods);
+    void framebufferSizeCallback(int width, int height);
+    void cursorPosCallback(double xpos, double ypos);
+    void keyCallback(int key, int scancode, int action, int mods);
 
     void processInput();
     void updateCameraView();
