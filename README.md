@@ -1,9 +1,23 @@
 # Particle Simulation
 
-This project is a particle simulation using the C++ programming language. It models the interaction of particles in a 3D universe.
+![GitHub repo size](https://img.shields.io/github/repo-size/Kojittsu/Particles_Simulation)
+![GitHub contributors](https://img.shields.io/github/contributors/Kojittsu/Particles_Simulation)
+![GitHub license](https://img.shields.io/github/license/Kojittsu/Particles_Simulation)
+![GitHub issues](https://img.shields.io/github/issues/Kojittsu/Particles_Simulation)
+[![built with nix](https://img.shields.io/static/v1?logo=nixos&logoColor=white&label=&message=Built%20with%20Nix&color=41439a)](https://builtwithnix.org)
+
+This project is a particle simulation using the C++ programming language. It models the interaction of particles in a 3D universe and render it using OpenGL.
 
 
-## Explicit Euler for Particle Dynamics Resolution
+## 🖼️ Gallery
+
+<p align="center">
+   <img src="./.github/assets/screenshots/1.png" style="margin-bottom: 15px;"/> <br>
+   Screenshots last updated <b>To be define</b>
+</p>
+
+
+## 📐 Explicit Euler for Particle Dynamics Resolution
 
 In this particle simulation, the explicit Euler method is employed to resolve particle dynamics. This method is a numerical approach for solving first-order ordinary differential equations, such as those describing particle motion in our simulated universe.\
 For more details see [Euler method Wiki Page](https://en.wikipedia.org/wiki/Euler_method).
@@ -15,7 +29,7 @@ Where `deltaTime` is the size of the time step used in the simulation.
 
 The explicit Euler method is simple to implement but can introduce approximation errors. More advanced numerical methods, such as Runge-Kutta methods or Verlet integration, can be employed to obtain more accurate results in certain cases.
 
-## Features
+## 📚 Features
 
 - Particle initialization :
   - Particles are initialized with different parameters, acceleration is set to zero.
@@ -40,14 +54,17 @@ The explicit Euler method is simple to implement but can introduce approximation
   - Energy restitution must be set in [0,1], 0 mean all energy is loss, 1 mean energy conservation.
 
 - Universe rendering :
-  - Create a window that display universe simulation.
+  - Create a window that display universe simulation using OpenGL.
   - Simulation speed is set to a speed factor (1 mean real time simulation).
   - Display simulation time in runtime.
+
+- Graphical user interface :
+  - Control the simulation through a graphical interface using [Dear ImGui](https://github.com/ocornut/imgui)
 
 - Miscellaneous :
   - A datafile name can be set to save particles motions over time.
 
-## Configuration file
+## 📝 Configuration file
 
 This is the YAML configuration file structure :
 ```yaml
@@ -89,11 +106,11 @@ simulation:
 visualization:
   speedFactor: double
 ```
-## Dependencies
+## 📦 Dependencies
 
 - Nix package manager installed on your system.
 
-## Setup
+## ⚙️ Setup
 
 1. Clone the repository
 ```bash
@@ -115,7 +132,7 @@ nix-shell --pure shell.nix
 make
 ```
 
-## Execution
+## 🚀 Execution
 
 To execute the simulation type
 ```bash
@@ -123,7 +140,7 @@ To execute the simulation type
 ```
 where `config_file` is your configuration file.
 
-## Cleaning
+## ♻️ Cleaning
 
 To clean up the generated files type
 ```bash
