@@ -13,7 +13,6 @@ This project is a particle simulation using the C++ programming language. It mod
 
 <p align="center">
    <img src="./.github/assets/screenshots/1.png" style="margin-bottom: 15px;"/> <br>
-   Screenshots last updated <b>To be define</b>
 </p>
 
 
