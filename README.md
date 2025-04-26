@@ -113,7 +113,7 @@ visualization:
 
 1. Clone the repository
 ```bash
-git clone https://github.com/lboudet/Particles_Simulation.git
+git clone --recursive https://github.com/lboudet/Particles_Simulation.git
 ```
 
 2. Access the repository
