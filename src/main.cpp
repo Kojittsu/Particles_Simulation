@@ -62,8 +62,7 @@ int main(int argc, char* argv[]) {
         }
 
         renderer.clear();
-        renderer.processKeyboardInputMovements();
-        renderer.updateCameraView();
+        renderer.updateCamera();
         renderer.render(universe);
         renderer.drawBox();
         renderer.renderImGui(universe);

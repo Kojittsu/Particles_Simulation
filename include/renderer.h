@@ -14,11 +14,10 @@ public:
     ~Renderer();
 
     void framebufferSizeCallback(int width, int height);
-    void cursorSpectatorModeCallback(double xpos, double ypos);
-    void keyboardSpectatorModeCallback(int key, int scancode, int action, int mods);
+    void cursorPosCallback(double xpos, double ypos);
+    void keyboardCallback(int key, int scancode, int action, int mods);
 
-    void processKeyboardInputMovements();
-    void updateCameraView();
+    void updateCamera();
 
     void render(const Universe& universe);
     void drawBox();

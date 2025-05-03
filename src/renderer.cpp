@@ -25,16 +25,16 @@ Renderer::Renderer(GLFWwindow* window, const Config& config)
     // Set cursor callback 
     glfwSetCursorPosCallback(m_window, [](GLFWwindow* win, double xpos, double ypos) {
         auto renderer = static_cast<Renderer*>(glfwGetWindowUserPointer(win));
-        if (renderer && renderer->m_isSpectatorMode) {
-            renderer->cursorSpectatorModeCallback(xpos, ypos);
+        if (renderer) {
+            renderer->cursorPosCallback(xpos, ypos);
         }
     });
 
     // Set key callback
     glfwSetKeyCallback(m_window, [](GLFWwindow* win, int key, int scancode, int action, int mods) {
         auto renderer = static_cast<Renderer*>(glfwGetWindowUserPointer(win));
-        if (renderer && renderer->m_isSpectatorMode) {
-            renderer->keyboardSpectatorModeCallback(key, scancode, action, mods);
+        if (renderer) {
+            renderer->keyboardCallback(key, scancode, action, mods);
         }
     });
 
@@ -89,7 +89,9 @@ void Renderer::framebufferSizeCallback(int width, int height) {
     glMatrixMode(GL_MODELVIEW);
 }
 
-void Renderer::cursorSpectatorModeCallback(double xpos, double ypos) {
+void Renderer::cursorPosCallback(double xpos, double ypos) {
+
+    if(!m_isSpectatorMode) {return;}
 
     if (m_firstMouse) {
         m_lastX = xpos;
@@ -125,7 +127,7 @@ void Renderer::cursorSpectatorModeCallback(double xpos, double ypos) {
     m_cameraRight = glm::normalize(glm::cross(m_cameraFront, m_cameraUp));
 }
 
-void Renderer::keyboardSpectatorModeCallback(int key, int scancode, int action, int mods) {
+void Renderer::keyboardCallback(int key, int scancode, int action, int mods) {
     if (key >= 0 && key < 1024) { // Vérifie que la touche est dans les limites
         if (action == GLFW_PRESS) {
             m_keyStates[key] = true;
@@ -133,43 +135,42 @@ void Renderer::keyboardSpectatorModeCallback(int key, int scancode, int action, 
             m_keyStates[key] = false;
         }
     }
-    if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS) {
+    if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS && m_isSpectatorMode) {
         toggleSpectatorMode();
     }
 }
 
-void Renderer::processKeyboardInputMovements() {
+void Renderer::updateCamera() {
 
-    float currentFrame = glfwGetTime();
-    float deltaTime = currentFrame - m_lastFrameTime;
-    m_lastFrameTime = currentFrame;
-    float velocity = m_cameraSpeed * deltaTime;
-
-    if (m_keyStates[GLFW_KEY_W]) {
-        m_cameraPosition += m_cameraFront * velocity;
+    if(m_isSpectatorMode) {
+        // Compute new m_cameraPosition value
+        float currentFrame = glfwGetTime();
+        float deltaTime = currentFrame - m_lastFrameTime;
+        m_lastFrameTime = currentFrame;
+        float velocity = m_cameraSpeed * deltaTime;
+        if (m_keyStates[GLFW_KEY_W]) {
+            m_cameraPosition += m_cameraFront * velocity;
+        }
+        if (m_keyStates[GLFW_KEY_S]) {
+            m_cameraPosition -= m_cameraFront * velocity;
+        }
+        if (m_keyStates[GLFW_KEY_A]) {
+            m_cameraPosition -= m_cameraRight * velocity;
+        }
+        if (m_keyStates[GLFW_KEY_D]) {
+            m_cameraPosition += m_cameraRight * velocity;
+        }
+        if (m_keyStates[GLFW_KEY_SPACE]) {
+            m_cameraPosition += m_cameraUp * velocity;
+        }
+        if (m_keyStates[GLFW_KEY_LEFT_SHIFT]) {
+            m_cameraPosition -= m_cameraUp * velocity;
+        }
     }
-    if (m_keyStates[GLFW_KEY_S]) {
-        m_cameraPosition -= m_cameraFront * velocity;
-    }
-    if (m_keyStates[GLFW_KEY_A]) {
-        m_cameraPosition -= m_cameraRight * velocity;
-    }
-    if (m_keyStates[GLFW_KEY_D]) {
-        m_cameraPosition += m_cameraRight * velocity;
-    }
-    if (m_keyStates[GLFW_KEY_SPACE]) {
-        m_cameraPosition += m_cameraUp * velocity;
-    }
-    if (m_keyStates[GLFW_KEY_LEFT_SHIFT]) {
-        m_cameraPosition -= m_cameraUp * velocity;
-    }
-}
-
-void Renderer::updateCameraView() {
+    
+    // Update camera position
     glLoadIdentity();
-
     glm::vec3 cameraTarget = m_cameraPosition + m_cameraFront;
-
     gluLookAt(
         m_cameraPosition.x, m_cameraPosition.y, m_cameraPosition.z, // Position de la caméra
         cameraTarget.x, cameraTarget.y, cameraTarget.z,             // Point ciblé par la caméra
