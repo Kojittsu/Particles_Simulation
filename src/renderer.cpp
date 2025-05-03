@@ -281,8 +281,14 @@ void Renderer::renderImGui(Universe& universe) {
         showParticleConfig = true;
     }
 
-    if (ImGui::Button("Toggle spectator mode")) {
+    bool isSpectatorMode = m_isSpectatorMode;
+    if (ImGui::Checkbox("Spectator mode", &isSpectatorMode)) {
         toggleSpectatorMode();
+    }
+
+    static bool showWireframe = false;
+    if (ImGui::Checkbox("Wireframe mode", &showWireframe)) {
+        glPolygonMode(GL_FRONT_AND_BACK, showWireframe ? GL_LINE : GL_FILL);
     }
 
     ImGui::End();
@@ -323,6 +329,12 @@ void Renderer::renderImGui(Universe& universe) {
 
         ImGui::End();
     }
+
+    ImGui::Begin("Debug Menu", nullptr, ImGuiWindowFlags_AlwaysAutoResize);
+    ImVec2 windowSize = ImGui::GetIO().DisplaySize;
+    ImGui::Text("Window size : %.0f x %.0f", windowSize.x, windowSize.y);
+    ImGui::Text("FPS : %.1f", ImGui::GetIO().Framerate);
+    ImGui::End();
 
     // Render ImGui
     ImGui::Render();
