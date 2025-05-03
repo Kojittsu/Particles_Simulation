@@ -13,6 +13,9 @@ public:
     Renderer(GLFWwindow* window, const Config& config);
     ~Renderer();
 
+    void initializeOpenGL();
+    void initializeGLFW();
+    void initializeImGui();
     void framebufferSizeCallback(int width, int height);
     void cursorPosCallback(double xpos, double ypos);
     void keyboardCallback(int key, int scancode, int action, int mods);
