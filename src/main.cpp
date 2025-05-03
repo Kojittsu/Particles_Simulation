@@ -51,12 +51,7 @@ int main(int argc, char* argv[]) {
     // Main loop
     while (!glfwWindowShouldClose(window)) {
 
-        double currentTime = glfwGetTime();
-        
-        renderer.clear();
-        renderer.processKeyboardInputMovements();
-
-        if (currentTime * config.speedFactor > universe.m_runTime) {
+        if (glfwGetTime() * config.speedFactor > universe.m_runTime) {
             universe.makeStep();
 
             // Save universe current step
@@ -66,6 +61,8 @@ int main(int argc, char* argv[]) {
             }
         }
 
+        renderer.clear();
+        renderer.processKeyboardInputMovements();
         renderer.updateCameraView();
         renderer.render(universe);
         renderer.drawBox();
