@@ -54,7 +54,7 @@ int main(int argc, char* argv[]) {
         double currentTime = glfwGetTime();
         
         renderer.clear();
-        renderer.processInput();
+        renderer.processKeyboardInputMovements();
 
         if (currentTime * config.speedFactor > universe.m_runTime) {
             universe.makeStep();
