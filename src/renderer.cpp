@@ -334,6 +334,14 @@ void Renderer::renderImGui(Universe& universe) {
     ImVec2 windowSize = ImGui::GetIO().DisplaySize;
     ImGui::Text("Window size : %.0f x %.0f", windowSize.x, windowSize.y);
     ImGui::Text("FPS : %.1f", ImGui::GetIO().Framerate);
+    ImGui::Text(" ");
+    ImGui::Text("Particle count : %ld", universe.getParticles().size());
+    ImGui::Text("Simulation time (s) : %.3f", universe.m_runTime);
+    ImGui::Text("Real time (s) : %.3f", glfwGetTime());
+    ImGui::Text(" ");
+    ImGui::Text("OpenGL version : %s", glGetString(GL_VERSION));
+    ImGui::Text("ImGui version : %s", ImGui::GetVersion());
+
     ImGui::End();
 
     // Render ImGui
