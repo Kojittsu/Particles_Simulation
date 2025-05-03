@@ -300,6 +300,8 @@ void Renderer::renderImGui(Universe& universe) {
         glPolygonMode(GL_FRONT_AND_BACK, showWireframe ? GL_LINE : GL_FILL);
     }
 
+    ImGui::SliderFloat("Camera speed", &m_cameraSpeed, 0.0f, 100.0f, "%.3f m/s");
+
     ImGui::End();
 
     if (showParticleConfig) {
@@ -339,7 +341,7 @@ void Renderer::renderImGui(Universe& universe) {
         ImGui::End();
     }
 
-    ImGui::Begin("Debug Menu", nullptr, ImGuiWindowFlags_AlwaysAutoResize);
+    ImGui::Begin("Info", nullptr, ImGuiWindowFlags_AlwaysAutoResize);
     ImVec2 windowSize = ImGui::GetIO().DisplaySize;
     ImGui::Text("Window size : %.0f x %.0f", windowSize.x, windowSize.y);
     ImGui::Text("FPS : %.1f", ImGui::GetIO().Framerate);
