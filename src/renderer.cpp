@@ -348,6 +348,10 @@ void Renderer::renderImGui(Universe& universe) {
     ImGui::Text("Simulation time (s) : %.3f", universe.m_runTime);
     ImGui::Text("Real time (s) : %.3f", glfwGetTime());
     ImGui::Text(" ");
+    ImGui::Text("Camera position : (%.1f, %.1f, %.1f)", m_cameraPosition[0], m_cameraPosition[1], m_cameraPosition[2]);
+    ImGui::Text("Camera front : (%.1f, %.1f, %.1f)", m_cameraFront[0], m_cameraFront[1], m_cameraFront[2]);
+    ImGui::Text("Camera up : (%.1f, %.1f, %.1f)", m_cameraUp[0], m_cameraUp[1], m_cameraUp[2]);
+    ImGui::Text(" ");
     ImGui::Text("OpenGL version : %s", glGetString(GL_VERSION));
     ImGui::Text("ImGui version : %s", ImGui::GetVersion());
 
