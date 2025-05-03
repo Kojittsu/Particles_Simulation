@@ -133,6 +133,9 @@ void Renderer::keyCallback(int key, int scancode, int action, int mods) {
             m_keyStates[key] = false;
         }
     }
+    if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS) {
+        toggleSpectatorMode();
+    }
 }
 
 void Renderer::processInput() {
