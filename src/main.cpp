@@ -52,24 +52,12 @@ int main(int argc, char* argv[]) {
     while (!glfwWindowShouldClose(window)) {
 
         double currentTime = glfwGetTime();
+        
+        renderer.clear();
+        renderer.processInput();
 
         if (currentTime * config.speedFactor > universe.m_runTime) {
-
-            renderer.clear();
-
-            renderer.processInput();
-
             universe.makeStep();
-            renderer.updateCameraView();
-            renderer.render(universe);
-            renderer.drawBox();
-            renderer.renderImGui(universe);
-
-            // Swap buffers
-            glfwSwapBuffers(window);
-
-            // Handle events
-            glfwPollEvents();
 
             // Save universe current step
             if (file.is_open()) {
@@ -77,6 +65,17 @@ int main(int argc, char* argv[]) {
                 stepNumberSaved++;
             }
         }
+
+        renderer.updateCameraView();
+        renderer.render(universe);
+        renderer.drawBox();
+        renderer.renderImGui(universe);
+
+        // Swap buffers
+        glfwSwapBuffers(window);
+
+        // Handle events
+        glfwPollEvents();
     }
 
     glfwTerminate();
