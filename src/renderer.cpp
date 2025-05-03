@@ -8,8 +8,8 @@
 Renderer::Renderer(GLFWwindow* window, const Config& config)
     : m_window(window), m_config(config), m_quadric(nullptr) {
     m_quadric = gluNewQuadric();
-    initializeOpenGL();
     initializeGLFW();
+    initializeOpenGL();
     initializeImGui();
 }
 
