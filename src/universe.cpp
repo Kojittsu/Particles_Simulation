@@ -7,14 +7,11 @@ Universe::Universe(const Config& config)
     :
         m_config(config),
         m_particles(config.particles),
+        m_boxes(config.boxes),
         m_applyGravity(config.applyGravity),
         m_globalAcceleration(config.globalAcceleration),
         m_speedFactor(config.speedFactor)
 {
-    // Add random particles to universe
-    for(int i = 0; i < config.rndParticle_numbers; ++i){
-        addRndParticle();
-    }
     applyAccelerationToParticles(m_globalAcceleration);
 }
 
@@ -27,8 +24,8 @@ void Universe::makeStep(){
     for (Particle& particle : m_particles) {
         // Update particle
         particle.update(m_config.deltaTime);
-        // Handle box collisions
-        handleBoxCollision(particle);
+        // Handle boxes collisions
+        handleBoxesCollision(particle);
     }
 
     // Handle particles collisions
@@ -51,26 +48,6 @@ void Universe::saveStep(std::ofstream& file, int stepNumber){
 }
 
 void Universe::addParticle(const Particle& particle){
-    m_particles.push_back(particle);
-}
-
-void Universe::addRndParticle() {
-    std::array<double, 3> position = {
-        rndNumber(m_config.boxOriginX, m_config.boxOriginX + m_config.boxLength), 
-        rndNumber(m_config.boxOriginY, m_config.boxOriginY + m_config.boxHeight),
-        rndNumber(m_config.boxOriginZ, m_config.boxOriginZ + m_config.boxDepth)
-    };
-    
-    std::array<double, 3> velocity = {
-        rndNumber(-m_config.rndParticle_maxVelocityX, m_config.rndParticle_maxVelocityX), 
-        rndNumber(-m_config.rndParticle_maxVelocityY, m_config.rndParticle_maxVelocityY),
-        rndNumber(-m_config.rndParticle_maxVelocityZ, m_config.rndParticle_maxVelocityZ)
-    };
-
-    double radius = rndNumber(m_config.rndParticle_minRadius, m_config.rndParticle_maxRadius);
-    double mass = rndNumber(m_config.rndParticle_minMass, m_config.rndParticle_maxMass);
-
-    Particle particle(position, velocity, m_globalAcceleration, radius, mass, getRainbow(), "");
     m_particles.push_back(particle);
 }
 
@@ -139,36 +116,36 @@ void Universe::handleParticleCollisions() {
     }
 }
 
-void Universe::handleBoxCollision(Particle& particle) {
+void Universe::handleBoxesCollision(Particle& particle) {
     std::array<double, 3> position = particle.getPosition();
     std::array<double, 3> velocity = particle.getVelocity();
     double radius = particle.getRadius();
 
-    // Check for collision on box X-sides
-    if (position[0] < m_config.boxOriginX + radius) {
-        particle.setX(m_config.boxOriginX + radius);
-        particle.setVX(-velocity[0] * m_config.coefficientRestitution);
-    } else if (position[0] > m_config.boxOriginX + m_config.boxLength - radius) {
-        particle.setX(m_config.boxOriginX + m_config.boxLength - radius);
-        particle.setVX(-velocity[0] * m_config.coefficientRestitution);
-    }
-
-    // Check for collision on box Y-sides
-    if (position[1] < m_config.boxOriginY + radius) {
-        particle.setY(m_config.boxOriginY + radius);
-        particle.setVY(-velocity[1] * m_config.coefficientRestitution);
-    } else if (position[1] > m_config.boxOriginY + m_config.boxHeight - radius) {
-        particle.setY(m_config.boxOriginY + m_config.boxHeight - radius);
-        particle.setVY(-velocity[1] * m_config.coefficientRestitution);
-    }
-
-    // Check for collision on box Z-sides
-    if (position[2] < m_config.boxOriginZ + radius) {
-        particle.setZ(m_config.boxOriginZ + radius);
-        particle.setVZ(-velocity[2] * m_config.coefficientRestitution);
-    } else if (position[2] > m_config.boxOriginZ + m_config.boxDepth - radius) {
-        particle.setZ(m_config.boxOriginZ + m_config.boxDepth - radius);
-        particle.setVZ(-velocity[2] * m_config.coefficientRestitution);
+    for(Box& box : m_boxes) {
+        // Check for collision on box X-sides
+        if (position[0] < box.m_origin[0] + radius) {
+            particle.setX(box.m_origin[0] + radius);
+            particle.setVX(-velocity[0] * m_config.coefficientRestitution);
+        } else if (position[0] > box.m_origin[0] + box.m_length - radius) {
+            particle.setX(box.m_origin[0] + box.m_length - radius);
+            particle.setVX(-velocity[0] * m_config.coefficientRestitution);
+        }
+        // Check for collision on box Y-sides
+        if (position[1] < box.m_origin[1] + radius) {
+            particle.setY(box.m_origin[1] + radius);
+            particle.setVY(-velocity[1] * m_config.coefficientRestitution);
+        } else if (position[1] > box.m_origin[1] + box.m_height - radius) {
+            particle.setY(box.m_origin[1] + box.m_height - radius);
+            particle.setVY(-velocity[1] * m_config.coefficientRestitution);
+        }
+        // Check for collision on box Z-sides
+        if (position[2] < box.m_origin[2] + radius) {
+            particle.setZ(box.m_origin[2] + radius);
+            particle.setVZ(-velocity[2] * m_config.coefficientRestitution);
+        } else if (position[2] > box.m_origin[2] + box.m_depth - radius) {
+            particle.setZ(box.m_origin[2] + box.m_depth - radius);
+            particle.setVZ(-velocity[2] * m_config.coefficientRestitution);
+        }
     }
 }
 

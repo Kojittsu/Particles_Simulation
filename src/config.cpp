@@ -3,23 +3,16 @@
 bool readConfig(const std::string& filename, Config& config) {
     YAML::Node yaml = YAML::LoadFile(filename);
 
-    // Random particles
-    config.rndParticle_numbers      = yaml["randomParticles"]["numbers"].as<int>();
-    config.rndParticle_maxVelocityX = yaml["randomParticles"]["maxVelocityX"].as<double>();
-    config.rndParticle_maxVelocityY = yaml["randomParticles"]["maxVelocityY"].as<double>();
-    config.rndParticle_maxVelocityZ = yaml["randomParticles"]["maxVelocityZ"].as<double>();
-    config.rndParticle_minRadius    = yaml["randomParticles"]["minRadius"].as<double>();
-    config.rndParticle_maxRadius    = yaml["randomParticles"]["maxRadius"].as<double>();
-    config.rndParticle_minMass      = yaml["randomParticles"]["minMass"].as<double>();
-    config.rndParticle_maxMass      = yaml["randomParticles"]["maxMass"].as<double>();
+    // Load boxes
+    for (const auto& particleNode : yaml["boxes"]) {
+        std::array<double, 3> boxOrigin = particleNode["origin"].as<std::array<double, 3>>();
+        double boxLength = particleNode["length"].as<double>();
+        double boxHeight = particleNode["height"].as<double>();
+        double boxDepth = particleNode["depth"].as<double>();
 
-    // Load box
-    config.boxOriginX = yaml["box"]["xOrigin"].as<double>();
-    config.boxOriginY = yaml["box"]["yOrigin"].as<double>();
-    config.boxOriginZ = yaml["box"]["zOrigin"].as<double>();
-    config.boxLength  = yaml["box"]["length"].as<double>();
-    config.boxHeight  = yaml["box"]["height"].as<double>();
-    config.boxDepth  = yaml["box"]["depth"].as<double>();
+        Box box(boxOrigin, boxLength, boxHeight, boxDepth);
+        config.boxes.push_back(box);
+    }
 
     // Load simulation parameters
     config.deltaTime              = yaml["simulation"]["deltaTime"].as<double>();

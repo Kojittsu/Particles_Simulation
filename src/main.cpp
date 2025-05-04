@@ -64,7 +64,7 @@ int main(int argc, char* argv[]) {
         renderer.clear();
         renderer.updateCamera();
         renderer.render(universe);
-        renderer.drawBox();
+        renderer.drawBoxes();
         renderer.renderImGui(universe);
 
         // Swap buffers

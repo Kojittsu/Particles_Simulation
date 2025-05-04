@@ -23,7 +23,7 @@ public:
     void updateCamera();
 
     void render(const Universe& universe);
-    void drawBox();
+    void drawBoxes();
     void toggleSpectatorMode();
     void renderImGui(Universe& universe); 
     void clear();
@@ -31,6 +31,7 @@ public:
 private:
     GLFWwindow* m_window;
     const Config& m_config;
+    std::vector<Box> m_boxes;
     GLUquadric* m_quadric;
 
     // Render distance parameters

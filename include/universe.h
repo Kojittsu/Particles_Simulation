@@ -19,7 +19,7 @@ public:
     void applyAccelerationToParticles(const std::array<double, 3>& accelerationContribution);
     void computeGravitationalForces();
     void handleParticleCollisions();
-    void handleBoxCollision(Particle& particle);
+    void handleBoxesCollision(Particle& particle);
     std::vector<Particle> const& getParticles() const;
     void toggleGravity();
     bool getIsGravity();
@@ -32,6 +32,7 @@ public:
 private:
     const Config m_config;
     std::vector<Particle> m_particles;
+    std::vector<Box> m_boxes;
     bool m_applyGravity;
     std::array<double, 3> m_globalAcceleration;
     double m_speedFactor;

@@ -6,7 +6,7 @@
 #include "imgui_impl_opengl3.h"
 
 Renderer::Renderer(GLFWwindow* window, const Config& config)
-    : m_window(window), m_config(config), m_quadric(nullptr) {
+    : m_window(window), m_config(config), m_boxes(config.boxes), m_quadric(nullptr) {
     m_quadric = gluNewQuadric();
     initializeGLFW();
     initializeOpenGL();
@@ -215,37 +215,41 @@ void Renderer::clear() {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 }
 
-void Renderer::drawBox() {
-    float x0 = m_config.boxOriginX;
-    float y0 = m_config.boxOriginY;
-    float z0 = m_config.boxOriginZ;
-
-    float x1 = x0 + m_config.boxLength;
-    float y1 = y0 + m_config.boxHeight;
-    float z1 = z0 + m_config.boxDepth;
+void Renderer::drawBoxes() {
 
     glDisable(GL_LIGHTING);
     glColor3f(1.0f, 1.0f, 1.0f);
 
-    glBegin(GL_LINES);
+    for(Box& box : m_boxes) {
+        std::array<double, 3> boxOrigin = box.m_origin;
 
-    glVertex3f(x0, y0, z0); glVertex3f(x1, y0, z0);
-    glVertex3f(x1, y0, z0); glVertex3f(x1, y1, z0);
-    glVertex3f(x1, y1, z0); glVertex3f(x0, y1, z0);
-    glVertex3f(x0, y1, z0); glVertex3f(x0, y0, z0);
+        float x0 = boxOrigin[0];
+        float y0 = boxOrigin[1];
+        float z0 = boxOrigin[2];
 
-    glVertex3f(x0, y0, z1); glVertex3f(x1, y0, z1);
-    glVertex3f(x1, y0, z1); glVertex3f(x1, y1, z1);
-    glVertex3f(x1, y1, z1); glVertex3f(x0, y1, z1);
-    glVertex3f(x0, y1, z1); glVertex3f(x0, y0, z1);
+        float x1 = x0 + box.m_length;
+        float y1 = y0 + box.m_height;
+        float z1 = z0 + box.m_depth;
+    
+        glBegin(GL_LINES);
 
-    glVertex3f(x0, y0, z0); glVertex3f(x0, y0, z1);
-    glVertex3f(x1, y0, z0); glVertex3f(x1, y0, z1);
-    glVertex3f(x1, y1, z0); glVertex3f(x1, y1, z1);
-    glVertex3f(x0, y1, z0); glVertex3f(x0, y1, z1);
+        glVertex3f(x0, y0, z0); glVertex3f(x1, y0, z0);
+        glVertex3f(x1, y0, z0); glVertex3f(x1, y1, z0);
+        glVertex3f(x1, y1, z0); glVertex3f(x0, y1, z0);
+        glVertex3f(x0, y1, z0); glVertex3f(x0, y0, z0);
 
-    glEnd();
+        glVertex3f(x0, y0, z1); glVertex3f(x1, y0, z1);
+        glVertex3f(x1, y0, z1); glVertex3f(x1, y1, z1);
+        glVertex3f(x1, y1, z1); glVertex3f(x0, y1, z1);
+        glVertex3f(x0, y1, z1); glVertex3f(x0, y0, z1);
 
+        glVertex3f(x0, y0, z0); glVertex3f(x0, y0, z1);
+        glVertex3f(x1, y0, z0); glVertex3f(x1, y0, z1);
+        glVertex3f(x1, y1, z0); glVertex3f(x1, y1, z1);
+        glVertex3f(x0, y1, z0); glVertex3f(x0, y1, z1);
+
+        glEnd();
+    }
     glEnable(GL_LIGHTING);
 }
 
@@ -278,10 +282,6 @@ void Renderer::renderImGui(Universe& universe) {
 
     if (ImGui::Button(universe.m_isRunning ? "Pause simulation" : "Start simulation")) {
         universe.m_isRunning = !universe.m_isRunning;
-    }
-
-    if (ImGui::Button("Spawn random particle")) {
-        universe.addRndParticle();
     }
 
     if (ImGui::Button("Toggle gravity")) {

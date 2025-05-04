@@ -33,16 +33,6 @@ The explicit Euler method is simple to implement but can introduce approximation
 - Particle initialization :
   - Particles are initialized with different parameters, acceleration is set to zero.
 
-- Random particles initialization :
-  - Random particles are initialized with different parameters.
-  - Position is randomly set in the box.
-  - Velocity is randomly set in [-maxVelocity, maxVelocity] for each components.
-  - Radius is randomly set in [minRadius, maxRadius].
-  - Mass is randomly set in [minMass, maxMass].
-  - Acceleration is set to globalAcceleration.
-  - Color is randomly set.
-  - Name is empty.
-
 - Universe initialization :
   - Universe is initialized with different parameters.
 
@@ -77,30 +67,20 @@ particles:
 
   # Add as many particles as you want
 
-randomParticles:
-  numbers: int         # Number of random particles
-  maxVelocityX: double # Particle max X random velocity in meters/second
-  maxVelocityY: double # Particle max Y random velocity in meters/second
-  maxVelocityZ: double # Particle max Z random velocity in meters/second
-  minRadius: double    # Particle min random radius in meters
-  maxRadius: double    # Particle max random radius in meters
-  minMass: double      # Particle min random mass in kilograms
-  maxMass: double      # Particle max random mass in kilograms
+boxes:
+  - origin: [double, double, double] # Box origin in meters
+    length: double                   # Box length in meters
+    height: double                   # Box height in meters
+    depth: double                    # Box depth in meters
 
-box:
-  xOrigin: double # Box X origin in meters
-  yOrigin: double # Box Y origin in meters
-  zOrigin: double # Box Z origin in meters
-  length: double  # Box length in meters
-  height: double  # Box height in meters
-  depth: double   # Box depth in meters
+  # Add as many boxes as you want
 
 simulation:
   deltaTime: double
   applyGravity: bool                           # Compute Newton's law of universal gravitation
   globalAcceleration: [double, double, double] # Global acceleration applied to all objects
   coefficientRestitution: double               # Energy restitution during collision (1.0 mean energy conservation)
-  dataFileName: string                         # data file name for saving particles positions through time (can be empty)
+  dataFileName: string                         # data file name for saving particles positions through time (can be "")
 
 visualization:
   speedFactor: double
