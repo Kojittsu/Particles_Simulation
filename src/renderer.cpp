@@ -342,9 +342,14 @@ void Renderer::renderImGui(Universe& universe) {
             Particle particle(position, velocity, acceleration, radius, mass, color);
             universe.addParticle(particle);
         }
-
         ImGui::End();
     }
+
+    double totalSeconds = universe.m_runTime;
+    int days    = static_cast<int>(totalSeconds / 86400);
+    int hours   = static_cast<int>(static_cast<int>(totalSeconds) % 86400 / 3600);
+    int minutes = static_cast<int>(static_cast<int>(totalSeconds) % 3600 / 60);
+    int seconds = static_cast<int>(totalSeconds) % 60;
 
     ImGui::Begin("Info", nullptr, ImGuiWindowFlags_AlwaysAutoResize);
     ImVec2 windowSize = ImGui::GetIO().DisplaySize;
@@ -352,7 +357,7 @@ void Renderer::renderImGui(Universe& universe) {
     ImGui::Text("FPS : %.1f", ImGui::GetIO().Framerate);
     ImGui::Text(" ");
     ImGui::Text("Particle count : %ld", universe.getParticles().size());
-    ImGui::Text("Simulation time (s) : %.3f", universe.m_runTime);
+    ImGui::Text("Simulation time : %d days, %02d hours, %02d minutes, %02d seconds", days, hours, minutes, seconds);
     ImGui::Text("Real time (s) : %.3f", glfwGetTime());
     ImGui::Text(" ");
     ImGui::Text("Camera position : (%.1f, %.1f, %.1f)", m_cameraPosition[0], m_cameraPosition[1], m_cameraPosition[2]);
@@ -361,7 +366,15 @@ void Renderer::renderImGui(Universe& universe) {
     ImGui::Text(" ");
     ImGui::Text("OpenGL version : %s", glGetString(GL_VERSION));
     ImGui::Text("ImGui version : %s", ImGui::GetVersion());
+    ImGui::End();
 
+
+    ImGui::Begin("Particles", nullptr, ImGuiWindowFlags_AlwaysAutoResize);
+    for (const Particle& particle : universe.getParticles()){
+        ImGui::Text("Name : %s", particle.m_name.c_str());
+        ImGui::Text("Position : (%.1f, %.1f, %.1f)", particle.getX(), particle.getY(), particle.getZ());
+        ImGui::Text(" ");
+    }
     ImGui::End();
 
     // Render ImGui
