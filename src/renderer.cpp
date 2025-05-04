@@ -362,6 +362,7 @@ void Renderer::renderImGui(Universe& universe) {
     ImGui::Text(" ");
     ImGui::Text("Particle count : %ld", universe.getParticles().size());
     ImGui::Text("Simulation time : %d days, %02d hours, %02d minutes, %02d seconds", days, hours, minutes, seconds);
+    ImGui::Text("Simulation time (s) : %.3f", universe.m_runTime);
     ImGui::Text("Real time (s) : %.3f", glfwGetTime());
     ImGui::Text(" ");
     ImGui::Text("Camera position : (%.1f, %.1f, %.1f)", m_cameraPosition[0], m_cameraPosition[1], m_cameraPosition[2]);
@@ -376,8 +377,8 @@ void Renderer::renderImGui(Universe& universe) {
     ImGui::Begin("Particles", nullptr, ImGuiWindowFlags_AlwaysAutoResize);
     for (const Particle& particle : universe.getParticles()){
         ImGui::Text("Name : %s", particle.m_name.c_str());
-        ImGui::Text("Position : (%.1f, %.1f, %.1f)", particle.getX(), particle.getY(), particle.getZ());
-        ImGui::Text("Velocity : (%.1f, %.1f, %.1f)", particle.getVX(), particle.getVY(), particle.getVZ());
+        ImGui::Text("Position : (%.3f, %.3f, %.3f)", particle.getX(), particle.getY(), particle.getZ());
+        ImGui::Text("Velocity : (%.3f, %.3f, %.3f)", particle.getVX(), particle.getVY(), particle.getVZ());
         ImGui::Text(" ");
     }
     ImGui::End();
