@@ -27,6 +27,7 @@ public:
 
     // Simulation parameters
     double m_runTime = 0;
+    bool m_isRunning = false;
 
 private:
     const Config m_config;

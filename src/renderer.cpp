@@ -275,7 +275,11 @@ void Renderer::renderImGui(Universe& universe) {
     ImGui::NewFrame();
 
     ImGui::Begin("Controls", nullptr, ImGuiWindowFlags_AlwaysAutoResize);
-    
+
+    if (ImGui::Button(universe.m_isRunning ? "Pause simulation" : "Start simulation")) {
+        universe.m_isRunning = !universe.m_isRunning;
+    }
+
     if (ImGui::Button("Spawn random particle")) {
         universe.addRndParticle();
     }
@@ -373,6 +377,7 @@ void Renderer::renderImGui(Universe& universe) {
     for (const Particle& particle : universe.getParticles()){
         ImGui::Text("Name : %s", particle.m_name.c_str());
         ImGui::Text("Position : (%.1f, %.1f, %.1f)", particle.getX(), particle.getY(), particle.getZ());
+        ImGui::Text("Velocity : (%.1f, %.1f, %.1f)", particle.getVX(), particle.getVY(), particle.getVZ());
         ImGui::Text(" ");
     }
     ImGui::End();
