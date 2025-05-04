@@ -300,7 +300,12 @@ void Renderer::renderImGui(Universe& universe) {
         glPolygonMode(GL_FRONT_AND_BACK, showWireframe ? GL_LINE : GL_FILL);
     }
 
-    ImGui::SliderFloat("Camera speed", &m_cameraSpeed, 0.0f, 100.0f, "%.3f m/s");
+    ImGui::SliderFloat("Camera speed", &m_cameraSpeed, 0.0f, 10000.0f, "%.3f m/s");
+
+    glm::vec3 newCameraPosition = glm::vec3(0.0f, 0.0f, 0.0f);
+    if(ImGui::InputFloat3("Set camera position", &newCameraPosition[0])){
+        m_cameraPosition = newCameraPosition; 
+    }
 
     ImGui::End();
 
