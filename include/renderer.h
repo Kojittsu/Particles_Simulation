@@ -85,13 +85,6 @@ public:
     void swapBuffers();
 
     /**
-     * @brief      Determines if the renderer is running.
-     *
-     * @return     True if running, False otherwise.
-     */
-    bool isRunning();
-
-    /**
      * @brief      Render Dear ImGui.
      *
      * @param      universe  The universe
@@ -117,7 +110,12 @@ public:
      */
     void clear();
 
-
+    /**
+     * @brief      Determines if the renderer is running.
+     *
+     * @return     True if running, False otherwise.
+     */
+    bool isRunning();
 
 private:
     GLFWwindow* m_window;
@@ -126,8 +124,8 @@ private:
     GLUquadric* m_quadric;
 
     // Render distance parameters
-    const float m_minRenderDistance = 0.1;
-    const float m_maxRenderDistance = 1000;
+    const float m_minRenderDistance = 100;
+    const float m_maxRenderDistance = 1000000;
 
     // Variables for angles of rotation
     float m_azimuth = 0.0f;

@@ -78,21 +78,6 @@ void Renderer::initializeGLFW() {
     glLightfv(GL_LIGHT0, GL_SPECULAR, light_specular);
 }
 
-void Renderer::initializeImGui() {
-    // Setup Dear ImGui context
-    IMGUI_CHECKVERSION();
-    ImGui::CreateContext();
-    ImGuiIO& io = ImGui::GetIO();
-    io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;
-
-    // Setup Dear ImGui style
-    ImGui::StyleColorsDark();
-
-    // ImGui/Glfw bindings
-    ImGui_ImplGlfw_InitForOpenGL(m_window, true);
-    ImGui_ImplOpenGL3_Init("#version 330");
-}
-
 void Renderer::framebufferSizeCallback(int width, int height) {
     
     glViewport(0, 0, width, height);
@@ -158,42 +143,19 @@ void Renderer::keyboardCallback(int key, int scancode, int action, int mods) {
     }
 }
 
-void Renderer::updateCamera() {
+void Renderer::initializeImGui() {
+    // Setup Dear ImGui context
+    IMGUI_CHECKVERSION();
+    ImGui::CreateContext();
+    ImGuiIO& io = ImGui::GetIO();
+    io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;
 
-    if(m_isSpectatorMode) {
-        // Compute new m_cameraPosition value
-        float currentFrame = glfwGetTime();
-        float deltaTime = currentFrame - m_lastFrameTime;
-        m_lastFrameTime = currentFrame;
-        float velocity = m_cameraSpeed * deltaTime;
-        if (m_keyStates[GLFW_KEY_W]) {
-            m_cameraPosition += m_cameraFront * velocity;
-        }
-        if (m_keyStates[GLFW_KEY_S]) {
-            m_cameraPosition -= m_cameraFront * velocity;
-        }
-        if (m_keyStates[GLFW_KEY_A]) {
-            m_cameraPosition -= m_cameraRight * velocity;
-        }
-        if (m_keyStates[GLFW_KEY_D]) {
-            m_cameraPosition += m_cameraRight * velocity;
-        }
-        if (m_keyStates[GLFW_KEY_SPACE]) {
-            m_cameraPosition += m_cameraUp * velocity;
-        }
-        if (m_keyStates[GLFW_KEY_LEFT_SHIFT]) {
-            m_cameraPosition -= m_cameraUp * velocity;
-        }
-    }
-    
-    // Update camera position
-    glLoadIdentity();
-    glm::vec3 cameraTarget = m_cameraPosition + m_cameraFront;
-    gluLookAt(
-        m_cameraPosition.x, m_cameraPosition.y, m_cameraPosition.z, // Position de la caméra
-        cameraTarget.x, cameraTarget.y, cameraTarget.z,             // Point ciblé par la caméra
-        m_cameraUp.x, m_cameraUp.y, m_cameraUp.z                    // Vecteur "Up"
-    );
+    // Setup Dear ImGui style
+    ImGui::StyleColorsDark();
+
+    // ImGui/Glfw bindings
+    ImGui_ImplGlfw_InitForOpenGL(m_window, true);
+    ImGui_ImplOpenGL3_Init("#version 330");
 }
 
 void Renderer::render(const Universe& universe) {
@@ -218,10 +180,6 @@ void Renderer::render(const Universe& universe) {
         gluSphere(m_quadric, radius, 16, 16);
         glPopMatrix();
     }
-}
-
-void Renderer::clear() {
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 }
 
 void Renderer::drawBoxes() {
@@ -266,19 +224,6 @@ void Renderer::swapBuffers() {
     glfwSwapBuffers(m_window);
 }
 
-bool Renderer::isRunning() {
-    return !glfwWindowShouldClose(m_window);
-}
-
-void Renderer::toggleSpectatorMode() {
-    m_isSpectatorMode = !m_isSpectatorMode;
-    if (m_isSpectatorMode) {
-       glfwSetInputMode(m_window, GLFW_CURSOR, GLFW_CURSOR_DISABLED); 
-    }
-    else {
-        glfwSetInputMode(m_window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
-    }
-}
 
 void Renderer::renderImGui(Universe& universe) {
 
@@ -404,4 +349,60 @@ void Renderer::renderImGui(Universe& universe) {
     // Render ImGui
     ImGui::Render();
     ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
+}
+
+void Renderer::updateCamera() {
+
+    if(m_isSpectatorMode) {
+        // Compute new m_cameraPosition value
+        float currentFrame = glfwGetTime();
+        float deltaTime = currentFrame - m_lastFrameTime;
+        m_lastFrameTime = currentFrame;
+        float velocity = m_cameraSpeed * deltaTime;
+        if (m_keyStates[GLFW_KEY_W]) {
+            m_cameraPosition += m_cameraFront * velocity;
+        }
+        if (m_keyStates[GLFW_KEY_S]) {
+            m_cameraPosition -= m_cameraFront * velocity;
+        }
+        if (m_keyStates[GLFW_KEY_A]) {
+            m_cameraPosition -= m_cameraRight * velocity;
+        }
+        if (m_keyStates[GLFW_KEY_D]) {
+            m_cameraPosition += m_cameraRight * velocity;
+        }
+        if (m_keyStates[GLFW_KEY_SPACE]) {
+            m_cameraPosition += m_cameraUp * velocity;
+        }
+        if (m_keyStates[GLFW_KEY_LEFT_SHIFT]) {
+            m_cameraPosition -= m_cameraUp * velocity;
+        }
+    }
+    
+    // Update camera position
+    glLoadIdentity();
+    glm::vec3 cameraTarget = m_cameraPosition + m_cameraFront;
+    gluLookAt(
+        m_cameraPosition.x, m_cameraPosition.y, m_cameraPosition.z, // Position de la caméra
+        cameraTarget.x, cameraTarget.y, cameraTarget.z,             // Point ciblé par la caméra
+        m_cameraUp.x, m_cameraUp.y, m_cameraUp.z                    // Vecteur "Up"
+    );
+}
+
+void Renderer::toggleSpectatorMode() {
+    m_isSpectatorMode = !m_isSpectatorMode;
+    if (m_isSpectatorMode) {
+       glfwSetInputMode(m_window, GLFW_CURSOR, GLFW_CURSOR_DISABLED); 
+    }
+    else {
+        glfwSetInputMode(m_window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
+    }
+}
+
+void Renderer::clear() {
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+}
+
+bool Renderer::isRunning() {
+    return !glfwWindowShouldClose(m_window);
 }
