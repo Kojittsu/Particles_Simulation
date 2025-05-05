@@ -10,22 +10,101 @@
 
 class Renderer {
 public:
+
+    /**
+     * @brief      Initialize renderer.
+     * This method setup the GLFW library for rendering the scene and the Dear
+     * ImGui library for rendering the Graphical user interface.
+     * 
+     * @param[in]  config  The simulation configuration
+     */
     Renderer(const Config& config);
+
+    /**
+     * @brief      Destroys the renderer.
+     */
     ~Renderer();
 
+    /**
+     * @brief      Initializes the GLFW library.
+     * This method is called by the constructor.
+     */
     void initializeGLFW();
-    void initializeImGui();
+
+    /**
+     * @brief      Define Callback for window framebuffer size.
+     * This method is a callback function given to GLFW via
+     * glfwSetFramebufferSizeCallback in initializeGLFW.
+     * This method will be called automatically each time the window's
+     * framebuffer size change.
+     *
+     * @param[in]  width   The width
+     * @param[in]  height  The height
+     */
     void framebufferSizeCallback(int width, int height);
+
+    /**
+     * @brief      Define Callback for mouse position.
+     *
+     * @param[in]  xpos  The mouse x coordinate
+     * @param[in]  ypos  The mouse y coordinate
+     */
     void cursorPosCallback(double xpos, double ypos);
+
+    /**
+     * @brief      Define Callback for Keyboard inputs.
+     *
+     * @param[in]  key       The key
+     * @param[in]  scancode  The scancode
+     * @param[in]  action    The action
+     * @param[in]  mods      The mods
+     */
     void keyboardCallback(int key, int scancode, int action, int mods);
 
-    void updateCamera();
+    /**
+     * @brief      Initializes the Dear ImGui library.
+     * This method is called by the constructor.
+     */
+    void initializeImGui();
 
+    /**
+     * @brief      Renders the given universe.
+     *
+     * @param[in]  universe  The universe
+     */
     void render(const Universe& universe);
+
+    /**
+     * @brief      Draws the m_boxes boxes.
+     */
     void drawBoxes();
+
+    /**
+     * @brief      Render Dear ImGui.
+     *
+     * @param      universe  The universe
+     */
+    void renderImGui(Universe& universe);
+
+    /**
+     * @brief      Update the camera position.
+     * This method will take into account keyboard inputs for camera movement
+     * when spectator mode is on.
+     */
+    void updateCamera();
+    
+    /**
+     * @brief      Toggle spectator mode.
+     * The spectator mode will take into account keyboard inputs for camera 
+     * movement and enable/disable the cursor.
+     */
     void toggleSpectatorMode();
-    void renderImGui(Universe& universe); 
+    
+    /**
+     * @brief      Clears the renderer.
+     */
     void clear();
+
 
     GLFWwindow* m_window;
 
