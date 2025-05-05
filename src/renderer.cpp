@@ -8,6 +8,7 @@
 Renderer::Renderer(const Config& config)
     : m_config(config), m_boxes(config.boxes), m_quadric(nullptr) {
     m_quadric = gluNewQuadric();
+    m_cameraRight = glm::normalize(glm::cross(m_cameraFront, m_cameraUp));
     initializeGLFW();
     initializeImGui();
 }
@@ -95,12 +96,6 @@ void Renderer::framebufferSizeCallback(int width, int height) {
 void Renderer::cursorPosCallback(double xpos, double ypos) {
 
     if(!m_isSpectatorMode) {return;}
-
-    if (m_firstMouse) {
-        m_lastX = xpos;
-        m_lastY = ypos;
-        m_firstMouse = false;
-    }
 
     float xoffset = xpos - m_lastX;
     float yoffset = m_lastY - ypos; // Reverse the Y offset so that the upward movement is positive

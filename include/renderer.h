@@ -44,10 +44,10 @@ public:
     void framebufferSizeCallback(int width, int height);
 
     /**
-     * @brief      Define Callback for mouse position.
+     * @brief      Define Callback for cursor position.
      *
-     * @param[in]  xpos  The mouse x coordinate
-     * @param[in]  ypos  The mouse y coordinate
+     * @param[in]  xpos  The cursor x coordinate
+     * @param[in]  ypos  The cursor y coordinate
      */
     void cursorPosCallback(double xpos, double ypos);
 
@@ -118,35 +118,32 @@ public:
     bool isRunning();
 
 private:
-    GLFWwindow* m_window;
-    const Config& m_config;
-    std::vector<Box> m_boxes;
-    GLUquadric* m_quadric;
+    GLFWwindow* m_window;               ///< GLFW window pointer.
+    const Config& m_config;             ///< Reference to simulation configuration.
+    std::vector<Box> m_boxes;           ///< Vector of Box.
+    GLUquadric* m_quadric;              ///< GLU Utility for rendering quadratic shapes.
 
-    // Render distance parameters
-    const float m_minRenderDistance = 0.1;
-    const float m_maxRenderDistance = 1000;
+    const float m_minRenderDistance = 0.1;        ///< Minimal rendering distance (in scene unit).
+    const float m_maxRenderDistance = 1000;    ///< Maximal rendering distance (in scene unit).
 
-    // Variables for angles of rotation
-    float m_azimuth = 0.0f;
-    float m_elevation = 0.0f;
+    float m_azimuth = 0.0f;       ///< Azimut angle of the camera (in °).
+    float m_elevation = 0.0f;     ///< Elevation angle of the camera (in °).
 
-    // Initial cursor position (center of window)
-    float m_lastX = 400.0f;
-    float m_lastY = 300.0f;
-    bool m_firstMouse = true;
+    float m_lastX = 400.0f;       ///< Last cursor X position. unit ADU
+    float m_lastY = 300.0f;       ///< Last cursor Y position.
 
-    glm::vec3 m_cameraPosition = glm::vec3(0.0f, 0.0f, 5.0f);
-    float m_cameraSpeed = 50.0f; // In m/s
-    glm::vec3 m_cameraFront = glm::vec3(1.0f, 0.0f, 0.0f);
-    glm::vec3 m_cameraUp = glm::vec3(0.0f, 1.0f, 0.0f);
-    glm::vec3 m_cameraRight;
+    glm::vec3 m_cameraPosition = glm::vec3(0.0f, 0.0f, 5.0f);    ///< Camera position (in scene unit).
+    glm::vec3 m_cameraFront    = glm::vec3(1.0f, 0.0f, 0.0f);    ///< Normalized direction towards which the camera is oriented (in scene unit).
+    glm::vec3 m_cameraUp       = glm::vec3(0.0f, 1.0f, 0.0f);    ///< Normalized direction to top of camera (in scene unit).
+    glm::vec3 m_cameraRight;                                     ///< Normalized direction to the right of camera (in scene unit).
+    float m_cameraSpeed = 50.0f;                                 ///< Camera speed (in scene unit/sec).
 
-    double m_lastFrameTime = 0.0;
+    double m_lastFrameTime = 0.0;   ///< GLFW time of the last frame (in seconds).
 
-    bool m_keyStates[1024] = {false};
+    bool m_keyStates[1024] = {false}; ///< Key states.
 
-    bool m_isSpectatorMode = false;
+    bool m_isSpectatorMode = false; ///< Determines if spectator is enable.
+
 };
 
 #endif // RENDERER_H
