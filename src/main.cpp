@@ -33,23 +33,11 @@ int main(int argc, char* argv[]) {
     }
     int stepNumberSaved = 0;
 
-    // GLFW init
-    if (!glfwInit()) {
-        return -1;
-    }
-
-    // Create window
-    GLFWwindow* window = glfwCreateWindow(900, 600, "Particle System", NULL, NULL);
-    if (!window) {
-        glfwTerminate();
-        return -1;
-    }
-
     // Create renderer
-    Renderer renderer(window, config);
+    Renderer renderer(config);
 
     // Main loop
-    while (!glfwWindowShouldClose(window)) {
+    while (!glfwWindowShouldClose(renderer.m_window)) {
 
         if (glfwGetTime() * config.speedFactor > universe.m_runTime && universe.m_isRunning) {
             universe.makeStep();
@@ -68,7 +56,7 @@ int main(int argc, char* argv[]) {
         renderer.renderImGui(universe);
 
         // Swap buffers
-        glfwSwapBuffers(window);
+        glfwSwapBuffers(renderer.m_window);
 
         // Handle events
         glfwPollEvents();

@@ -5,8 +5,8 @@
 #include "imgui_impl_glfw.h"
 #include "imgui_impl_opengl3.h"
 
-Renderer::Renderer(GLFWwindow* window, const Config& config)
-    : m_window(window), m_config(config), m_boxes(config.boxes), m_quadric(nullptr) {
+Renderer::Renderer(const Config& config)
+    : m_config(config), m_boxes(config.boxes), m_quadric(nullptr) {
     m_quadric = gluNewQuadric();
     initializeGLFW();
     initializeOpenGL();
@@ -34,6 +34,19 @@ void Renderer::initializeOpenGL() {
 }
 
 void Renderer::initializeGLFW() {
+
+    // GLFW init
+    if (!glfwInit()) {
+        return;
+    }
+
+    // Create window
+    m_window = glfwCreateWindow(900, 600, "Particle System", NULL, NULL);
+    if (!m_window) {
+        glfwTerminate();
+        return;
+    }
+
     glfwMakeContextCurrent(m_window);
 
     // Associate actual instance to the window

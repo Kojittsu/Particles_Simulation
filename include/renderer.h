@@ -10,7 +10,7 @@
 
 class Renderer {
 public:
-    Renderer(GLFWwindow* window, const Config& config);
+    Renderer(const Config& config);
     ~Renderer();
 
     void initializeOpenGL();
@@ -28,8 +28,9 @@ public:
     void renderImGui(Universe& universe); 
     void clear();
 
-private:
     GLFWwindow* m_window;
+    
+private:
     const Config& m_config;
     std::vector<Box> m_boxes;
     GLUquadric* m_quadric;
