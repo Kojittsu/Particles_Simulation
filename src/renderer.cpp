@@ -266,6 +266,10 @@ void Renderer::swapBuffers() {
     glfwSwapBuffers(m_window);
 }
 
+bool Renderer::isRunning() {
+    return !glfwWindowShouldClose(m_window);
+}
+
 void Renderer::toggleSpectatorMode() {
     m_isSpectatorMode = !m_isSpectatorMode;
     if (m_isSpectatorMode) {

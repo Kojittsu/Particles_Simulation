@@ -37,7 +37,7 @@ int main(int argc, char* argv[]) {
     Renderer renderer(config);
 
     // Main loop
-    while (!glfwWindowShouldClose(renderer.m_window)) {
+    while (renderer.isRunning()) {
 
         if (glfwGetTime() * config.speedFactor > universe.m_runTime && universe.m_isRunning) {
             universe.makeStep();

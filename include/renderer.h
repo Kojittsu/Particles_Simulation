@@ -85,6 +85,13 @@ public:
     void swapBuffers();
 
     /**
+     * @brief      Determines if the renderer is running.
+     *
+     * @return     True if running, False otherwise.
+     */
+    bool isRunning();
+
+    /**
      * @brief      Render Dear ImGui.
      *
      * @param      universe  The universe
