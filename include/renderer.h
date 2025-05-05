@@ -13,7 +13,6 @@ public:
     Renderer(const Config& config);
     ~Renderer();
 
-    void initializeOpenGL();
     void initializeGLFW();
     void initializeImGui();
     void framebufferSizeCallback(int width, int height);
@@ -29,7 +28,7 @@ public:
     void clear();
 
     GLFWwindow* m_window;
-    
+
 private:
     const Config& m_config;
     std::vector<Box> m_boxes;

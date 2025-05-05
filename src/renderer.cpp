@@ -9,7 +9,6 @@ Renderer::Renderer(const Config& config)
     : m_config(config), m_boxes(config.boxes), m_quadric(nullptr) {
     m_quadric = gluNewQuadric();
     initializeGLFW();
-    initializeOpenGL();
     initializeImGui();
 }
 
@@ -17,20 +16,6 @@ Renderer::~Renderer() {
     if (m_quadric) {
         gluDeleteQuadric(m_quadric);
     }
-}
-
-void Renderer::initializeOpenGL() {
-    glEnable(GL_DEPTH_TEST);
-    glEnable(GL_LIGHTING);
-    glEnable(GL_LIGHT0);
-
-    GLfloat light_pos[] = {1.0f, 1.0f, 1.0f, 1.0f};
-    GLfloat light_diffuse[] = {1.0f, 1.0f, 1.0f, 1.0f};
-    GLfloat light_specular[] = {1.0f, 1.0f, 1.0f, 1.0f};
-
-    glLightfv(GL_LIGHT0, GL_POSITION, light_pos);
-    glLightfv(GL_LIGHT0, GL_DIFFUSE, light_diffuse);
-    glLightfv(GL_LIGHT0, GL_SPECULAR, light_specular);
 }
 
 void Renderer::initializeGLFW() {
@@ -79,6 +64,18 @@ void Renderer::initializeGLFW() {
     glfwSetInputMode(m_window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
 
     glfwSetTime(0.0);
+
+    glEnable(GL_DEPTH_TEST);
+    glEnable(GL_LIGHTING);
+    glEnable(GL_LIGHT0);
+
+    GLfloat light_pos[] = {1.0f, 1.0f, 1.0f, 1.0f};
+    GLfloat light_diffuse[] = {1.0f, 1.0f, 1.0f, 1.0f};
+    GLfloat light_specular[] = {1.0f, 1.0f, 1.0f, 1.0f};
+
+    glLightfv(GL_LIGHT0, GL_POSITION, light_pos);
+    glLightfv(GL_LIGHT0, GL_DIFFUSE, light_diffuse);
+    glLightfv(GL_LIGHT0, GL_SPECULAR, light_specular);
 }
 
 void Renderer::initializeImGui() {
@@ -96,7 +93,6 @@ void Renderer::initializeImGui() {
     ImGui_ImplOpenGL3_Init("#version 330");
 }
 
-// Callback to resize window
 void Renderer::framebufferSizeCallback(int width, int height) {
     
     glViewport(0, 0, width, height);
