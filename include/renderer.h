@@ -118,9 +118,9 @@ public:
     void clear();
 
 
-    GLFWwindow* m_window;
 
 private:
+    GLFWwindow* m_window;
     const Config& m_config;
     std::vector<Box> m_boxes;
     GLUquadric* m_quadric;
