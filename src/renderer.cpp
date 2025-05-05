@@ -262,6 +262,10 @@ void Renderer::drawBoxes() {
     glEnable(GL_LIGHTING);
 }
 
+void Renderer::swapBuffers() {
+    glfwSwapBuffers(m_window);
+}
+
 void Renderer::toggleSpectatorMode() {
     m_isSpectatorMode = !m_isSpectatorMode;
     if (m_isSpectatorMode) {

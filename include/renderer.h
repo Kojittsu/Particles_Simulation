@@ -80,6 +80,11 @@ public:
     void drawBoxes();
 
     /**
+     * @brief      Call glfwSwapBuffers(m_window).
+     */
+    void swapBuffers();
+
+    /**
      * @brief      Render Dear ImGui.
      *
      * @param      universe  The universe

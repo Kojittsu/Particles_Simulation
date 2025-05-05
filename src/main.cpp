@@ -55,10 +55,7 @@ int main(int argc, char* argv[]) {
         renderer.drawBoxes();
         renderer.renderImGui(universe);
 
-        // Swap buffers
-        glfwSwapBuffers(renderer.m_window);
-
-        // Handle events
+        renderer.swapBuffers();
         glfwPollEvents();
     }
 
