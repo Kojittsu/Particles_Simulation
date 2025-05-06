@@ -85,7 +85,7 @@ void Renderer::framebufferSizeCallback(int width, int height) {
     double aspectRatio = static_cast<double>(width) / static_cast<double>(height);
     
     // Configure 45 degrees view angle perspective
-    gluPerspective(45.0, aspectRatio, m_minRenderDistance, m_maxRenderDistance);
+    gluPerspective(m_cameraFOV, aspectRatio, m_minRenderDistance, m_maxRenderDistance);
     
     glMatrixMode(GL_MODELVIEW);
 }

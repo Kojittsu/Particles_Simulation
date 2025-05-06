@@ -137,6 +137,7 @@ private:
     glm::vec3 m_cameraUp       = glm::vec3(0.0f, 1.0f, 0.0f);    ///< Normalized direction to top of camera (in scene unit).
     glm::vec3 m_cameraRight;                                     ///< Normalized direction to the right of camera (in scene unit).
     float m_cameraSpeed = 50.0f;                                 ///< Camera speed (in scene unit/sec).
+    float m_cameraFOV = 45.0;                                    ///< Camera field of view (in °).
 
     double m_lastFrameTime = 0.0;   ///< GLFW time of the last frame (in seconds).
 
