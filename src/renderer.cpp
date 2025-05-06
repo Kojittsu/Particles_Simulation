@@ -20,17 +20,14 @@ Renderer::~Renderer() {
 }
 
 void Renderer::initializeGLFW() {
-
-    // GLFW init
     if (!glfwInit()) {
-        return;
+        throw std::runtime_error("Failed to initialize GLFW.");
     }
 
-    // Create window
-    m_window = glfwCreateWindow(900, 600, "Particle System", NULL, NULL);
+    m_window = glfwCreateWindow(900, 600, "Particle System", NULL, NULL);    
     if (!m_window) {
         glfwTerminate();
-        return;
+        throw std::runtime_error("Failed to create GLFW Window.");
     }
 
     glfwMakeContextCurrent(m_window);
