@@ -24,7 +24,7 @@ void Renderer::initializeGLFW() {
         throw std::runtime_error("Failed to initialize GLFW.");
     }
 
-    m_window = glfwCreateWindow(900, 600, "Particle System", NULL, NULL);    
+    m_window = glfwCreateWindow(900, 600, "Particle System", NULL, NULL);
     if (!m_window) {
         glfwTerminate();
         throw std::runtime_error("Failed to create GLFW Window.");
@@ -76,8 +76,7 @@ void Renderer::initializeGLFW() {
     glLightfv(GL_LIGHT0, GL_SPECULAR, light_specular);
 }
 
-void Renderer::framebufferSizeCallback(int width, int height) {
-    
+void Renderer::framebufferSizeCallback(int width, int height) {  
     glViewport(0, 0, width, height);
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
@@ -90,7 +89,6 @@ void Renderer::framebufferSizeCallback(int width, int height) {
 }
 
 void Renderer::cursorPosCallback(double xpos, double ypos) {
-
     if(!m_isSpectatorMode) {return;}
 
     float xOffset = xpos - m_lastX;
@@ -103,7 +101,7 @@ void Renderer::cursorPosCallback(double xpos, double ypos) {
 }
 
 void Renderer::keyboardCallback(int key, int scancode, int action, int mods) {
-    if (key >= 0 && key < 1024) { // Vérifie que la touche est dans les limites
+    if (key >= 0 && key < 1024) {
         if (action == GLFW_PRESS) {
             m_keyStates[key] = true;
         } else if (action == GLFW_RELEASE) {
@@ -116,13 +114,11 @@ void Renderer::keyboardCallback(int key, int scancode, int action, int mods) {
 }
 
 void Renderer::initializeImGui() {
-    // Setup Dear ImGui context
     IMGUI_CHECKVERSION();
     ImGui::CreateContext();
     ImGuiIO& io = ImGui::GetIO();
     io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;
 
-    // Setup Dear ImGui style
     ImGui::StyleColorsDark();
 
     // ImGui/Glfw bindings
@@ -132,8 +128,8 @@ void Renderer::initializeImGui() {
 
 void Renderer::render(const Universe& universe) {
 
+    // Update camera 
     float currentFrame = glfwGetTime();
-
     if(m_isSpectatorMode) {
         float deltaTime = currentFrame - m_lastFrameTime;
         m_camera.computeNewPosition(m_keyStates, deltaTime);
@@ -165,7 +161,6 @@ void Renderer::render(const Universe& universe) {
 }
 
 void Renderer::drawBoxes() {
-
     glDisable(GL_LIGHTING);
     glColor3f(1.0f, 1.0f, 1.0f);
 
@@ -181,7 +176,6 @@ void Renderer::drawBoxes() {
         float z1 = z0 + box.m_depth;
     
         glBegin(GL_LINES);
-
         glVertex3f(x0, y0, z0); glVertex3f(x1, y0, z0);
         glVertex3f(x1, y0, z0); glVertex3f(x1, y1, z0);
         glVertex3f(x1, y1, z0); glVertex3f(x0, y1, z0);
@@ -196,7 +190,6 @@ void Renderer::drawBoxes() {
         glVertex3f(x1, y0, z0); glVertex3f(x1, y0, z1);
         glVertex3f(x1, y1, z0); glVertex3f(x1, y1, z1);
         glVertex3f(x0, y1, z0); glVertex3f(x0, y1, z1);
-
         glEnd();
     }
     glEnable(GL_LIGHTING);

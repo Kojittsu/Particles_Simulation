@@ -90,8 +90,8 @@ public:
     
     /**
      * @brief      Toggle spectator mode.
-     * The spectator mode will take into account keyboard inputs for camera 
-     * movement and enable/disable the cursor.
+     * The spectator mode will take into account keyboard and mouse inputs for
+     * camera movement and show/hide the cursor.
      */
     void toggleSpectatorMode();
     
@@ -114,12 +114,12 @@ private:
     GLUquadric* m_quadric;              ///< GLU Utility for rendering quadratic shapes.
     Camera m_camera;
 
-    float m_lastX = 400.0f;       ///< Last cursor X position. unit ADU
+    float m_lastX = 400.0f;       ///< Last cursor X position.
     float m_lastY = 300.0f;       ///< Last cursor Y position.
 
     double m_lastFrameTime = 0.0;   ///< GLFW time of the last frame (in seconds).
 
-    std::array<bool, 1024> m_keyStates{ {false} };
+    std::array<bool, 1024> m_keyStates{ {false} }; ///< States of the keys.
 
     bool m_isSpectatorMode = false; ///< Determines if spectator is enable.
 
