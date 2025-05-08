@@ -23,6 +23,7 @@ bool readConfig(const std::string& filename, Config& config) {
 
     // Load visualization parameters
     config.speedFactor       = yaml["visualization"]["speedFactor"].as<double>();
+    config.scaleFactor       = yaml["visualization"]["scaleFactor"].as<double>();
 
     // Load particles
     for (const auto& particleNode : yaml["particles"]) {

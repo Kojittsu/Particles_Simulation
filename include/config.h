@@ -20,6 +20,7 @@ struct Config {
     std::string dataFileName;
     
     double speedFactor;
+    double scaleFactor;
 };
 
 bool readConfig(const std::string& filename, Config& config);

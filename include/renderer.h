@@ -123,6 +123,7 @@ private:
 
     bool m_isSpectatorMode = false; ///< Determines if spectator is enable.
 
+    double m_scaleFactor;
 };
 
 #endif // RENDERER_H
