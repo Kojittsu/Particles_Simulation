@@ -217,6 +217,9 @@ void Renderer::renderImGui(Universe& universe) {
 
     ImGui::Begin("Controls", nullptr, ImGuiWindowFlags_AlwaysAutoResize);
 
+    // Set round corners
+    ImGui::PushStyleVar(ImGuiStyleVar_FrameRounding, 5.0f);
+
     if (ImGui::Button(universe.m_isRunning ? "Pause simulation" : "Start simulation")) {
         universe.m_isRunning = !universe.m_isRunning;
     }
@@ -241,19 +244,25 @@ void Renderer::renderImGui(Universe& universe) {
         glPolygonMode(GL_FRONT_AND_BACK, showWireframe ? GL_LINE : GL_FILL);
     }
 
+    ImGui::PushItemWidth(100);
     static float cameraSpeedInSceneUnit = m_camera.getSpeed();
     static float cameraSpeedInMeters = cameraSpeedInSceneUnit / m_scaleFactor; // transform camera position from SU to meter
-    if (ImGui::SliderFloat("Speed", &cameraSpeedInMeters, 0.0f, 10000000.0f, "%.3f m/s")) {
+    if (ImGui::InputFloat("Set camera speed", &cameraSpeedInMeters, 0.0f, 0.0f, "%.3e m/s")) {
         cameraSpeedInSceneUnit = cameraSpeedInMeters * m_scaleFactor; // transform camera position from meter to SU
         m_camera.setSpeed(cameraSpeedInSceneUnit);
     }
+    ImGui::PopItemWidth();
 
+    ImGui::PushItemWidth(300);
     static glm::vec3 newCameraPositionInSceneUnit = m_camera.getPosition();
     static glm::vec3 newCameraPositionInMeters = newCameraPositionInSceneUnit / static_cast<float>(m_scaleFactor);  // transform camera position from SU to meter
-    if(ImGui::InputFloat3("Set camera position", &newCameraPositionInMeters[0])){
+    if(ImGui::InputFloat3("Set camera position", &newCameraPositionInMeters[0],"%.3e m")){
         newCameraPositionInSceneUnit = newCameraPositionInMeters * static_cast<float>(m_scaleFactor);  // transform camera position from meter to SU
         m_camera.setPosition(newCameraPositionInSceneUnit); 
     }
+    ImGui::PopItemWidth();
+
+    ImGui::PopStyleVar();
 
     ImGui::End();
 
@@ -308,12 +317,11 @@ void Renderer::renderImGui(Universe& universe) {
     ImGui::Text("Window size : %.0f x %.0f", windowSize.x, windowSize.y);
     ImGui::Text("FPS : %.1f", ImGui::GetIO().Framerate);
     ImGui::Text(" ");
-    ImGui::Text("Particle count : %ld", universe.getParticles().size());
     ImGui::Text("Simulation time : %d days, %02d hours, %02d minutes, %02d seconds", days, hours, minutes, seconds);
-    ImGui::Text("Simulation time (s) : %.3f", universe.m_runTime);
+    ImGui::Text("Simulation time : %.3f s", universe.m_runTime);
     ImGui::Text("Real time (s) : %.3f", glfwGetTime());
     ImGui::Text(" ");
-    ImGui::Text("Camera position : (%.1f, %.1f, %.1f)", cameraPosition[0], cameraPosition[1], cameraPosition[2]);
+    ImGui::Text("Camera position : (%.3e, %.3e, %.3e) m", cameraPosition[0], cameraPosition[1], cameraPosition[2]);
     ImGui::Text("Camera front : (%.1f, %.1f, %.1f)", cameraFront[0], cameraFront[1], cameraFront[2]);
     ImGui::Text("Camera up : (%.1f, %.1f, %.1f)", cameraUp[0], cameraUp[1], cameraUp[2]);
     ImGui::Text(" ");
@@ -323,11 +331,13 @@ void Renderer::renderImGui(Universe& universe) {
 
 
     ImGui::Begin("Particles", nullptr, ImGuiWindowFlags_AlwaysAutoResize);
+    ImGui::Text("Particle count : %ld", universe.getParticles().size());
+    ImGui::Text(" ");
     for (const Particle& particle : universe.getParticles()){
         ImGui::Text("Name : %s", particle.m_name.c_str());
-        ImGui::Text("Position : (%.3f, %.3f, %.3f)", particle.getX(), particle.getY(), particle.getZ());
-        ImGui::Text("Velocity : (%.3f, %.3f, %.3f)", particle.getVX(), particle.getVY(), particle.getVZ());
-        ImGui::Text("Radius : %.3f", particle.getRadius());
+        ImGui::Text("Position : (%.3e, %.3e, %.3e) m", particle.getX(), particle.getY(), particle.getZ());
+        ImGui::Text("Velocity : (%.3e, %.3e, %.3e) m/s", particle.getVX(), particle.getVY(), particle.getVZ());
+        ImGui::Text("Radius : %.3e m", particle.getRadius());
         ImGui::Text(" ");
     }
     ImGui::End();
