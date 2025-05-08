@@ -2,11 +2,8 @@
 #define RENDERER_H
 
 #include "universe.h"
-#include <GLFW/glfw3.h>
-#include <GL/glu.h>  // For gluPerspective
-#include <glm/glm.hpp> // For mathematics Opengl
-#include <vector>
-#include <array>
+#include "camera.h"
+#include "array.h"
 
 class Renderer {
 public:
@@ -122,26 +119,14 @@ private:
     const Config& m_config;             ///< Reference to simulation configuration.
     std::vector<Box> m_boxes;           ///< Vector of Box.
     GLUquadric* m_quadric;              ///< GLU Utility for rendering quadratic shapes.
-
-    const float m_minRenderDistance = 0.1;        ///< Minimal rendering distance (in scene unit).
-    const float m_maxRenderDistance = 1000;    ///< Maximal rendering distance (in scene unit).
-
-    float m_azimuth = 0.0f;       ///< Azimut angle of the camera (in °).
-    float m_elevation = 0.0f;     ///< Elevation angle of the camera (in °).
+    Camera m_camera;
 
     float m_lastX = 400.0f;       ///< Last cursor X position. unit ADU
     float m_lastY = 300.0f;       ///< Last cursor Y position.
 
-    glm::vec3 m_cameraPosition = glm::vec3(0.0f, 0.0f, 5.0f);    ///< Camera position (in scene unit).
-    glm::vec3 m_cameraFront    = glm::vec3(1.0f, 0.0f, 0.0f);    ///< Normalized direction towards which the camera is oriented (in scene unit).
-    glm::vec3 m_cameraUp       = glm::vec3(0.0f, 1.0f, 0.0f);    ///< Normalized direction to top of camera (in scene unit).
-    glm::vec3 m_cameraRight;                                     ///< Normalized direction to the right of camera (in scene unit).
-    float m_cameraSpeed = 50.0f;                                 ///< Camera speed (in scene unit/sec).
-    float m_cameraFOV = 45.0;                                    ///< Camera field of view (in °).
-
     double m_lastFrameTime = 0.0;   ///< GLFW time of the last frame (in seconds).
 
-    bool m_keyStates[1024] = {false}; ///< Key states.
+    std::array<bool, 1024> m_keyStates{ {false} };
 
     bool m_isSpectatorMode = false; ///< Determines if spectator is enable.
 

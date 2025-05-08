@@ -8,7 +8,7 @@
 Renderer::Renderer(const Config& config)
     : m_config(config), m_boxes(config.boxes), m_quadric(nullptr) {
     m_quadric = gluNewQuadric();
-    m_cameraRight = glm::normalize(glm::cross(m_cameraFront, m_cameraUp));
+    Camera m_camera;
     initializeGLFW();
     initializeImGui();
 }
@@ -84,8 +84,7 @@ void Renderer::framebufferSizeCallback(int width, int height) {
 
     double aspectRatio = static_cast<double>(width) / static_cast<double>(height);
     
-    // Configure 45 degrees view angle perspective
-    gluPerspective(m_cameraFOV, aspectRatio, m_minRenderDistance, m_maxRenderDistance);
+    m_camera.configurePerspective(aspectRatio);
     
     glMatrixMode(GL_MODELVIEW);
 }
@@ -94,32 +93,13 @@ void Renderer::cursorPosCallback(double xpos, double ypos) {
 
     if(!m_isSpectatorMode) {return;}
 
-    float xoffset = xpos - m_lastX;
-    float yoffset = m_lastY - ypos; // Reverse the Y offset so that the upward movement is positive
+    float xOffset = xpos - m_lastX;
+    float yOffset = m_lastY - ypos; // Reverse the Y offset so that the upward movement is positive
+
+    m_camera.computeNewOrientation(xOffset, yOffset);
 
     m_lastX = xpos;
     m_lastY = ypos;
-
-    float sensitivity = 0.1f;
-    xoffset *= sensitivity;
-    yoffset *= sensitivity;
-
-    m_azimuth += xoffset;
-    m_elevation += yoffset;
-
-    if (m_elevation > 89.0f) m_elevation = 89.0f;
-    if (m_elevation < -89.0f) m_elevation = -89.0f;
-
-    float azimuthRad = glm::radians(m_azimuth);
-    float elevationRad = glm::radians(m_elevation);
-
-    m_cameraFront = glm::normalize(glm::vec3(
-        cos(elevationRad) * cos(azimuthRad),
-        sin(elevationRad),
-        cos(elevationRad) * sin(azimuthRad)
-    ));
-
-    m_cameraRight = glm::normalize(glm::cross(m_cameraFront, m_cameraUp));
 }
 
 void Renderer::keyboardCallback(int key, int scancode, int action, int mods) {
@@ -258,11 +238,14 @@ void Renderer::renderImGui(Universe& universe) {
         glPolygonMode(GL_FRONT_AND_BACK, showWireframe ? GL_LINE : GL_FILL);
     }
 
-    ImGui::SliderFloat("Camera speed", &m_cameraSpeed, 0.0f, 10000.0f, "%.3f m/s");
+    static float cameraSpeed = m_camera.getSpeed();
+    if (ImGui::SliderFloat("Speed", &cameraSpeed, 0.0f, 10000.0f, "%.3f m/s")) {
+        m_camera.setSpeed(cameraSpeed);
+    }
 
-    glm::vec3 newCameraPosition = glm::vec3(0.0f, 0.0f, 0.0f);
+    static glm::vec3 newCameraPosition = m_camera.getPosition();
     if(ImGui::InputFloat3("Set camera position", &newCameraPosition[0])){
-        m_cameraPosition = newCameraPosition; 
+        m_camera.setPosition(newCameraPosition); 
     }
 
     ImGui::End();
@@ -309,6 +292,10 @@ void Renderer::renderImGui(Universe& universe) {
     int minutes = static_cast<int>(static_cast<int>(totalSeconds) % 3600 / 60);
     int seconds = static_cast<int>(totalSeconds) % 60;
 
+    glm::vec3 cameraPosition = m_camera.getPosition();
+    glm::vec3 cameraFront = m_camera.getFront();
+    glm::vec3 cameraUp = m_camera.getUp();
+
     ImGui::Begin("Info", nullptr, ImGuiWindowFlags_AlwaysAutoResize);
     ImVec2 windowSize = ImGui::GetIO().DisplaySize;
     ImGui::Text("Window size : %.0f x %.0f", windowSize.x, windowSize.y);
@@ -319,9 +306,9 @@ void Renderer::renderImGui(Universe& universe) {
     ImGui::Text("Simulation time (s) : %.3f", universe.m_runTime);
     ImGui::Text("Real time (s) : %.3f", glfwGetTime());
     ImGui::Text(" ");
-    ImGui::Text("Camera position : (%.1f, %.1f, %.1f)", m_cameraPosition[0], m_cameraPosition[1], m_cameraPosition[2]);
-    ImGui::Text("Camera front : (%.1f, %.1f, %.1f)", m_cameraFront[0], m_cameraFront[1], m_cameraFront[2]);
-    ImGui::Text("Camera up : (%.1f, %.1f, %.1f)", m_cameraUp[0], m_cameraUp[1], m_cameraUp[2]);
+    ImGui::Text("Camera position : (%.1f, %.1f, %.1f)", cameraPosition[0], cameraPosition[1], cameraPosition[2]);
+    ImGui::Text("Camera front : (%.1f, %.1f, %.1f)", cameraFront[0], cameraFront[1], cameraFront[2]);
+    ImGui::Text("Camera up : (%.1f, %.1f, %.1f)", cameraUp[0], cameraUp[1], cameraUp[2]);
     ImGui::Text(" ");
     ImGui::Text("OpenGL version : %s", glGetString(GL_VERSION));
     ImGui::Text("ImGui version : %s", ImGui::GetVersion());
@@ -345,40 +332,16 @@ void Renderer::renderImGui(Universe& universe) {
 
 void Renderer::updateCamera() {
 
+    float currentFrame = glfwGetTime();
+    float deltaTime = currentFrame - m_lastFrameTime;
+
     if(m_isSpectatorMode) {
-        // Compute new m_cameraPosition value
-        float currentFrame = glfwGetTime();
-        float deltaTime = currentFrame - m_lastFrameTime;
-        m_lastFrameTime = currentFrame;
-        float velocity = m_cameraSpeed * deltaTime;
-        if (m_keyStates[GLFW_KEY_W]) {
-            m_cameraPosition += m_cameraFront * velocity;
-        }
-        if (m_keyStates[GLFW_KEY_S]) {
-            m_cameraPosition -= m_cameraFront * velocity;
-        }
-        if (m_keyStates[GLFW_KEY_A]) {
-            m_cameraPosition -= m_cameraRight * velocity;
-        }
-        if (m_keyStates[GLFW_KEY_D]) {
-            m_cameraPosition += m_cameraRight * velocity;
-        }
-        if (m_keyStates[GLFW_KEY_SPACE]) {
-            m_cameraPosition += m_cameraUp * velocity;
-        }
-        if (m_keyStates[GLFW_KEY_LEFT_SHIFT]) {
-            m_cameraPosition -= m_cameraUp * velocity;
-        }
+        m_camera.computeNewPosition(m_keyStates, deltaTime);
     }
     
-    // Update camera position
-    glLoadIdentity();
-    glm::vec3 cameraTarget = m_cameraPosition + m_cameraFront;
-    gluLookAt(
-        m_cameraPosition.x, m_cameraPosition.y, m_cameraPosition.z, // Position de la caméra
-        cameraTarget.x, cameraTarget.y, cameraTarget.z,             // Point ciblé par la caméra
-        m_cameraUp.x, m_cameraUp.y, m_cameraUp.z                    // Vecteur "Up"
-    );
+    m_camera.update();
+    
+    m_lastFrameTime = currentFrame;
 }
 
 void Renderer::toggleSpectatorMode() {
