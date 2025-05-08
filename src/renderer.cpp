@@ -133,15 +133,14 @@ void Renderer::initializeImGui() {
 void Renderer::render(const Universe& universe) {
 
     float currentFrame = glfwGetTime();
-    float deltaTime = currentFrame - m_lastFrameTime;
 
     if(m_isSpectatorMode) {
+        float deltaTime = currentFrame - m_lastFrameTime;
         m_camera.computeNewPosition(m_keyStates, deltaTime);
     }
+    m_lastFrameTime = currentFrame;
     
     m_camera.update();
-    
-    m_lastFrameTime = currentFrame;
 
     const auto& particles = universe.getParticles();
 
