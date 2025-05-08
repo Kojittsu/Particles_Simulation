@@ -302,7 +302,7 @@ void Renderer::renderImGui(Universe& universe) {
         ImGui::End();
     }
 
-    double totalSeconds = universe.m_runTime;
+    double totalSeconds = universe.m_simuationTime;
     int days    = static_cast<int>(totalSeconds / 86400);
     int hours   = static_cast<int>(static_cast<int>(totalSeconds) % 86400 / 3600);
     int minutes = static_cast<int>(static_cast<int>(totalSeconds) % 3600 / 60);
@@ -318,7 +318,7 @@ void Renderer::renderImGui(Universe& universe) {
     ImGui::Text("FPS : %.1f", ImGui::GetIO().Framerate);
     ImGui::Text(" ");
     ImGui::Text("Simulation time : %d days, %02d hours, %02d minutes, %02d seconds", days, hours, minutes, seconds);
-    ImGui::Text("Simulation time : %.3f s", universe.m_runTime);
+    ImGui::Text("Simulation time : %.3f s", universe.m_simuationTime);
     ImGui::Text("Real time (s) : %.3f", glfwGetTime());
     ImGui::Text(" ");
     ImGui::Text("Camera position : (%.3e, %.3e, %.3e) m", cameraPosition[0], cameraPosition[1], cameraPosition[2]);

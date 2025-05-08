@@ -26,7 +26,7 @@ public:
 
 
     // Simulation parameters
-    double m_runTime = 0;
+    double m_simuationTime = 0;
     bool m_isRunning = false;
 
 private:

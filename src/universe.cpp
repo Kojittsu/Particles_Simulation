@@ -32,7 +32,7 @@ void Universe::makeStep(){
     handleParticleCollisions();
 
     // Update runtime
-    m_runTime += m_config.deltaTime;
+    m_simuationTime += m_config.deltaTime;
 }
 
 void Universe::saveStep(std::ofstream& file, int stepNumber){
