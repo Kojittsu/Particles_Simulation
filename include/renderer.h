@@ -87,13 +87,6 @@ public:
      * @param      universe  The universe
      */
     void renderImGui(Universe& universe);
-
-    /**
-     * @brief      Update the camera position.
-     * This method will take into account keyboard inputs for camera movement
-     * when spectator mode is on.
-     */
-    void updateCamera();
     
     /**
      * @brief      Toggle spectator mode.

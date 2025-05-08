@@ -50,7 +50,6 @@ int main(int argc, char* argv[]) {
         }
 
         renderer.clear();
-        renderer.updateCamera();
         renderer.render(universe);
         renderer.drawBoxes();
         renderer.renderImGui(universe);

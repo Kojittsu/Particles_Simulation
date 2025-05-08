@@ -132,6 +132,17 @@ void Renderer::initializeImGui() {
 
 void Renderer::render(const Universe& universe) {
 
+    float currentFrame = glfwGetTime();
+    float deltaTime = currentFrame - m_lastFrameTime;
+
+    if(m_isSpectatorMode) {
+        m_camera.computeNewPosition(m_keyStates, deltaTime);
+    }
+    
+    m_camera.update();
+    
+    m_lastFrameTime = currentFrame;
+
     const auto& particles = universe.getParticles();
 
     for (const auto& particle : particles) {
@@ -328,20 +339,6 @@ void Renderer::renderImGui(Universe& universe) {
     // Render ImGui
     ImGui::Render();
     ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
-}
-
-void Renderer::updateCamera() {
-
-    float currentFrame = glfwGetTime();
-    float deltaTime = currentFrame - m_lastFrameTime;
-
-    if(m_isSpectatorMode) {
-        m_camera.computeNewPosition(m_keyStates, deltaTime);
-    }
-    
-    m_camera.update();
-    
-    m_lastFrameTime = currentFrame;
 }
 
 void Renderer::toggleSpectatorMode() {
