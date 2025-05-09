@@ -89,16 +89,11 @@ void Renderer::framebufferSizeCallback(int width, int height) {
 }
 
 void Renderer::cursorPosCallback(double xpos, double ypos) {
-    if(!m_isSpectatorMode) {
-        m_lastX = xpos;
-        m_lastY = ypos;
-        return;
+    if(m_isSpectatorMode) {
+        float xOffset = xpos - m_lastX;
+        float yOffset = m_lastY - ypos; // Reverse the Y offset so that the upward movement is positive
+        m_camera.computeNewOrientation(xOffset, yOffset);
     }
-
-    float xOffset = xpos - m_lastX;
-    float yOffset = m_lastY - ypos; // Reverse the Y offset so that the upward movement is positive
-
-    m_camera.computeNewOrientation(xOffset, yOffset);
 
     m_lastX = xpos;
     m_lastY = ypos;
