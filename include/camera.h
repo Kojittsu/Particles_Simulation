@@ -15,8 +15,8 @@ public:
            float elevation = 0.0f,
            float speed     = 50.0f,
            float fov       = 45.0f,
-           const float minRenderDistance = 100,
-           const float maxRenderDistance = 1000000);
+           const float minRenderDistance = 1,
+           const float maxRenderDistance = 10000);
 
     /**
      * @brief      Configure camera perspective.

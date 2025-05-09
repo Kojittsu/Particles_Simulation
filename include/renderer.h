@@ -118,8 +118,8 @@ private:
     GLUquadric* m_quadric;              ///< GLU Utility for rendering quadratic shapes.
     Camera m_camera;
 
-    float m_lastX = 400.0f;       ///< Last cursor X position (in pixels).
-    float m_lastY = 300.0f;       ///< Last cursor Y position (in pixels).
+    float m_lastX = 0.0f;       ///< Last cursor X position (in pixels).
+    float m_lastY = 0.0f;       ///< Last cursor Y position (in pixels).
 
     double m_lastFrameTime = 0.0;   ///< GLFW time of the last frame (in seconds).
     double m_simulationTimePaused = 0.0;
