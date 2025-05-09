@@ -39,7 +39,7 @@ int main(int argc, char* argv[]) {
     // Main loop
     while (renderer.isRunning()) {
         
-        if (glfwGetTime() * config.speedFactor > universe.m_simuationTime && universe.m_isRunning) {
+        if (renderer.getRunTime() * config.speedFactor > universe.m_simuationTime && universe.m_isRunning) {
             universe.makeStep();
 
             // Save universe current step

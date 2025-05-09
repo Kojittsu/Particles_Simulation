@@ -127,11 +127,20 @@ void Renderer::initializeImGui() {
 }
 
 void Renderer::render(const Universe& universe) {
+    
+    float currentFrame = glfwGetTime();
+    float deltaTime = currentFrame - m_lastFrameTime;
+    
+    // compute m_runTime & m_simulationTimePaused
+    if(universe.m_isRunning) {
+        m_runTime = currentFrame - m_simulationTimePaused;
+    }
+    else {
+        m_simulationTimePaused += deltaTime;
+    }
 
     // Update camera 
-    float currentFrame = glfwGetTime();
     if(m_isSpectatorMode) {
-        float deltaTime = currentFrame - m_lastFrameTime;
         m_camera.computeNewPosition(m_keyStates, deltaTime);
     }
     m_lastFrameTime = currentFrame;
@@ -319,7 +328,7 @@ void Renderer::renderImGui(Universe& universe) {
     ImGui::Text(" ");
     ImGui::Text("Simulation time : %d days, %02d hours, %02d minutes, %02d seconds", days, hours, minutes, seconds);
     ImGui::Text("Simulation time : %.3f s", universe.m_simuationTime);
-    ImGui::Text("Real time (s) : %.3f", glfwGetTime());
+    ImGui::Text("Real time (s) : %.3f", m_runTime);
     ImGui::Text(" ");
     ImGui::Text("Camera position : (%.3e, %.3e, %.3e) m", cameraPosition[0], cameraPosition[1], cameraPosition[2]);
     ImGui::Text("Camera front : (%.1f, %.1f, %.1f)", cameraFront[0], cameraFront[1], cameraFront[2]);

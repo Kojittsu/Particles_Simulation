@@ -107,6 +107,10 @@ public:
      */
     bool isRunning();
 
+    // Getters
+    const double& getRunTime() const { return m_runTime; }
+
+
 private:
     GLFWwindow* m_window;               ///< GLFW window pointer.
     const Config& m_config;             ///< Reference to simulation configuration.
@@ -118,6 +122,8 @@ private:
     float m_lastY = 300.0f;       ///< Last cursor Y position (in pixels).
 
     double m_lastFrameTime = 0.0;   ///< GLFW time of the last frame (in seconds).
+    double m_simulationTimePaused = 0.0;
+    double m_runTime = 0.0;
 
     std::array<bool, 1024> m_keyStates{ {false} }; ///< States of the keys.
 
