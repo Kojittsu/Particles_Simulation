@@ -117,6 +117,7 @@ void Renderer::initializeImGui() {
     ImGui::CreateContext();
     ImGuiIO& io = ImGui::GetIO();
     io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;
+    io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;
 
     ImGui::StyleColorsDark();
 
@@ -223,8 +224,15 @@ void Renderer::renderImGui(Universe& universe) {
     ImGui_ImplGlfw_NewFrame();
     ImGui::NewFrame();
 
-    ImGui::Begin("Controls", nullptr, ImGuiWindowFlags_AlwaysAutoResize);
+    // Set  flags
+    ImGuiWindowFlags window_flags = ImGuiWindowFlags_AlwaysAutoResize | ImGuiWindowFlags_NoBackground;
+    ImGuiDockNodeFlags dockSpace_flags = ImGuiDockNodeFlags_PassthruCentralNode;
 
+    // Set dockspace
+    ImGui::DockSpaceOverViewport(0, ImGui::GetMainViewport(), dockSpace_flags);
+
+
+    ImGui::Begin("Controls", nullptr, window_flags);
     // Set round corners
     ImGui::PushStyleVar(ImGuiStyleVar_FrameRounding, 5.0f);
 
@@ -275,7 +283,7 @@ void Renderer::renderImGui(Universe& universe) {
     ImGui::End();
 
     if (showParticleConfig) {
-        ImGui::Begin("New particle configuration", &showParticleConfig, ImGuiWindowFlags_AlwaysAutoResize);
+        ImGui::Begin("New particle configuration", &showParticleConfig, window_flags);
         
         ImGui::Text("Position:");
         ImGui::InputDouble("X (m)", &position[0]);
@@ -320,7 +328,7 @@ void Renderer::renderImGui(Universe& universe) {
     glm::vec3 cameraFront = m_camera.getFront();
     glm::vec3 cameraUp = m_camera.getUp();
 
-    ImGui::Begin("Info", nullptr, ImGuiWindowFlags_AlwaysAutoResize);
+    ImGui::Begin("Info", nullptr, window_flags);
     ImVec2 windowSize = ImGui::GetIO().DisplaySize;
     ImGui::Text("Window size : %.0f x %.0f", windowSize.x, windowSize.y);
     ImGui::Text("FPS : %.1f", ImGui::GetIO().Framerate);
@@ -338,7 +346,7 @@ void Renderer::renderImGui(Universe& universe) {
     ImGui::End();
 
 
-    ImGui::Begin("Particles", nullptr, ImGuiWindowFlags_AlwaysAutoResize);
+    ImGui::Begin("Particles", nullptr, window_flags);
     ImGui::Text("Particle count : %ld", universe.getParticles().size());
     ImGui::Text(" ");
     for (const Particle& particle : universe.getParticles()){
