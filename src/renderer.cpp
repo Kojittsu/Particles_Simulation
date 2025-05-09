@@ -353,6 +353,7 @@ void Renderer::renderImGui(Universe& universe) {
         ImGui::Text("Name : %s", particle.m_name.c_str());
         ImGui::Text("Position : (%.3e, %.3e, %.3e) m", particle.getX(), particle.getY(), particle.getZ());
         ImGui::Text("Velocity : (%.3e, %.3e, %.3e) m/s. %.3e m/s", particle.getVX(), particle.getVY(), particle.getVZ(), getMagnitude(particle.getVelocity()));
+        ImGui::Text("Mass : %.3e Kg", particle.getMass());
         ImGui::Text("Radius : %.3e m", particle.getRadius());
         ImGui::Text(" ");
     }
