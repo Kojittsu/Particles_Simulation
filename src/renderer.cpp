@@ -211,7 +211,6 @@ void Renderer::swapBuffers() {
 
 void Renderer::renderImGui(Universe& universe) {
 
-    static bool showParticleConfig = false;
     static std::array<double, 3> position     = {0.0, 0.0, 0.0};
     static std::array<double, 3> velocity     = {0.0, 0.0, 0.0};
     static std::array<double, 3> acceleration = {0.0, 0.0, 0.0};
@@ -236,54 +235,49 @@ void Renderer::renderImGui(Universe& universe) {
     // Set round corners
     ImGui::PushStyleVar(ImGuiStyleVar_FrameRounding, 5.0f);
 
-    if (ImGui::Button(universe.m_isRunning ? "Pause simulation" : "Start simulation")) {
-        universe.m_isRunning = !universe.m_isRunning;
+
+    if (ImGui::CollapsingHeader("Simulation controls")) {
+        if (ImGui::Button(universe.m_isRunning ? "Pause simulation" : "Start simulation")) {
+            universe.m_isRunning = !universe.m_isRunning;
+        }
+
+        if (ImGui::Button("Toggle gravity")) {
+            universe.toggleGravity();
+        }
+        ImGui::SameLine();
+        ImGui::Text(universe.getIsGravity() ? "Gravity ON" : "Gravity OFF");
     }
 
-    if (ImGui::Button("Toggle gravity")) {
-        universe.toggleGravity();
+    if (ImGui::CollapsingHeader("Rendering controls")) {
+        bool isSpectatorMode = m_isSpectatorMode;
+        if (ImGui::Checkbox("Spectator mode", &isSpectatorMode)) {
+            toggleSpectatorMode();
+        }
+
+        static bool showWireframe = false;
+        if (ImGui::Checkbox("Wireframe mode", &showWireframe)) {
+            glPolygonMode(GL_FRONT_AND_BACK, showWireframe ? GL_LINE : GL_FILL);
+        }
+        ImGui::PushItemWidth(100);
+        static float cameraSpeedInSceneUnit = m_camera.getSpeed();
+        static float cameraSpeedInMeters = cameraSpeedInSceneUnit / m_scaleFactor; // transform camera position from SU to meter
+        if (ImGui::InputFloat("Set camera speed", &cameraSpeedInMeters, 0.0f, 0.0f, "%.3e m/s")) {
+            cameraSpeedInSceneUnit = cameraSpeedInMeters * m_scaleFactor; // transform camera position from meter to SU
+            m_camera.setSpeed(cameraSpeedInSceneUnit);
+        }
+        ImGui::PopItemWidth();
+
+        ImGui::PushItemWidth(300);
+        static glm::vec3 newCameraPositionInSceneUnit = m_camera.getPosition();
+        static glm::vec3 newCameraPositionInMeters = newCameraPositionInSceneUnit / static_cast<float>(m_scaleFactor);  // transform camera position from SU to meter
+        if(ImGui::InputFloat3("Set camera position", &newCameraPositionInMeters[0],"%.3e m")){
+            newCameraPositionInSceneUnit = newCameraPositionInMeters * static_cast<float>(m_scaleFactor);  // transform camera position from meter to SU
+            m_camera.setPosition(newCameraPositionInSceneUnit); 
+        }
+        ImGui::PopItemWidth();
     }
-    ImGui::SameLine();
-    ImGui::Text(universe.getIsGravity() ? "Gravity ON" : "Gravity OFF");
 
-    if (ImGui::Button("Add particle")) {
-        showParticleConfig = true;
-    }
-
-    bool isSpectatorMode = m_isSpectatorMode;
-    if (ImGui::Checkbox("Spectator mode", &isSpectatorMode)) {
-        toggleSpectatorMode();
-    }
-
-    static bool showWireframe = false;
-    if (ImGui::Checkbox("Wireframe mode", &showWireframe)) {
-        glPolygonMode(GL_FRONT_AND_BACK, showWireframe ? GL_LINE : GL_FILL);
-    }
-
-    ImGui::PushItemWidth(100);
-    static float cameraSpeedInSceneUnit = m_camera.getSpeed();
-    static float cameraSpeedInMeters = cameraSpeedInSceneUnit / m_scaleFactor; // transform camera position from SU to meter
-    if (ImGui::InputFloat("Set camera speed", &cameraSpeedInMeters, 0.0f, 0.0f, "%.3e m/s")) {
-        cameraSpeedInSceneUnit = cameraSpeedInMeters * m_scaleFactor; // transform camera position from meter to SU
-        m_camera.setSpeed(cameraSpeedInSceneUnit);
-    }
-    ImGui::PopItemWidth();
-
-    ImGui::PushItemWidth(300);
-    static glm::vec3 newCameraPositionInSceneUnit = m_camera.getPosition();
-    static glm::vec3 newCameraPositionInMeters = newCameraPositionInSceneUnit / static_cast<float>(m_scaleFactor);  // transform camera position from SU to meter
-    if(ImGui::InputFloat3("Set camera position", &newCameraPositionInMeters[0],"%.3e m")){
-        newCameraPositionInSceneUnit = newCameraPositionInMeters * static_cast<float>(m_scaleFactor);  // transform camera position from meter to SU
-        m_camera.setPosition(newCameraPositionInSceneUnit); 
-    }
-    ImGui::PopItemWidth();
-
-    ImGui::PopStyleVar();
-
-    ImGui::End();
-
-    if (showParticleConfig) {
-        ImGui::Begin("New particle configuration", &showParticleConfig, window_flags);
+    if (ImGui::CollapsingHeader("Add particle")) {
         
         ImGui::Text("Position:");
         ImGui::InputDouble("X (m)", &position[0]);
@@ -315,8 +309,12 @@ void Renderer::renderImGui(Universe& universe) {
             Particle particle(position, velocity, acceleration, radius, mass, color);
             universe.addParticle(particle);
         }
-        ImGui::End();
     }
+
+    ImGui::PopStyleVar();
+
+    ImGui::End();
+
 
     double totalSeconds = universe.m_simuationTime;
     int days    = static_cast<int>(totalSeconds / 86400);
