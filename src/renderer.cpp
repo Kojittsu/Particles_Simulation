@@ -211,13 +211,6 @@ void Renderer::swapBuffers() {
 
 void Renderer::renderImGui(Universe& universe) {
 
-    static std::array<double, 3> position     = {0.0, 0.0, 0.0};
-    static std::array<double, 3> velocity     = {0.0, 0.0, 0.0};
-    static std::array<double, 3> acceleration = {0.0, 0.0, 0.0};
-    static double radius = 0.0;
-    static double mass   = 0.0;
-    static std::array<int, 3> color = {0, 0, 0};
-
     // Start new ImGui frame
     ImGui_ImplOpenGL3_NewFrame();
     ImGui_ImplGlfw_NewFrame();
@@ -278,6 +271,13 @@ void Renderer::renderImGui(Universe& universe) {
     }
 
     if (ImGui::CollapsingHeader("Add particle")) {
+
+        static std::array<double, 3> position     = {0.0, 0.0, 0.0};
+        static std::array<double, 3> velocity     = {0.0, 0.0, 0.0};
+        static std::array<double, 3> acceleration = {0.0, 0.0, 0.0};
+        static double radius = 0.0;
+        static double mass   = 0.0;
+        static std::array<int, 3> color = {0, 0, 0};
         
         ImGui::Text("Position:");
         ImGui::InputDouble("X (m)", &position[0]);
