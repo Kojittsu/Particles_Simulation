@@ -364,6 +364,7 @@ void Renderer::renderImGui(Universe& universe) {
     ImGui::Text(" ");
     ImGui::Text("OpenGL version : %s", glGetString(GL_VERSION));
     ImGui::Text("ImGui version : %s", ImGui::GetVersion());
+    ImGui::Text("ImPlot version : %s", IMPLOT_VERSION);
     ImGui::End();
 
 
