@@ -6,13 +6,14 @@
 ![GitHub issues](https://img.shields.io/github/issues/Kojittsu/Particles_Simulation)
 [![built with nix](https://img.shields.io/static/v1?logo=nixos&logoColor=white&label=&message=Built%20with%20Nix&color=41439a)](https://builtwithnix.org)
 
-This project is a particle simulation using the C++ programming language. It models the interaction of particles in a 3D universe and render it using OpenGL.
+This project is a particle simulation using the C++ programming language. It models the interaction of particles in a 3D universe and render it using the the [GLFW](https://www.glfw.org/) library.
 
 
 ## 🖼️ Gallery
 
 <p align="center">
    <img src="./.github/assets/screenshots/1.png" style="margin-bottom: 15px;"/> <br>
+   Screenshots last updated <b>2025-05-10</b>
 </p>
 
 
@@ -38,17 +39,17 @@ The explicit Euler method is simple to implement but can introduce approximation
 
 - Universe simulation :
   - Particle-particle collisions
-  - Particle-box collisions.
+  - Particle-boxes collisions.
   - Global acceleration set to all particles.
-  - Energy restitution must be set in [0,1], 0 mean all energy is loss, 1 mean energy conservation.
+  - Energy restitution must be set in [0.0, 1.0], 0.0 mean all energy is loss, 1.0 mean energy conservation.
 
 - Universe rendering :
-  - Create a window that display universe simulation using OpenGL.
-  - Simulation speed is set to a speed factor (1 mean real time simulation).
-  - Display simulation time in runtime.
-
-- Graphical user interface :
-  - Control the simulation through a graphical interface using [Dear ImGui](https://github.com/ocornut/imgui)
+  - Create a window that display universe simulation using GLFW.
+  - Simulation speed is set by a speed factor (1.0 mean real time simulation).
+  - Rendering is scale up/down by a scale factor (1.0 mean that 1 meter is 1 scene unit).
+  - Graphical user interface :
+    - Control the simulation through a graphical interface using the [Dear ImGui](https://github.com/ocornut/imgui) library.
+    - Usage of the [ImPlot](https://github.com/epezent/implot) library for graphs rendering.
 
 - Miscellaneous :
   - A datafile name can be set to save particles motions over time.
@@ -83,7 +84,8 @@ simulation:
   dataFileName: string                         # data file name for saving particles positions through time (can be "")
 
 visualization:
-  speedFactor: double
+  speedFactor: double # Factor for rendering speed (1.0 mean real time universe rendering)
+  scaleFactor: double # Factor for scale up/down rendering values (usefull for rendering with big value for example)
 ```
 ## 📦 Dependencies
 
