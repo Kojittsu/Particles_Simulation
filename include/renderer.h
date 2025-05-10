@@ -65,6 +65,12 @@ public:
     void initializeImGui();
 
     /**
+     * @brief      Initializes the imPlot library.
+     * This method is called by the constructor.
+     */
+    void initializeImPlot();
+
+    /**
      * @brief      Renders the given universe.
      *
      * @param[in]  universe  The universe
@@ -129,7 +135,10 @@ private:
 
     bool m_isSpectatorMode = false; ///< Determines if spectator is enable.
 
-    double m_scaleFactor;
+    double m_scaleFactor; ///< Scale factor applied for rendering.
+
+    std::vector<float> m_lastFrameratesBuffer; ///< vector of last framerates values
+    std::vector<float> m_lastFrameratesIndexes; ///< vector of last framerates indexes
 };
 
 #endif // RENDERER_H

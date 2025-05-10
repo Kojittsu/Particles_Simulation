@@ -4,6 +4,7 @@
 #include "imgui.h"
 #include "imgui_impl_glfw.h"
 #include "imgui_impl_opengl3.h"
+#include "implot.h"
 
 Renderer::Renderer(const Config& config)
     : m_config(config), m_boxes(config.boxes), m_scaleFactor(config.scaleFactor) {
@@ -11,6 +12,7 @@ Renderer::Renderer(const Config& config)
     Camera m_camera;
     initializeGLFW();
     initializeImGui();
+    initializeImPlot();
 }
 
 Renderer::~Renderer() {
@@ -124,6 +126,17 @@ void Renderer::initializeImGui() {
     // ImGui/Glfw bindings
     ImGui_ImplGlfw_InitForOpenGL(m_window, true);
     ImGui_ImplOpenGL3_Init("#version 330");
+}
+
+void Renderer::initializeImPlot() {
+    ImPlot::CreateContext();
+    
+    m_lastFrameratesBuffer = std::vector<float>(100, 0.0f);
+
+    m_lastFrameratesIndexes = std::vector<float>(m_lastFrameratesBuffer.size());
+    for (std::size_t i = 0; i < m_lastFrameratesIndexes.size(); ++i) {
+        m_lastFrameratesIndexes[i] = static_cast<float>(i);
+    }
 }
 
 void Renderer::render(const Universe& universe) {
@@ -329,8 +342,18 @@ void Renderer::renderImGui(Universe& universe) {
     ImGui::Begin("Info", nullptr, window_flags);
     ImVec2 windowSize = ImGui::GetIO().DisplaySize;
     ImGui::Text("Window size : %.0f x %.0f", windowSize.x, windowSize.y);
-    ImGui::Text("FPS : %.1f", ImGui::GetIO().Framerate);
-    ImGui::Text(" ");
+    
+    m_lastFrameratesBuffer.erase(m_lastFrameratesBuffer.begin());
+    m_lastFrameratesBuffer.push_back(ImGui::GetIO().Framerate);
+
+    if (ImPlot::BeginPlot("Framerate per seconds", ImVec2(-1,150), ImPlotFlags_NoMouseText | ImPlotFlags_NoInputs)) {
+        ImPlot::SetupAxis(ImAxis_X1, nullptr, ImPlotAxisFlags_AutoFit|ImPlotAxisFlags_NoDecorations);
+        ImPlot::SetupAxis(ImAxis_Y1, nullptr);
+        ImPlot::SetupAxisLimits(ImAxis_Y1, 0, 200);
+        ImPlot::PlotLine("", m_lastFrameratesIndexes.data(), m_lastFrameratesBuffer.data(), m_lastFrameratesBuffer.size());
+        ImPlot::EndPlot();
+    }
+
     ImGui::Text("Simulation time : %d days, %02d hours, %02d minutes, %02d seconds", days, hours, minutes, seconds);
     ImGui::Text("Simulation time : %.3f s", universe.m_simuationTime);
     ImGui::Text("Real time (s) : %.3f", m_runTime);
