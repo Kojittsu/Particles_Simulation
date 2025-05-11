@@ -16,6 +16,16 @@ Renderer::Renderer(const Config& config)
 }
 
 Renderer::~Renderer() {
+    
+    ImPlot::DestroyContext();
+    
+    ImGui_ImplOpenGL3_Shutdown();
+    ImGui_ImplGlfw_Shutdown();
+    ImGui::DestroyContext();
+
+    glfwDestroyWindow(m_window);
+    glfwTerminate();
+
     if (m_quadric) {
         gluDeleteQuadric(m_quadric);
     }
