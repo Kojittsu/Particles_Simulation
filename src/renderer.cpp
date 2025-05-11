@@ -198,14 +198,18 @@ void Renderer::renderParticleTrail(const Particle& particle) {
     const auto& trail = particle.getTrail();
     if (trail.size() < 2) { return; }
 
+    glDisable(GL_LIGHTING);
     glBegin(GL_LINE_STRIP);
+    
+    // set trail color
+    auto color = particle.getColor();
+    glColor3ub(color[0], color[1], color[2]);
+    
     for (const auto& point : trail) {
-        auto posX = point[0] * m_scaleFactor;
-        auto posY = point[1] * m_scaleFactor;
-        auto posZ = point[2] * m_scaleFactor;
-        glVertex3d(posX, posY, posZ);
+        glVertex3d(point[0] * m_scaleFactor, point[1] * m_scaleFactor, point[2] * m_scaleFactor);
     }
     glEnd();
+    glEnable(GL_LIGHTING);
 }
 
 void Renderer::drawBoxes() {
