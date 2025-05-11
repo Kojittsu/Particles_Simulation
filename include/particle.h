@@ -4,6 +4,7 @@
 #include <iostream>
 #include <cmath>
 #include <array>
+#include <deque>
 #include "array.h"
 
 class Particle {
@@ -63,6 +64,10 @@ public:
     // Update particle
     void update(double deltaTime);
 
+    void addTrailPoint(const std::array<double, 3>& point);
+
+    const std::deque<std::array<double, 3>>& getTrail() const;
+
 private:
     std::array<double, 3> m_position;
     std::array<double, 3> m_velocity;
@@ -70,6 +75,9 @@ private:
     double m_radius;
     double m_mass;
     std::array<int, 3> m_color;
+
+    std::deque<std::array<double, 3>> m_trail;
+    static constexpr size_t m_maxTrailLength = 5000;
 
 public:
     const std::string m_name;

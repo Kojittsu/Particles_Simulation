@@ -77,4 +77,15 @@ std::array<int, 3> Particle::getColor() const {return m_color;}
 void Particle::update(double deltaTime) {
     m_velocity += m_acceleration * deltaTime;
     m_position += m_velocity * deltaTime;
+
+    // add new position to trail
+    addTrailPoint(m_position);
 }
+
+void Particle::addTrailPoint(const std::array<double, 3>& point) {
+    m_trail.push_back(point);
+    if (m_trail.size() > m_maxTrailLength)
+        m_trail.pop_front();
+}
+
+const std::deque<std::array<double, 3>>& Particle::getTrail() const { return m_trail; }

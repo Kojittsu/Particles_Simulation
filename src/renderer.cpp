@@ -189,7 +189,23 @@ void Renderer::render(const Universe& universe) {
         glTranslated(position[0], position[1], position[2]);
         gluSphere(m_quadric, radius, 16, 16);
         glPopMatrix();
+
+        renderParticleTrail(particle);
     }
+}
+
+void Renderer::renderParticleTrail(const Particle& particle) {
+    const auto& trail = particle.getTrail();
+    if (trail.size() < 2) { return; }
+
+    glBegin(GL_LINE_STRIP);
+    for (const auto& point : trail) {
+        auto posX = point[0] * m_scaleFactor;
+        auto posY = point[1] * m_scaleFactor;
+        auto posZ = point[2] * m_scaleFactor;
+        glVertex3d(posX, posY, posZ);
+    }
+    glEnd();
 }
 
 void Renderer::drawBoxes() {

@@ -78,6 +78,13 @@ public:
     void render(const Universe& universe);
 
     /**
+     * @brief      Render the trail of the given particle.
+     *
+     * @param      particle  The particle
+     */
+    void renderParticleTrail(const Particle& particle);
+
+    /**
      * @brief      Draws the m_boxes boxes.
      */
     void drawBoxes();
