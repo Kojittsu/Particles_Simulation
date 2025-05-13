@@ -12,8 +12,7 @@ This project is a particle simulation using the C++ programming language. It mod
 ## 🖼️ Gallery
 
 <p align="center">
-   <img src="./.github/assets/screenshots/1.png" style="margin-bottom: 15px;"/> <br>
-   Screenshots last updated <b>2025-05-10</b>
+   <img src="./.github/assets/pictures/video.gif" style="margin-bottom: 15px;"/> <br>
 </p>
 
 
