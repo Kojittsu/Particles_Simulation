@@ -122,7 +122,11 @@ public:
      */
     bool isRunning();
 
-    // Getters
+    /**
+     * @brief      Return the run time.
+     *
+     * @return     The run time
+     */
     const double& getRunTime() const { return m_runTime; }
 
 

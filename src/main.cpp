@@ -30,7 +30,6 @@ int main(int argc, char* argv[]) {
             return 1;
         }
     }
-    int stepNumberSaved = 0;
 
     // Create renderer
     Renderer renderer(config);
@@ -43,8 +42,7 @@ int main(int argc, char* argv[]) {
 
             // Save universe current step
             if (file.is_open()) {
-                universe.saveStep(file, stepNumberSaved);
-                stepNumberSaved++;
+                universe.saveStep(file);
             }
         }
 

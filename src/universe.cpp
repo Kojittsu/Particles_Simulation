@@ -15,7 +15,7 @@ Universe::Universe(const Config& config)
 
 void Universe::makeStep(){
     // Apply Newton's law of universal gravitation
-    if(m_applyGravity){
+    if(m_applyGravity) {
         computeGravitationalForces();
     }
     
@@ -23,24 +23,21 @@ void Universe::makeStep(){
         // Update particle
         particle.update(m_config.deltaTime);
         // Handle boxes collisions
-        handleBoxesCollision(particle);
+        computeBoxesCollision(particle);
     }
 
-    // Handle particles collisions
-    handleParticleCollisions();
+    computeParticleCollisions();
 
-    // Update runtime
     m_simuationTime += m_config.deltaTime;
 }
 
-void Universe::saveStep(std::ofstream& file, int stepNumber){
+void Universe::saveStep(std::ofstream& file){
     if (!file.is_open()) {
         throw std::runtime_error("File is not open");
     }
-    double currentTime = stepNumber * m_config.deltaTime;
     int particleNumber = 1;
     for (const Particle& particle : m_particles){
-        file << currentTime << "," << particleNumber << "," << particle.getX() << "," << particle.getY() << "," << particle.getZ() << "\n";
+        file << m_simuationTime << "," << particleNumber << "," << particle.getX() << "," << particle.getY() << "," << particle.getZ() << "\n";
         ++particleNumber;
     }
 }
@@ -81,7 +78,7 @@ void Universe::computeGravitationalForces() {
     }
 }
 
-void Universe::handleParticleCollisions() {
+void Universe::computeParticleCollisions() {
     for (size_t i = 0; i < m_particles.size(); ++i) {
         for (size_t j = i + 1; j < m_particles.size(); ++j) {
             Particle& p1 = m_particles[i];
@@ -91,6 +88,7 @@ void Universe::handleParticleCollisions() {
             double distance = getMagnitude(distanceVector);
             double minDistance = p1.getRadius() + p2.getRadius();
 
+            // Collision detected
             if (distance < minDistance) {
                 std::array<double, 3> distanceVectorNormalized = distanceVector * (1 / distance);
                 double overlap = minDistance - distance;
@@ -114,7 +112,7 @@ void Universe::handleParticleCollisions() {
     }
 }
 
-void Universe::handleBoxesCollision(Particle& particle) {
+void Universe::computeBoxesCollision(Particle& particle) {
     std::array<double, 3> position = particle.getPosition();
     std::array<double, 3> velocity = particle.getVelocity();
     double radius = particle.getRadius();
@@ -155,6 +153,6 @@ void Universe::toggleGravity() {
     m_applyGravity = !m_applyGravity;
 }
 
-bool Universe::getIsGravity(){
+bool Universe::getIsGravity() {
     return m_applyGravity;
 }
