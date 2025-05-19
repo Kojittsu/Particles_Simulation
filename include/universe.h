@@ -90,7 +90,6 @@ private:
     std::vector<Box> m_boxes;                   ///< Vector containing all boxes.
     bool m_applyGravity;                        ///< Vector containing all boxes.
     std::array<double, 3> m_globalAcceleration; ///< Acceleration force apply on all universe.
-    double m_speedFactor;                       ///< Speed factor apply to simulation time.
     const double m_G = 6.67430e-11;             ///< Gravitational constant
 
 };

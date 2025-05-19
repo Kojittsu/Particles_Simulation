@@ -7,8 +7,7 @@ Universe::Universe(const Config& config)
         m_particles(config.particles),
         m_boxes(config.boxes),
         m_applyGravity(config.applyGravity),
-        m_globalAcceleration(config.globalAcceleration),
-        m_speedFactor(config.speedFactor)
+        m_globalAcceleration(config.globalAcceleration)
 {
     applyAccelerationToParticles(m_globalAcceleration);
 }
