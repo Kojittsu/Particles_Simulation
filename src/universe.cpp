@@ -1,6 +1,4 @@
 #include "universe.h"
-#include <stdexcept>
-#include <cmath>
 
 // Constructor
 Universe::Universe(const Config& config)

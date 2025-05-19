@@ -2,7 +2,6 @@
 #define CONFIG_H
 
 #include <vector>
-#include <fstream>
 #include <yaml-cpp/yaml.h>
 
 #include "particle.h"

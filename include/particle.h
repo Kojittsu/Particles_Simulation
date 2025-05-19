@@ -2,9 +2,8 @@
 #define PARTICLE_H
 
 #include <iostream>
-#include <cmath>
-#include <array>
 #include <deque>
+
 #include "array.h"
 
 class Particle {

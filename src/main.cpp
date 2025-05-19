@@ -1,8 +1,7 @@
+#include <iostream>
+
 #include "universe.h"
 #include "renderer.h"
-#include <GLFW/glfw3.h>
-#include <iostream>
-#include <fstream>
 
 int main(int argc, char* argv[]) {
     // Check if the configuration file name is provided

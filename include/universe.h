@@ -1,13 +1,11 @@
 #ifndef UNIVERSE_H
 #define UNIVERSE_H
 
-#include <vector>
 #include <fstream>
-#include <string>
+#include <vector>
 
 #include "particle.h"
 #include "config.h"
-#include "utils.h"
 
 class Universe {
 public:

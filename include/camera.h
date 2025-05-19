@@ -1,9 +1,10 @@
 #ifndef CAMERA_H
 #define CAMERA_H
 
-#include <glm/glm.hpp> // For mathematics Opengl
-#include <GL/glu.h>  // For gluPerspective
+#include <glm/glm.hpp>
+#include <GL/glu.h>
 #include <GLFW/glfw3.h>
+
 #include "array.h"
 
 class Camera {

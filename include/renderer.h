@@ -1,9 +1,11 @@
 #ifndef RENDERER_H
 #define RENDERER_H
 
+#include <vector>
+#include <glm/glm.hpp>
+
 #include "universe.h"
 #include "camera.h"
-#include "array.h"
 
 class Renderer {
 public:
