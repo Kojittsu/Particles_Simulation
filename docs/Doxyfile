@@ -1,0 +1,29 @@
+INPUT                  = ../include
+FILE_PATTERNS          = *.cpp *.h *.hpp
+
+EXTRACT_ALL            = YES
+EXTRACT_PRIVATE        = YES
+EXTRACT_STATIC         = YES
+
+GENERATE_HTML          = YES
+HTML_OUTPUT            = html/
+
+GENERATE_LATEX         = NO
+
+HAVE_DOT               = YES
+DOT_IMAGE_FORMAT       = svg
+
+CALL_GRAPH             = YES
+CALLER_GRAPH           = YES
+
+PROJECT_NAME           = "Particle simulation"
+INPUT_ENCODING         = UTF-8
+
+
+GENERATE_TREEVIEW      = YES # doxygen-awesome-css requirement !
+DISABLE_INDEX          = NO
+FULL_SIDEBAR           = NO
+HTML_EXTRA_STYLESHEET  = doxygen-awesome-css/doxygen-awesome.css \
+                         doxygen-awesome-css/doxygen-awesome-sidebar-only.css \
+                         custom.css
+HTML_COLORSTYLE        = LIGHT # required with Doxygen >= 1.9.5

@@ -1,0 +1,10 @@
+html {
+    --Color1: #1779c4;
+    --Color2: #dedede;
+    
+    /* primary theme color. This will affect the entire websites color scheme: links, arrows, labels, ... */
+    --primary-color: var(--Color1);
+
+    /* color for all separators on the website: hr, borders, ... */
+    --separator-color: var(--Color2);
+}
