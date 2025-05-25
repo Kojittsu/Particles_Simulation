@@ -32,3 +32,5 @@ HTML_HEADER            = header.html
 HTML_EXTRA_FILES       = doxygen-awesome-css/doxygen-awesome-darkmode-toggle.js
 
 USE_MDFILE_AS_MAINPAGE = ./overview.md
+
+SHOW_USED_FILES = NO
