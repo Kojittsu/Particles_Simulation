@@ -1,4 +1,4 @@
-# Particle Simulation
+# Particles Simulation
 
 ![GitHub repo size](https://img.shields.io/github/repo-size/Kojittsu/Particles_Simulation)
 ![GitHub contributors](https://img.shields.io/github/contributors/Kojittsu/Particles_Simulation)
@@ -52,6 +52,11 @@ The explicit Euler method is simple to implement but can introduce approximation
 
 - Miscellaneous :
   - A datafile name can be set to save particles motions over time.
+
+## 📖 Documentation
+
+The project documentation detailing its codebase is available here: [Particles Simulation Documentation](https://kojittsu.github.io/Particles_Simulation/)
+
 
 ## 📝 Configuration file
 
