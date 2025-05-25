@@ -1,10 +1,181 @@
-html {
-    --Color1: #1779c4;
-    --Color2: #dedede;
-    
-    /* primary theme color. This will affect the entire websites color scheme: links, arrows, labels, ... */
-    --primary-color: var(--Color1);
+:root {
+  /* Base color */
+  --color-lavender: #7b68ee;
+  --color-lavender-dark: #5a4dcf;
+  --color-lavender-light: #a192f7;
+  --color-white: #ffffff;
+  --color-dark-text: #2c2c2c;
+  --color-secondary-text: #5a5a5a;
+  --color-light-separator: #eaeaea;
+  --color-box-shadow: rgba(123,104,238,0.15);
+  --color-odd: rgba(123,104,238,0.05);
+  --color-menu-selected: rgba(123,104,238,0.15);
+  --color-side-nav: #f2f0ff;
+  --color-code-bg: #f0efff;
+  --color-code-fg: #4b399a;
+  --color-tablehead-bg: var(--color-code-bg);
+  --color-blockquote-bg: #e8e6ff;
+  --color-blockquote-fg: #6559b0;
 
-    /* color for all separators on the website: hr, borders, ... */
-    --separator-color: var(--Color2);
+  --color-warning: #e0dbff;
+  --color-warning-dark: #8279e9;
+  --color-warning-darker: #5c4bbe;
+
+  --color-note: #e9e6ff;
+  --color-note-dark: var(--color-lavender);
+  --color-note-darker: var(--color-lavender-dark);
+
+  --color-todo: #e6e4ff;
+  --color-todo-dark: #5046b0;
+  --color-todo-darker: #3a3280;
+
+  --color-deprecated: var(--color-code-bg);
+  --color-deprecated-dark: #7c75b9;
+  --color-deprecated-darker: #564d82;
+
+  --color-bug: #e5e4ff;
+  --color-bug-dark: var(--color-lavender);
+  --color-bug-darker: var(--color-lavender-dark);
+
+  --color-invariant: #f1f0ff;
+  --color-invariant-dark: #8b84c9;
+  --color-invariant-darker: #5f59a2;
+
+  /* Syntax Highlighting */
+  --color-fragment-bg: var(--color-code-bg);
+  --color-fragment-fg: var(--color-code-fg);
+  --color-fragment-keyword: var(--color-lavender);
+  --color-fragment-keywordtype: #6354c3;
+  --color-fragment-keywordflow: #9c8fea;
+  --color-fragment-token: #6f5edb;
+  --color-fragment-comment: #7f7ac4;
+  --color-fragment-link: #8f81ff;
+  --color-fragment-preprocessor: #705ed3;
+  --color-fragment-linenumber-color: #6a5dc3;
+  --color-fragment-linenumber-bg: #d9d7ff;
+  --color-fragment-linenumber-border: #b4b1e4;
+}
+
+html {
+  --primary-color: var(--color-lavender);
+  --primary-dark-color: var(--color-lavender-dark);
+  --primary-light-color: var(--color-lavender-light);
+
+  --page-background-color: var(--color-white);
+  --page-foreground-color: var(--color-dark-text);
+  --page-secondary-foreground-color: var(--color-secondary-text);
+
+  --separator-color: var(--color-light-separator);
+
+  --box-shadow: 0 2px 10px var(--color-box-shadow);
+  --odd-color: var(--color-odd);
+  --menu-selected-background: var(--color-menu-selected);
+  --side-nav-background: var(--color-side-nav);
+
+  --code-background: var(--color-code-bg);
+  --code-foreground: var(--color-code-fg);
+
+  --tablehead-background: var(--color-tablehead-bg);
+
+  --blockquote-background: var(--color-blockquote-bg);
+  --blockquote-foreground: var(--color-blockquote-fg);
+
+  --warning-color: var(--color-warning);
+  --warning-color-dark: var(--color-warning-dark);
+  --warning-color-darker: var(--color-warning-darker);
+
+  --note-color: var(--color-note);
+  --note-color-dark: var(--color-note-dark);
+  --note-color-darker: var(--color-note-darker);
+
+  --todo-color: var(--color-todo);
+  --todo-color-dark: var(--color-todo-dark);
+  --todo-color-darker: var(--color-todo-darker);
+
+  --deprecated-color: var(--color-deprecated);
+  --deprecated-color-dark: var(--color-deprecated-dark);
+  --deprecated-color-darker: var(--color-deprecated-darker);
+
+  --bug-color: var(--color-bug);
+  --bug-color-dark: var(--color-bug-dark);
+  --bug-color-darker: var(--color-bug-darker);
+
+  --invariant-color: var(--color-invariant);
+  --invariant-color-dark: var(--color-invariant-dark);
+  --invariant-color-darker: var(--color-invariant-darker);
+
+  --fragment-background: var(--color-fragment-bg);
+  --fragment-foreground: var(--color-fragment-fg);
+  --fragment-keyword: var(--color-fragment-keyword);
+  --fragment-keywordtype: var(--color-fragment-keywordtype);
+  --fragment-keywordflow: var(--color-fragment-keywordflow);
+  --fragment-token: var(--color-fragment-token);
+  --fragment-comment: var(--color-fragment-comment);
+  --fragment-link: var(--color-fragment-link);
+  --fragment-preprocessor: var(--color-fragment-preprocessor);
+  --fragment-linenumber-color: var(--color-fragment-linenumber-color);
+  --fragment-linenumber-background: var(--color-fragment-linenumber-bg);
+  --fragment-linenumber-border: var(--color-fragment-linenumber-border);
+}
+
+html.dark-mode {
+  color-scheme: dark;
+
+  --primary-color: var(--color-lavender);
+  --primary-dark-color: var(--color-lavender-dark);
+  --primary-light-color: var(--color-lavender-light);
+
+  --page-background-color: #1f1d2a;
+  --page-foreground-color: #e1defe;
+  --page-secondary-foreground-color: #a29fd6;
+
+  --separator-color: #47455f;
+  --box-shadow: 0 2px 10px rgba(123,104,238,0.5);
+  --odd-color: rgba(123,104,238,0.1);
+  --menu-selected-background: rgba(123,104,238,0.35);
+  --side-nav-background: #2b293e;
+
+  --code-background: #3a3852;
+  --code-foreground: #e1defe;
+
+  --tablehead-background: #3a3852;
+  --blockquote-background: #2e2c45;
+  --blockquote-foreground: #958dc8;
+
+  --warning-color: #594d88;
+  --warning-color-dark: #8d84f6;
+  --warning-color-darker: #6a63cb;
+
+  --note-color: #433d7d;
+  --note-color-dark: var(--color-note-dark);
+  --note-color-darker: var(--color-note-darker);
+
+  --todo-color: #4b4588;
+  --todo-color-dark: #6559b0;
+  --todo-color-darker: #3a3280;
+
+  --deprecated-color: #3e3a5f;
+  --deprecated-color-dark: var(--color-deprecated-dark);
+  --deprecated-color-darker: var(--color-deprecated-darker);
+
+  --bug-color: #5c558f;
+  --bug-color-dark: var(--color-bug-dark);
+  --bug-color-darker: var(--color-bug-darker);
+
+  --invariant-color: #403b5c;
+  --invariant-color-dark: var(--color-invariant-dark);
+  --invariant-color-darker: var(--color-invariant-darker);
+
+  --fragment-background: #3a3852;
+  --fragment-foreground: #e1defe;
+  --fragment-keyword: #a49fff;
+  --fragment-keywordtype: #8e88f5;
+  --fragment-keywordflow: #b8b4ff;
+  --fragment-token: #9589fc;
+  --fragment-comment: #9996c8;
+  --fragment-link: #b0aaff;
+  --fragment-preprocessor: #a49fff;
+  --fragment-linenumber-color: #c0bfff;
+  --fragment-linenumber-background: #534f70;
+  --fragment-linenumber-border: #6b6890;
 }

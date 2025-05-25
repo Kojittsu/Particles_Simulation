@@ -24,6 +24,9 @@ GENERATE_TREEVIEW      = YES # doxygen-awesome-css requirement !
 DISABLE_INDEX          = NO
 FULL_SIDEBAR           = NO
 HTML_EXTRA_STYLESHEET  = doxygen-awesome-css/doxygen-awesome.css \
-                         doxygen-awesome-css/doxygen-awesome-sidebar-only.css \
                          custom.css
 HTML_COLORSTYLE        = LIGHT # required with Doxygen >= 1.9.5
+
+HTML_HEADER            = header.html
+
+HTML_EXTRA_FILES       = doxygen-awesome-css/doxygen-awesome-darkmode-toggle.js
