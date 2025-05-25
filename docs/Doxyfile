@@ -6,7 +6,7 @@ EXTRACT_PRIVATE        = YES
 EXTRACT_STATIC         = YES
 
 GENERATE_HTML          = YES
-HTML_OUTPUT            = html/
+HTML_OUTPUT            = .
 
 GENERATE_LATEX         = NO
 
