@@ -1,4 +1,4 @@
-INPUT                  = ../include ./overview.md
+INPUT                  = ../include ../src ./overview.md
 FILE_PATTERNS          = *.cpp *.h *.hpp
 
 EXTRACT_ALL            = YES

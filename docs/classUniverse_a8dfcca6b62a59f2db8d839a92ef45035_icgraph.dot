@@ -1,0 +1,11 @@
+digraph "Universe::applyAccelerationToParticles"
+{
+ // LATEX_PDF_SIZE
+  bgcolor="transparent";
+  edge [fontname=Helvetica,fontsize=10,labelfontname=Helvetica,labelfontsize=10];
+  node [fontname=Helvetica,fontsize=10,shape=box,height=0.2,width=0.4];
+  rankdir="RL";
+  Node1 [id="Node000001",label="Universe::applyAcceleration\lToParticles",height=0.2,width=0.4,color="gray40", fillcolor="grey60", style="filled", fontcolor="black",tooltip="Sum an acceleration contribution to the actual acceleration of all particles."];
+  Node1 -> Node2 [id="edge1_Node000001_Node000002",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node2 [id="Node000002",label="Universe::Universe",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classUniverse.html#a766b92a7c15bd1ec4f4f1fc3899bed00",tooltip="Initialize universe."];
+}

@@ -43,5 +43,7 @@ var searchData=
   ['m_5fup_40',['m_up',['../classCamera.html#af2a8632b36b3c7b1a79234ab4ccf4059',1,'Camera']]],
   ['m_5fvelocity_41',['m_velocity',['../classParticle.html#a838b3eb39bb49f3900f611d9a7c8ad46',1,'Particle']]],
   ['m_5fwindow_42',['m_window',['../classRenderer.html#af40474065067d28ba33f7e5477866d9d',1,'Renderer']]],
-  ['makestep_43',['makeStep',['../classUniverse.html#a76eb413d0e5e74f293d40a9a89605ebd',1,'Universe']]]
+  ['main_43',['main',['../main_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97',1,'main.cpp']]],
+  ['main_2ecpp_44',['main.cpp',['../main_8cpp.html',1,'']]],
+  ['makestep_45',['makeStep',['../classUniverse.html#a76eb413d0e5e74f293d40a9a89605ebd',1,'Universe']]]
 ];
