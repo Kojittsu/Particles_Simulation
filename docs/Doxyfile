@@ -1,4 +1,4 @@
-INPUT                  = ../include
+INPUT                  = ../include ./overview.md
 FILE_PATTERNS          = *.cpp *.h *.hpp
 
 EXTRACT_ALL            = YES
@@ -16,7 +16,7 @@ DOT_IMAGE_FORMAT       = svg
 CALL_GRAPH             = YES
 CALLER_GRAPH           = YES
 
-PROJECT_NAME           = "Particle simulation"
+PROJECT_NAME           = "Particle​ Simulation Documentation"
 INPUT_ENCODING         = UTF-8
 
 
@@ -30,3 +30,5 @@ HTML_COLORSTYLE        = LIGHT # required with Doxygen >= 1.9.5
 HTML_HEADER            = header.html
 
 HTML_EXTRA_FILES       = doxygen-awesome-css/doxygen-awesome-darkmode-toggle.js
+
+USE_MDFILE_AS_MAINPAGE = ./overview.md
