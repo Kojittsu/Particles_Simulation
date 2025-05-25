@@ -57,7 +57,6 @@ The explicit Euler method is simple to implement but can introduce approximation
 
 The project documentation detailing its codebase is available here: [Particles Simulation Documentation](https://kojittsu.github.io/Particles_Simulation/)
 
-
 ## 📝 Configuration file
 
 This is the YAML configuration file structure :
