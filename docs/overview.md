@@ -1,6 +1,6 @@
 # 📖 Overview
 
-Welcome to the official documentation for the **Particle​ Simulation** project.
+Welcome to the official documentation for the [Particles Simulation](https://github.com/Kojittsu/Particles_Simulation/) project.
 
 This document contains the documentation for the project’s codebase, detailing its classes, methods, and attributes.
 The goal of this documentation is to provide developers and users with a clear and structured reference to understand the internal structure of the code.
