@@ -146,7 +146,7 @@ void Renderer::initializeImPlot() {
     }
 }
 
-void Renderer::render(const Universe& universe) {
+void Renderer::render(Universe& universe) {
     
     float currentFrame = glfwGetTime();
     float deltaTime = currentFrame - m_lastFrameTime;
@@ -167,7 +167,7 @@ void Renderer::render(const Universe& universe) {
     
     m_camera.update();
 
-    const auto& particles = universe.getParticles();
+    auto& particles = universe.getParticles();
 
     for (const auto& particle : particles) {
         auto position = particle.getPosition() * m_scaleFactor; // transform particle position from meter to SU
@@ -400,16 +400,15 @@ void Renderer::renderImGui(Universe& universe) {
     ImGui::Text("ImPlot version : %s", IMPLOT_VERSION);
     ImGui::End();
 
-
-    ImGui::Begin("Particles", nullptr, window_flags);
+    ImGui::Begin("Particles viewer", nullptr, window_flags);
     ImGui::Text("Particle count : %ld", universe.getParticles().size());
     ImGui::Text(" ");
-    for (const Particle& particle : universe.getParticles()){
+    for (Particle& particle : universe.getParticles()){
         ImGui::Text("Name : %s", particle.m_name.c_str());
         ImGui::Text("Position : (%.3e, %.3e, %.3e) m", particle.getX(), particle.getY(), particle.getZ());
         ImGui::Text("Velocity : (%.3e, %.3e, %.3e) m/s. %.3e m/s", particle.getVX(), particle.getVY(), particle.getVZ(), getMagnitude(particle.getVelocity()));
         ImGui::Text("Mass : %.3e Kg", particle.getMass());
-        ImGui::Text("Radius : %.3e m", particle.getRadius());
+        ImGui::Text("Radius : %.3e m", particle.getRadius());      
         ImGui::Text(" ");
     }
     ImGui::End();

@@ -77,7 +77,7 @@ public:
      *
      * @param[in]  universe  The universe
      */
-    void render(const Universe& universe);
+    void render(Universe& universe);
 
     /**
      * @brief      Render the trail of the given particle.
@@ -102,6 +102,11 @@ public:
      * @param      universe  The universe
      */
     void renderImGui(Universe& universe);
+
+    /**
+     * @brief      Display edit particle menu.
+     */
+    void editParticleMenu(Particle& particle);
     
     /**
      * @brief      Toggle spectator mode.
