@@ -187,11 +187,25 @@ public:
     double getRadius() const;
 
     /**
+     * @brief      Sets the radius.
+     *
+     * @param[in]  radius  The radius
+     */
+    void setRadius(double radius);
+
+    /**
      * @brief      Gets the mass.
      *
      * @return     The mass.
      */
     double getMass() const;
+
+    /**
+     * @brief      Sets the mass.
+     *
+     * @param[in]  mass  The mass
+     */
+    void setMass(double mass);
 
     /**
      * @brief      Gets the color.

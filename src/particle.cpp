@@ -58,8 +58,10 @@ void Particle::setAY(double ay) {m_acceleration[1] = ay;}
 void Particle::setAZ(double az) {m_acceleration[2] = az;}
 
 double Particle::getRadius() const {return m_radius;}
+void Particle::setRadius(double radius) {m_radius = radius;}
 
 double Particle::getMass() const {return m_mass;}
+void Particle::setMass(double mass) {m_mass = mass;}
 
 std::array<int, 3> Particle::getColor() const {return m_color;}
 
