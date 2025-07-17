@@ -262,43 +262,7 @@ void Renderer::renderImGui(Universe& universe) {
 
     ImGuiControlsMenu(universe, window_flags);
 
-    double totalSeconds = universe.m_simuationTime;
-    int days    = static_cast<int>(totalSeconds / 86400);
-    int hours   = static_cast<int>(static_cast<int>(totalSeconds) % 86400 / 3600);
-    int minutes = static_cast<int>(static_cast<int>(totalSeconds) % 3600 / 60);
-    int seconds = static_cast<int>(totalSeconds) % 60;
-
-    glm::vec3 cameraPosition = m_camera.getPosition() / static_cast<float>(m_scaleFactor); // transform camera position from SU to meter
-    glm::vec3 cameraFront = m_camera.getFront();
-    glm::vec3 cameraUp = m_camera.getUp();
-
-    ImGui::Begin("Info", nullptr, window_flags);
-    ImVec2 windowSize = ImGui::GetIO().DisplaySize;
-    ImGui::Text("Window size : %.0f x %.0f", windowSize.x, windowSize.y);
-    
-    m_lastFrameratesBuffer.erase(m_lastFrameratesBuffer.begin());
-    m_lastFrameratesBuffer.push_back(ImGui::GetIO().Framerate);
-
-    if (ImPlot::BeginPlot("Framerate per seconds", ImVec2(-1,150), ImPlotFlags_NoMouseText | ImPlotFlags_NoInputs)) {
-        ImPlot::SetupAxis(ImAxis_X1, nullptr, ImPlotAxisFlags_AutoFit|ImPlotAxisFlags_NoDecorations);
-        ImPlot::SetupAxis(ImAxis_Y1, nullptr);
-        ImPlot::SetupAxisLimits(ImAxis_Y1, 0, 200);
-        ImPlot::PlotLine("", m_lastFrameratesIndexes.data(), m_lastFrameratesBuffer.data(), m_lastFrameratesBuffer.size());
-        ImPlot::EndPlot();
-    }
-
-    ImGui::Text("Simulation time : %d days, %02d hours, %02d minutes, %02d seconds", days, hours, minutes, seconds);
-    ImGui::Text("Simulation time : %.3f s", universe.m_simuationTime);
-    ImGui::Text("Real time (s) : %.3f", m_runTime);
-    ImGui::Text(" ");
-    ImGui::Text("Camera position : (%.3e, %.3e, %.3e) m", cameraPosition[0], cameraPosition[1], cameraPosition[2]);
-    ImGui::Text("Camera front : (%.1f, %.1f, %.1f)", cameraFront[0], cameraFront[1], cameraFront[2]);
-    ImGui::Text("Camera up : (%.1f, %.1f, %.1f)", cameraUp[0], cameraUp[1], cameraUp[2]);
-    ImGui::Text(" ");
-    ImGui::Text("OpenGL version : %s", glGetString(GL_VERSION));
-    ImGui::Text("ImGui version : %s", ImGui::GetVersion());
-    ImGui::Text("ImPlot version : %s", IMPLOT_VERSION);
-    ImGui::End();
+    ImGuiInformationMenu(universe, window_flags);
 
     ImGuiParticleViewerMenu(universe.getParticles(), window_flags);
 
@@ -403,6 +367,46 @@ void Renderer::ImGuiControlsMenu(Universe& universe, ImGuiWindowFlags window_fla
 
     ImGui::PopStyleVar();
 
+    ImGui::End();
+}
+
+void Renderer::ImGuiInformationMenu(const Universe& universe, ImGuiWindowFlags window_flags) {
+    double totalSeconds = universe.m_simuationTime;
+    int days    = static_cast<int>(totalSeconds / 86400);
+    int hours   = static_cast<int>(static_cast<int>(totalSeconds) % 86400 / 3600);
+    int minutes = static_cast<int>(static_cast<int>(totalSeconds) % 3600 / 60);
+    int seconds = static_cast<int>(totalSeconds) % 60;
+
+    glm::vec3 cameraPosition = m_camera.getPosition() / static_cast<float>(m_scaleFactor); // transform camera position from SU to meter
+    glm::vec3 cameraFront = m_camera.getFront();
+    glm::vec3 cameraUp = m_camera.getUp();
+
+    ImGui::Begin("Info", nullptr, window_flags);
+    ImVec2 windowSize = ImGui::GetIO().DisplaySize;
+    ImGui::Text("Window size : %.0f x %.0f", windowSize.x, windowSize.y);
+    
+    m_lastFrameratesBuffer.erase(m_lastFrameratesBuffer.begin());
+    m_lastFrameratesBuffer.push_back(ImGui::GetIO().Framerate);
+
+    if (ImPlot::BeginPlot("Framerate per seconds", ImVec2(-1,150), ImPlotFlags_NoMouseText | ImPlotFlags_NoInputs)) {
+        ImPlot::SetupAxis(ImAxis_X1, nullptr, ImPlotAxisFlags_AutoFit|ImPlotAxisFlags_NoDecorations);
+        ImPlot::SetupAxis(ImAxis_Y1, nullptr);
+        ImPlot::SetupAxisLimits(ImAxis_Y1, 0, 200);
+        ImPlot::PlotLine("", m_lastFrameratesIndexes.data(), m_lastFrameratesBuffer.data(), m_lastFrameratesBuffer.size());
+        ImPlot::EndPlot();
+    }
+
+    ImGui::Text("Simulation time : %d days, %02d hours, %02d minutes, %02d seconds", days, hours, minutes, seconds);
+    ImGui::Text("Simulation time : %.3f s", universe.m_simuationTime);
+    ImGui::Text("Real time (s) : %.3f", m_runTime);
+    ImGui::Text(" ");
+    ImGui::Text("Camera position : (%.3e, %.3e, %.3e) m", cameraPosition[0], cameraPosition[1], cameraPosition[2]);
+    ImGui::Text("Camera front : (%.1f, %.1f, %.1f)", cameraFront[0], cameraFront[1], cameraFront[2]);
+    ImGui::Text("Camera up : (%.1f, %.1f, %.1f)", cameraUp[0], cameraUp[1], cameraUp[2]);
+    ImGui::Text(" ");
+    ImGui::Text("OpenGL version : %s", glGetString(GL_VERSION));
+    ImGui::Text("ImGui version : %s", ImGui::GetVersion());
+    ImGui::Text("ImPlot version : %s", IMPLOT_VERSION);
     ImGui::End();
 }
 
