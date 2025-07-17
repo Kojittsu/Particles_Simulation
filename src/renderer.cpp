@@ -1,7 +1,4 @@
 #include "renderer.h"
-#include "imgui_impl_glfw.h"
-#include "imgui_impl_opengl3.h"
-#include "implot.h"
 
 Renderer::Renderer(const Config& config)
     : m_config(config), m_boxes(config.boxes), m_scaleFactor(config.scaleFactor) {
@@ -400,10 +397,18 @@ void Renderer::renderImGui(Universe& universe) {
     ImGui::Text("ImPlot version : %s", IMPLOT_VERSION);
     ImGui::End();
 
+    ImGuiParticleViewerMenu(universe.getParticles(), window_flags);
+
+    // Render ImGui
+    ImGui::Render();
+    ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
+}
+
+void Renderer::ImGuiParticleViewerMenu(std::vector<Particle>& particles, ImGuiWindowFlags window_flags) {
     ImGui::Begin("Particles viewer", nullptr, window_flags);
-    ImGui::Text("Particle count : %ld", universe.getParticles().size());
+    ImGui::Text("Particle count : %ld", particles.size());
     ImGui::Text(" ");
-    for (Particle& particle : universe.getParticles()){
+    for (Particle& particle : particles){
         ImGui::Text("Name : %s", particle.m_name.c_str());
         ImGui::Text("Position : (%.3e, %.3e, %.3e) m", particle.getX(), particle.getY(), particle.getZ());
         ImGui::Text("Velocity : (%.3e, %.3e, %.3e) m/s. %.3e m/s", particle.getVX(), particle.getVY(), particle.getVZ(), getMagnitude(particle.getVelocity()));
@@ -412,10 +417,6 @@ void Renderer::renderImGui(Universe& universe) {
         ImGui::Text(" ");
     }
     ImGui::End();
-
-    // Render ImGui
-    ImGui::Render();
-    ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 }
 
 void Renderer::toggleSpectatorMode() {

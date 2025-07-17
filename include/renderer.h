@@ -6,6 +6,9 @@
 
 #include "universe.h"
 #include "camera.h"
+#include "imgui_impl_glfw.h"
+#include "imgui_impl_opengl3.h"
+#include "implot.h"
 
 class Renderer {
 public:
@@ -104,10 +107,13 @@ public:
     void renderImGui(Universe& universe);
 
     /**
-     * @brief      Display edit particle menu.
+     * @brief      Render particles viewer ImGui menu
+     *
+     * @param      particles  The particles
+     * @param      window_flags  The window flags
      */
-    void editParticleMenu(Particle& particle);
-    
+    void ImGuiParticleViewerMenu(std::vector<Particle>& particles, ImGuiWindowFlags window_flags);
+
     /**
      * @brief      Toggle spectator mode.
      * The spectator mode will take into account keyboard and mouse inputs for
