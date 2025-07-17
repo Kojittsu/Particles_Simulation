@@ -106,8 +106,18 @@ public:
      */
     void renderImGui(Universe& universe);
 
+
+
     /**
-     * @brief      Render particles viewer ImGui menu
+     * @brief      Render control ImGui menu.
+     *
+     * @param      universe      The universe
+     * @param[in]  window_flags  The window flags
+     */
+    void ImGuiControlsMenu(Universe& universe, ImGuiWindowFlags window_flags);
+
+    /**
+     * @brief      Render particles viewer ImGui menu.
      *
      * @param      particles  The particles
      * @param      window_flags  The window flags
