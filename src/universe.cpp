@@ -144,7 +144,7 @@ void Universe::computeBoxesCollision(Particle& particle) {
     }
 }
 
-const std::vector<Particle>& Universe::getParticles() const {
+std::vector<Particle>& Universe::getParticles() {
     return m_particles;
 }
 

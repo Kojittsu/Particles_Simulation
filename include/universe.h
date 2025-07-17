@@ -66,7 +66,7 @@ public:
      *
      * @return     The vector containing all particles
      */
-    std::vector<Particle> const& getParticles() const;
+    std::vector<Particle>& getParticles();
 
     /**
      * @brief      Toggle the gravitational forces.
