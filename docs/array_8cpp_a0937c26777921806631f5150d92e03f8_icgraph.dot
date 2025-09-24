@@ -16,6 +16,8 @@ digraph "getMagnitude"
   Node5 [id="Node000005",label="Universe::computeParticle\lCollisions",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classUniverse.html#a7b253a1bf2e81239f327609255b2f1d8",tooltip="Computes and resolve particle collisions between all particles."];
   Node5 -> Node3 [id="edge5_Node000005_Node000003",dir="back",color="steelblue1",style="solid",tooltip=" "];
   Node1 -> Node6 [id="edge6_Node000001_Node000006",dir="back",color="steelblue1",style="solid",tooltip=" "];
-  Node6 [id="Node000006",label="Renderer::renderImGui",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classRenderer.html#ac606d439bdc8f139f40b8ef1a1e18ea8",tooltip="Render Dear ImGui."];
-  Node6 -> Node4 [id="edge7_Node000006_Node000004",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node6 [id="Node000006",label="Renderer::ImGuiParticleViewerMenu",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classRenderer.html#a1619af7af1f17eca1717f1b6acf22270",tooltip="Render particles viewer ImGui menu."];
+  Node6 -> Node7 [id="edge7_Node000006_Node000007",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node7 [id="Node000007",label="Renderer::renderImGui",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classRenderer.html#ac606d439bdc8f139f40b8ef1a1e18ea8",tooltip="Render Dear ImGui."];
+  Node7 -> Node4 [id="edge8_Node000007_Node000004",dir="back",color="steelblue1",style="solid",tooltip=" "];
 }

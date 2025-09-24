@@ -6,7 +6,7 @@ var searchData=
   ['getisgravity_3',['getIsGravity',['../classUniverse.html#a42241ec740c3d45fb3ef164cd59c0af1',1,'Universe']]],
   ['getmagnitude_4',['getMagnitude',['../array_8h.html#a0937c26777921806631f5150d92e03f8',1,'getMagnitude(const std::array&lt; double, 3 &gt; array):&#160;array.cpp'],['../array_8cpp.html#a0937c26777921806631f5150d92e03f8',1,'getMagnitude(const std::array&lt; double, 3 &gt; array):&#160;array.cpp']]],
   ['getmass_5',['getMass',['../classParticle.html#ad08e7b1d0cc7cb17bd0602caa4a22bc6',1,'Particle']]],
-  ['getparticles_6',['getParticles',['../classUniverse.html#ab0687fee13563d774a395978415fb277',1,'Universe']]],
+  ['getparticles_6',['getParticles',['../classUniverse.html#a0c0de5debd9d56b5c7bfee83dfa02c54',1,'Universe']]],
   ['getposition_7',['getPosition',['../classCamera.html#a1c9228e303c4f548ecce1b15b5440f53',1,'Camera::getPosition()'],['../classParticle.html#ae9abfb636d151913acad8d6c2354647e',1,'Particle::getPosition() const']]],
   ['getradius_8',['getRadius',['../classParticle.html#a2be471000151d3a305dd2713ab76a84c',1,'Particle']]],
   ['getruntime_9',['getRunTime',['../classRenderer.html#ad609c241e527c9191caff56679932551',1,'Renderer']]],

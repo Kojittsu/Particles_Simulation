@@ -7,7 +7,7 @@ var classUniverse =
     [ "computeGravitationalForces", "classUniverse.html#aed966ac7972d125fe78e243a835c2695", null ],
     [ "computeParticleCollisions", "classUniverse.html#a7b253a1bf2e81239f327609255b2f1d8", null ],
     [ "getIsGravity", "classUniverse.html#a42241ec740c3d45fb3ef164cd59c0af1", null ],
-    [ "getParticles", "classUniverse.html#ab0687fee13563d774a395978415fb277", null ],
+    [ "getParticles", "classUniverse.html#a0c0de5debd9d56b5c7bfee83dfa02c54", null ],
     [ "makeStep", "classUniverse.html#a76eb413d0e5e74f293d40a9a89605ebd", null ],
     [ "saveStep", "classUniverse.html#af9749e8437dc5c9bfdc842888b467501", null ],
     [ "toggleGravity", "classUniverse.html#ac40eb3995b94e95c20dc116376573b68", null ],
