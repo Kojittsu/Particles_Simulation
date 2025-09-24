@@ -125,14 +125,18 @@ public:
     /**
      * @brief      Render particles viewer ImGui menu.
      *
-     * @param      particles  The particles
+     * @param      particles     The particles
      * @param      window_flags  The window flags
      */
     void ImGuiParticleViewerMenu(std::vector<Particle>& particles, ImGuiWindowFlags window_flags);
 
-
+    /**
+     * @brief      Render particles editor ImGui menu.
+     *
+     * @param      particles     The particles
+     * @param[in]  window_flags  The window flags
+     */
     void ImGuiParticleEditorMenu(std::vector<Particle>& particles, ImGuiWindowFlags window_flags);
-
 
     /**
      * @brief      Toggle spectator mode.
