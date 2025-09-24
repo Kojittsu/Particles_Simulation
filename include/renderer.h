@@ -130,6 +130,10 @@ public:
      */
     void ImGuiParticleViewerMenu(std::vector<Particle>& particles, ImGuiWindowFlags window_flags);
 
+
+    void ImGuiParticleEditorMenu(std::vector<Particle>& particles, ImGuiWindowFlags window_flags);
+
+
     /**
      * @brief      Toggle spectator mode.
      * The spectator mode will take into account keyboard and mouse inputs for
