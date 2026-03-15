@@ -94,7 +94,7 @@ visualization:
 
 - Nix package manager installed on your system.
 
-## ⚙️ Setup
+## ⚙️ Development environment
 
 1. Clone the repository
 ```bash
@@ -108,25 +108,41 @@ cd Particles_simulation
 
 3. Enter Nix development environment
 ```bash
-nix-shell --pure shell.nix
+nix develop
 ```
 
-4. Compile
+To compile the program type
 ```bash
 make
 ```
 
-## 🚀 Execution
-
-To execute the simulation type
+To execute the program type
 ```bash
-./ExecuteSimu <config_file>
+./particle-simulation-executable <config_file>
 ```
 where `config_file` is your configuration file.
-
-## ♻️ Cleaning
 
 To clean up the generated files type
 ```bash
 make clean
 ```
+
+## Running the app
+
+1. Clone the repository
+```bash
+git clone --recursive https://github.com/lboudet/Particles_Simulation.git
+```
+
+2. Access the repository
+```bash
+cd Particles_simulation
+```
+
+3. Use nix run to execute the program
+```bash
+nix run . -- <config_file>
+```
+where `config_file` is your configuration file.
+
+## Installation
