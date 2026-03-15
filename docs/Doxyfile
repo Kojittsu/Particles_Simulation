@@ -10,8 +10,7 @@ HTML_OUTPUT            = .
 
 GENERATE_LATEX         = NO
 
-HAVE_DOT               = YES
-DOT_IMAGE_FORMAT       = svg
+HAVE_DOT               = NO
 
 CALL_GRAPH             = YES
 CALLER_GRAPH           = YES
@@ -34,3 +33,5 @@ HTML_EXTRA_FILES       = doxygen-awesome-css/doxygen-awesome-darkmode-toggle.js
 USE_MDFILE_AS_MAINPAGE = ./overview.md
 
 SHOW_USED_FILES = NO
+
+FULL_PATH_NAMES = NO
