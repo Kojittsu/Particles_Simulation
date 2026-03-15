@@ -44,6 +44,8 @@
         glew
         glfw
         yaml-cpp
+
+        doxygen
       ];
     };
   };

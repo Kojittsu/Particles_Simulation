@@ -94,39 +94,6 @@ visualization:
 
 - Nix package manager installed on your system.
 
-## ⚙️ Development environment
-
-1. Clone the repository
-```bash
-git clone --recursive https://github.com/lboudet/Particles_Simulation.git
-```
-
-2. Access the repository
-```bash
-cd Particles_simulation
-```
-
-3. Enter Nix development environment
-```bash
-nix develop
-```
-
-To compile the program type
-```bash
-make
-```
-
-To execute the program type
-```bash
-./particle-simulation-executable <config_file>
-```
-where `config_file` is your configuration file.
-
-To clean up the generated files type
-```bash
-make clean
-```
-
 ## Running the app
 
 1. Clone the repository
@@ -144,5 +111,45 @@ cd Particles_simulation
 nix run . -- <config_file>
 ```
 where `config_file` is your configuration file.
+
+## ⚙️ Development environment
+
+1. Clone the repository
+```bash
+git clone --recursive https://github.com/lboudet/Particles_Simulation.git
+```
+
+2. Access the repository
+```bash
+cd Particles_simulation
+```
+
+3. Enter Nix development environment
+```bash
+nix develop
+```
+
+- To compile the program type
+```bash
+make
+```
+
+- To execute the program type
+```bash
+./particle-simulation-executable <config_file>
+```
+where `config_file` is your configuration file.
+
+- To clean up the generated files type
+```bash
+make clean
+```
+
+- To compile doxygen documentation type
+```bash
+cd docs
+doxygen Doxyfile
+```
+
 
 ## Installation
