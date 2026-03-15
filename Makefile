@@ -1,5 +1,5 @@
 # Executable name
-EXEC = ExecuteSimu
+EXEC = particle-simulation-executable
 
 # Directories
 SRC_DIR = src
