@@ -94,11 +94,18 @@ visualization:
 
 - Nix package manager installed on your system.
 
+## Installation
+
+- Install with Nix package manager
+```bash
+nix profile add github:Kojittsu/Particles_Simulation
+```
+
 ## Running the app
 
 1. Clone the repository
 ```bash
-git clone --recursive https://github.com/lboudet/Particles_Simulation.git
+git clone --recursive https://github.com/Kojittsu/Particles_Simulation.git
 ```
 
 2. Access the repository
@@ -116,7 +123,7 @@ where `config_file` is your configuration file.
 
 1. Clone the repository
 ```bash
-git clone --recursive https://github.com/lboudet/Particles_Simulation.git
+git clone --recursive https://github.com/Kojittsu/Particles_Simulation.git
 ```
 
 2. Access the repository
@@ -151,5 +158,12 @@ cd docs
 doxygen Doxyfile
 ```
 
+- To update flake inputs
+```bash
+nix flake update
+```
 
-## Installation
+- To update git submodules
+```bash
+git submodule update --remote
+```
