@@ -16,7 +16,7 @@
     packages.${system}.default = pkgs.stdenv.mkDerivation {
       pname = "particle-simulation-executable";
       version = "1.0.0";
-      src = self;
+      src = ./.;
 
       buildInputs = with pkgs; [
         glm
