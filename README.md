@@ -96,9 +96,36 @@ visualization:
 
 ## Installation
 
-- Install with Nix package manager
+- Install with [Nix](https://github.com/NixOS/nix) package manager
 ```bash
 nix profile add github:Kojittsu/Particles_Simulation
+```
+
+- Install on NixOs
+
+Add the input to your flake configuration:
+```nix
+inputs = {
+  nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+
+  particles-simulation = {
+    url = "git+https://github.com/Kojittsu/Particles_Simulation";
+    inputs.nixpkgs.follows = "nixpkgs";
+  };
+  
+  # ... Other inputs
+};
+```
+Add the package to environment.systemPackages:
+```nix
+{ pkgs, inputs, ... }:
+{
+  environment.systemPackages = with pkgs; [
+    inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default
+    
+    # ... Other packages 
+  ];
+}
 ```
 
 ## Running the app
