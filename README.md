@@ -121,7 +121,7 @@ Add the package to environment.systemPackages:
 { pkgs, inputs, ... }:
 {
   environment.systemPackages = with pkgs; [
-    inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default
+    inputs.particles-simulation.packages.${stdenv.hostPlatform.system}.default
     
     # ... Other packages 
   ];
