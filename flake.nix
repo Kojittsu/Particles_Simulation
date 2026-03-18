@@ -30,6 +30,14 @@
       installPhase = ''
         mkdir -p $out/bin
         cp particle-simulation-executable $out/bin/
+
+        # Add config-example files
+        mkdir -p $out/share/particle-simulation-config-examples
+        cp -r config-examples/* $out/share/particle-simulation-config-examples/
+
+        # Add desktop entry
+        mkdir -p $out/share/applications
+        cp particle-simulation.desktop $out/share/applications/
       '';
     };
 

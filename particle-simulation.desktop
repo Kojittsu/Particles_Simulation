@@ -1,0 +1,5 @@
+[Desktop Entry]
+Name=Particle Simulation
+Comment= Particle Simulation application
+Exec=sh -c 'particle-simulation-executable "$HOME/.nix-profile/share/particle-simulation-config-examples/SolarSystem.yaml"'
+Type=Application
