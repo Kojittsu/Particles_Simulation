@@ -10,9 +10,9 @@ Renderer::Renderer(const Config& config)
 }
 
 Renderer::~Renderer() {
-    
+
     ImPlot::DestroyContext();
-    
+
     ImGui_ImplOpenGL3_Shutdown();
     ImGui_ImplGlfw_Shutdown();
     ImGui::DestroyContext();
@@ -49,7 +49,7 @@ void Renderer::initializeGLFW() {
         }
     });
 
-    // Set cursor callback 
+    // Set cursor callback
     glfwSetCursorPosCallback(m_window, [](GLFWwindow* win, double xpos, double ypos) {
         auto renderer = static_cast<Renderer*>(glfwGetWindowUserPointer(win));
         if (renderer) {
@@ -82,15 +82,15 @@ void Renderer::initializeGLFW() {
     glLightfv(GL_LIGHT0, GL_SPECULAR, light_specular);
 }
 
-void Renderer::framebufferSizeCallback(int width, int height) {  
+void Renderer::framebufferSizeCallback(int width, int height) {
     glViewport(0, 0, width, height);
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
 
     double aspectRatio = static_cast<double>(width) / static_cast<double>(height);
-    
+
     m_camera.configurePerspective(aspectRatio);
-    
+
     glMatrixMode(GL_MODELVIEW);
 }
 
@@ -134,7 +134,7 @@ void Renderer::initializeImGui() {
 
 void Renderer::initializeImPlot() {
     ImPlot::CreateContext();
-    
+
     m_lastFrameratesBuffer = std::vector<float>(100, 0.0f);
 
     m_lastFrameratesIndexes = std::vector<float>(m_lastFrameratesBuffer.size());
@@ -143,11 +143,11 @@ void Renderer::initializeImPlot() {
     }
 }
 
-void Renderer::render(Universe& universe) {
-    
+void Renderer::renderScene(Universe& universe) {
+
     float currentFrame = glfwGetTime();
     float deltaTime = currentFrame - m_lastFrameTime;
-    
+
     // compute m_runTime & m_simulationTimePaused
     if(universe.m_isRunning) {
         m_runTime = currentFrame - m_simulationTimePaused;
@@ -156,12 +156,12 @@ void Renderer::render(Universe& universe) {
         m_simulationTimePaused += deltaTime;
     }
 
-    // Update camera 
+    // Update camera
     if(m_isSpectatorMode) {
         m_camera.computeNewPosition(m_keyStates, deltaTime);
     }
     m_lastFrameTime = currentFrame;
-    
+
     m_camera.update();
 
     auto& particles = universe.getParticles();
@@ -194,11 +194,11 @@ void Renderer::renderParticleTrail(const Particle& particle) {
 
     glDisable(GL_LIGHTING);
     glBegin(GL_LINE_STRIP);
-    
+
     // set trail color
     auto color = particle.getColor();
     glColor3ub(color[0], color[1], color[2]);
-    
+
     for (const auto& point : trail) {
         glVertex3d(point[0] * m_scaleFactor, point[1] * m_scaleFactor, point[2] * m_scaleFactor);
     }
@@ -220,7 +220,7 @@ void Renderer::drawBoxes() {
         float x1 = x0 + box.m_length * m_scaleFactor; // transform box length from meter to SU
         float y1 = y0 + box.m_height * m_scaleFactor; // transform box height from meter to SU
         float z1 = z0 + box.m_depth * m_scaleFactor; // transform box depth from meter to SU
-    
+
         glBegin(GL_LINES);
         glVertex3f(x0, y0, z0); glVertex3f(x1, y0, z0);
         glVertex3f(x1, y0, z0); glVertex3f(x1, y1, z0);
@@ -315,7 +315,7 @@ void Renderer::ImGuiControlsMenu(Universe& universe, ImGuiWindowFlags window_fla
         static glm::vec3 newCameraPositionInMeters = newCameraPositionInSceneUnit / static_cast<float>(m_scaleFactor);  // transform camera position from SU to meter
         if(ImGui::InputFloat3("Set camera position", &newCameraPositionInMeters[0],"%.3e m")){
             newCameraPositionInSceneUnit = newCameraPositionInMeters * static_cast<float>(m_scaleFactor);  // transform camera position from meter to SU
-            m_camera.setPosition(newCameraPositionInSceneUnit); 
+            m_camera.setPosition(newCameraPositionInSceneUnit);
         }
         ImGui::PopItemWidth();
     }
@@ -328,7 +328,7 @@ void Renderer::ImGuiControlsMenu(Universe& universe, ImGuiWindowFlags window_fla
         static double radius = 0.0;
         static double mass   = 0.0;
         static std::array<int, 3> color = {0, 0, 0};
-        
+
         ImGui::Text("Position:");
         ImGui::InputDouble("X (m)", &position[0]);
         ImGui::InputDouble("Y (m)", &position[1]);
@@ -386,7 +386,7 @@ void Renderer::ImGuiInformationMenu(const Universe& universe, ImGuiWindowFlags w
     ImGui::Begin("Info", nullptr, window_flags);
     ImVec2 windowSize = ImGui::GetIO().DisplaySize;
     ImGui::Text("Window size : %.0f x %.0f", windowSize.x, windowSize.y);
-    
+
     m_lastFrameratesBuffer.erase(m_lastFrameratesBuffer.begin());
     m_lastFrameratesBuffer.push_back(ImGui::GetIO().Framerate);
 
@@ -421,7 +421,7 @@ void Renderer::ImGuiParticleViewerMenu(std::vector<Particle>& particles, ImGuiWi
         ImGui::Text("Position : (%.3e, %.3e, %.3e) m", particle.getX(), particle.getY(), particle.getZ());
         ImGui::Text("Velocity : (%.3e, %.3e, %.3e) m/s. %.3e m/s", particle.getVX(), particle.getVY(), particle.getVZ(), getMagnitude(particle.getVelocity()));
         ImGui::Text("Mass : %.3e Kg", particle.getMass());
-        ImGui::Text("Radius : %.3e m", particle.getRadius());      
+        ImGui::Text("Radius : %.3e m", particle.getRadius());
         ImGui::Text(" ");
     }
     ImGui::End();
@@ -486,7 +486,7 @@ void Renderer::ImGuiParticleEditorMenu(std::vector<Particle>& particles, ImGuiWi
 void Renderer::toggleSpectatorMode() {
     m_isSpectatorMode = !m_isSpectatorMode;
     if (m_isSpectatorMode) {
-       glfwSetInputMode(m_window, GLFW_CURSOR, GLFW_CURSOR_DISABLED); 
+       glfwSetInputMode(m_window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
     }
     else {
         glfwSetInputMode(m_window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);

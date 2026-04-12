@@ -17,7 +17,7 @@ public:
      * @brief      Initialize renderer.
      * This method setup the GLFW library for rendering the scene and the Dear
      * ImGui library for rendering the Graphical user interface.
-     * 
+     *
      * @param[in]  config  The simulation configuration
      */
     Renderer(const Config& config);
@@ -76,11 +76,11 @@ public:
     void initializeImPlot();
 
     /**
-     * @brief      Renders the given universe.
+     * @brief      Renders the given scene.
      *
      * @param[in]  universe  The universe
      */
-    void render(Universe& universe);
+    void renderScene(Universe& universe);
 
     /**
      * @brief      Render the trail of the given particle.
@@ -144,7 +144,7 @@ public:
      * camera movement and show/hide the cursor.
      */
     void toggleSpectatorMode();
-    
+
     /**
      * @brief      Clears the renderer.
      */

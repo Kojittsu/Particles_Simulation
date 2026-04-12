@@ -36,7 +36,7 @@ int main(int argc, char* argv[]) {
 
     // Main loop
     while (renderer.isRunning()) {
-        
+
         if (renderer.getRunTime() * config.speedFactor > universe.m_simuationTime && universe.m_isRunning) {
             universe.makeStep();
 
@@ -47,7 +47,7 @@ int main(int argc, char* argv[]) {
         }
 
         renderer.clear();
-        renderer.render(universe);
+        renderer.renderScene(universe);
         renderer.drawBoxes();
         renderer.renderImGui(universe);
 
