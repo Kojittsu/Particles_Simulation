@@ -176,27 +176,30 @@ void Renderer::renderScene(Universe& universe) {
     auto& particles = universe.getParticles();
 
     for (const auto& particle : particles) {
-        auto position = particle.getPosition() * m_scaleFactor; // transform particle position from meter to SU
-        auto color = particle.getColor();
-        double radius = particle.getRadius() * m_scaleFactor; // transform particle radius from meter to SU
-
-        // Define material properties
-        GLfloat mat_diffuse[] = { color[0] / 255.0f, color[1] / 255.0f, color[2] / 255.0f, 1.0f };
-        GLfloat mat_specular[] = { 1.0f, 1.0f, 1.0f, 1.0f };
-        GLfloat mat_shininess[] = { 50.0f };
-        glMaterialfv(GL_FRONT, GL_DIFFUSE, mat_diffuse);
-        glMaterialfv(GL_FRONT, GL_SPECULAR, mat_specular);
-        glMaterialfv(GL_FRONT, GL_SHININESS, mat_shininess);
-
-        glPushMatrix();
-        glTranslated(position[0], position[1], position[2]);
-        gluSphere(m_quadric, radius, 16, 16);
-        glPopMatrix();
-
+        renderParticle(particle);
         renderParticleTrail(particle);
     }
 
     renderBoxes();
+}
+
+void Renderer::renderParticle(const Particle& particle) {
+    auto position = particle.getPosition() * m_scaleFactor; // transform particle position from meter to SU
+    auto color = particle.getColor();
+    double radius = particle.getRadius() * m_scaleFactor; // transform particle radius from meter to SU
+
+    // Define material properties
+    GLfloat mat_diffuse[] = { color[0] / 255.0f, color[1] / 255.0f, color[2] / 255.0f, 1.0f };
+    GLfloat mat_specular[] = { 1.0f, 1.0f, 1.0f, 1.0f };
+    GLfloat mat_shininess[] = { 50.0f };
+    glMaterialfv(GL_FRONT, GL_DIFFUSE, mat_diffuse);
+    glMaterialfv(GL_FRONT, GL_SPECULAR, mat_specular);
+    glMaterialfv(GL_FRONT, GL_SHININESS, mat_shininess);
+
+    glPushMatrix();
+    glTranslated(position[0], position[1], position[2]);
+    gluSphere(m_quadric, radius, 16, 16);
+    glPopMatrix();
 }
 
 void Renderer::renderParticleTrail(const Particle& particle) {

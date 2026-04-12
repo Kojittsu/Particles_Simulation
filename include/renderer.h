@@ -90,6 +90,13 @@ public:
     void renderScene(Universe& universe);
 
     /**
+     * @brief      Render the the given particle.
+     *
+     * @param      particle  The particle
+     */
+    void renderParticle(const Particle& particle);
+
+    /**
      * @brief      Render the trail of the given particle.
      *
      * @param      particle  The particle
