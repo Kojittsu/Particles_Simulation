@@ -46,13 +46,7 @@ int main(int argc, char* argv[]) {
             }
         }
 
-        renderer.clear();
-        renderer.renderScene(universe);
-        renderer.drawBoxes();
-        renderer.renderImGui(universe);
-
-        renderer.swapBuffers();
-        glfwPollEvents();
+        renderer.renderFrame(universe);
     }
 
     glfwTerminate();

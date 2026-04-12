@@ -76,7 +76,14 @@ public:
     void initializeImPlot();
 
     /**
-     * @brief      Renders the given scene.
+     * @brief      Renders a frame.
+     *
+     * @param[in]  universe  The universe
+     */
+    void renderFrame(Universe& universe);
+
+    /**
+     * @brief      Renders the scene.
      *
      * @param[in]  universe  The universe
      */
@@ -90,14 +97,9 @@ public:
     void renderParticleTrail(const Particle& particle);
 
     /**
-     * @brief      Draws the m_boxes boxes.
+     * @brief      Render the m_boxes boxes.
      */
-    void drawBoxes();
-
-    /**
-     * @brief      Call glfwSwapBuffers(m_window).
-     */
-    void swapBuffers();
+    void renderBoxes();
 
     /**
      * @brief      Render Dear ImGui.

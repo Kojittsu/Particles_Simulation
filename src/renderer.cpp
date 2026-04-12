@@ -143,6 +143,15 @@ void Renderer::initializeImPlot() {
     }
 }
 
+void Renderer::renderFrame(Universe& universe) {
+    clear();
+    renderScene(universe);
+    renderImGui(universe);
+
+    glfwSwapBuffers(m_window);
+    glfwPollEvents();
+}
+
 void Renderer::renderScene(Universe& universe) {
 
     float currentFrame = glfwGetTime();
@@ -186,6 +195,8 @@ void Renderer::renderScene(Universe& universe) {
 
         renderParticleTrail(particle);
     }
+
+    renderBoxes();
 }
 
 void Renderer::renderParticleTrail(const Particle& particle) {
@@ -206,7 +217,7 @@ void Renderer::renderParticleTrail(const Particle& particle) {
     glEnable(GL_LIGHTING);
 }
 
-void Renderer::drawBoxes() {
+void Renderer::renderBoxes() {
     glDisable(GL_LIGHTING);
     glColor3f(1.0f, 1.0f, 1.0f);
 
@@ -240,11 +251,6 @@ void Renderer::drawBoxes() {
     }
     glEnable(GL_LIGHTING);
 }
-
-void Renderer::swapBuffers() {
-    glfwSwapBuffers(m_window);
-}
-
 
 void Renderer::renderImGui(Universe& universe) {
 
