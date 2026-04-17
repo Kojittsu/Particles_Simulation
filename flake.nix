@@ -14,7 +14,7 @@
     pkgs = import nixpkgs { inherit system; };
   in {
     packages.${system}.default = pkgs.stdenv.mkDerivation {
-      pname = "particle-simulation-executable";
+      pname = "particle-simulation";
       version = "1.0.0";
       src = ./.;
 
@@ -29,7 +29,7 @@
 
       installPhase = ''
         mkdir -p $out/bin
-        cp particle-simulation-executable $out/bin/
+        cp particle-simulation-executable $out/bin/particle-simulation
 
         # Add config-example files
         mkdir -p $out/share/particle-simulation-config-examples
@@ -43,7 +43,7 @@
 
     apps.${system}.default = {
       type = "app";
-      program = "${self.packages.${system}.default}/bin/particle-simulation-executable";
+      program = "${self.packages.${system}.default}/bin/particle-simulation";
     };
 
     devShells.${system}.default = pkgs.mkShell {
