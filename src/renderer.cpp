@@ -266,28 +266,24 @@ void Renderer::renderImGui() {
     ImGui_ImplGlfw_NewFrame();
     ImGui::NewFrame();
 
-    // Set  flags
-    ImGuiWindowFlags window_flags = ImGuiWindowFlags_AlwaysAutoResize | ImGuiWindowFlags_NoBackground;
-    ImGuiDockNodeFlags dockSpace_flags = ImGuiDockNodeFlags_PassthruCentralNode;
-
     // Set dockspace
-    ImGui::DockSpaceOverViewport(0, ImGui::GetMainViewport(), dockSpace_flags);
+    ImGui::DockSpaceOverViewport(0, ImGui::GetMainViewport(), m_dockSpaceFlags);
 
-    ImGuiControlsMenu(window_flags);
+    ImGuiControlsMenu();
 
-    ImGuiInformationMenu(window_flags);
+    ImGuiInformationMenu();
 
-    ImGuiParticleViewerMenu(window_flags);
+    ImGuiParticleViewerMenu();
 
-    ImGuiParticleEditorMenu(window_flags);
+    ImGuiParticleEditorMenu();
 
     // Render ImGui
     ImGui::Render();
     ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 }
 
-void Renderer::ImGuiControlsMenu(ImGuiWindowFlags window_flags) {
-    ImGui::Begin("Controls", nullptr, window_flags);
+void Renderer::ImGuiControlsMenu() {
+    ImGui::Begin("Controls", nullptr, m_windowFlags);
     // Set round corners
     ImGui::PushStyleVar(ImGuiStyleVar_FrameRounding, 5.0f);
 
@@ -385,7 +381,7 @@ void Renderer::ImGuiControlsMenu(ImGuiWindowFlags window_flags) {
     ImGui::End();
 }
 
-void Renderer::ImGuiInformationMenu(ImGuiWindowFlags window_flags) {
+void Renderer::ImGuiInformationMenu() {
     double universeSimulationTime = m_universePtr->m_simuationTime;
     int days    = static_cast<int>(universeSimulationTime / 86400);
     int hours   = static_cast<int>(static_cast<int>(universeSimulationTime) % 86400 / 3600);
@@ -396,7 +392,7 @@ void Renderer::ImGuiInformationMenu(ImGuiWindowFlags window_flags) {
     glm::vec3 cameraFront = m_camera.getFront();
     glm::vec3 cameraUp = m_camera.getUp();
 
-    ImGui::Begin("Info", nullptr, window_flags);
+    ImGui::Begin("Info", nullptr, m_windowFlags);
     ImVec2 windowSize = ImGui::GetIO().DisplaySize;
     ImGui::Text("Window size : %.0f x %.0f", windowSize.x, windowSize.y);
 
@@ -425,11 +421,11 @@ void Renderer::ImGuiInformationMenu(ImGuiWindowFlags window_flags) {
     ImGui::End();
 }
 
-void Renderer::ImGuiParticleViewerMenu(ImGuiWindowFlags window_flags) {
+void Renderer::ImGuiParticleViewerMenu() {
 
     std::vector<Particle>& universeParticles = m_universePtr->getParticles();
 
-    ImGui::Begin("Particles viewer", nullptr, window_flags);
+    ImGui::Begin("Particles viewer", nullptr, m_windowFlags);
     ImGui::Text("Particle count : %ld", universeParticles.size());
     ImGui::Text(" ");
     for (Particle& particle : universeParticles) {
@@ -443,13 +439,13 @@ void Renderer::ImGuiParticleViewerMenu(ImGuiWindowFlags window_flags) {
     ImGui::End();
 }
 
-void Renderer::ImGuiParticleEditorMenu(ImGuiWindowFlags window_flags) {
+void Renderer::ImGuiParticleEditorMenu() {
 
     std::vector<Particle>& universeParticles = m_universePtr->getParticles();
 
     static int selectedIndex = 0;
 
-    ImGui::Begin("Particle editor", nullptr, window_flags);
+    ImGui::Begin("Particle editor", nullptr, m_windowFlags);
 
     ImGui::Columns(2, nullptr, true);
 

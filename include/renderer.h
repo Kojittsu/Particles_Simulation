@@ -117,31 +117,23 @@ public:
 
     /**
      * @brief      Render control ImGui menu.
-     *
-     * @param[in]  window_flags  The window flags
      */
-    void ImGuiControlsMenu(ImGuiWindowFlags window_flags);
+    void ImGuiControlsMenu();
 
     /**
      * @brief      Render information ImGui menu.
-     *
-     * @param[in]  window_flags  The window flags
      */
-    void ImGuiInformationMenu(ImGuiWindowFlags window_flags);
+    void ImGuiInformationMenu();
 
     /**
      * @brief      Render particles viewer ImGui menu.
-     *
-     * @param      window_flags  The window flags
      */
-    void ImGuiParticleViewerMenu(ImGuiWindowFlags window_flags);
+    void ImGuiParticleViewerMenu();
 
     /**
      * @brief      Render particles editor ImGui menu.
-     *
-     * @param[in]  window_flags  The window flags
      */
-    void ImGuiParticleEditorMenu(ImGuiWindowFlags window_flags);
+    void ImGuiParticleEditorMenu();
 
     /**
      * @brief      Toggle spectator mode.
@@ -177,6 +169,10 @@ private:
     std::vector<Box> m_boxes;           ///< Vector of Box.
     GLUquadric* m_quadric;              ///< GLU Utility for rendering quadratic shapes.
     Camera m_camera;
+
+    // ImGui flags
+    ImGuiWindowFlags m_windowFlags = ImGuiWindowFlags_AlwaysAutoResize | ImGuiWindowFlags_NoBackground;
+    ImGuiDockNodeFlags m_dockSpaceFlags = ImGuiDockNodeFlags_PassthruCentralNode;
 
     float m_lastX = 0.0f;       ///< Last cursor X position (in pixels).
     float m_lastY = 0.0f;       ///< Last cursor Y position (in pixels).
