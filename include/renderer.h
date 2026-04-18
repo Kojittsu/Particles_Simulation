@@ -76,18 +76,20 @@ public:
     void initializeImPlot();
 
     /**
-     * @brief      Renders a frame.
-     *
-     * @param[in]  universe  The universe
+     * @brief      Set the universe pointer.
+     * @param[in]  universePtr  The universe pointer
      */
-    void renderFrame(Universe& universe);
+    void setUniversePtr(Universe* universePtr);
+
+    /**
+     * @brief      Renders a frame.
+     */
+    void renderFrame();
 
     /**
      * @brief      Renders the scene.
-     *
-     * @param[in]  universe  The universe
      */
-    void renderScene(Universe& universe);
+    void renderScene();
 
     /**
      * @brief      Render the the given particle.
@@ -110,42 +112,36 @@ public:
 
     /**
      * @brief      Render Dear ImGui.
-     *
-     * @param      universe  The universe
      */
-    void renderImGui(Universe& universe);
+    void renderImGui();
 
     /**
      * @brief      Render control ImGui menu.
      *
-     * @param      universe      The universe
      * @param[in]  window_flags  The window flags
      */
-    void ImGuiControlsMenu(Universe& universe, ImGuiWindowFlags window_flags);
+    void ImGuiControlsMenu(ImGuiWindowFlags window_flags);
 
     /**
      * @brief      Render information ImGui menu.
      *
-     * @param[in]  universe      The universe
      * @param[in]  window_flags  The window flags
      */
-    void ImGuiInformationMenu(const Universe& universe, ImGuiWindowFlags window_flags);
+    void ImGuiInformationMenu(ImGuiWindowFlags window_flags);
 
     /**
      * @brief      Render particles viewer ImGui menu.
      *
-     * @param      particles     The particles
      * @param      window_flags  The window flags
      */
-    void ImGuiParticleViewerMenu(std::vector<Particle>& particles, ImGuiWindowFlags window_flags);
+    void ImGuiParticleViewerMenu(ImGuiWindowFlags window_flags);
 
     /**
      * @brief      Render particles editor ImGui menu.
      *
-     * @param      particles     The particles
      * @param[in]  window_flags  The window flags
      */
-    void ImGuiParticleEditorMenu(std::vector<Particle>& particles, ImGuiWindowFlags window_flags);
+    void ImGuiParticleEditorMenu(ImGuiWindowFlags window_flags);
 
     /**
      * @brief      Toggle spectator mode.
@@ -175,7 +171,8 @@ public:
 
 
 private:
-    GLFWwindow* m_window;               ///< GLFW window pointer.
+    GLFWwindow* m_window = nullptr;     ///< GLFW window pointer.
+    Universe* m_universePtr = nullptr;  ///< Universe pointer.
     const Config& m_config;             ///< Reference to simulation configuration.
     std::vector<Box> m_boxes;           ///< Vector of Box.
     GLUquadric* m_quadric;              ///< GLU Utility for rendering quadratic shapes.

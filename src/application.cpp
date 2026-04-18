@@ -6,6 +6,9 @@ Application::Application(const Config& config)
     m_universe(config),
     m_renderer(config)
 {
+    // Provide m_universe access to m_renderer
+    m_renderer.setUniversePtr(&m_universe);
+
     // Open dataFile if dataFileName provided
     if (!m_config.dataFileName.empty()) {
         m_logFile.open(m_config.dataFileName);
@@ -32,6 +35,6 @@ void Application::start() {
                 m_universe.saveStep(m_logFile);
             }
         }
-        m_renderer.renderFrame(m_universe);
+        m_renderer.renderFrame();
     }
 }

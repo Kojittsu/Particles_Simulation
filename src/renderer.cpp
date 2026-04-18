@@ -143,22 +143,26 @@ void Renderer::initializeImPlot() {
     }
 }
 
-void Renderer::renderFrame(Universe& universe) {
+void Renderer::setUniversePtr(Universe* universePtr) {
+    m_universePtr = universePtr;
+}
+
+void Renderer::renderFrame() {
     clear();
-    renderScene(universe);
-    renderImGui(universe);
+    renderScene();
+    renderImGui();
 
     glfwSwapBuffers(m_window);
     glfwPollEvents();
 }
 
-void Renderer::renderScene(Universe& universe) {
+void Renderer::renderScene() {
 
     float currentFrame = glfwGetTime();
     float deltaTime = currentFrame - m_lastFrameTime;
 
     // compute m_runTime & m_simulationTimePaused
-    if(universe.m_isRunning) {
+    if(m_universePtr->m_isRunning) {
         m_runTime = currentFrame - m_simulationTimePaused;
     }
     else {
@@ -173,7 +177,7 @@ void Renderer::renderScene(Universe& universe) {
 
     m_camera.update();
 
-    auto& particles = universe.getParticles();
+    auto& particles = m_universePtr->getParticles();
 
     for (const auto& particle : particles) {
         renderParticle(particle);
@@ -255,7 +259,7 @@ void Renderer::renderBoxes() {
     glEnable(GL_LIGHTING);
 }
 
-void Renderer::renderImGui(Universe& universe) {
+void Renderer::renderImGui() {
 
     // Start new ImGui frame
     ImGui_ImplOpenGL3_NewFrame();
@@ -269,35 +273,35 @@ void Renderer::renderImGui(Universe& universe) {
     // Set dockspace
     ImGui::DockSpaceOverViewport(0, ImGui::GetMainViewport(), dockSpace_flags);
 
-    ImGuiControlsMenu(universe, window_flags);
+    ImGuiControlsMenu(window_flags);
 
-    ImGuiInformationMenu(universe, window_flags);
+    ImGuiInformationMenu(window_flags);
 
-    ImGuiParticleViewerMenu(universe.getParticles(), window_flags);
+    ImGuiParticleViewerMenu(window_flags);
 
-    ImGuiParticleEditorMenu(universe.getParticles(), window_flags);
+    ImGuiParticleEditorMenu(window_flags);
 
     // Render ImGui
     ImGui::Render();
     ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 }
 
-void Renderer::ImGuiControlsMenu(Universe& universe, ImGuiWindowFlags window_flags) {
+void Renderer::ImGuiControlsMenu(ImGuiWindowFlags window_flags) {
     ImGui::Begin("Controls", nullptr, window_flags);
     // Set round corners
     ImGui::PushStyleVar(ImGuiStyleVar_FrameRounding, 5.0f);
 
 
     if (ImGui::CollapsingHeader("Simulation controls")) {
-        if (ImGui::Button(universe.m_isRunning ? "Pause simulation" : "Start simulation")) {
-            universe.m_isRunning = !universe.m_isRunning;
+        if (ImGui::Button(m_universePtr->m_isRunning ? "Pause simulation" : "Start simulation")) {
+            m_universePtr->m_isRunning = !m_universePtr->m_isRunning;
         }
 
         if (ImGui::Button("Toggle gravity")) {
-            universe.toggleGravity();
+            m_universePtr->toggleGravity();
         }
         ImGui::SameLine();
-        ImGui::Text(universe.getIsGravity() ? "Gravity ON" : "Gravity OFF");
+        ImGui::Text(m_universePtr->getIsGravity() ? "Gravity ON" : "Gravity OFF");
     }
 
     if (ImGui::CollapsingHeader("Rendering controls")) {
@@ -372,7 +376,7 @@ void Renderer::ImGuiControlsMenu(Universe& universe, ImGuiWindowFlags window_fla
 
         if (ImGui::Button("Confirm")) {
             Particle particle(position, velocity, acceleration, radius, mass, color);
-            universe.addParticle(particle);
+            m_universePtr->addParticle(particle);
         }
     }
 
@@ -381,12 +385,12 @@ void Renderer::ImGuiControlsMenu(Universe& universe, ImGuiWindowFlags window_fla
     ImGui::End();
 }
 
-void Renderer::ImGuiInformationMenu(const Universe& universe, ImGuiWindowFlags window_flags) {
-    double totalSeconds = universe.m_simuationTime;
-    int days    = static_cast<int>(totalSeconds / 86400);
-    int hours   = static_cast<int>(static_cast<int>(totalSeconds) % 86400 / 3600);
-    int minutes = static_cast<int>(static_cast<int>(totalSeconds) % 3600 / 60);
-    int seconds = static_cast<int>(totalSeconds) % 60;
+void Renderer::ImGuiInformationMenu(ImGuiWindowFlags window_flags) {
+    double universeSimulationTime = m_universePtr->m_simuationTime;
+    int days    = static_cast<int>(universeSimulationTime / 86400);
+    int hours   = static_cast<int>(static_cast<int>(universeSimulationTime) % 86400 / 3600);
+    int minutes = static_cast<int>(static_cast<int>(universeSimulationTime) % 3600 / 60);
+    int seconds = static_cast<int>(universeSimulationTime) % 60;
 
     glm::vec3 cameraPosition = m_camera.getPosition() / static_cast<float>(m_scaleFactor); // transform camera position from SU to meter
     glm::vec3 cameraFront = m_camera.getFront();
@@ -408,7 +412,7 @@ void Renderer::ImGuiInformationMenu(const Universe& universe, ImGuiWindowFlags w
     }
 
     ImGui::Text("Simulation time : %d days, %02d hours, %02d minutes, %02d seconds", days, hours, minutes, seconds);
-    ImGui::Text("Simulation time : %.3f s", universe.m_simuationTime);
+    ImGui::Text("Simulation time : %.3f s", universeSimulationTime);
     ImGui::Text("Real time (s) : %.3f", m_runTime);
     ImGui::Text(" ");
     ImGui::Text("Camera position : (%.3e, %.3e, %.3e) m", cameraPosition[0], cameraPosition[1], cameraPosition[2]);
@@ -421,11 +425,14 @@ void Renderer::ImGuiInformationMenu(const Universe& universe, ImGuiWindowFlags w
     ImGui::End();
 }
 
-void Renderer::ImGuiParticleViewerMenu(std::vector<Particle>& particles, ImGuiWindowFlags window_flags) {
+void Renderer::ImGuiParticleViewerMenu(ImGuiWindowFlags window_flags) {
+
+    std::vector<Particle>& universeParticles = m_universePtr->getParticles();
+
     ImGui::Begin("Particles viewer", nullptr, window_flags);
-    ImGui::Text("Particle count : %ld", particles.size());
+    ImGui::Text("Particle count : %ld", universeParticles.size());
     ImGui::Text(" ");
-    for (Particle& particle : particles){
+    for (Particle& particle : universeParticles) {
         ImGui::Text("Name : %s", particle.m_name.c_str());
         ImGui::Text("Position : (%.3e, %.3e, %.3e) m", particle.getX(), particle.getY(), particle.getZ());
         ImGui::Text("Velocity : (%.3e, %.3e, %.3e) m/s. %.3e m/s", particle.getVX(), particle.getVY(), particle.getVZ(), getMagnitude(particle.getVelocity()));
@@ -436,7 +443,9 @@ void Renderer::ImGuiParticleViewerMenu(std::vector<Particle>& particles, ImGuiWi
     ImGui::End();
 }
 
-void Renderer::ImGuiParticleEditorMenu(std::vector<Particle>& particles, ImGuiWindowFlags window_flags) {
+void Renderer::ImGuiParticleEditorMenu(ImGuiWindowFlags window_flags) {
+
+    std::vector<Particle>& universeParticles = m_universePtr->getParticles();
 
     static int selectedIndex = 0;
 
@@ -446,7 +455,7 @@ void Renderer::ImGuiParticleEditorMenu(std::vector<Particle>& particles, ImGuiWi
 
     // Left column (list particles)
     int particleIndex = 0;
-    for (Particle& particle : particles) {
+    for (Particle& particle : universeParticles) {
         std::string label = particle.m_name.empty() ? "Unnamed##" + std::to_string(particleIndex) : particle.m_name;
         if (ImGui::Selectable(label.c_str(), selectedIndex == particleIndex)) {
             selectedIndex = particleIndex;
@@ -456,7 +465,7 @@ void Renderer::ImGuiParticleEditorMenu(std::vector<Particle>& particles, ImGuiWi
 
     // Right column (edit selected particle)
     ImGui::NextColumn();
-    Particle& selectedParticle = particles[selectedIndex];
+    Particle& selectedParticle = universeParticles[selectedIndex];
     ImGui::Text("%s", selectedParticle.m_name.c_str());
 
     static std::array<double, 3> newPosition     = {0.0, 0.0, 0.0};
