@@ -120,24 +120,28 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:ac78eee0b7ae8ff076bfd4814d0801d48"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes the Dear ImGui library. This method is called by the constructor.  <br /></td></tr>
 <tr class="memitem:abd1d75f45351ffd179fffb3e24f337bd" id="r_abd1d75f45351ffd179fffb3e24f337bd"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#abd1d75f45351ffd179fffb3e24f337bd">initializeImPlot</a> ()</td></tr>
 <tr class="memdesc:abd1d75f45351ffd179fffb3e24f337bd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes the imPlot library. This method is called by the constructor.  <br /></td></tr>
-<tr class="memitem:adb329bcdf91658c430c8becfef4874b2" id="r_adb329bcdf91658c430c8becfef4874b2"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#adb329bcdf91658c430c8becfef4874b2">render</a> (<a class="el" href="classUniverse.html">Universe</a> &amp;universe)</td></tr>
-<tr class="memdesc:adb329bcdf91658c430c8becfef4874b2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Renders the given universe.  <br /></td></tr>
+<tr class="memitem:af104166a99526dad49a3a8d96250205a" id="r_af104166a99526dad49a3a8d96250205a"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#af104166a99526dad49a3a8d96250205a">setUniversePtr</a> (<a class="el" href="classUniverse.html">Universe</a> *universePtr)</td></tr>
+<tr class="memdesc:af104166a99526dad49a3a8d96250205a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the universe pointer.  <br /></td></tr>
+<tr class="memitem:a02a137957c8783a44df5cad4b5e1b635" id="r_a02a137957c8783a44df5cad4b5e1b635"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a02a137957c8783a44df5cad4b5e1b635">renderFrame</a> ()</td></tr>
+<tr class="memdesc:a02a137957c8783a44df5cad4b5e1b635"><td class="mdescLeft">&#160;</td><td class="mdescRight">Renders a frame.  <br /></td></tr>
+<tr class="memitem:a4effbac4f41b348002ca7d63b839dcf3" id="r_a4effbac4f41b348002ca7d63b839dcf3"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a4effbac4f41b348002ca7d63b839dcf3">renderScene</a> ()</td></tr>
+<tr class="memdesc:a4effbac4f41b348002ca7d63b839dcf3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Renders the scene.  <br /></td></tr>
+<tr class="memitem:a4da7af9b856f99ef5e424ea6cf5122f4" id="r_a4da7af9b856f99ef5e424ea6cf5122f4"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a4da7af9b856f99ef5e424ea6cf5122f4">renderParticle</a> (const <a class="el" href="classParticle.html">Particle</a> &amp;particle)</td></tr>
+<tr class="memdesc:a4da7af9b856f99ef5e424ea6cf5122f4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Render the the given particle.  <br /></td></tr>
 <tr class="memitem:abc3bfdc74cb66fb0fa414cf43d489d1e" id="r_abc3bfdc74cb66fb0fa414cf43d489d1e"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#abc3bfdc74cb66fb0fa414cf43d489d1e">renderParticleTrail</a> (const <a class="el" href="classParticle.html">Particle</a> &amp;particle)</td></tr>
 <tr class="memdesc:abc3bfdc74cb66fb0fa414cf43d489d1e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Render the trail of the given particle.  <br /></td></tr>
-<tr class="memitem:a0eed8ed6271fe01fbfabdeac13881e0f" id="r_a0eed8ed6271fe01fbfabdeac13881e0f"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a0eed8ed6271fe01fbfabdeac13881e0f">drawBoxes</a> ()</td></tr>
-<tr class="memdesc:a0eed8ed6271fe01fbfabdeac13881e0f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Draws the m_boxes boxes.  <br /></td></tr>
-<tr class="memitem:afebd47ef1e1cee08c95a7b8e19158180" id="r_afebd47ef1e1cee08c95a7b8e19158180"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#afebd47ef1e1cee08c95a7b8e19158180">swapBuffers</a> ()</td></tr>
-<tr class="memdesc:afebd47ef1e1cee08c95a7b8e19158180"><td class="mdescLeft">&#160;</td><td class="mdescRight">Call glfwSwapBuffers(m_window).  <br /></td></tr>
-<tr class="memitem:ac606d439bdc8f139f40b8ef1a1e18ea8" id="r_ac606d439bdc8f139f40b8ef1a1e18ea8"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#ac606d439bdc8f139f40b8ef1a1e18ea8">renderImGui</a> (<a class="el" href="classUniverse.html">Universe</a> &amp;universe)</td></tr>
-<tr class="memdesc:ac606d439bdc8f139f40b8ef1a1e18ea8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Render Dear ImGui.  <br /></td></tr>
-<tr class="memitem:a94b77c39f65ff2ac734c8c8767e49cca" id="r_a94b77c39f65ff2ac734c8c8767e49cca"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a94b77c39f65ff2ac734c8c8767e49cca">ImGuiControlsMenu</a> (<a class="el" href="classUniverse.html">Universe</a> &amp;universe, ImGuiWindowFlags window_flags)</td></tr>
-<tr class="memdesc:a94b77c39f65ff2ac734c8c8767e49cca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Render control ImGui menu.  <br /></td></tr>
-<tr class="memitem:a7d3a7f26a095279b8b84b5971789b77c" id="r_a7d3a7f26a095279b8b84b5971789b77c"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a7d3a7f26a095279b8b84b5971789b77c">ImGuiInformationMenu</a> (const <a class="el" href="classUniverse.html">Universe</a> &amp;universe, ImGuiWindowFlags window_flags)</td></tr>
-<tr class="memdesc:a7d3a7f26a095279b8b84b5971789b77c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Render information ImGui menu.  <br /></td></tr>
-<tr class="memitem:a1619af7af1f17eca1717f1b6acf22270" id="r_a1619af7af1f17eca1717f1b6acf22270"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a1619af7af1f17eca1717f1b6acf22270">ImGuiParticleViewerMenu</a> (std::vector&lt; <a class="el" href="classParticle.html">Particle</a> &gt; &amp;particles, ImGuiWindowFlags window_flags)</td></tr>
-<tr class="memdesc:a1619af7af1f17eca1717f1b6acf22270"><td class="mdescLeft">&#160;</td><td class="mdescRight">Render particles viewer ImGui menu.  <br /></td></tr>
-<tr class="memitem:aa4de3e563b3963ead9703070a7709a68" id="r_aa4de3e563b3963ead9703070a7709a68"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#aa4de3e563b3963ead9703070a7709a68">ImGuiParticleEditorMenu</a> (std::vector&lt; <a class="el" href="classParticle.html">Particle</a> &gt; &amp;particles, ImGuiWindowFlags window_flags)</td></tr>
-<tr class="memdesc:aa4de3e563b3963ead9703070a7709a68"><td class="mdescLeft">&#160;</td><td class="mdescRight">Render particles editor ImGui menu.  <br /></td></tr>
+<tr class="memitem:a7a258abb0123231199b50f0e1dc1c539" id="r_a7a258abb0123231199b50f0e1dc1c539"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a7a258abb0123231199b50f0e1dc1c539">renderBoxes</a> ()</td></tr>
+<tr class="memdesc:a7a258abb0123231199b50f0e1dc1c539"><td class="mdescLeft">&#160;</td><td class="mdescRight">Render the m_boxes boxes.  <br /></td></tr>
+<tr class="memitem:a3a5438a7cff49b1dc7fe2474bb33de2d" id="r_a3a5438a7cff49b1dc7fe2474bb33de2d"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a3a5438a7cff49b1dc7fe2474bb33de2d">renderImGui</a> ()</td></tr>
+<tr class="memdesc:a3a5438a7cff49b1dc7fe2474bb33de2d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Render Dear ImGui.  <br /></td></tr>
+<tr class="memitem:a1a12d1bbdf59057046c4826e103cc69e" id="r_a1a12d1bbdf59057046c4826e103cc69e"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a1a12d1bbdf59057046c4826e103cc69e">ImGuiControlsMenu</a> ()</td></tr>
+<tr class="memdesc:a1a12d1bbdf59057046c4826e103cc69e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Render control ImGui menu.  <br /></td></tr>
+<tr class="memitem:a94cd39a417485d1935dbc3de0c1150af" id="r_a94cd39a417485d1935dbc3de0c1150af"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a94cd39a417485d1935dbc3de0c1150af">ImGuiInformationMenu</a> ()</td></tr>
+<tr class="memdesc:a94cd39a417485d1935dbc3de0c1150af"><td class="mdescLeft">&#160;</td><td class="mdescRight">Render information ImGui menu.  <br /></td></tr>
+<tr class="memitem:a8e84fe9f39caf8f48c85bffe6ce42c32" id="r_a8e84fe9f39caf8f48c85bffe6ce42c32"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a8e84fe9f39caf8f48c85bffe6ce42c32">ImGuiParticleViewerMenu</a> ()</td></tr>
+<tr class="memdesc:a8e84fe9f39caf8f48c85bffe6ce42c32"><td class="mdescLeft">&#160;</td><td class="mdescRight">Render particles viewer ImGui menu.  <br /></td></tr>
+<tr class="memitem:abc5e5e0e4bb1514e80f45f7b33e8e5c3" id="r_abc5e5e0e4bb1514e80f45f7b33e8e5c3"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#abc5e5e0e4bb1514e80f45f7b33e8e5c3">ImGuiParticleEditorMenu</a> ()</td></tr>
+<tr class="memdesc:abc5e5e0e4bb1514e80f45f7b33e8e5c3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Render particles editor ImGui menu.  <br /></td></tr>
 <tr class="memitem:ae93df4641ab17df5ff123bd72d1a1a53" id="r_ae93df4641ab17df5ff123bd72d1a1a53"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#ae93df4641ab17df5ff123bd72d1a1a53">toggleSpectatorMode</a> ()</td></tr>
 <tr class="memdesc:ae93df4641ab17df5ff123bd72d1a1a53"><td class="mdescLeft">&#160;</td><td class="mdescRight">Toggle spectator mode. The spectator mode will take into account keyboard and mouse inputs for camera movement and show/hide the cursor.  <br /></td></tr>
 <tr class="memitem:ac46720b3fc0dbb2fc37674766490a8c4" id="r_ac46720b3fc0dbb2fc37674766490a8c4"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#ac46720b3fc0dbb2fc37674766490a8c4">clear</a> ()</td></tr>
@@ -149,8 +153,10 @@ Public Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pri-attribs" class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
-<tr class="memitem:af40474065067d28ba33f7e5477866d9d" id="r_af40474065067d28ba33f7e5477866d9d"><td class="memItemLeft">GLFWwindow *&#160;</td><td class="memItemRight"><a class="el" href="#af40474065067d28ba33f7e5477866d9d">m_window</a></td></tr>
+<tr class="memitem:af40474065067d28ba33f7e5477866d9d" id="r_af40474065067d28ba33f7e5477866d9d"><td class="memItemLeft">GLFWwindow *&#160;</td><td class="memItemRight"><a class="el" href="#af40474065067d28ba33f7e5477866d9d">m_window</a> = nullptr</td></tr>
 <tr class="memdesc:af40474065067d28ba33f7e5477866d9d"><td class="mdescLeft">&#160;</td><td class="mdescRight">GLFW window pointer.  <br /></td></tr>
+<tr class="memitem:ac6f6135aee6a9942839cfe00e9022ab3" id="r_ac6f6135aee6a9942839cfe00e9022ab3"><td class="memItemLeft"><a class="el" href="classUniverse.html">Universe</a> *&#160;</td><td class="memItemRight"><a class="el" href="#ac6f6135aee6a9942839cfe00e9022ab3">m_universePtr</a> = nullptr</td></tr>
+<tr class="memdesc:ac6f6135aee6a9942839cfe00e9022ab3"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classUniverse.html">Universe</a> pointer.  <br /></td></tr>
 <tr class="memitem:ad22c56e61b1da3239d12dd7c972b43be" id="r_ad22c56e61b1da3239d12dd7c972b43be"><td class="memItemLeft">const <a class="el" href="structConfig.html">Config</a> &amp;&#160;</td><td class="memItemRight"><a class="el" href="#ad22c56e61b1da3239d12dd7c972b43be">m_config</a></td></tr>
 <tr class="memdesc:ad22c56e61b1da3239d12dd7c972b43be"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reference to simulation configuration.  <br /></td></tr>
 <tr class="memitem:a08336775290d665e45b754021d819527" id="r_a08336775290d665e45b754021d819527"><td class="memItemLeft">std::vector&lt; <a class="el" href="classBox.html">Box</a> &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a08336775290d665e45b754021d819527">m_boxes</a></td></tr>
@@ -158,6 +164,8 @@ Private Attributes</h2></td></tr>
 <tr class="memitem:a36f17dd88324e285ee31a129b5e9fa31" id="r_a36f17dd88324e285ee31a129b5e9fa31"><td class="memItemLeft">GLUquadric *&#160;</td><td class="memItemRight"><a class="el" href="#a36f17dd88324e285ee31a129b5e9fa31">m_quadric</a></td></tr>
 <tr class="memdesc:a36f17dd88324e285ee31a129b5e9fa31"><td class="mdescLeft">&#160;</td><td class="mdescRight">GLU Utility for rendering quadratic shapes.  <br /></td></tr>
 <tr class="memitem:a2df1e635ecdcb423766b70eb29154a4f" id="r_a2df1e635ecdcb423766b70eb29154a4f"><td class="memItemLeft"><a class="el" href="classCamera.html">Camera</a>&#160;</td><td class="memItemRight"><a class="el" href="#a2df1e635ecdcb423766b70eb29154a4f">m_camera</a></td></tr>
+<tr class="memitem:a6983c9105e0fae537fe813021537f713" id="r_a6983c9105e0fae537fe813021537f713"><td class="memItemLeft">ImGuiWindowFlags&#160;</td><td class="memItemRight"><a class="el" href="#a6983c9105e0fae537fe813021537f713">m_windowFlags</a> = ImGuiWindowFlags_AlwaysAutoResize | ImGuiWindowFlags_NoBackground</td></tr>
+<tr class="memitem:a131c8591f180dfd82468bd8f14ea4d65" id="r_a131c8591f180dfd82468bd8f14ea4d65"><td class="memItemLeft">ImGuiDockNodeFlags&#160;</td><td class="memItemRight"><a class="el" href="#a131c8591f180dfd82468bd8f14ea4d65">m_dockSpaceFlags</a> = ImGuiDockNodeFlags_PassthruCentralNode</td></tr>
 <tr class="memitem:a0254c1267250bf28387ecb601015789c" id="r_a0254c1267250bf28387ecb601015789c"><td class="memItemLeft">float&#160;</td><td class="memItemRight"><a class="el" href="#a0254c1267250bf28387ecb601015789c">m_lastX</a> = 0.0f</td></tr>
 <tr class="memdesc:a0254c1267250bf28387ecb601015789c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Last cursor X position (in pixels).  <br /></td></tr>
 <tr class="memitem:a64abded5a5ffb0bc07ab04d042978161" id="r_a64abded5a5ffb0bc07ab04d042978161"><td class="memItemLeft">float&#160;</td><td class="memItemRight"><a class="el" href="#a64abded5a5ffb0bc07ab04d042978161">m_lastY</a> = 0.0f</td></tr>
@@ -272,25 +280,6 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="a0eed8ed6271fe01fbfabdeac13881e0f" name="a0eed8ed6271fe01fbfabdeac13881e0f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0eed8ed6271fe01fbfabdeac13881e0f">&#9670;&#160;</a></span>drawBoxes()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Renderer::drawBoxes </td>
-          <td>(</td>
-          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Draws the m_boxes boxes. </p>
-
-</div>
-</div>
 <a id="af351c9c67801d1751dfccdb0e3a1372f" name="af351c9c67801d1751dfccdb0e3a1372f"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#af351c9c67801d1751dfccdb0e3a1372f">&#9670;&#160;</a></span>framebufferSizeCallback()</h2>
 
@@ -349,8 +338,8 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="a94b77c39f65ff2ac734c8c8767e49cca" name="a94b77c39f65ff2ac734c8c8767e49cca"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a94b77c39f65ff2ac734c8c8767e49cca">&#9670;&#160;</a></span>ImGuiControlsMenu()</h2>
+<a id="a1a12d1bbdf59057046c4826e103cc69e" name="a1a12d1bbdf59057046c4826e103cc69e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1a12d1bbdf59057046c4826e103cc69e">&#9670;&#160;</a></span>ImGuiControlsMenu()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -358,29 +347,18 @@ Private Attributes</h2></td></tr>
         <tr>
           <td class="memname">void Renderer::ImGuiControlsMenu </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classUniverse.html">Universe</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>universe</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
           <td></td>
-          <td class="paramtype">ImGuiWindowFlags</td>          <td class="paramname"><span class="paramname"><em>window_flags</em></span>&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>Render control ImGui menu. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir"></td><td class="paramname">universe</td><td>The universe </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">window_flags</td><td>The window flags </td></tr>
-  </table>
-  </dd>
-</dl>
 
 </div>
 </div>
-<a id="a7d3a7f26a095279b8b84b5971789b77c" name="a7d3a7f26a095279b8b84b5971789b77c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7d3a7f26a095279b8b84b5971789b77c">&#9670;&#160;</a></span>ImGuiInformationMenu()</h2>
+<a id="a94cd39a417485d1935dbc3de0c1150af" name="a94cd39a417485d1935dbc3de0c1150af"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a94cd39a417485d1935dbc3de0c1150af">&#9670;&#160;</a></span>ImGuiInformationMenu()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -388,29 +366,18 @@ Private Attributes</h2></td></tr>
         <tr>
           <td class="memname">void Renderer::ImGuiInformationMenu </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="classUniverse.html">Universe</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>universe</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
           <td></td>
-          <td class="paramtype">ImGuiWindowFlags</td>          <td class="paramname"><span class="paramname"><em>window_flags</em></span>&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>Render information ImGui menu. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">universe</td><td>The universe </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">window_flags</td><td>The window flags </td></tr>
-  </table>
-  </dd>
-</dl>
 
 </div>
 </div>
-<a id="aa4de3e563b3963ead9703070a7709a68" name="aa4de3e563b3963ead9703070a7709a68"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa4de3e563b3963ead9703070a7709a68">&#9670;&#160;</a></span>ImGuiParticleEditorMenu()</h2>
+<a id="abc5e5e0e4bb1514e80f45f7b33e8e5c3" name="abc5e5e0e4bb1514e80f45f7b33e8e5c3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abc5e5e0e4bb1514e80f45f7b33e8e5c3">&#9670;&#160;</a></span>ImGuiParticleEditorMenu()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -418,29 +385,18 @@ Private Attributes</h2></td></tr>
         <tr>
           <td class="memname">void Renderer::ImGuiParticleEditorMenu </td>
           <td>(</td>
-          <td class="paramtype">std::vector&lt; <a class="el" href="classParticle.html">Particle</a> &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>particles</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
           <td></td>
-          <td class="paramtype">ImGuiWindowFlags</td>          <td class="paramname"><span class="paramname"><em>window_flags</em></span>&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>Render particles editor ImGui menu. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir"></td><td class="paramname">particles</td><td>The particles </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">window_flags</td><td>The window flags </td></tr>
-  </table>
-  </dd>
-</dl>
 
 </div>
 </div>
-<a id="a1619af7af1f17eca1717f1b6acf22270" name="a1619af7af1f17eca1717f1b6acf22270"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1619af7af1f17eca1717f1b6acf22270">&#9670;&#160;</a></span>ImGuiParticleViewerMenu()</h2>
+<a id="a8e84fe9f39caf8f48c85bffe6ce42c32" name="a8e84fe9f39caf8f48c85bffe6ce42c32"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8e84fe9f39caf8f48c85bffe6ce42c32">&#9670;&#160;</a></span>ImGuiParticleViewerMenu()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -448,24 +404,13 @@ Private Attributes</h2></td></tr>
         <tr>
           <td class="memname">void Renderer::ImGuiParticleViewerMenu </td>
           <td>(</td>
-          <td class="paramtype">std::vector&lt; <a class="el" href="classParticle.html">Particle</a> &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>particles</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
           <td></td>
-          <td class="paramtype">ImGuiWindowFlags</td>          <td class="paramname"><span class="paramname"><em>window_flags</em></span>&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>Render particles viewer ImGui menu. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">particles</td><td>The particles </td></tr>
-    <tr><td class="paramname">window_flags</td><td>The window flags </td></tr>
-  </table>
-  </dd>
-</dl>
 
 </div>
 </div>
@@ -588,33 +533,46 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="adb329bcdf91658c430c8becfef4874b2" name="adb329bcdf91658c430c8becfef4874b2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#adb329bcdf91658c430c8becfef4874b2">&#9670;&#160;</a></span>render()</h2>
+<a id="a7a258abb0123231199b50f0e1dc1c539" name="a7a258abb0123231199b50f0e1dc1c539"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7a258abb0123231199b50f0e1dc1c539">&#9670;&#160;</a></span>renderBoxes()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void Renderer::render </td>
+          <td class="memname">void Renderer::renderBoxes </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classUniverse.html">Universe</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>universe</em></span></td><td>)</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Renders the given universe. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">universe</td><td>The universe </td></tr>
-  </table>
-  </dd>
-</dl>
+<p>Render the m_boxes boxes. </p>
 
 </div>
 </div>
-<a id="ac606d439bdc8f139f40b8ef1a1e18ea8" name="ac606d439bdc8f139f40b8ef1a1e18ea8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac606d439bdc8f139f40b8ef1a1e18ea8">&#9670;&#160;</a></span>renderImGui()</h2>
+<a id="a02a137957c8783a44df5cad4b5e1b635" name="a02a137957c8783a44df5cad4b5e1b635"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a02a137957c8783a44df5cad4b5e1b635">&#9670;&#160;</a></span>renderFrame()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Renderer::renderFrame </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Renders a frame. </p>
+
+</div>
+</div>
+<a id="a3a5438a7cff49b1dc7fe2474bb33de2d" name="a3a5438a7cff49b1dc7fe2474bb33de2d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3a5438a7cff49b1dc7fe2474bb33de2d">&#9670;&#160;</a></span>renderImGui()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -622,16 +580,35 @@ Private Attributes</h2></td></tr>
         <tr>
           <td class="memname">void Renderer::renderImGui </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classUniverse.html">Universe</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>universe</em></span></td><td>)</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>Render Dear ImGui. </p>
+
+</div>
+</div>
+<a id="a4da7af9b856f99ef5e424ea6cf5122f4" name="a4da7af9b856f99ef5e424ea6cf5122f4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4da7af9b856f99ef5e424ea6cf5122f4">&#9670;&#160;</a></span>renderParticle()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Renderer::renderParticle </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classParticle.html">Particle</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>particle</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Render the the given particle. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">universe</td><td>The universe </td></tr>
+    <tr><td class="paramname">particle</td><td>The particle </td></tr>
   </table>
   </dd>
 </dl>
@@ -663,14 +640,14 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="afebd47ef1e1cee08c95a7b8e19158180" name="afebd47ef1e1cee08c95a7b8e19158180"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#afebd47ef1e1cee08c95a7b8e19158180">&#9670;&#160;</a></span>swapBuffers()</h2>
+<a id="a4effbac4f41b348002ca7d63b839dcf3" name="a4effbac4f41b348002ca7d63b839dcf3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4effbac4f41b348002ca7d63b839dcf3">&#9670;&#160;</a></span>renderScene()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void Renderer::swapBuffers </td>
+          <td class="memname">void Renderer::renderScene </td>
           <td>(</td>
           <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
           <td></td>
@@ -678,7 +655,32 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Call glfwSwapBuffers(m_window). </p>
+<p>Renders the scene. </p>
+
+</div>
+</div>
+<a id="af104166a99526dad49a3a8d96250205a" name="af104166a99526dad49a3a8d96250205a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af104166a99526dad49a3a8d96250205a">&#9670;&#160;</a></span>setUniversePtr()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Renderer::setUniversePtr </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classUniverse.html">Universe</a> *</td>          <td class="paramname"><span class="paramname"><em>universePtr</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Set the universe pointer. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">universePtr</td><td>The universe pointer </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -769,6 +771,28 @@ Private Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Reference to simulation configuration. </p>
+
+</div>
+</div>
+<a id="a131c8591f180dfd82468bd8f14ea4d65" name="a131c8591f180dfd82468bd8f14ea4d65"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a131c8591f180dfd82468bd8f14ea4d65">&#9670;&#160;</a></span>m_dockSpaceFlags</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">ImGuiDockNodeFlags Renderer::m_dockSpaceFlags = ImGuiDockNodeFlags_PassthruCentralNode</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
 
 </div>
 </div>
@@ -1032,6 +1056,30 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
+<a id="ac6f6135aee6a9942839cfe00e9022ab3" name="ac6f6135aee6a9942839cfe00e9022ab3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac6f6135aee6a9942839cfe00e9022ab3">&#9670;&#160;</a></span>m_universePtr</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classUniverse.html">Universe</a>* Renderer::m_universePtr = nullptr</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p><a class="el" href="classUniverse.html">Universe</a> pointer. </p>
+
+</div>
+</div>
 <a id="af40474065067d28ba33f7e5477866d9d" name="af40474065067d28ba33f7e5477866d9d"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#af40474065067d28ba33f7e5477866d9d">&#9670;&#160;</a></span>m_window</h2>
 
@@ -1042,7 +1090,7 @@ Private Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">GLFWwindow* Renderer::m_window</td>
+          <td class="memname">GLFWwindow* Renderer::m_window = nullptr</td>
         </tr>
       </table>
   </td>
@@ -1053,6 +1101,28 @@ Private Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>GLFW window pointer. </p>
+
+</div>
+</div>
+<a id="a6983c9105e0fae537fe813021537f713" name="a6983c9105e0fae537fe813021537f713"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6983c9105e0fae537fe813021537f713">&#9670;&#160;</a></span>m_windowFlags</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">ImGuiWindowFlags Renderer::m_windowFlags = ImGuiWindowFlags_AlwaysAutoResize | ImGuiWindowFlags_NoBackground</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
 
 </div>
 </div>

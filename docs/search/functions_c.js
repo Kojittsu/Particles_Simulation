@@ -9,12 +9,13 @@ var searchData=
   ['setposition_6',['setPosition',['../classCamera.html#a6c80882e87be75bde67f432ca3b21607',1,'Camera::setPosition()'],['../classParticle.html#a23ac81778f2df7c57abe4770401522fb',1,'Particle::setPosition(const std::array&lt; double, 3 &gt; &amp;position)']]],
   ['setradius_7',['setRadius',['../classParticle.html#ac005e3a0a82d8e4d75a704c47bf31adb',1,'Particle']]],
   ['setspeed_8',['setSpeed',['../classCamera.html#af073e5018dbe94c9a074c660cb4b731f',1,'Camera']]],
-  ['setvelocity_9',['setVelocity',['../classParticle.html#ac224e83ca5fbcd2bcbaa98741cddcaa8',1,'Particle']]],
-  ['setvx_10',['setVX',['../classParticle.html#aa45d934d61d41672c9cb3b6bf457ba0e',1,'Particle']]],
-  ['setvy_11',['setVY',['../classParticle.html#a81de2f06905ac5c22f2cfa59f6340131',1,'Particle']]],
-  ['setvz_12',['setVZ',['../classParticle.html#a7b3230137d70476f54ed089f3f1aaf92',1,'Particle']]],
-  ['setx_13',['setX',['../classParticle.html#ac76e254b7e09ef2b59d1b72ccdd4e767',1,'Particle']]],
-  ['sety_14',['setY',['../classParticle.html#a7b2eeb3239ab34be85a4bbf5005cbbd7',1,'Particle']]],
-  ['setz_15',['setZ',['../classParticle.html#ac5576247fc017ba980dc307abe7ba167',1,'Particle']]],
-  ['swapbuffers_16',['swapBuffers',['../classRenderer.html#afebd47ef1e1cee08c95a7b8e19158180',1,'Renderer']]]
+  ['setuniverseptr_9',['setUniversePtr',['../classRenderer.html#af104166a99526dad49a3a8d96250205a',1,'Renderer']]],
+  ['setvelocity_10',['setVelocity',['../classParticle.html#ac224e83ca5fbcd2bcbaa98741cddcaa8',1,'Particle']]],
+  ['setvx_11',['setVX',['../classParticle.html#aa45d934d61d41672c9cb3b6bf457ba0e',1,'Particle']]],
+  ['setvy_12',['setVY',['../classParticle.html#a81de2f06905ac5c22f2cfa59f6340131',1,'Particle']]],
+  ['setvz_13',['setVZ',['../classParticle.html#a7b3230137d70476f54ed089f3f1aaf92',1,'Particle']]],
+  ['setx_14',['setX',['../classParticle.html#ac76e254b7e09ef2b59d1b72ccdd4e767',1,'Particle']]],
+  ['sety_15',['setY',['../classParticle.html#a7b2eeb3239ab34be85a4bbf5005cbbd7',1,'Particle']]],
+  ['setz_16',['setZ',['../classParticle.html#ac5576247fc017ba980dc307abe7ba167',1,'Particle']]],
+  ['start_17',['start',['../classApplication.html#aa38ca47b50935092078cef4281ab66bc',1,'Application']]]
 ];

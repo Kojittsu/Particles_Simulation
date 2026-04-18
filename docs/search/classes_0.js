@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['box_0',['Box',['../classBox.html',1,'']]]
+  ['application_0',['Application',['../classApplication.html',1,'']]]
 ];

@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['particle_0',['Particle',['../classParticle.html',1,'']]]
+  ['camera_0',['Camera',['../classCamera.html',1,'']]],
+  ['config_1',['Config',['../structConfig.html',1,'']]]
 ];
