@@ -22,7 +22,7 @@ IMPLOT_SRC = $(IMPLOT_DIR)/implot.cpp \
 
 # Compiler and options
 CXX = g++
-CXXFLAGS = -Wall -std=c++11 -I$(INC_DIR) -I$(IMGUI_DIR) -I$(IMGUI_DIR)/backends -I$(IMPLOT_DIR)
+CXXFLAGS = -Wall -std=c++14 -I$(INC_DIR) -I$(IMGUI_DIR) -I$(IMGUI_DIR)/backends -I$(IMPLOT_DIR)
 LDFLAGS = -lGL -lGLU -lglfw -lyaml-cpp
 
 # Source and object files list

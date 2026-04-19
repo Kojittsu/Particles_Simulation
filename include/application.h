@@ -22,6 +22,18 @@ public:
     ~Application();
 
     /**
+     * @brief      load the universe provide by config.
+     *
+     * @param[in]  config  The simulation configuration
+     */
+    void loadUniverse(const Config& config);
+
+    /**
+     * @brief      unload the current universe.
+     */
+    void unloadUniverse();
+
+    /**
      * @brief      Start the application.
      */
     void start();
@@ -29,7 +41,7 @@ public:
 private:
     Config m_config;
     std::ofstream m_logFile;
-    Universe m_universe;
+    std::unique_ptr<Universe> m_universe;
     Renderer m_renderer;
 };
 

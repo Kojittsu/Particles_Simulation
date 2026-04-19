@@ -3,12 +3,8 @@
 Application::Application(const Config& config)
 :
     m_config(config),
-    m_universe(config),
     m_renderer(config)
 {
-    // Provide m_universe access to m_renderer
-    m_renderer.setUniversePtr(&m_universe);
-
     // Open dataFile if dataFileName provided
     if (!m_config.dataFileName.empty()) {
         m_logFile.open(m_config.dataFileName);
@@ -24,15 +20,25 @@ Application::~Application() {
     }
 }
 
+void Application::loadUniverse(const Config& config) {
+    m_universe = std::make_unique<Universe>(config);
+    m_renderer.setUniversePtr(m_universe.get());
+}
+
+void Application::unloadUniverse() {
+    m_universe.reset();
+    m_renderer.setUniversePtr(nullptr);
+}
+
 void Application::start() {
 
     while (m_renderer.isRunning()) {
-        if (m_renderer.getRunTime() * m_config.speedFactor > m_universe.m_simuationTime && m_universe.m_isRunning) {
-            m_universe.makeStep();
+        if (m_universe && m_renderer.getRunTime() * m_config.speedFactor > m_universe->m_simuationTime && m_universe->m_isRunning) {
+            m_universe->makeStep();
 
             // Save universe current step
             if (m_logFile.is_open()) {
-                m_universe.saveStep(m_logFile);
+                m_universe->saveStep(m_logFile);
             }
         }
         m_renderer.renderFrame();

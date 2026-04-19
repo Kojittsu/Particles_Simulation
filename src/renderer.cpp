@@ -157,34 +157,35 @@ void Renderer::renderFrame() {
 }
 
 void Renderer::renderScene() {
+    if(m_universePtr) {
+        float currentFrame = glfwGetTime();
+        float deltaTime = currentFrame - m_lastFrameTime;
 
-    float currentFrame = glfwGetTime();
-    float deltaTime = currentFrame - m_lastFrameTime;
+        // compute m_runTime & m_simulationTimePaused
+        if(m_universePtr->m_isRunning) {
+            m_runTime = currentFrame - m_simulationTimePaused;
+        }
+        else {
+            m_simulationTimePaused += deltaTime;
+        }
 
-    // compute m_runTime & m_simulationTimePaused
-    if(m_universePtr->m_isRunning) {
-        m_runTime = currentFrame - m_simulationTimePaused;
+        // Update camera
+        if(m_isSpectatorMode) {
+            m_camera.computeNewPosition(m_keyStates, deltaTime);
+        }
+        m_lastFrameTime = currentFrame;
+
+        m_camera.update();
+
+        auto& particles = m_universePtr->getParticles();
+
+        for (const auto& particle : particles) {
+            renderParticle(particle);
+            renderParticleTrail(particle);
+        }
+
+        renderBoxes();
     }
-    else {
-        m_simulationTimePaused += deltaTime;
-    }
-
-    // Update camera
-    if(m_isSpectatorMode) {
-        m_camera.computeNewPosition(m_keyStates, deltaTime);
-    }
-    m_lastFrameTime = currentFrame;
-
-    m_camera.update();
-
-    auto& particles = m_universePtr->getParticles();
-
-    for (const auto& particle : particles) {
-        renderParticle(particle);
-        renderParticleTrail(particle);
-    }
-
-    renderBoxes();
 }
 
 void Renderer::renderParticle(const Particle& particle) {
@@ -288,7 +289,7 @@ void Renderer::ImGuiControlsMenu() {
     ImGui::PushStyleVar(ImGuiStyleVar_FrameRounding, 5.0f);
 
 
-    if (ImGui::CollapsingHeader("Simulation controls")) {
+    if (m_universePtr && ImGui::CollapsingHeader("Simulation controls")) {
         if (ImGui::Button(m_universePtr->m_isRunning ? "Pause simulation" : "Start simulation")) {
             m_universePtr->m_isRunning = !m_universePtr->m_isRunning;
         }
@@ -329,7 +330,7 @@ void Renderer::ImGuiControlsMenu() {
         ImGui::PopItemWidth();
     }
 
-    if (ImGui::CollapsingHeader("Add particle")) {
+    if (m_universePtr && ImGui::CollapsingHeader("Add particle")) {
 
         static std::array<double, 3> position     = {0.0, 0.0, 0.0};
         static std::array<double, 3> velocity     = {0.0, 0.0, 0.0};
@@ -382,11 +383,6 @@ void Renderer::ImGuiControlsMenu() {
 }
 
 void Renderer::ImGuiInformationMenu() {
-    double universeSimulationTime = m_universePtr->m_simuationTime;
-    int days    = static_cast<int>(universeSimulationTime / 86400);
-    int hours   = static_cast<int>(static_cast<int>(universeSimulationTime) % 86400 / 3600);
-    int minutes = static_cast<int>(static_cast<int>(universeSimulationTime) % 3600 / 60);
-    int seconds = static_cast<int>(universeSimulationTime) % 60;
 
     glm::vec3 cameraPosition = m_camera.getPosition() / static_cast<float>(m_scaleFactor); // transform camera position from SU to meter
     glm::vec3 cameraFront = m_camera.getFront();
@@ -407,8 +403,16 @@ void Renderer::ImGuiInformationMenu() {
         ImPlot::EndPlot();
     }
 
-    ImGui::Text("Simulation time : %d days, %02d hours, %02d minutes, %02d seconds", days, hours, minutes, seconds);
-    ImGui::Text("Simulation time : %.3f s", universeSimulationTime);
+    if(m_universePtr) {
+        double universeSimulationTime = m_universePtr->m_simuationTime;
+        int days    = static_cast<int>(universeSimulationTime / 86400);
+        int hours   = static_cast<int>(static_cast<int>(universeSimulationTime) % 86400 / 3600);
+        int minutes = static_cast<int>(static_cast<int>(universeSimulationTime) % 3600 / 60);
+        int seconds = static_cast<int>(universeSimulationTime) % 60;
+        ImGui::Text("Simulation time : %d days, %02d hours, %02d minutes, %02d seconds", days, hours, minutes, seconds);
+        ImGui::Text("Simulation time : %.3f s", universeSimulationTime);
+    }
+
     ImGui::Text("Real time (s) : %.3f", m_runTime);
     ImGui::Text(" ");
     ImGui::Text("Camera position : (%.3e, %.3e, %.3e) m", cameraPosition[0], cameraPosition[1], cameraPosition[2]);
@@ -422,80 +426,78 @@ void Renderer::ImGuiInformationMenu() {
 }
 
 void Renderer::ImGuiParticleViewerMenu() {
+    if(m_universePtr) {
+        std::vector<Particle>& universeParticles = m_universePtr->getParticles();
 
-    std::vector<Particle>& universeParticles = m_universePtr->getParticles();
-
-    ImGui::Begin("Particles viewer", nullptr, m_windowFlags);
-    ImGui::Text("Particle count : %ld", universeParticles.size());
-    ImGui::Text(" ");
-    for (Particle& particle : universeParticles) {
-        ImGui::Text("Name : %s", particle.m_name.c_str());
-        ImGui::Text("Position : (%.3e, %.3e, %.3e) m", particle.getX(), particle.getY(), particle.getZ());
-        ImGui::Text("Velocity : (%.3e, %.3e, %.3e) m/s. %.3e m/s", particle.getVX(), particle.getVY(), particle.getVZ(), getMagnitude(particle.getVelocity()));
-        ImGui::Text("Mass : %.3e Kg", particle.getMass());
-        ImGui::Text("Radius : %.3e m", particle.getRadius());
+        ImGui::Begin("Particles viewer", nullptr, m_windowFlags);
+        ImGui::Text("Particle count : %ld", universeParticles.size());
         ImGui::Text(" ");
+        for (Particle& particle : universeParticles) {
+            ImGui::Text("Name : %s", particle.m_name.c_str());
+            ImGui::Text("Position : (%.3e, %.3e, %.3e) m", particle.getX(), particle.getY(), particle.getZ());
+            ImGui::Text("Velocity : (%.3e, %.3e, %.3e) m/s. %.3e m/s", particle.getVX(), particle.getVY(), particle.getVZ(), getMagnitude(particle.getVelocity()));
+            ImGui::Text("Mass : %.3e Kg", particle.getMass());
+            ImGui::Text("Radius : %.3e m", particle.getRadius());
+            ImGui::Text(" ");
+        }
+        ImGui::End();
     }
-    ImGui::End();
 }
 
 void Renderer::ImGuiParticleEditorMenu() {
+    if(m_universePtr) {
+        std::vector<Particle>& universeParticles = m_universePtr->getParticles();
 
-    std::vector<Particle>& universeParticles = m_universePtr->getParticles();
+        static int selectedIndex = 0;
 
-    static int selectedIndex = 0;
+        ImGui::Begin("Particle editor", nullptr, m_windowFlags);
+        ImGui::Columns(2, nullptr, true);
 
-    ImGui::Begin("Particle editor", nullptr, m_windowFlags);
-
-    ImGui::Columns(2, nullptr, true);
-
-    // Left column (list particles)
-    int particleIndex = 0;
-    for (Particle& particle : universeParticles) {
-        std::string label = particle.m_name.empty() ? "Unnamed##" + std::to_string(particleIndex) : particle.m_name;
-        if (ImGui::Selectable(label.c_str(), selectedIndex == particleIndex)) {
-            selectedIndex = particleIndex;
+        // Left column (list particles)
+        int particleIndex = 0;
+        for (Particle& particle : universeParticles) {
+            std::string label = particle.m_name.empty() ? "Unnamed##" + std::to_string(particleIndex) : particle.m_name;
+            if (ImGui::Selectable(label.c_str(), selectedIndex == particleIndex)) {
+                selectedIndex = particleIndex;
+            }
+            particleIndex++;
         }
-        particleIndex++;
+
+        // Right column (edit selected particle)
+        ImGui::NextColumn();
+        Particle& selectedParticle = universeParticles[selectedIndex];
+        ImGui::Text("%s", selectedParticle.m_name.c_str());
+
+        static std::array<double, 3> newPosition     = {0.0, 0.0, 0.0};
+        ImGui::Text("Position : (%.3e, %.3e, %.3e) m", selectedParticle.getX(), selectedParticle.getY(), selectedParticle.getZ());
+        ImGui::Text("New Position:"); ImGui::SameLine();
+        ImGui::PushItemWidth(80);
+        ImGui::InputDouble("##X", &newPosition[0], 0, 0, "%.3f"); ImGui::SameLine();
+        ImGui::InputDouble("##Y", &newPosition[1], 0, 0, "%.3f"); ImGui::SameLine();
+        ImGui::InputDouble("##Z", &newPosition[2], 0, 0, "%.3f"); ImGui::SameLine();
+        ImGui::PopItemWidth();
+        if(ImGui::Button("Confirm###PositionConfirmButton")) {
+            selectedParticle.setPosition(newPosition);
+            newPosition = {0.0, 0.0, 0.0};
+        }
+
+        ImGui::Spacing();
+
+        static std::array<double, 3> newVelocity     = {0.0, 0.0, 0.0};
+        ImGui::Text("Velocity : (%.3e, %.3e, %.3e) m", selectedParticle.getVX(), selectedParticle.getVY(), selectedParticle.getVZ());
+        ImGui::Text("New Velocity:"); ImGui::SameLine();
+        ImGui::PushItemWidth(80);
+        ImGui::InputDouble("##VX", &newVelocity[0], 0, 0, "%.3f"); ImGui::SameLine();
+        ImGui::InputDouble("##VY", &newVelocity[1], 0, 0, "%.3f"); ImGui::SameLine();
+        ImGui::InputDouble("##VZ", &newVelocity[2], 0, 0, "%.3f"); ImGui::SameLine();
+        ImGui::PopItemWidth();
+        if(ImGui::Button("Confirm###VelocityConfirmButton")) {
+            selectedParticle.setVelocity(newVelocity);
+            newVelocity = {0.0, 0.0, 0.0};
+        }
+        ImGui::End();
     }
-
-    // Right column (edit selected particle)
-    ImGui::NextColumn();
-    Particle& selectedParticle = universeParticles[selectedIndex];
-    ImGui::Text("%s", selectedParticle.m_name.c_str());
-
-    static std::array<double, 3> newPosition     = {0.0, 0.0, 0.0};
-    ImGui::Text("Position : (%.3e, %.3e, %.3e) m", selectedParticle.getX(), selectedParticle.getY(), selectedParticle.getZ());
-    ImGui::Text("New Position:"); ImGui::SameLine();
-    ImGui::PushItemWidth(80);
-    ImGui::InputDouble("##X", &newPosition[0], 0, 0, "%.3f"); ImGui::SameLine();
-    ImGui::InputDouble("##Y", &newPosition[1], 0, 0, "%.3f"); ImGui::SameLine();
-    ImGui::InputDouble("##Z", &newPosition[2], 0, 0, "%.3f"); ImGui::SameLine();
-    ImGui::PopItemWidth();
-    if(ImGui::Button("Confirm###PositionConfirmButton")) {
-        selectedParticle.setPosition(newPosition);
-        newPosition = {0.0, 0.0, 0.0};
-    }
-
-    ImGui::Spacing();
-
-    static std::array<double, 3> newVelocity     = {0.0, 0.0, 0.0};
-    ImGui::Text("Velocity : (%.3e, %.3e, %.3e) m", selectedParticle.getVX(), selectedParticle.getVY(), selectedParticle.getVZ());
-    ImGui::Text("New Velocity:"); ImGui::SameLine();
-    ImGui::PushItemWidth(80);
-    ImGui::InputDouble("##VX", &newVelocity[0], 0, 0, "%.3f"); ImGui::SameLine();
-    ImGui::InputDouble("##VY", &newVelocity[1], 0, 0, "%.3f"); ImGui::SameLine();
-    ImGui::InputDouble("##VZ", &newVelocity[2], 0, 0, "%.3f"); ImGui::SameLine();
-    ImGui::PopItemWidth();
-    if(ImGui::Button("Confirm###VelocityConfirmButton")) {
-        selectedParticle.setVelocity(newVelocity);
-        newVelocity = {0.0, 0.0, 0.0};
-    }
-
-    ImGui::End();
 }
-
-
 
 void Renderer::toggleSpectatorMode() {
     m_isSpectatorMode = !m_isSpectatorMode;
