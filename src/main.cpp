@@ -20,7 +20,7 @@ int main(int argc, char* argv[]) {
 
     // temporary, need to call that in renderer class using callbacks to allow load/unload while the application is running.
     application.loadConfig(config);
-    // application.unloadUniverse();
+    // application.unloadConfig();
 
     application.start();
     return 0;

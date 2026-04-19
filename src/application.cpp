@@ -15,7 +15,7 @@ void Application::loadConfig(const Config& config) {
 
 void Application::unloadConfig() {
     m_universe.reset();
-    m_renderer.setUniversePtr(nullptr);
+    m_renderer.resetCurrentUniverse();
 }
 
 void Application::start() {

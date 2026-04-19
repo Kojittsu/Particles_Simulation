@@ -145,7 +145,10 @@ void Renderer::initializeImPlot() {
 
 void Renderer::setUniversePtr(Universe* universePtr) {
     m_universePtr = universePtr;
+}
 
+void Renderer::resetCurrentUniverse() {
+    setUniversePtr(nullptr);
     // reset current universe variables
     m_currentUniverseRuntime = 0.0;
     m_currentUniverseTimePaused = 0.0;

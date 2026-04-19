@@ -80,6 +80,12 @@ public:
     void setUniversePtr(Universe* universePtr);
 
     /**
+     * @brief      Reset the current universe.
+     * set to nullptr the universe pointer and reset universe variables.
+     */
+    void resetCurrentUniverse();
+
+    /**
      * @brief      update the renderer config.
      * @param[in]  rendererConfig  The renderer config
      */
