@@ -18,6 +18,11 @@ public:
     Universe(const Config& config);
 
     /**
+     * @brief      Destroy the universe.
+     */
+    ~Universe();
+
+    /**
      * @brief      Makes a simulation step.
      */
     void makeStep();
@@ -86,6 +91,7 @@ public:
 
 private:
     const Config m_config;                      ///< Configuration of the universe.
+    std::ofstream m_logFile;                    ///< Log file containing particles data.
     std::vector<Particle> m_particles;          ///< Vector containing all particles.
     std::vector<Box> m_boxes;                   ///< Vector containing all boxes.
     bool m_applyGravity;                        ///< Vector containing all boxes.

@@ -17,11 +17,6 @@ public:
     Application(const Config& config);
 
     /**
-     * @brief      Destroys the application.
-     */
-    ~Application();
-
-    /**
      * @brief      load the universe provide by config.
      *
      * @param[in]  config  The simulation configuration
@@ -40,7 +35,6 @@ public:
 
 private:
     Config m_config;
-    std::ofstream m_logFile;
     std::unique_ptr<Universe> m_universe;
     Renderer m_renderer;
 };

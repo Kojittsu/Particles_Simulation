@@ -9,15 +9,28 @@ Universe::Universe(const Config& config)
         m_applyGravity(config.applyGravity),
         m_globalAcceleration(config.globalAcceleration)
 {
+    // Open dataFile if dataFileName provided
+    if (!m_config.dataFileName.empty()) {
+        m_logFile.open(m_config.dataFileName);
+        if (!m_logFile.is_open()) {
+            std::cerr << "Error opening file: " << m_config.dataFileName << std::endl;
+        }
+    }
     applyAccelerationToParticles(m_globalAcceleration);
 }
 
-void Universe::makeStep(){
+Universe::~Universe() {
+    if (m_logFile.is_open()) {
+        m_logFile.close();
+    }
+}
+
+void Universe::makeStep() {
     // Apply Newton's law of universal gravitation
     if(m_applyGravity) {
         computeGravitationalForces();
     }
-    
+
     for (Particle& particle : m_particles) {
         // Update particle
         particle.update(m_config.deltaTime);
@@ -28,25 +41,27 @@ void Universe::makeStep(){
     computeParticleCollisions();
 
     m_simuationTime += m_config.deltaTime;
+
+    // Save universe current step
+    if (m_logFile.is_open()) {
+        saveStep(m_logFile);
+    }
 }
 
-void Universe::saveStep(std::ofstream& file){
-    if (!file.is_open()) {
-        throw std::runtime_error("File is not open");
-    }
+void Universe::saveStep(std::ofstream& file) {
     int particleNumber = 1;
-    for (const Particle& particle : m_particles){
+    for (const Particle& particle : m_particles) {
         file << m_simuationTime << "," << particleNumber << "," << particle.getX() << "," << particle.getY() << "," << particle.getZ() << "\n";
         ++particleNumber;
     }
 }
 
-void Universe::addParticle(const Particle& particle){
+void Universe::addParticle(const Particle& particle) {
     m_particles.push_back(particle);
 }
 
 
-void Universe::applyAccelerationToParticles(const std::array<double, 3>& accelerationContribution){
+void Universe::applyAccelerationToParticles(const std::array<double, 3>& accelerationContribution) {
     for (Particle& particle : m_particles){
         particle.setAcceleration(particle.getAcceleration() + accelerationContribution);
     }
@@ -57,7 +72,7 @@ void Universe::computeGravitationalForces() {
         // Reset acceleration to global acceleration
         particle.setAcceleration(m_globalAcceleration);
     }
-    
+
     for (size_t i = 0; i < m_particles.size(); ++i) {
         for (size_t j = i + 1; j < m_particles.size(); ++j) {
             Particle& p1 = m_particles[i];
