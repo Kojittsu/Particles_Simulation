@@ -13,7 +13,7 @@ void Application::loadConfig(const Config& config) {
     m_renderer.updateConfig(config.rendererConfig);
 }
 
-void Application::unloadUniverse() {
+void Application::unloadConfig() {
     m_universe.reset();
     m_renderer.setUniversePtr(nullptr);
 }

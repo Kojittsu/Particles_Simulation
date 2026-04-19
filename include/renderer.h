@@ -191,13 +191,12 @@ private:
     // current universe variables
     double m_currentUniverseTimePaused = 0.0;
     double m_currentUniverseRuntime = 0.0;
+    double m_speedFactor = 1.0; ///< Speed factor applied for rendering universe at different speeds.
+    double m_scaleFactor = 1.0; ///< Scale factor applied for rendering.
 
     std::array<bool, 1024> m_keyStates{ {false} }; ///< States of the keys.
 
     bool m_isSpectatorMode = false; ///< Determines if spectator is enable.
-
-    double m_speedFactor = 1.0; ///< Speed factor applied for rendering universe at different speeds.
-    double m_scaleFactor = 1.0; ///< Scale factor applied for rendering.
 
     std::vector<float> m_lastFrameratesBuffer; ///< vector of last framerates values
     std::vector<float> m_lastFrameratesIndexes; ///< vector of last framerates indexes

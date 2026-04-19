@@ -149,6 +149,8 @@ void Renderer::setUniversePtr(Universe* universePtr) {
     // reset current universe variables
     m_currentUniverseRuntime = 0.0;
     m_currentUniverseTimePaused = 0.0;
+    m_speedFactor = 1.0;
+    m_scaleFactor = 1.0;
 }
 
 void Renderer::updateConfig(const RendererConfig& rendererConfig) {

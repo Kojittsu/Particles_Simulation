@@ -15,16 +15,16 @@ public:
     Application();
 
     /**
-     * @brief      load the universe provide by config.
+     * @brief      load a configuration.
      *
      * @param[in]  config  The configuration
      */
     void loadConfig(const Config& config);
 
     /**
-     * @brief      unload the current universe.
+     * @brief      unload the current configuration.
      */
-    void unloadUniverse();
+    void unloadConfig();
 
     /**
      * @brief      Start the application.
