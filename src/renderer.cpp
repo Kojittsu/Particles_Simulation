@@ -1,7 +1,7 @@
 #include "renderer.h"
 
-Renderer::Renderer(const RendererConfig& rendererConfig)
-    : m_speedFactor(rendererConfig.speedFactor), m_scaleFactor(rendererConfig.scaleFactor) {
+Renderer::Renderer()
+{
     m_quadric = gluNewQuadric();
     Camera m_camera;
     initializeGLFW();

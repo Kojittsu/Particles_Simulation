@@ -1,8 +1,8 @@
 #include "application.h"
 
-Application::Application(const Config& config)
+Application::Application()
 :
-    m_renderer(config.rendererConfig)
+    m_renderer()
 {
 
 }

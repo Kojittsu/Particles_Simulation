@@ -11,10 +11,8 @@ class Application {
 public:
     /**
     * @brief      Initialize the application.
-    *
-    * @param[in]  config  The simulation configuration
     */
-    Application(const Config& config);
+    Application();
 
     /**
      * @brief      load the universe provide by config.

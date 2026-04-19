@@ -17,10 +17,8 @@ public:
      * @brief      Initialize renderer.
      * This method setup the GLFW library for rendering the scene and the Dear
      * ImGui library for rendering the Graphical user interface.
-     *
-     * @param[in]  rendererConfig  The renderer configuration
      */
-    Renderer(const RendererConfig& rendererConfig);
+    Renderer();
 
     /**
      * @brief      Destroys the renderer.
@@ -198,8 +196,8 @@ private:
 
     bool m_isSpectatorMode = false; ///< Determines if spectator is enable.
 
-    double m_speedFactor; ///< Speed factor applied for rendering universe at different speeds.
-    double m_scaleFactor; ///< Scale factor applied for rendering.
+    double m_speedFactor = 1.0; ///< Speed factor applied for rendering universe at different speeds.
+    double m_scaleFactor = 1.0; ///< Scale factor applied for rendering.
 
     std::vector<float> m_lastFrameratesBuffer; ///< vector of last framerates values
     std::vector<float> m_lastFrameratesIndexes; ///< vector of last framerates indexes
