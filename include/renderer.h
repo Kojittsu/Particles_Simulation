@@ -82,6 +82,12 @@ public:
     void setUniversePtr(Universe* universePtr);
 
     /**
+     * @brief      update the renderer config.
+     * @param[in]  rendererConfig  The renderer config
+     */
+    void updateConfig(const RendererConfig& rendererConfig);
+
+    /**
      * @brief      Renders a frame.
      */
     void renderFrame();

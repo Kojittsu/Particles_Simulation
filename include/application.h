@@ -19,9 +19,9 @@ public:
     /**
      * @brief      load the universe provide by config.
      *
-     * @param[in]  universeConfig  The universe configuration
+     * @param[in]  config  The configuration
      */
-    void loadUniverse(const UniverseConfig& universeConfig);
+    void loadConfig(const Config& config);
 
     /**
      * @brief      unload the current universe.

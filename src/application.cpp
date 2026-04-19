@@ -7,9 +7,10 @@ Application::Application(const Config& config)
 
 }
 
-void Application::loadUniverse(const UniverseConfig& universeConfig) {
-    m_universe = std::make_unique<Universe>(universeConfig);
+void Application::loadConfig(const Config& config) {
+    m_universe = std::make_unique<Universe>(config.universeConfig);
     m_renderer.setUniversePtr(m_universe.get());
+    m_renderer.updateConfig(config.rendererConfig);
 }
 
 void Application::unloadUniverse() {

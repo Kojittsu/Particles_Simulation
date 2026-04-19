@@ -151,6 +151,11 @@ void Renderer::setUniversePtr(Universe* universePtr) {
     m_currentUniverseTimePaused = 0.0;
 }
 
+void Renderer::updateConfig(const RendererConfig& rendererConfig) {
+    m_speedFactor = rendererConfig.speedFactor;
+    m_scaleFactor = rendererConfig.scaleFactor;
+}
+
 void Renderer::renderFrame() {
     clear();
     renderScene();
