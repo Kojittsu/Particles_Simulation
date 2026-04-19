@@ -1,7 +1,7 @@
 #include "renderer.h"
 
-Renderer::Renderer(const Config& config)
-    : m_config(config), m_boxes(config.boxes), m_scaleFactor(config.scaleFactor) {
+Renderer::Renderer(const RendererConfig& rendererConfig)
+    : m_speedFactor(rendererConfig.speedFactor), m_scaleFactor(rendererConfig.scaleFactor) {
     m_quadric = gluNewQuadric();
     Camera m_camera;
     initializeGLFW();
@@ -145,6 +145,10 @@ void Renderer::initializeImPlot() {
 
 void Renderer::setUniversePtr(Universe* universePtr) {
     m_universePtr = universePtr;
+
+    // reset current universe variables
+    m_currentUniverseRuntime = 0.0;
+    m_currentUniverseTimePaused = 0.0;
 }
 
 void Renderer::renderFrame() {
@@ -161,19 +165,20 @@ void Renderer::renderScene() {
         float currentFrame = glfwGetTime();
         float deltaTime = currentFrame - m_lastFrameTime;
 
-        // compute m_runTime & m_simulationTimePaused
+        m_lastFrameTime = currentFrame;
+
+        // compute m_currentUniverseRuntime & m_currentUniverseTimePaused
         if(m_universePtr->m_isRunning) {
-            m_runTime = currentFrame - m_simulationTimePaused;
+            m_currentUniverseRuntime = currentFrame - m_currentUniverseTimePaused;
         }
         else {
-            m_simulationTimePaused += deltaTime;
+            m_currentUniverseTimePaused += deltaTime;
         }
 
         // Update camera
         if(m_isSpectatorMode) {
             m_camera.computeNewPosition(m_keyStates, deltaTime);
         }
-        m_lastFrameTime = currentFrame;
 
         m_camera.update();
 
@@ -229,7 +234,7 @@ void Renderer::renderBoxes() {
     glDisable(GL_LIGHTING);
     glColor3f(1.0f, 1.0f, 1.0f);
 
-    for(Box& box : m_boxes) {
+    for(Box& box : m_universePtr->getBoxes()) {
         std::array<double, 3> boxOrigin = box.m_origin  * m_scaleFactor; // transform box from meter to SU
 
         float x0 = boxOrigin[0];
@@ -413,7 +418,7 @@ void Renderer::ImGuiInformationMenu() {
         ImGui::Text("Simulation time : %.3f s", universeSimulationTime);
     }
 
-    ImGui::Text("Real time (s) : %.3f", m_runTime);
+    ImGui::Text("Current universe runtime (s) : %.3f", m_currentUniverseRuntime);
     ImGui::Text(" ");
     ImGui::Text("Camera position : (%.3e, %.3e, %.3e) m", cameraPosition[0], cameraPosition[1], cameraPosition[2]);
     ImGui::Text("Camera front : (%.1f, %.1f, %.1f)", cameraFront[0], cameraFront[1], cameraFront[2]);
@@ -515,4 +520,8 @@ void Renderer::clear() {
 
 bool Renderer::isRunning() {
     return !glfwWindowShouldClose(m_window);
+}
+
+bool Renderer::universeShouldMakeStep() {
+    return getRuntime() * m_speedFactor > m_universePtr->m_simuationTime;
 }

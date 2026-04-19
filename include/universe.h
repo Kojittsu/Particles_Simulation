@@ -13,9 +13,9 @@ public:
     /**
      * @brief      Initialize universe.
      *
-     * @param[in]  config  The simulation configuration
+     * @param[in]  universeConfig  The universe configuration
      */
-    Universe(const Config& config);
+    Universe(const UniverseConfig& universeConfig);
 
     /**
      * @brief      Destroy the universe.
@@ -73,6 +73,14 @@ public:
      */
     std::vector<Particle>& getParticles();
 
+
+    /**
+     * @brief      Return the vector containing all boxes.
+     *
+     * @return     The vector containing all boxes
+     */
+    std::vector<Box>& getBoxes();
+
     /**
      * @brief      Toggle the gravitational forces.
      */
@@ -90,7 +98,7 @@ public:
     bool m_isRunning = false;   ///< Universe running state.
 
 private:
-    const Config m_config;                      ///< Configuration of the universe.
+    const UniverseConfig m_config;              ///< Configuration of the universe.
     std::ofstream m_logFile;                    ///< Log file containing particles data.
     std::vector<Particle> m_particles;          ///< Vector containing all particles.
     std::vector<Box> m_boxes;                   ///< Vector containing all boxes.

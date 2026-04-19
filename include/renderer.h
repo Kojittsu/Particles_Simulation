@@ -18,9 +18,9 @@ public:
      * This method setup the GLFW library for rendering the scene and the Dear
      * ImGui library for rendering the Graphical user interface.
      *
-     * @param[in]  config  The simulation configuration
+     * @param[in]  rendererConfig  The renderer configuration
      */
-    Renderer(const Config& config);
+    Renderer(const RendererConfig& rendererConfig);
 
     /**
      * @brief      Destroys the renderer.
@@ -106,7 +106,7 @@ public:
     void renderParticleTrail(const Particle& particle);
 
     /**
-     * @brief      Render the m_boxes boxes.
+     * @brief      Render the current universe boxes.
      */
     void renderBoxes();
 
@@ -155,18 +155,23 @@ public:
     bool isRunning();
 
     /**
-     * @brief      Return the run time.
+     * @brief      Determines if the current universe should make a step.
+     *
+     * @return     True if the current universe should make a step, False otherwise.
+     */
+    bool universeShouldMakeStep();
+
+    /**
+     * @brief      Return the current universe runtime.
      *
      * @return     The run time
      */
-    const double& getRunTime() const { return m_runTime; }
+    const double& getRuntime() const { return m_currentUniverseRuntime; }
 
 
 private:
     GLFWwindow* m_window = nullptr;     ///< GLFW window pointer.
     Universe* m_universePtr = nullptr;  ///< Universe pointer.
-    const Config& m_config;             ///< Reference to simulation configuration.
-    std::vector<Box> m_boxes;           ///< Vector of Box.
     GLUquadric* m_quadric;              ///< GLU Utility for rendering quadratic shapes.
     Camera m_camera;
 
@@ -178,13 +183,16 @@ private:
     float m_lastY = 0.0f;       ///< Last cursor Y position (in pixels).
 
     double m_lastFrameTime = 0.0;   ///< GLFW time of the last frame (in seconds).
-    double m_simulationTimePaused = 0.0;
-    double m_runTime = 0.0;
+
+    // current universe variables
+    double m_currentUniverseTimePaused = 0.0;
+    double m_currentUniverseRuntime = 0.0;
 
     std::array<bool, 1024> m_keyStates{ {false} }; ///< States of the keys.
 
     bool m_isSpectatorMode = false; ///< Determines if spectator is enable.
 
+    double m_speedFactor; ///< Speed factor applied for rendering universe at different speeds.
     double m_scaleFactor; ///< Scale factor applied for rendering.
 
     std::vector<float> m_lastFrameratesBuffer; ///< vector of last framerates values

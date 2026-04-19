@@ -19,9 +19,9 @@ public:
     /**
      * @brief      load the universe provide by config.
      *
-     * @param[in]  config  The simulation configuration
+     * @param[in]  universeConfig  The universe configuration
      */
-    void loadUniverse(const Config& config);
+    void loadUniverse(const UniverseConfig& universeConfig);
 
     /**
      * @brief      unload the current universe.
@@ -34,7 +34,6 @@ public:
     void start();
 
 private:
-    Config m_config;
     std::unique_ptr<Universe> m_universe;
     Renderer m_renderer;
 };

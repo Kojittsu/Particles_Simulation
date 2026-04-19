@@ -1,13 +1,13 @@
 #include "universe.h"
 
 // Constructor
-Universe::Universe(const Config& config)
+Universe::Universe(const UniverseConfig& universeConfig)
     :
-        m_config(config),
-        m_particles(config.particles),
-        m_boxes(config.boxes),
-        m_applyGravity(config.applyGravity),
-        m_globalAcceleration(config.globalAcceleration)
+        m_config(universeConfig),
+        m_particles(universeConfig.particles),
+        m_boxes(universeConfig.boxes),
+        m_applyGravity(universeConfig.applyGravity),
+        m_globalAcceleration(universeConfig.globalAcceleration)
 {
     // Open dataFile if dataFileName provided
     if (!m_config.dataFileName.empty()) {
@@ -161,6 +161,10 @@ void Universe::computeBoxesCollision(Particle& particle) {
 
 std::vector<Particle>& Universe::getParticles() {
     return m_particles;
+}
+
+std::vector<Box>& Universe::getBoxes() {
+    return m_boxes;
 }
 
 void Universe::toggleGravity() {
