@@ -1,10 +1,9 @@
 var classApplication =
 [
-    [ "Application", "classApplication.html#a045c5ddc77d58c87c31105d114d67d01", null ],
-    [ "~Application", "classApplication.html#a748bca84fefb9c12661cfaa2f623748d", null ],
+    [ "Application", "classApplication.html#afa8cc05ce6b6092be5ecdfdae44e05f8", null ],
+    [ "loadConfig", "classApplication.html#af58997caa0e220bc1defd094bd3da180", null ],
     [ "start", "classApplication.html#aa38ca47b50935092078cef4281ab66bc", null ],
-    [ "m_config", "classApplication.html#a2c66aa653ed1ba87e94edfe93740e1ee", null ],
-    [ "m_logFile", "classApplication.html#a1102285c6e719774152c2d125b81bbde", null ],
+    [ "unloadConfig", "classApplication.html#a3d8723d2b7621373d4700d6b2046345a", null ],
     [ "m_renderer", "classApplication.html#af723f0fd5a29c8f8930fb737869eac6a", null ],
-    [ "m_universe", "classApplication.html#a0e611e39846df47f748c20c0fc59de9f", null ]
+    [ "m_universe", "classApplication.html#ae383f4df0f0814e304fe96004880b61f", null ]
 ];

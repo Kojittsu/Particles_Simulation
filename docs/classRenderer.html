@@ -104,8 +104,8 @@ $(function(){initNavTree('classRenderer.html','','classRenderer-members'); });
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a43bc6a93e86ff9578f2ae2863e5436e4" id="r_a43bc6a93e86ff9578f2ae2863e5436e4"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a43bc6a93e86ff9578f2ae2863e5436e4">Renderer</a> (const <a class="el" href="structConfig.html">Config</a> &amp;config)</td></tr>
-<tr class="memdesc:a43bc6a93e86ff9578f2ae2863e5436e4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize renderer. This method setup the GLFW library for rendering the scene and the Dear ImGui library for rendering the Graphical user interface.  <br /></td></tr>
+<tr class="memitem:a7ebf46f54dab9905f79b80f7fddb76a6" id="r_a7ebf46f54dab9905f79b80f7fddb76a6"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a7ebf46f54dab9905f79b80f7fddb76a6">Renderer</a> ()</td></tr>
+<tr class="memdesc:a7ebf46f54dab9905f79b80f7fddb76a6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize renderer. This method setup the GLFW library for rendering the scene and the Dear ImGui library for rendering the Graphical user interface.  <br /></td></tr>
 <tr class="memitem:afeee408862d5bd6255a6882d47e6d5cd" id="r_afeee408862d5bd6255a6882d47e6d5cd"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#afeee408862d5bd6255a6882d47e6d5cd">~Renderer</a> ()</td></tr>
 <tr class="memdesc:afeee408862d5bd6255a6882d47e6d5cd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destroys the renderer.  <br /></td></tr>
 <tr class="memitem:a394e15bdfa5009cc394aeaf095c4dfe1" id="r_a394e15bdfa5009cc394aeaf095c4dfe1"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a394e15bdfa5009cc394aeaf095c4dfe1">initializeGLFW</a> ()</td></tr>
@@ -120,8 +120,16 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:ac78eee0b7ae8ff076bfd4814d0801d48"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes the Dear ImGui library. This method is called by the constructor.  <br /></td></tr>
 <tr class="memitem:abd1d75f45351ffd179fffb3e24f337bd" id="r_abd1d75f45351ffd179fffb3e24f337bd"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#abd1d75f45351ffd179fffb3e24f337bd">initializeImPlot</a> ()</td></tr>
 <tr class="memdesc:abd1d75f45351ffd179fffb3e24f337bd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes the imPlot library. This method is called by the constructor.  <br /></td></tr>
+<tr class="memitem:a9c95e0f47088761b26c4eae3a0d1252b" id="r_a9c95e0f47088761b26c4eae3a0d1252b"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a9c95e0f47088761b26c4eae3a0d1252b">setLoadConfigCallback</a> (std::function&lt; void(const std::string &amp;)&gt; cb)</td></tr>
+<tr class="memdesc:a9c95e0f47088761b26c4eae3a0d1252b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the callback for loading config.  <br /></td></tr>
+<tr class="memitem:ab8d6186c9dac00a3031db486a69eaf35" id="r_ab8d6186c9dac00a3031db486a69eaf35"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#ab8d6186c9dac00a3031db486a69eaf35">setUnloadConfigCallback</a> (std::function&lt; void()&gt; cb)</td></tr>
+<tr class="memdesc:ab8d6186c9dac00a3031db486a69eaf35"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the callback for unloading config.  <br /></td></tr>
 <tr class="memitem:af104166a99526dad49a3a8d96250205a" id="r_af104166a99526dad49a3a8d96250205a"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#af104166a99526dad49a3a8d96250205a">setUniversePtr</a> (<a class="el" href="classUniverse.html">Universe</a> *universePtr)</td></tr>
 <tr class="memdesc:af104166a99526dad49a3a8d96250205a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the universe pointer.  <br /></td></tr>
+<tr class="memitem:a3763e1060c4f801a711f0d536e84ec18" id="r_a3763e1060c4f801a711f0d536e84ec18"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a3763e1060c4f801a711f0d536e84ec18">resetCurrentUniverse</a> ()</td></tr>
+<tr class="memdesc:a3763e1060c4f801a711f0d536e84ec18"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reset the current universe. set to nullptr the universe pointer and reset universe variables.  <br /></td></tr>
+<tr class="memitem:a8cced1273767333c90d1fe771f780e82" id="r_a8cced1273767333c90d1fe771f780e82"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a8cced1273767333c90d1fe771f780e82">updateConfig</a> (const <a class="el" href="structRendererConfig.html">RendererConfig</a> &amp;rendererConfig)</td></tr>
+<tr class="memdesc:a8cced1273767333c90d1fe771f780e82"><td class="mdescLeft">&#160;</td><td class="mdescRight">update the renderer config.  <br /></td></tr>
 <tr class="memitem:a02a137957c8783a44df5cad4b5e1b635" id="r_a02a137957c8783a44df5cad4b5e1b635"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a02a137957c8783a44df5cad4b5e1b635">renderFrame</a> ()</td></tr>
 <tr class="memdesc:a02a137957c8783a44df5cad4b5e1b635"><td class="mdescLeft">&#160;</td><td class="mdescRight">Renders a frame.  <br /></td></tr>
 <tr class="memitem:a4effbac4f41b348002ca7d63b839dcf3" id="r_a4effbac4f41b348002ca7d63b839dcf3"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a4effbac4f41b348002ca7d63b839dcf3">renderScene</a> ()</td></tr>
@@ -131,7 +139,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:abc3bfdc74cb66fb0fa414cf43d489d1e" id="r_abc3bfdc74cb66fb0fa414cf43d489d1e"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#abc3bfdc74cb66fb0fa414cf43d489d1e">renderParticleTrail</a> (const <a class="el" href="classParticle.html">Particle</a> &amp;particle)</td></tr>
 <tr class="memdesc:abc3bfdc74cb66fb0fa414cf43d489d1e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Render the trail of the given particle.  <br /></td></tr>
 <tr class="memitem:a7a258abb0123231199b50f0e1dc1c539" id="r_a7a258abb0123231199b50f0e1dc1c539"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a7a258abb0123231199b50f0e1dc1c539">renderBoxes</a> ()</td></tr>
-<tr class="memdesc:a7a258abb0123231199b50f0e1dc1c539"><td class="mdescLeft">&#160;</td><td class="mdescRight">Render the m_boxes boxes.  <br /></td></tr>
+<tr class="memdesc:a7a258abb0123231199b50f0e1dc1c539"><td class="mdescLeft">&#160;</td><td class="mdescRight">Render the current universe boxes.  <br /></td></tr>
 <tr class="memitem:a3a5438a7cff49b1dc7fe2474bb33de2d" id="r_a3a5438a7cff49b1dc7fe2474bb33de2d"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a3a5438a7cff49b1dc7fe2474bb33de2d">renderImGui</a> ()</td></tr>
 <tr class="memdesc:a3a5438a7cff49b1dc7fe2474bb33de2d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Render Dear ImGui.  <br /></td></tr>
 <tr class="memitem:a1a12d1bbdf59057046c4826e103cc69e" id="r_a1a12d1bbdf59057046c4826e103cc69e"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a1a12d1bbdf59057046c4826e103cc69e">ImGuiControlsMenu</a> ()</td></tr>
@@ -148,8 +156,10 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:ac46720b3fc0dbb2fc37674766490a8c4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clears the renderer.  <br /></td></tr>
 <tr class="memitem:acf56c18f874aeb7c403bbb8ed1bb58c1" id="r_acf56c18f874aeb7c403bbb8ed1bb58c1"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#acf56c18f874aeb7c403bbb8ed1bb58c1">isRunning</a> ()</td></tr>
 <tr class="memdesc:acf56c18f874aeb7c403bbb8ed1bb58c1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Determines if the renderer is running.  <br /></td></tr>
-<tr class="memitem:ad609c241e527c9191caff56679932551" id="r_ad609c241e527c9191caff56679932551"><td class="memItemLeft">const double &amp;&#160;</td><td class="memItemRight"><a class="el" href="#ad609c241e527c9191caff56679932551">getRunTime</a> () const</td></tr>
-<tr class="memdesc:ad609c241e527c9191caff56679932551"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the run time.  <br /></td></tr>
+<tr class="memitem:a83805397015e8452aaa519a6bc3e9c58" id="r_a83805397015e8452aaa519a6bc3e9c58"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a83805397015e8452aaa519a6bc3e9c58">universeShouldMakeStep</a> ()</td></tr>
+<tr class="memdesc:a83805397015e8452aaa519a6bc3e9c58"><td class="mdescLeft">&#160;</td><td class="mdescRight">Determines if the current universe should make a step.  <br /></td></tr>
+<tr class="memitem:a16877cf5cc86437afb6ab1e10b8a00d9" id="r_a16877cf5cc86437afb6ab1e10b8a00d9"><td class="memItemLeft">const double &amp;&#160;</td><td class="memItemRight"><a class="el" href="#a16877cf5cc86437afb6ab1e10b8a00d9">getRuntime</a> () const</td></tr>
+<tr class="memdesc:a16877cf5cc86437afb6ab1e10b8a00d9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the current universe runtime.  <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pri-attribs" class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
@@ -157,13 +167,13 @@ Private Attributes</h2></td></tr>
 <tr class="memdesc:af40474065067d28ba33f7e5477866d9d"><td class="mdescLeft">&#160;</td><td class="mdescRight">GLFW window pointer.  <br /></td></tr>
 <tr class="memitem:ac6f6135aee6a9942839cfe00e9022ab3" id="r_ac6f6135aee6a9942839cfe00e9022ab3"><td class="memItemLeft"><a class="el" href="classUniverse.html">Universe</a> *&#160;</td><td class="memItemRight"><a class="el" href="#ac6f6135aee6a9942839cfe00e9022ab3">m_universePtr</a> = nullptr</td></tr>
 <tr class="memdesc:ac6f6135aee6a9942839cfe00e9022ab3"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classUniverse.html">Universe</a> pointer.  <br /></td></tr>
-<tr class="memitem:ad22c56e61b1da3239d12dd7c972b43be" id="r_ad22c56e61b1da3239d12dd7c972b43be"><td class="memItemLeft">const <a class="el" href="structConfig.html">Config</a> &amp;&#160;</td><td class="memItemRight"><a class="el" href="#ad22c56e61b1da3239d12dd7c972b43be">m_config</a></td></tr>
-<tr class="memdesc:ad22c56e61b1da3239d12dd7c972b43be"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reference to simulation configuration.  <br /></td></tr>
-<tr class="memitem:a08336775290d665e45b754021d819527" id="r_a08336775290d665e45b754021d819527"><td class="memItemLeft">std::vector&lt; <a class="el" href="classBox.html">Box</a> &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a08336775290d665e45b754021d819527">m_boxes</a></td></tr>
-<tr class="memdesc:a08336775290d665e45b754021d819527"><td class="mdescLeft">&#160;</td><td class="mdescRight">Vector of <a class="el" href="classBox.html">Box</a>.  <br /></td></tr>
 <tr class="memitem:a36f17dd88324e285ee31a129b5e9fa31" id="r_a36f17dd88324e285ee31a129b5e9fa31"><td class="memItemLeft">GLUquadric *&#160;</td><td class="memItemRight"><a class="el" href="#a36f17dd88324e285ee31a129b5e9fa31">m_quadric</a></td></tr>
 <tr class="memdesc:a36f17dd88324e285ee31a129b5e9fa31"><td class="mdescLeft">&#160;</td><td class="mdescRight">GLU Utility for rendering quadratic shapes.  <br /></td></tr>
 <tr class="memitem:a2df1e635ecdcb423766b70eb29154a4f" id="r_a2df1e635ecdcb423766b70eb29154a4f"><td class="memItemLeft"><a class="el" href="classCamera.html">Camera</a>&#160;</td><td class="memItemRight"><a class="el" href="#a2df1e635ecdcb423766b70eb29154a4f">m_camera</a></td></tr>
+<tr class="memitem:ad03252d5e00d4f2a94b5003b2a6e4985" id="r_ad03252d5e00d4f2a94b5003b2a6e4985"><td class="memItemLeft">std::function&lt; void(const std::string &amp;)&gt;&#160;</td><td class="memItemRight"><a class="el" href="#ad03252d5e00d4f2a94b5003b2a6e4985">m_loadConfigCallback</a></td></tr>
+<tr class="memdesc:ad03252d5e00d4f2a94b5003b2a6e4985"><td class="mdescLeft">&#160;</td><td class="mdescRight">Callback for loading config.  <br /></td></tr>
+<tr class="memitem:a5dc39dede2a8db96c3be825da1ef7cf1" id="r_a5dc39dede2a8db96c3be825da1ef7cf1"><td class="memItemLeft">std::function&lt; void()&gt;&#160;</td><td class="memItemRight"><a class="el" href="#a5dc39dede2a8db96c3be825da1ef7cf1">m_unloadConfigCallback</a></td></tr>
+<tr class="memdesc:a5dc39dede2a8db96c3be825da1ef7cf1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Callback for unloading config.  <br /></td></tr>
 <tr class="memitem:a6983c9105e0fae537fe813021537f713" id="r_a6983c9105e0fae537fe813021537f713"><td class="memItemLeft">ImGuiWindowFlags&#160;</td><td class="memItemRight"><a class="el" href="#a6983c9105e0fae537fe813021537f713">m_windowFlags</a> = ImGuiWindowFlags_AlwaysAutoResize | ImGuiWindowFlags_NoBackground</td></tr>
 <tr class="memitem:a131c8591f180dfd82468bd8f14ea4d65" id="r_a131c8591f180dfd82468bd8f14ea4d65"><td class="memItemLeft">ImGuiDockNodeFlags&#160;</td><td class="memItemRight"><a class="el" href="#a131c8591f180dfd82468bd8f14ea4d65">m_dockSpaceFlags</a> = ImGuiDockNodeFlags_PassthruCentralNode</td></tr>
 <tr class="memitem:a0254c1267250bf28387ecb601015789c" id="r_a0254c1267250bf28387ecb601015789c"><td class="memItemLeft">float&#160;</td><td class="memItemRight"><a class="el" href="#a0254c1267250bf28387ecb601015789c">m_lastX</a> = 0.0f</td></tr>
@@ -172,22 +182,24 @@ Private Attributes</h2></td></tr>
 <tr class="memdesc:a64abded5a5ffb0bc07ab04d042978161"><td class="mdescLeft">&#160;</td><td class="mdescRight">Last cursor Y position (in pixels).  <br /></td></tr>
 <tr class="memitem:a733a05fc09820708dc1e2813db5170cf" id="r_a733a05fc09820708dc1e2813db5170cf"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="#a733a05fc09820708dc1e2813db5170cf">m_lastFrameTime</a> = 0.0</td></tr>
 <tr class="memdesc:a733a05fc09820708dc1e2813db5170cf"><td class="mdescLeft">&#160;</td><td class="mdescRight">GLFW time of the last frame (in seconds).  <br /></td></tr>
-<tr class="memitem:aaf370426796ddc94e1f34a39b37c40f9" id="r_aaf370426796ddc94e1f34a39b37c40f9"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="#aaf370426796ddc94e1f34a39b37c40f9">m_simulationTimePaused</a> = 0.0</td></tr>
-<tr class="memitem:a1ff50e359e0a5c9f45b47c55ad99bdab" id="r_a1ff50e359e0a5c9f45b47c55ad99bdab"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="#a1ff50e359e0a5c9f45b47c55ad99bdab">m_runTime</a> = 0.0</td></tr>
+<tr class="memitem:ab2ecc5a2e807e9b09adde03bcbb4666e" id="r_ab2ecc5a2e807e9b09adde03bcbb4666e"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="#ab2ecc5a2e807e9b09adde03bcbb4666e">m_currentUniverseTimePaused</a> = 0.0</td></tr>
+<tr class="memitem:afdf859e3bcf245401e0b497c428b7a7e" id="r_afdf859e3bcf245401e0b497c428b7a7e"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="#afdf859e3bcf245401e0b497c428b7a7e">m_currentUniverseRuntime</a> = 0.0</td></tr>
+<tr class="memitem:af4b443eb83d42be55ee236d86a560b7b" id="r_af4b443eb83d42be55ee236d86a560b7b"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="#af4b443eb83d42be55ee236d86a560b7b">m_speedFactor</a> = 1.0</td></tr>
+<tr class="memdesc:af4b443eb83d42be55ee236d86a560b7b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Speed factor applied for rendering universe at different speeds.  <br /></td></tr>
+<tr class="memitem:a4d1be5f9be58e2d78edcf8959d4377c4" id="r_a4d1be5f9be58e2d78edcf8959d4377c4"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="#a4d1be5f9be58e2d78edcf8959d4377c4">m_scaleFactor</a> = 1.0</td></tr>
+<tr class="memdesc:a4d1be5f9be58e2d78edcf8959d4377c4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Scale factor applied for rendering.  <br /></td></tr>
 <tr class="memitem:ac49a656d49b36f202aaec5f530c3927b" id="r_ac49a656d49b36f202aaec5f530c3927b"><td class="memItemLeft">std::array&lt; bool, 1024 &gt;&#160;</td><td class="memItemRight"><a class="el" href="#ac49a656d49b36f202aaec5f530c3927b">m_keyStates</a> { {false} }</td></tr>
 <tr class="memdesc:ac49a656d49b36f202aaec5f530c3927b"><td class="mdescLeft">&#160;</td><td class="mdescRight">States of the keys.  <br /></td></tr>
 <tr class="memitem:af9c701b2cbb3d311039a2dbf7a53f4c7" id="r_af9c701b2cbb3d311039a2dbf7a53f4c7"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#af9c701b2cbb3d311039a2dbf7a53f4c7">m_isSpectatorMode</a> = false</td></tr>
 <tr class="memdesc:af9c701b2cbb3d311039a2dbf7a53f4c7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Determines if spectator is enable.  <br /></td></tr>
-<tr class="memitem:a4d1be5f9be58e2d78edcf8959d4377c4" id="r_a4d1be5f9be58e2d78edcf8959d4377c4"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="#a4d1be5f9be58e2d78edcf8959d4377c4">m_scaleFactor</a></td></tr>
-<tr class="memdesc:a4d1be5f9be58e2d78edcf8959d4377c4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Scale factor applied for rendering.  <br /></td></tr>
 <tr class="memitem:a3ad73ac8054357790bf6b2a14cdceacf" id="r_a3ad73ac8054357790bf6b2a14cdceacf"><td class="memItemLeft">std::vector&lt; float &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a3ad73ac8054357790bf6b2a14cdceacf">m_lastFrameratesBuffer</a></td></tr>
 <tr class="memdesc:a3ad73ac8054357790bf6b2a14cdceacf"><td class="mdescLeft">&#160;</td><td class="mdescRight">vector of last framerates values  <br /></td></tr>
 <tr class="memitem:ae44e22e15b7bff59f7e9911af26cd989" id="r_ae44e22e15b7bff59f7e9911af26cd989"><td class="memItemLeft">std::vector&lt; float &gt;&#160;</td><td class="memItemRight"><a class="el" href="#ae44e22e15b7bff59f7e9911af26cd989">m_lastFrameratesIndexes</a></td></tr>
 <tr class="memdesc:ae44e22e15b7bff59f7e9911af26cd989"><td class="mdescLeft">&#160;</td><td class="mdescRight">vector of last framerates indexes  <br /></td></tr>
 </table>
 <a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a43bc6a93e86ff9578f2ae2863e5436e4" name="a43bc6a93e86ff9578f2ae2863e5436e4"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a43bc6a93e86ff9578f2ae2863e5436e4">&#9670;&#160;</a></span>Renderer()</h2>
+<a id="a7ebf46f54dab9905f79b80f7fddb76a6" name="a7ebf46f54dab9905f79b80f7fddb76a6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7ebf46f54dab9905f79b80f7fddb76a6">&#9670;&#160;</a></span>Renderer()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -195,19 +207,13 @@ Private Attributes</h2></td></tr>
         <tr>
           <td class="memname">Renderer::Renderer </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="structConfig.html">Config</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>config</em></span></td><td>)</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>Initialize renderer. This method setup the GLFW library for rendering the scene and the Dear ImGui library for rendering the Graphical user interface. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">config</td><td>The simulation configuration </td></tr>
-  </table>
-  </dd>
-</dl>
 
 </div>
 </div>
@@ -310,8 +316,8 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="ad609c241e527c9191caff56679932551" name="ad609c241e527c9191caff56679932551"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad609c241e527c9191caff56679932551">&#9670;&#160;</a></span>getRunTime()</h2>
+<a id="a16877cf5cc86437afb6ab1e10b8a00d9" name="a16877cf5cc86437afb6ab1e10b8a00d9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a16877cf5cc86437afb6ab1e10b8a00d9">&#9670;&#160;</a></span>getRuntime()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -320,7 +326,7 @@ Private Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">const double &amp; Renderer::getRunTime </td>
+          <td class="memname">const double &amp; Renderer::getRuntime </td>
           <td>(</td>
           <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
           <td> const</td>
@@ -333,7 +339,7 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Return the run time. </p>
+<p>Return the current universe runtime. </p>
 <dl class="section return"><dt>Returns</dt><dd>The run time </dd></dl>
 
 </div>
@@ -548,7 +554,7 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Render the m_boxes boxes. </p>
+<p>Render the current universe boxes. </p>
 
 </div>
 </div>
@@ -659,6 +665,50 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
+<a id="a3763e1060c4f801a711f0d536e84ec18" name="a3763e1060c4f801a711f0d536e84ec18"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3763e1060c4f801a711f0d536e84ec18">&#9670;&#160;</a></span>resetCurrentUniverse()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Renderer::resetCurrentUniverse </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Reset the current universe. set to nullptr the universe pointer and reset universe variables. </p>
+
+</div>
+</div>
+<a id="a9c95e0f47088761b26c4eae3a0d1252b" name="a9c95e0f47088761b26c4eae3a0d1252b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9c95e0f47088761b26c4eae3a0d1252b">&#9670;&#160;</a></span>setLoadConfigCallback()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Renderer::setLoadConfigCallback </td>
+          <td>(</td>
+          <td class="paramtype">std::function&lt; void(const std::string &amp;)&gt;</td>          <td class="paramname"><span class="paramname"><em>cb</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Set the callback for loading config. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">cb</td><td>The callback function </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a id="af104166a99526dad49a3a8d96250205a" name="af104166a99526dad49a3a8d96250205a"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#af104166a99526dad49a3a8d96250205a">&#9670;&#160;</a></span>setUniversePtr()</h2>
 
@@ -684,6 +734,31 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
+<a id="ab8d6186c9dac00a3031db486a69eaf35" name="ab8d6186c9dac00a3031db486a69eaf35"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab8d6186c9dac00a3031db486a69eaf35">&#9670;&#160;</a></span>setUnloadConfigCallback()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Renderer::setUnloadConfigCallback </td>
+          <td>(</td>
+          <td class="paramtype">std::function&lt; void()&gt;</td>          <td class="paramname"><span class="paramname"><em>cb</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Set the callback for unloading config. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">cb</td><td>The callback function </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a id="ae93df4641ab17df5ff123bd72d1a1a53" name="ae93df4641ab17df5ff123bd72d1a1a53"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ae93df4641ab17df5ff123bd72d1a1a53">&#9670;&#160;</a></span>toggleSpectatorMode()</h2>
 
@@ -703,31 +778,52 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">Member Data Documentation</h2>
-<a id="a08336775290d665e45b754021d819527" name="a08336775290d665e45b754021d819527"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a08336775290d665e45b754021d819527">&#9670;&#160;</a></span>m_boxes</h2>
+<a id="a83805397015e8452aaa519a6bc3e9c58" name="a83805397015e8452aaa519a6bc3e9c58"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a83805397015e8452aaa519a6bc3e9c58">&#9670;&#160;</a></span>universeShouldMakeStep()</h2>
 
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">std::vector&lt;<a class="el" href="classBox.html">Box</a>&gt; Renderer::m_boxes</td>
+          <td class="memname">bool Renderer::universeShouldMakeStep </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 
-<p>Vector of <a class="el" href="classBox.html">Box</a>. </p>
+<p>Determines if the current universe should make a step. </p>
+<dl class="section return"><dt>Returns</dt><dd>True if the current universe should make a step, False otherwise. </dd></dl>
 
 </div>
 </div>
+<a id="a8cced1273767333c90d1fe771f780e82" name="a8cced1273767333c90d1fe771f780e82"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8cced1273767333c90d1fe771f780e82">&#9670;&#160;</a></span>updateConfig()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Renderer::updateConfig </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structRendererConfig.html">RendererConfig</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>rendererConfig</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>update the renderer config. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">rendererConfig</td><td>The renderer config </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">Member Data Documentation</h2>
 <a id="a2df1e635ecdcb423766b70eb29154a4f" name="a2df1e635ecdcb423766b70eb29154a4f"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a2df1e635ecdcb423766b70eb29154a4f">&#9670;&#160;</a></span>m_camera</h2>
 
@@ -750,8 +846,8 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="ad22c56e61b1da3239d12dd7c972b43be" name="ad22c56e61b1da3239d12dd7c972b43be"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad22c56e61b1da3239d12dd7c972b43be">&#9670;&#160;</a></span>m_config</h2>
+<a id="afdf859e3bcf245401e0b497c428b7a7e" name="afdf859e3bcf245401e0b497c428b7a7e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afdf859e3bcf245401e0b497c428b7a7e">&#9670;&#160;</a></span>m_currentUniverseRuntime</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -760,7 +856,7 @@ Private Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">const <a class="el" href="structConfig.html">Config</a>&amp; Renderer::m_config</td>
+          <td class="memname">double Renderer::m_currentUniverseRuntime = 0.0</td>
         </tr>
       </table>
   </td>
@@ -770,7 +866,27 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Reference to simulation configuration. </p>
+</div>
+</div>
+<a id="ab2ecc5a2e807e9b09adde03bcbb4666e" name="ab2ecc5a2e807e9b09adde03bcbb4666e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab2ecc5a2e807e9b09adde03bcbb4666e">&#9670;&#160;</a></span>m_currentUniverseTimePaused</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">double Renderer::m_currentUniverseTimePaused = 0.0</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
 
 </div>
 </div>
@@ -964,6 +1080,30 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
+<a id="ad03252d5e00d4f2a94b5003b2a6e4985" name="ad03252d5e00d4f2a94b5003b2a6e4985"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad03252d5e00d4f2a94b5003b2a6e4985">&#9670;&#160;</a></span>m_loadConfigCallback</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::function&lt;void(const std::string&amp;)&gt; Renderer::m_loadConfigCallback</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Callback for loading config. </p>
+
+</div>
+</div>
 <a id="a36f17dd88324e285ee31a129b5e9fa31" name="a36f17dd88324e285ee31a129b5e9fa31"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a36f17dd88324e285ee31a129b5e9fa31">&#9670;&#160;</a></span>m_quadric</h2>
 
@@ -988,28 +1128,6 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="a1ff50e359e0a5c9f45b47c55ad99bdab" name="a1ff50e359e0a5c9f45b47c55ad99bdab"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1ff50e359e0a5c9f45b47c55ad99bdab">&#9670;&#160;</a></span>m_runTime</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">double Renderer::m_runTime = 0.0</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
 <a id="a4d1be5f9be58e2d78edcf8959d4377c4" name="a4d1be5f9be58e2d78edcf8959d4377c4"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a4d1be5f9be58e2d78edcf8959d4377c4">&#9670;&#160;</a></span>m_scaleFactor</h2>
 
@@ -1020,7 +1138,7 @@ Private Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">double Renderer::m_scaleFactor</td>
+          <td class="memname">double Renderer::m_scaleFactor = 1.0</td>
         </tr>
       </table>
   </td>
@@ -1034,8 +1152,8 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="aaf370426796ddc94e1f34a39b37c40f9" name="aaf370426796ddc94e1f34a39b37c40f9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aaf370426796ddc94e1f34a39b37c40f9">&#9670;&#160;</a></span>m_simulationTimePaused</h2>
+<a id="af4b443eb83d42be55ee236d86a560b7b" name="af4b443eb83d42be55ee236d86a560b7b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af4b443eb83d42be55ee236d86a560b7b">&#9670;&#160;</a></span>m_speedFactor</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1044,7 +1162,7 @@ Private Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">double Renderer::m_simulationTimePaused = 0.0</td>
+          <td class="memname">double Renderer::m_speedFactor = 1.0</td>
         </tr>
       </table>
   </td>
@@ -1053,6 +1171,8 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Speed factor applied for rendering universe at different speeds. </p>
 
 </div>
 </div>
@@ -1077,6 +1197,30 @@ Private Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p><a class="el" href="classUniverse.html">Universe</a> pointer. </p>
+
+</div>
+</div>
+<a id="a5dc39dede2a8db96c3be825da1ef7cf1" name="a5dc39dede2a8db96c3be825da1ef7cf1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5dc39dede2a8db96c3be825da1ef7cf1">&#9670;&#160;</a></span>m_unloadConfigCallback</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::function&lt;void()&gt; Renderer::m_unloadConfigCallback</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Callback for unloading config. </p>
 
 </div>
 </div>

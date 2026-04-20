@@ -4,7 +4,7 @@ var searchData=
   ['camera_2ecpp_1',['camera.cpp',['../camera_8cpp.html',1,'']]],
   ['camera_2eh_2',['camera.h',['../camera_8h.html',1,'']]],
   ['clear_3',['clear',['../classRenderer.html#ac46720b3fc0dbb2fc37674766490a8c4',1,'Renderer']]],
-  ['coefficientrestitution_4',['coefficientRestitution',['../structConfig.html#a8f7fc1168f23446cd4898060408daf5d',1,'Config']]],
+  ['coefficientrestitution_4',['coefficientRestitution',['../structUniverseConfig.html#a49463725302e1db61dc271e4e06f235b',1,'UniverseConfig']]],
   ['computeboxescollision_5',['computeBoxesCollision',['../classUniverse.html#aaeb36fe496430fd8ef3848a6a91f55a3',1,'Universe']]],
   ['computegravitationalforces_6',['computeGravitationalForces',['../classUniverse.html#aed966ac7972d125fe78e243a835c2695',1,'Universe']]],
   ['computeneworientation_7',['computeNewOrientation',['../classCamera.html#aea3f2cf7a896218d64eb583f5ab2a9af',1,'Camera']]],

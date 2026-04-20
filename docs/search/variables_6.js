@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['particles_0',['particles',['../structConfig.html#a4f91154572fb6ceee786f1928bc83193',1,'Config']]]
+  ['particles_0',['particles',['../structUniverseConfig.html#a19da0dc5d77eb3fe06c8b0ef1d8b12ac',1,'UniverseConfig']]]
 ];

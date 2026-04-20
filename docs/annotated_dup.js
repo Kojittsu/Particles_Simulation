@@ -6,5 +6,7 @@ var annotated_dup =
     [ "Config", "structConfig.html", "structConfig" ],
     [ "Particle", "classParticle.html", "classParticle" ],
     [ "Renderer", "classRenderer.html", "classRenderer" ],
-    [ "Universe", "classUniverse.html", "classUniverse" ]
+    [ "RendererConfig", "structRendererConfig.html", "structRendererConfig" ],
+    [ "Universe", "classUniverse.html", "classUniverse" ],
+    [ "UniverseConfig", "structUniverseConfig.html", "structUniverseConfig" ]
 ];

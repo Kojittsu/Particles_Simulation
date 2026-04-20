@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['applygravity_0',['applyGravity',['../structConfig.html#a6c01af502297b8bf683951ae09a261fe',1,'Config']]]
+  ['applygravity_0',['applyGravity',['../structUniverseConfig.html#a866056703395e928d9dd84a6e9853be7',1,'UniverseConfig']]]
 ];
