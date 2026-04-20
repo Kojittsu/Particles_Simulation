@@ -79,14 +79,14 @@ boxes:
 
   # Add as many boxes as you want
 
-simulation:
+universe:
   deltaTime: double
   applyGravity: bool                           # Compute Newton's law of universal gravitation
   globalAcceleration: [double, double, double] # Global acceleration applied to all objects
   coefficientRestitution: double               # Energy restitution during collision (1.0 mean energy conservation)
   dataFileName: string                         # data file name for saving particles positions through time (can be "")
 
-visualization:
+renderer:
   speedFactor: double # Factor for rendering speed (1.0 mean real time universe rendering)
   scaleFactor: double # Factor for scale up/down rendering values (usefull for rendering with big value for example)
 ```

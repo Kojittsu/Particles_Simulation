@@ -4,15 +4,15 @@ bool readConfig(const std::string& filename, Config& config) {
     YAML::Node yaml = YAML::LoadFile(filename);
 
     // Load renderer parameters
-    config.rendererConfig.speedFactor       = yaml["visualization"]["speedFactor"].as<double>();
-    config.rendererConfig.scaleFactor       = yaml["visualization"]["scaleFactor"].as<double>();
+    config.rendererConfig.speedFactor       = yaml["renderer"]["speedFactor"].as<double>();
+    config.rendererConfig.scaleFactor       = yaml["renderer"]["scaleFactor"].as<double>();
 
     // Load universe parameters
-    config.universeConfig.deltaTime              = yaml["simulation"]["deltaTime"].as<double>();
-    config.universeConfig.applyGravity           = yaml["simulation"]["applyGravity"].as<bool>();
-    config.universeConfig.globalAcceleration     = yaml["simulation"]["globalAcceleration"].as<std::array<double, 3>>();
-    config.universeConfig.coefficientRestitution = yaml["simulation"]["coefficientRestitution"].as<double>();
-    config.universeConfig.dataFileName           = yaml["simulation"]["dataFileName"].as<std::string>();
+    config.universeConfig.deltaTime              = yaml["universe"]["deltaTime"].as<double>();
+    config.universeConfig.applyGravity           = yaml["universe"]["applyGravity"].as<bool>();
+    config.universeConfig.globalAcceleration     = yaml["universe"]["globalAcceleration"].as<std::array<double, 3>>();
+    config.universeConfig.coefficientRestitution = yaml["universe"]["coefficientRestitution"].as<double>();
+    config.universeConfig.dataFileName           = yaml["universe"]["dataFileName"].as<std::string>();
 
     for (const auto& particleNode : yaml["particles"]) {
         std::array<double, 3> position = particleNode["position"].as<std::array<double, 3>>();

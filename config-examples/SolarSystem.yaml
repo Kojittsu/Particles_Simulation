@@ -62,13 +62,13 @@ particles:
     color: [0, 102, 204]
     name: "Neptune"
 
-simulation:
+universe:
   deltaTime: 10000
   applyGravity: true
   globalAcceleration: [0.0, 0.0, 0.0]
   coefficientRestitution: 1.0
   dataFileName: ""
 
-visualization:
+renderer:
   speedFactor: 10000000.0
   scaleFactor: 1.0e-9
