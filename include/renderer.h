@@ -74,6 +74,18 @@ public:
     void initializeImPlot();
 
     /**
+     * @brief      Set the callback for loading config.
+     * @param[in]  cb  The callback function
+     */
+    void setLoadConfigCallback(std::function<void(const std::string&)> cb);
+
+    /**
+     * @brief      Set the callback for unloading config.
+     * @param[in]  cb  The callback function
+     */
+    void setUnloadConfigCallback(std::function<void()> cb);
+
+    /**
      * @brief      Set the universe pointer.
      * @param[in]  universePtr  The universe pointer
      */
@@ -184,6 +196,9 @@ private:
     Universe* m_universePtr = nullptr;  ///< Universe pointer.
     GLUquadric* m_quadric;              ///< GLU Utility for rendering quadratic shapes.
     Camera m_camera;
+
+    std::function<void(const std::string&)> m_loadConfigCallback;  ///< Callback for loading config
+    std::function<void()> m_unloadConfigCallback;                  ///< Callback for unloading config
 
     // ImGui flags
     ImGuiWindowFlags m_windowFlags = ImGuiWindowFlags_AlwaysAutoResize | ImGuiWindowFlags_NoBackground;

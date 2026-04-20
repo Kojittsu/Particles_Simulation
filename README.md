@@ -142,9 +142,8 @@ cd Particles_simulation
 
 3. Use nix run to execute the program
 ```bash
-nix run . -- <config_file>
+nix run .
 ```
-where `config_file` is your configuration file.
 
 ## ⚙️ Development environment
 
@@ -170,9 +169,8 @@ make
 
 - To execute the program type
 ```bash
-./particle-simulation-executable <config_file>
+./particle-simulation-executable
 ```
-where `config_file` is your configuration file.
 
 - To clean up the generated files type
 ```bash

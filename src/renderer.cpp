@@ -143,6 +143,14 @@ void Renderer::initializeImPlot() {
     }
 }
 
+void Renderer::setLoadConfigCallback(std::function<void(const std::string&)> cb) {
+    m_loadConfigCallback = cb;
+}
+
+void Renderer::setUnloadConfigCallback(std::function<void()> cb) {
+    m_unloadConfigCallback = cb;
+}
+
 void Renderer::setUniversePtr(Universe* universePtr) {
     m_universePtr = universePtr;
 }
@@ -303,6 +311,20 @@ void Renderer::ImGuiControlsMenu() {
     // Set round corners
     ImGui::PushStyleVar(ImGuiStyleVar_FrameRounding, 5.0f);
 
+    if (ImGui::CollapsingHeader("Configuration loader")) {
+        if (ImGui::CollapsingHeader("Load configuration menu")) {
+            static char configFilePathBuffer[256] = "";
+            ImGui::InputText("Configuration file path", configFilePathBuffer, sizeof(configFilePathBuffer)); // Need to use some file dialog software instead of this
+            if(ImGui::Button("Load universe") && m_loadConfigCallback) {
+                const std::string configFilePathStr(configFilePathBuffer);
+                m_loadConfigCallback(configFilePathStr);
+                configFilePathBuffer[0] = '\0'; // clear buffer
+            }
+        }
+        if (ImGui::Button("Unload current universe") && m_unloadConfigCallback) {
+            m_unloadConfigCallback();
+        }
+    }
 
     if (m_universePtr && ImGui::CollapsingHeader("Simulation controls")) {
         if (ImGui::Button(m_universePtr->m_isRunning ? "Pause simulation" : "Start simulation")) {
