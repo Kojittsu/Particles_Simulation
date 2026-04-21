@@ -1,5 +1,5 @@
 [Desktop Entry]
 Name=Particle Simulation
 Comment= Particle Simulation application
-Exec=particle-simulation-executable
+Exec=particle-simulation
 Type=Application
