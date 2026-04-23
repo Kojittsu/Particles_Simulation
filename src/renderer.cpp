@@ -312,16 +312,17 @@ void Renderer::ImGuiControlsMenu() {
     ImGui::PushStyleVar(ImGuiStyleVar_FrameRounding, 5.0f);
 
     if (ImGui::CollapsingHeader("Configuration loader")) {
-        if (ImGui::CollapsingHeader("Load configuration menu")) {
-            static char configFilePathBuffer[256] = "";
-            ImGui::InputText("Configuration file path", configFilePathBuffer, sizeof(configFilePathBuffer)); // Need to use some file dialog software instead of this
-            if(ImGui::Button("Load universe") && m_loadConfigCallback) {
-                const std::string configFilePathStr(configFilePathBuffer);
+        if (ImGui::Button("Load configuration") && m_loadConfigCallback) {
+            const char* filePath = tinyfd_openFileDialog("Select a file", "", 0, NULL, NULL, 0);
+
+            // Check if file selected
+            if (filePath) {
+                const std::string configFilePathStr(filePath);
                 m_loadConfigCallback(configFilePathStr);
-                configFilePathBuffer[0] = '\0'; // clear buffer
             }
         }
-        if (ImGui::Button("Unload current universe") && m_unloadConfigCallback) {
+
+        if (ImGui::Button("Unload current configuration") && m_unloadConfigCallback) {
             m_unloadConfigCallback();
         }
     }

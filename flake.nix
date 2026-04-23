@@ -23,6 +23,7 @@
         glew
         glfw
         yaml-cpp
+        zenity
       ];
 
       buildPhase = "make";
@@ -52,6 +53,7 @@
         glew
         glfw
         yaml-cpp
+        zenity
 
         doxygen
       ];
