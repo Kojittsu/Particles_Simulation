@@ -8,10 +8,9 @@ Application::Application()
     m_renderer.setLoadConfigCallback([this](const std::string& configFilePath) {
         // Read configuration
         Config config;
-        if (!readConfig(configFilePath, config)) {
-            return;
+        if (readConfig(configFilePath, config)) {
+            loadConfig(config);
         }
-        loadConfig(config);
     });
     m_renderer.setUnloadConfigCallback([this]() {
         unloadConfig();
