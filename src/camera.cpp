@@ -84,6 +84,10 @@ void Camera::computeNewOrientation(double xOffset, double yOffset) {
     m_right = glm::normalize(glm::cross(m_front, m_up));
 }
 
+void Camera::reset() {
+    *this = Camera();
+}
+
 void Camera::setPosition(const glm::vec3& position) {
     m_position = position;
 }

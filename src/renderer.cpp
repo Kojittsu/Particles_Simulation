@@ -160,8 +160,11 @@ void Renderer::resetCurrentUniverse() {
     // reset current universe variables
     m_currentUniverseRuntime = 0.0;
     m_currentUniverseTimePaused = 0.0;
+
+    //  reset other renderer variables
     m_speedFactor = 1.0;
     m_scaleFactor = 1.0;
+    m_camera.reset();
 }
 
 void Renderer::updateConfig(const RendererConfig& rendererConfig) {

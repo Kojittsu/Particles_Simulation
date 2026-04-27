@@ -35,7 +35,7 @@ public:
 
     /**
      * @brief Compute new camera position.
-     * 
+     *
      * @param keyStates Array of all key states.
      * @param deltaTime Time since the last frame (in seconds).
      */
@@ -48,6 +48,11 @@ public:
      * @param[in]  yOffset  The y offset
      */
     void computeNewOrientation(const double xOffset, const double yOffset);
+
+    /**
+     * @brief      Reset camera.
+     */
+    void reset();
 
     // Setters
     void setPosition(const glm::vec3& position);
@@ -72,8 +77,8 @@ private:
     float m_speed; ///< Camera speed (in scene unit/sec).
     float m_fov;   ///< Camera field of view (in °).
 
-    const float m_minRenderDistance; ///< Minimal rendering distance (in scene unit).
-    const float m_maxRenderDistance; ///< Maximal rendering distance (in scene unit).
+    float m_minRenderDistance; ///< Minimal rendering distance (in scene unit).
+    float m_maxRenderDistance; ///< Maximal rendering distance (in scene unit).
 };
 
 #endif // CAMERA_H
