@@ -56,7 +56,10 @@ void Universe::saveStep(std::ofstream& file) {
     }
 }
 
-void Universe::addParticle(const Particle& particle) {
+void Universe::addParticle(Particle& particle) {
+    // Reset acceleration to global acceleration
+    particle.setAcceleration(m_globalAcceleration);
+
     m_particles.push_back(particle);
 }
 

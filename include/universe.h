@@ -39,7 +39,7 @@ public:
      *
      * @param[in]  particle  The particle
      */
-    void addParticle(const Particle& particle);
+    void addParticle(Particle& particle);
 
     /**
      * @brief      Sum an acceleration contribution to the actual
