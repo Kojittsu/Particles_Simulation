@@ -387,11 +387,6 @@ void Renderer::ImGuiControlsMenu() {
         ImGui::InputDouble("Vy (m/s)", &velocity[1]);
         ImGui::InputDouble("Vz (m/s)", &velocity[2]);
 
-        ImGui::Text("Acceleration:");
-        ImGui::InputDouble("Ax (m/s^2)", &acceleration[0]);
-        ImGui::InputDouble("Ay (m/s^2)", &acceleration[1]);
-        ImGui::InputDouble("Az (m/s^2)", &acceleration[2]);
-
         ImGui::Text("Radius:");
         ImGui::InputDouble("Radius (m)", &radius);
 
