@@ -405,8 +405,13 @@ void Renderer::ImGuiControlsMenu() {
 
 
         if (ImGui::Button("Confirm")) {
-            Particle particle(position, velocity, acceleration, radius, mass, color);
-            m_universePtr->addParticle(particle);
+            try {
+                Particle particle(position, velocity, acceleration, radius, mass, color);
+                m_universePtr->addParticle(particle);
+            }
+            catch (const std::invalid_argument& e) {
+                std::cerr << "Invalid_argument exception occured when adding particle from GUI : " << e.what() << std::endl;
+            }
         }
     }
 
