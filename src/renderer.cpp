@@ -207,7 +207,12 @@ void Renderer::renderScene() {
 
         for (const auto& particle : particles) {
             renderParticle(particle);
-            renderParticleTrail(particle);
+        }
+
+        if(m_renderParticleTrails) {
+            for (const auto& particle : particles) {
+                renderParticleTrail(particle);
+            }
         }
 
         renderBoxes();
@@ -383,6 +388,9 @@ void Renderer::ImGuiControlsMenu() {
         if (ImGui::Checkbox("Wireframe mode", &showWireframe)) {
             glPolygonMode(GL_FRONT_AND_BACK, showWireframe ? GL_LINE : GL_FILL);
         }
+
+        ImGui::Checkbox("Render particle trails", &m_renderParticleTrails);
+
         ImGui::PushItemWidth(100);
         static float cameraSpeedInSceneUnit = m_camera.getSpeed();
         static float cameraSpeedInMeters = cameraSpeedInSceneUnit / m_scaleFactor; // transform camera position from SU to meter

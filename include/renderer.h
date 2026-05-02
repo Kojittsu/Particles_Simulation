@@ -224,6 +224,7 @@ private:
     std::array<bool, 1024> m_keyStates{ {false} }; ///< States of the keys.
 
     bool m_isSpectatorMode = false; ///< Determines if spectator is enable.
+    bool m_renderParticleTrails = false; ///< Determines if renderer should render particle trails.
 
     std::vector<float> m_lastFrameratesBuffer; ///< vector of last framerates values
     std::vector<float> m_lastFrameratesIndexes; ///< vector of last framerates indexes
