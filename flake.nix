@@ -18,12 +18,13 @@
       version = "1.0.0";
       src = ./.;
 
+      nativeBuildInputs = [ pkgs.makeWrapper ];
+
       buildInputs = with pkgs; [
         glm
         glew
         glfw
         yaml-cpp
-        zenity
       ];
 
       buildPhase = "make";
@@ -31,6 +32,9 @@
       installPhase = ''
         mkdir -p $out/bin
         cp particle-simulation-executable $out/bin/particle-simulation
+
+        wrapProgram $out/bin/particle-simulation \
+          --prefix PATH : ${pkgs.zenity}/bin
 
         # Add config-example files
         mkdir -p $out/share/particle-simulation-config-examples
