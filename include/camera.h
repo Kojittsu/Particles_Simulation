@@ -59,9 +59,9 @@ public:
     void setSpeed(float speed);
 
     // Getters
-    const glm::vec3& getPosition() const { return m_position; }
-    const glm::vec3& getFront() const { return m_front; }
-    const glm::vec3& getUp() const { return m_up; }
+    const glm::vec3 getPosition() const { return m_position; }
+    const glm::vec3 getFront() const { return m_front; }
+    const glm::vec3 getUp() const { return m_up; }
     const float getSpeed() const { return m_speed; }
 
 private:

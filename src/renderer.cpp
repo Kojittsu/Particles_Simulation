@@ -211,6 +211,7 @@ void Renderer::renderScene() {
         }
 
         renderBoxes();
+        renderGrid();
     }
 }
 
@@ -283,6 +284,36 @@ void Renderer::renderBoxes() {
         glVertex3f(x0, y1, z0); glVertex3f(x0, y1, z1);
         glEnd();
     }
+    glEnable(GL_LIGHTING);
+}
+
+void Renderer::renderGrid() {
+
+    float gridHalfLength = m_gridLength / 2;
+
+    glm::vec3 cameraPosition = m_camera.getPosition();
+    float offsetX = floor(cameraPosition.x / m_gridStep) * m_gridStep;
+    float offsetZ = floor(cameraPosition.z / m_gridStep) * m_gridStep;
+
+    glDisable(GL_LIGHTING);
+    glEnable(GL_BLEND);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+    glColor4f(1.0f, 1.0f, 1.0f, m_gridOpacity);
+
+    glBegin(GL_LINES);
+    for (float i = -gridHalfLength; i <= gridHalfLength; i += m_gridStep) {
+
+        // // lines parallel to Z-axe
+        glVertex3f(i + offsetX, 0.0f, -gridHalfLength + offsetZ);
+        glVertex3f(i + offsetX, 0.0f,  gridHalfLength + offsetZ);
+
+        // // lines parallel to X-axe
+        glVertex3f(-gridHalfLength + offsetX, 0.0f, i + offsetZ);
+        glVertex3f( gridHalfLength + offsetX, 0.0f, i + offsetZ);
+    }
+    glEnd();
+
+    glDisable(GL_BLEND);
     glEnable(GL_LIGHTING);
 }
 
@@ -456,9 +487,9 @@ void Renderer::ImGuiInformationMenu() {
 
     ImGui::Text("Current universe runtime (s) : %.3f", m_currentUniverseRuntime);
     ImGui::Text(" ");
-    ImGui::Text("Camera position : (%.3e, %.3e, %.3e) m", cameraPosition[0], cameraPosition[1], cameraPosition[2]);
-    ImGui::Text("Camera front : (%.1f, %.1f, %.1f)", cameraFront[0], cameraFront[1], cameraFront[2]);
-    ImGui::Text("Camera up : (%.1f, %.1f, %.1f)", cameraUp[0], cameraUp[1], cameraUp[2]);
+    ImGui::Text("Camera position : (%.3e, %.3e, %.3e) m", cameraPosition.x, cameraPosition.y, cameraPosition.z);
+    ImGui::Text("Camera front : (%.1f, %.1f, %.1f)", cameraFront.x, cameraFront.y, cameraFront.z);
+    ImGui::Text("Camera up : (%.1f, %.1f, %.1f)", cameraUp.x, cameraUp.y, cameraUp.z);
     ImGui::Text(" ");
     ImGui::Text("OpenGL version : %s", glGetString(GL_VERSION));
     ImGui::Text("ImGui version : %s", ImGui::GetVersion());

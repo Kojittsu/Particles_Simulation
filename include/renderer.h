@@ -134,6 +134,11 @@ public:
     void renderBoxes();
 
     /**
+     * @brief      Render a grid at y = 0.
+     */
+    void renderGrid();
+
+    /**
      * @brief      Render Dear ImGui.
      */
     void renderImGui();
@@ -214,7 +219,7 @@ private:
     double m_currentUniverseTimePaused = 0.0;
     double m_currentUniverseRuntime = 0.0;
     double m_speedFactor = 1.0; ///< Speed factor applied for rendering universe at different speeds.
-    double m_scaleFactor = 1.0; ///< Scale factor applied for rendering.
+    double m_scaleFactor = 1.0; ///< Scale factor applied for rendering : 1 SU = 1 meter * scaleFactor. (SU mean System Unit)
 
     std::array<bool, 1024> m_keyStates{ {false} }; ///< States of the keys.
 
@@ -222,6 +227,11 @@ private:
 
     std::vector<float> m_lastFrameratesBuffer; ///< vector of last framerates values
     std::vector<float> m_lastFrameratesIndexes; ///< vector of last framerates indexes
+
+    // grid constants
+    static constexpr float m_gridLength = 10000; ///< grid length (in SU)
+    static constexpr float m_gridOpacity = 0.3; ///< grid opacity (in [0,1])
+    static constexpr float m_gridStep = 100.0; ///< grid step length (in SU)
 };
 
 #endif // RENDERER_H
