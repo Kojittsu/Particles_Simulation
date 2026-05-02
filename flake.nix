@@ -43,6 +43,10 @@
         # Add desktop entry
         mkdir -p $out/share/applications
         cp particle-simulation.desktop $out/share/applications/
+
+        # Add icon
+        mkdir -p $out/share/icons/hicolor/256x256/apps
+        cp .github/assets/particle-simulation-icon-256.png $out/share/icons/hicolor/256x256/apps/particle-simulation-icon.png
       '';
     };
 

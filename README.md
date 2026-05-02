@@ -1,3 +1,8 @@
+
+<p align="center">
+    <img src="./.github/assets/particle-simulation-icon-256.png"/>
+</p>
+
 # Particles Simulation
 
 ![GitHub repo size](https://img.shields.io/github/repo-size/Kojittsu/Particles_Simulation)

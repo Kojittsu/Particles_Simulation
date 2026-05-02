@@ -3,3 +3,4 @@ Name=Particle Simulation
 Comment= Particle Simulation application
 Exec=particle-simulation
 Type=Application
+Icon=particle-simulation-icon
