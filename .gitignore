@@ -1,3 +1,4 @@
 *.csv
 imgui.ini
 *.o
+*.yaml
