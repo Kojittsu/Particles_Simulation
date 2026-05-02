@@ -140,6 +140,8 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:abc3bfdc74cb66fb0fa414cf43d489d1e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Render the trail of the given particle.  <br /></td></tr>
 <tr class="memitem:a7a258abb0123231199b50f0e1dc1c539" id="r_a7a258abb0123231199b50f0e1dc1c539"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a7a258abb0123231199b50f0e1dc1c539">renderBoxes</a> ()</td></tr>
 <tr class="memdesc:a7a258abb0123231199b50f0e1dc1c539"><td class="mdescLeft">&#160;</td><td class="mdescRight">Render the current universe boxes.  <br /></td></tr>
+<tr class="memitem:a0b2846072f29526d0ecad5db87609ebf" id="r_a0b2846072f29526d0ecad5db87609ebf"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a0b2846072f29526d0ecad5db87609ebf">renderGrid</a> ()</td></tr>
+<tr class="memdesc:a0b2846072f29526d0ecad5db87609ebf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Render a grid at y = 0.  <br /></td></tr>
 <tr class="memitem:a3a5438a7cff49b1dc7fe2474bb33de2d" id="r_a3a5438a7cff49b1dc7fe2474bb33de2d"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a3a5438a7cff49b1dc7fe2474bb33de2d">renderImGui</a> ()</td></tr>
 <tr class="memdesc:a3a5438a7cff49b1dc7fe2474bb33de2d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Render Dear ImGui.  <br /></td></tr>
 <tr class="memitem:a1a12d1bbdf59057046c4826e103cc69e" id="r_a1a12d1bbdf59057046c4826e103cc69e"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a1a12d1bbdf59057046c4826e103cc69e">ImGuiControlsMenu</a> ()</td></tr>
@@ -187,7 +189,7 @@ Private Attributes</h2></td></tr>
 <tr class="memitem:af4b443eb83d42be55ee236d86a560b7b" id="r_af4b443eb83d42be55ee236d86a560b7b"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="#af4b443eb83d42be55ee236d86a560b7b">m_speedFactor</a> = 1.0</td></tr>
 <tr class="memdesc:af4b443eb83d42be55ee236d86a560b7b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Speed factor applied for rendering universe at different speeds.  <br /></td></tr>
 <tr class="memitem:a4d1be5f9be58e2d78edcf8959d4377c4" id="r_a4d1be5f9be58e2d78edcf8959d4377c4"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="#a4d1be5f9be58e2d78edcf8959d4377c4">m_scaleFactor</a> = 1.0</td></tr>
-<tr class="memdesc:a4d1be5f9be58e2d78edcf8959d4377c4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Scale factor applied for rendering.  <br /></td></tr>
+<tr class="memdesc:a4d1be5f9be58e2d78edcf8959d4377c4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Scale factor applied for rendering : 1 SU = 1 meter * scaleFactor. (SU mean System Unit).  <br /></td></tr>
 <tr class="memitem:ac49a656d49b36f202aaec5f530c3927b" id="r_ac49a656d49b36f202aaec5f530c3927b"><td class="memItemLeft">std::array&lt; bool, 1024 &gt;&#160;</td><td class="memItemRight"><a class="el" href="#ac49a656d49b36f202aaec5f530c3927b">m_keyStates</a> { {false} }</td></tr>
 <tr class="memdesc:ac49a656d49b36f202aaec5f530c3927b"><td class="mdescLeft">&#160;</td><td class="mdescRight">States of the keys.  <br /></td></tr>
 <tr class="memitem:af9c701b2cbb3d311039a2dbf7a53f4c7" id="r_af9c701b2cbb3d311039a2dbf7a53f4c7"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#af9c701b2cbb3d311039a2dbf7a53f4c7">m_isSpectatorMode</a> = false</td></tr>
@@ -196,6 +198,15 @@ Private Attributes</h2></td></tr>
 <tr class="memdesc:a3ad73ac8054357790bf6b2a14cdceacf"><td class="mdescLeft">&#160;</td><td class="mdescRight">vector of last framerates values  <br /></td></tr>
 <tr class="memitem:ae44e22e15b7bff59f7e9911af26cd989" id="r_ae44e22e15b7bff59f7e9911af26cd989"><td class="memItemLeft">std::vector&lt; float &gt;&#160;</td><td class="memItemRight"><a class="el" href="#ae44e22e15b7bff59f7e9911af26cd989">m_lastFrameratesIndexes</a></td></tr>
 <tr class="memdesc:ae44e22e15b7bff59f7e9911af26cd989"><td class="mdescLeft">&#160;</td><td class="mdescRight">vector of last framerates indexes  <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pri-static-attribs" class="groupheader"><a id="pri-static-attribs" name="pri-static-attribs"></a>
+Static Private Attributes</h2></td></tr>
+<tr class="memitem:a155c5972bdda4d6d872e3f3d4b5371f2" id="r_a155c5972bdda4d6d872e3f3d4b5371f2"><td class="memItemLeft">static constexpr float&#160;</td><td class="memItemRight"><a class="el" href="#a155c5972bdda4d6d872e3f3d4b5371f2">m_gridLength</a> = 10000</td></tr>
+<tr class="memdesc:a155c5972bdda4d6d872e3f3d4b5371f2"><td class="mdescLeft">&#160;</td><td class="mdescRight">grid length (in SU)  <br /></td></tr>
+<tr class="memitem:abbb8a85eaf0d4f9ac5353d277077afac" id="r_abbb8a85eaf0d4f9ac5353d277077afac"><td class="memItemLeft">static constexpr float&#160;</td><td class="memItemRight"><a class="el" href="#abbb8a85eaf0d4f9ac5353d277077afac">m_gridOpacity</a> = 0.3</td></tr>
+<tr class="memdesc:abbb8a85eaf0d4f9ac5353d277077afac"><td class="mdescLeft">&#160;</td><td class="mdescRight">grid opacity (in [0,1])  <br /></td></tr>
+<tr class="memitem:abfe9e878292da252d82663295d17fcb2" id="r_abfe9e878292da252d82663295d17fcb2"><td class="memItemLeft">static constexpr float&#160;</td><td class="memItemRight"><a class="el" href="#abfe9e878292da252d82663295d17fcb2">m_gridStep</a> = 100.0</td></tr>
+<tr class="memdesc:abfe9e878292da252d82663295d17fcb2"><td class="mdescLeft">&#160;</td><td class="mdescRight">grid step length (in SU)  <br /></td></tr>
 </table>
 <a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a7ebf46f54dab9905f79b80f7fddb76a6" name="a7ebf46f54dab9905f79b80f7fddb76a6"></a>
@@ -577,6 +588,25 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
+<a id="a0b2846072f29526d0ecad5db87609ebf" name="a0b2846072f29526d0ecad5db87609ebf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0b2846072f29526d0ecad5db87609ebf">&#9670;&#160;</a></span>renderGrid()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Renderer::renderGrid </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Render a grid at y = 0. </p>
+
+</div>
+</div>
 <a id="a3a5438a7cff49b1dc7fe2474bb33de2d" name="a3a5438a7cff49b1dc7fe2474bb33de2d"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a3a5438a7cff49b1dc7fe2474bb33de2d">&#9670;&#160;</a></span>renderImGui()</h2>
 
@@ -912,6 +942,78 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
+<a id="a155c5972bdda4d6d872e3f3d4b5371f2" name="a155c5972bdda4d6d872e3f3d4b5371f2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a155c5972bdda4d6d872e3f3d4b5371f2">&#9670;&#160;</a></span>m_gridLength</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float Renderer::m_gridLength = 10000</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span><span class="mlabel constexpr">constexpr</span><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>grid length (in SU) </p>
+
+</div>
+</div>
+<a id="abbb8a85eaf0d4f9ac5353d277077afac" name="abbb8a85eaf0d4f9ac5353d277077afac"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abbb8a85eaf0d4f9ac5353d277077afac">&#9670;&#160;</a></span>m_gridOpacity</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float Renderer::m_gridOpacity = 0.3</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span><span class="mlabel constexpr">constexpr</span><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>grid opacity (in [0,1]) </p>
+
+</div>
+</div>
+<a id="abfe9e878292da252d82663295d17fcb2" name="abfe9e878292da252d82663295d17fcb2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abfe9e878292da252d82663295d17fcb2">&#9670;&#160;</a></span>m_gridStep</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float Renderer::m_gridStep = 100.0</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span><span class="mlabel constexpr">constexpr</span><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>grid step length (in SU) </p>
+
+</div>
+</div>
 <a id="af9c701b2cbb3d311039a2dbf7a53f4c7" name="af9c701b2cbb3d311039a2dbf7a53f4c7"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#af9c701b2cbb3d311039a2dbf7a53f4c7">&#9670;&#160;</a></span>m_isSpectatorMode</h2>
 
@@ -1148,7 +1250,7 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Scale factor applied for rendering. </p>
+<p>Scale factor applied for rendering : 1 SU = 1 meter * scaleFactor. (SU mean System Unit). </p>
 
 </div>
 </div>

@@ -4,9 +4,11 @@ var searchData=
   ['renderboxes_1',['renderBoxes',['../classRenderer.html#a7a258abb0123231199b50f0e1dc1c539',1,'Renderer']]],
   ['renderer_2',['Renderer',['../classRenderer.html#a7ebf46f54dab9905f79b80f7fddb76a6',1,'Renderer']]],
   ['renderframe_3',['renderFrame',['../classRenderer.html#a02a137957c8783a44df5cad4b5e1b635',1,'Renderer']]],
-  ['renderimgui_4',['renderImGui',['../classRenderer.html#a3a5438a7cff49b1dc7fe2474bb33de2d',1,'Renderer']]],
-  ['renderparticle_5',['renderParticle',['../classRenderer.html#a4da7af9b856f99ef5e424ea6cf5122f4',1,'Renderer']]],
-  ['renderparticletrail_6',['renderParticleTrail',['../classRenderer.html#abc3bfdc74cb66fb0fa414cf43d489d1e',1,'Renderer']]],
-  ['renderscene_7',['renderScene',['../classRenderer.html#a4effbac4f41b348002ca7d63b839dcf3',1,'Renderer']]],
-  ['resetcurrentuniverse_8',['resetCurrentUniverse',['../classRenderer.html#a3763e1060c4f801a711f0d536e84ec18',1,'Renderer']]]
+  ['rendergrid_4',['renderGrid',['../classRenderer.html#a0b2846072f29526d0ecad5db87609ebf',1,'Renderer']]],
+  ['renderimgui_5',['renderImGui',['../classRenderer.html#a3a5438a7cff49b1dc7fe2474bb33de2d',1,'Renderer']]],
+  ['renderparticle_6',['renderParticle',['../classRenderer.html#a4da7af9b856f99ef5e424ea6cf5122f4',1,'Renderer']]],
+  ['renderparticletrail_7',['renderParticleTrail',['../classRenderer.html#abc3bfdc74cb66fb0fa414cf43d489d1e',1,'Renderer']]],
+  ['renderscene_8',['renderScene',['../classRenderer.html#a4effbac4f41b348002ca7d63b839dcf3',1,'Renderer']]],
+  ['reset_9',['reset',['../classCamera.html#a02be8aa0dbef77e02dddc715a726fb67',1,'Camera']]],
+  ['resetcurrentuniverse_10',['resetCurrentUniverse',['../classRenderer.html#a3763e1060c4f801a711f0d536e84ec18',1,'Renderer']]]
 ];

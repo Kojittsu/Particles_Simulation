@@ -113,11 +113,13 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a78f088da89b180b92e046cfe616818d7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute new camera position.  <br /></td></tr>
 <tr class="memitem:aea3f2cf7a896218d64eb583f5ab2a9af" id="r_aea3f2cf7a896218d64eb583f5ab2a9af"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#aea3f2cf7a896218d64eb583f5ab2a9af">computeNewOrientation</a> (const double xOffset, const double yOffset)</td></tr>
 <tr class="memdesc:aea3f2cf7a896218d64eb583f5ab2a9af"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute new camera orientation.  <br /></td></tr>
+<tr class="memitem:a02be8aa0dbef77e02dddc715a726fb67" id="r_a02be8aa0dbef77e02dddc715a726fb67"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a02be8aa0dbef77e02dddc715a726fb67">reset</a> ()</td></tr>
+<tr class="memdesc:a02be8aa0dbef77e02dddc715a726fb67"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reset camera.  <br /></td></tr>
 <tr class="memitem:a6c80882e87be75bde67f432ca3b21607" id="r_a6c80882e87be75bde67f432ca3b21607"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a6c80882e87be75bde67f432ca3b21607">setPosition</a> (const glm::vec3 &amp;position)</td></tr>
 <tr class="memitem:af073e5018dbe94c9a074c660cb4b731f" id="r_af073e5018dbe94c9a074c660cb4b731f"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#af073e5018dbe94c9a074c660cb4b731f">setSpeed</a> (float speed)</td></tr>
-<tr class="memitem:a1c9228e303c4f548ecce1b15b5440f53" id="r_a1c9228e303c4f548ecce1b15b5440f53"><td class="memItemLeft">const glm::vec3 &amp;&#160;</td><td class="memItemRight"><a class="el" href="#a1c9228e303c4f548ecce1b15b5440f53">getPosition</a> () const</td></tr>
-<tr class="memitem:a22a8aa8f8644bbf9c529796bb70da20f" id="r_a22a8aa8f8644bbf9c529796bb70da20f"><td class="memItemLeft">const glm::vec3 &amp;&#160;</td><td class="memItemRight"><a class="el" href="#a22a8aa8f8644bbf9c529796bb70da20f">getFront</a> () const</td></tr>
-<tr class="memitem:a321fd061cedbce6750ea493ed2c6fa2c" id="r_a321fd061cedbce6750ea493ed2c6fa2c"><td class="memItemLeft">const glm::vec3 &amp;&#160;</td><td class="memItemRight"><a class="el" href="#a321fd061cedbce6750ea493ed2c6fa2c">getUp</a> () const</td></tr>
+<tr class="memitem:a6d3ba315a11cbf8b4e1957ac7bc79e7b" id="r_a6d3ba315a11cbf8b4e1957ac7bc79e7b"><td class="memItemLeft">const glm::vec3&#160;</td><td class="memItemRight"><a class="el" href="#a6d3ba315a11cbf8b4e1957ac7bc79e7b">getPosition</a> () const</td></tr>
+<tr class="memitem:a146e314f3e18a2410f55ba276c63c144" id="r_a146e314f3e18a2410f55ba276c63c144"><td class="memItemLeft">const glm::vec3&#160;</td><td class="memItemRight"><a class="el" href="#a146e314f3e18a2410f55ba276c63c144">getFront</a> () const</td></tr>
+<tr class="memitem:a1ad4cfe61ddde8470a29ff895cf05cdc" id="r_a1ad4cfe61ddde8470a29ff895cf05cdc"><td class="memItemLeft">const glm::vec3&#160;</td><td class="memItemRight"><a class="el" href="#a1ad4cfe61ddde8470a29ff895cf05cdc">getUp</a> () const</td></tr>
 <tr class="memitem:af8f63ae404e14fe7f77d92c78c6cc046" id="r_af8f63ae404e14fe7f77d92c78c6cc046"><td class="memItemLeft">const float&#160;</td><td class="memItemRight"><a class="el" href="#af8f63ae404e14fe7f77d92c78c6cc046">getSpeed</a> () const</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pri-attribs" class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
@@ -138,10 +140,10 @@ Private Attributes</h2></td></tr>
 <tr class="memdesc:a809774c9955a53755048ea80d934e912"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classCamera.html">Camera</a> speed (in scene unit/sec).  <br /></td></tr>
 <tr class="memitem:aa404a4e057fa16fb82ce8668d7a661b6" id="r_aa404a4e057fa16fb82ce8668d7a661b6"><td class="memItemLeft">float&#160;</td><td class="memItemRight"><a class="el" href="#aa404a4e057fa16fb82ce8668d7a661b6">m_fov</a></td></tr>
 <tr class="memdesc:aa404a4e057fa16fb82ce8668d7a661b6"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classCamera.html">Camera</a> field of view (in °).  <br /></td></tr>
-<tr class="memitem:a8d4c8ec7e148e6743beb334cf8f79735" id="r_a8d4c8ec7e148e6743beb334cf8f79735"><td class="memItemLeft">const float&#160;</td><td class="memItemRight"><a class="el" href="#a8d4c8ec7e148e6743beb334cf8f79735">m_minRenderDistance</a></td></tr>
-<tr class="memdesc:a8d4c8ec7e148e6743beb334cf8f79735"><td class="mdescLeft">&#160;</td><td class="mdescRight">Minimal rendering distance (in scene unit).  <br /></td></tr>
-<tr class="memitem:afb21ebf48eac30a56fb07d91e9a4cfb3" id="r_afb21ebf48eac30a56fb07d91e9a4cfb3"><td class="memItemLeft">const float&#160;</td><td class="memItemRight"><a class="el" href="#afb21ebf48eac30a56fb07d91e9a4cfb3">m_maxRenderDistance</a></td></tr>
-<tr class="memdesc:afb21ebf48eac30a56fb07d91e9a4cfb3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Maximal rendering distance (in scene unit).  <br /></td></tr>
+<tr class="memitem:a3fe00683acbb6ceb4f12159f0d7763df" id="r_a3fe00683acbb6ceb4f12159f0d7763df"><td class="memItemLeft">float&#160;</td><td class="memItemRight"><a class="el" href="#a3fe00683acbb6ceb4f12159f0d7763df">m_minRenderDistance</a></td></tr>
+<tr class="memdesc:a3fe00683acbb6ceb4f12159f0d7763df"><td class="mdescLeft">&#160;</td><td class="mdescRight">Minimal rendering distance (in scene unit).  <br /></td></tr>
+<tr class="memitem:afcd39463eadf29d0ddf06e7638c08b00" id="r_afcd39463eadf29d0ddf06e7638c08b00"><td class="memItemLeft">float&#160;</td><td class="memItemRight"><a class="el" href="#afcd39463eadf29d0ddf06e7638c08b00">m_maxRenderDistance</a></td></tr>
+<tr class="memdesc:afcd39463eadf29d0ddf06e7638c08b00"><td class="mdescLeft">&#160;</td><td class="mdescRight">Maximal rendering distance (in scene unit).  <br /></td></tr>
 </table>
 <a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="af2870768a1ed364953d61cc0d5418680" name="af2870768a1ed364953d61cc0d5418680"></a>
@@ -286,8 +288,8 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="a22a8aa8f8644bbf9c529796bb70da20f" name="a22a8aa8f8644bbf9c529796bb70da20f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a22a8aa8f8644bbf9c529796bb70da20f">&#9670;&#160;</a></span>getFront()</h2>
+<a id="a146e314f3e18a2410f55ba276c63c144" name="a146e314f3e18a2410f55ba276c63c144"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a146e314f3e18a2410f55ba276c63c144">&#9670;&#160;</a></span>getFront()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -296,7 +298,7 @@ Private Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">const glm::vec3 &amp; Camera::getFront </td>
+          <td class="memname">const glm::vec3 Camera::getFront </td>
           <td>(</td>
           <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
           <td> const</td>
@@ -311,8 +313,8 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="a1c9228e303c4f548ecce1b15b5440f53" name="a1c9228e303c4f548ecce1b15b5440f53"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1c9228e303c4f548ecce1b15b5440f53">&#9670;&#160;</a></span>getPosition()</h2>
+<a id="a6d3ba315a11cbf8b4e1957ac7bc79e7b" name="a6d3ba315a11cbf8b4e1957ac7bc79e7b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6d3ba315a11cbf8b4e1957ac7bc79e7b">&#9670;&#160;</a></span>getPosition()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -321,7 +323,7 @@ Private Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">const glm::vec3 &amp; Camera::getPosition </td>
+          <td class="memname">const glm::vec3 Camera::getPosition </td>
           <td>(</td>
           <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
           <td> const</td>
@@ -361,8 +363,8 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="a321fd061cedbce6750ea493ed2c6fa2c" name="a321fd061cedbce6750ea493ed2c6fa2c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a321fd061cedbce6750ea493ed2c6fa2c">&#9670;&#160;</a></span>getUp()</h2>
+<a id="a1ad4cfe61ddde8470a29ff895cf05cdc" name="a1ad4cfe61ddde8470a29ff895cf05cdc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1ad4cfe61ddde8470a29ff895cf05cdc">&#9670;&#160;</a></span>getUp()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -371,7 +373,7 @@ Private Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">const glm::vec3 &amp; Camera::getUp </td>
+          <td class="memname">const glm::vec3 Camera::getUp </td>
           <td>(</td>
           <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
           <td> const</td>
@@ -383,6 +385,25 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+</div>
+</div>
+<a id="a02be8aa0dbef77e02dddc715a726fb67" name="a02be8aa0dbef77e02dddc715a726fb67"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a02be8aa0dbef77e02dddc715a726fb67">&#9670;&#160;</a></span>reset()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Camera::reset </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Reset camera. </p>
 
 </div>
 </div>
@@ -536,8 +557,8 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="afb21ebf48eac30a56fb07d91e9a4cfb3" name="afb21ebf48eac30a56fb07d91e9a4cfb3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#afb21ebf48eac30a56fb07d91e9a4cfb3">&#9670;&#160;</a></span>m_maxRenderDistance</h2>
+<a id="afcd39463eadf29d0ddf06e7638c08b00" name="afcd39463eadf29d0ddf06e7638c08b00"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afcd39463eadf29d0ddf06e7638c08b00">&#9670;&#160;</a></span>m_maxRenderDistance</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -546,7 +567,7 @@ Private Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">const float Camera::m_maxRenderDistance</td>
+          <td class="memname">float Camera::m_maxRenderDistance</td>
         </tr>
       </table>
   </td>
@@ -560,8 +581,8 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="a8d4c8ec7e148e6743beb334cf8f79735" name="a8d4c8ec7e148e6743beb334cf8f79735"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8d4c8ec7e148e6743beb334cf8f79735">&#9670;&#160;</a></span>m_minRenderDistance</h2>
+<a id="a3fe00683acbb6ceb4f12159f0d7763df" name="a3fe00683acbb6ceb4f12159f0d7763df"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3fe00683acbb6ceb4f12159f0d7763df">&#9670;&#160;</a></span>m_minRenderDistance</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -570,7 +591,7 @@ Private Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">const float Camera::m_minRenderDistance</td>
+          <td class="memname">float Camera::m_minRenderDistance</td>
         </tr>
       </table>
   </td>

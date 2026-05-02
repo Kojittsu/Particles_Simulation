@@ -2,7 +2,7 @@ var classUniverse =
 [
     [ "Universe", "classUniverse.html#a2092a072d7974824c8b5a31cec23a21d", null ],
     [ "~Universe", "classUniverse.html#a7723438c7fa497defb4c82ac975152b2", null ],
-    [ "addParticle", "classUniverse.html#a8bf0db11c6ddafbc8df94f9183eaa5ee", null ],
+    [ "addParticle", "classUniverse.html#a7e9c4d6f89f6ca5975e12fee4d32d1d0", null ],
     [ "applyAccelerationToParticles", "classUniverse.html#a8dfcca6b62a59f2db8d839a92ef45035", null ],
     [ "computeBoxesCollision", "classUniverse.html#aaeb36fe496430fd8ef3848a6a91f55a3", null ],
     [ "computeGravitationalForces", "classUniverse.html#aed966ac7972d125fe78e243a835c2695", null ],
