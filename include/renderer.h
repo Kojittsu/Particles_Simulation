@@ -229,7 +229,8 @@ private:
     std::vector<float> m_lastFrameratesBuffer; ///< vector of last framerates values
     std::vector<float> m_lastFrameratesIndexes; ///< vector of last framerates indexes
 
-    // grid constants
+    // grid members
+    bool m_renderGrid = false; ///< Determines if renderer should render grid.
     static constexpr float m_gridLength = 10000; ///< grid length (in SU)
     static constexpr float m_gridOpacity = 0.3; ///< grid opacity (in [0,1])
     static constexpr float m_gridStep = 100.0; ///< grid step length (in SU)

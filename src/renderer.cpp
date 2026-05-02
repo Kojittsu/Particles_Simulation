@@ -216,7 +216,10 @@ void Renderer::renderScene() {
         }
 
         renderBoxes();
-        renderGrid();
+
+        if(m_renderGrid) {
+            renderGrid();
+        }
     }
 }
 
@@ -390,6 +393,8 @@ void Renderer::ImGuiControlsMenu() {
         }
 
         ImGui::Checkbox("Render particle trails", &m_renderParticleTrails);
+
+        ImGui::Checkbox("Render grid", &m_renderGrid);
 
         ImGui::PushItemWidth(100);
         static float cameraSpeedInSceneUnit = m_camera.getSpeed();
