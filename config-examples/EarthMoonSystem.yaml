@@ -1,0 +1,25 @@
+particles:
+  - position: [0.0, 0.0, 0.0]
+    velocity: [0.0, 0.0, 0.0]
+    radius: 6378100.0
+    mass: 5.9724e24
+    color: [0, 102, 204]
+    name: "Earth"
+
+  - position: [384400000.0, 0.0, 0.0]
+    velocity: [0.0, 0.0, 1022.0]
+    radius: 1738100.0
+    mass: 0.07346e24
+    color: [200, 200, 200]
+    name: "Moon"
+
+universe:
+  deltaTime: 100
+  applyGravity: true
+  globalAcceleration: [0.0, 0.0, 0.0]
+  coefficientRestitution: 1.0
+  dataFileName: ""
+
+renderer:
+  speedFactor: 100000.0
+  scaleFactor: 1.0e-6
