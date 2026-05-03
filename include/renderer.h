@@ -3,6 +3,7 @@
 
 #include <vector>
 #include <glm/glm.hpp>
+#include <GL/glu.h>
 
 #include "universe.h"
 #include "camera.h"
