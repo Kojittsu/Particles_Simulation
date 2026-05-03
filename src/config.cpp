@@ -59,17 +59,23 @@ bool readConfig(const std::string& filename, Config& config) {
 
         // Load boxes
         for (const auto& particleNode : yaml["boxes"]) {
-            std::array<double, 3> boxOrigin = particleNode["origin"].as<std::array<double, 3>>();
-            double boxLength = particleNode["length"].as<double>();
-            double boxHeight = particleNode["height"].as<double>();
-            double boxDepth = particleNode["depth"].as<double>();
+            std::array<double, 3> origin = particleNode["origin"].as<std::array<double, 3>>();
+            double length = particleNode["length"].as<double>();
+            double height = particleNode["height"].as<double>();
+            double depth = particleNode["depth"].as<double>();
 
-            Box box(boxOrigin, boxLength, boxHeight, boxDepth);
+            Box box(origin, length, height, depth);
             config.universeConfig.boxes.push_back(box);
 
             // Check box validity
-            if (boxLength <= 0.0 || boxHeight <= 0.0 || boxDepth <= 0.0 ) {
-                throw std::invalid_argument("Invalid box: all box dimensions must be > 0");
+            if (length <= 0) {
+                throw std::invalid_argument("Box length must be > 0");
+            }
+            if (height <= 0) {
+                throw std::invalid_argument("Box height must be > 0");
+            }
+            if (depth <= 0) {
+                throw std::invalid_argument("Box depth must be > 0");
             }
         }
 
