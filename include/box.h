@@ -1,17 +1,17 @@
 #ifndef BOX_H
 #define BOX_H
 
+#include <stdexcept>
 #include "array.h"
 
 class Box {
 public:
-    // Constructor
-    Box(const std::array<double, 3>& boxOrigin, double boxLength, double boxHeight, double boxDepth);
+    Box(const std::array<double, 3>& origin, const double length, const double height, const double depth);
 
-    std::array<double, 3> m_origin;
-    double m_length;
-    double m_height;
-    double m_depth;
+    const std::array<double, 3> origin_;
+    const double length_;
+    const double height_;
+    const double depth_;
 };
 
 #endif

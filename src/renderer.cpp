@@ -265,15 +265,15 @@ void Renderer::renderBoxes() {
     glColor3f(1.0f, 1.0f, 1.0f);
 
     for(Box& box : m_universePtr->getBoxes()) {
-        std::array<double, 3> boxOrigin = box.m_origin  * m_scaleFactor; // transform box from meter to SU
+        std::array<double, 3> boxOrigin = box.origin_  * m_scaleFactor; // transform box from meter to SU
 
         float x0 = boxOrigin[0];
         float y0 = boxOrigin[1];
         float z0 = boxOrigin[2];
 
-        float x1 = x0 + box.m_length * m_scaleFactor; // transform box length from meter to SU
-        float y1 = y0 + box.m_height * m_scaleFactor; // transform box height from meter to SU
-        float z1 = z0 + box.m_depth * m_scaleFactor; // transform box depth from meter to SU
+        float x1 = x0 + box.length_ * m_scaleFactor; // transform box length from meter to SU
+        float y1 = y0 + box.height_ * m_scaleFactor; // transform box height from meter to SU
+        float z1 = z0 + box.depth_ * m_scaleFactor; // transform box depth from meter to SU
 
         glBegin(GL_LINES);
         glVertex3f(x0, y0, z0); glVertex3f(x1, y0, z0);

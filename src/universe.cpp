@@ -136,27 +136,27 @@ void Universe::computeBoxesCollision(Particle& particle) {
 
     for(Box& box : m_boxes) {
         // Check for collision on box X-sides
-        if (position[0] < box.m_origin[0] + radius) {
-            particle.setX(box.m_origin[0] + radius);
+        if (position[0] < box.origin_[0] + radius) {
+            particle.setX(box.origin_[0] + radius);
             particle.setVX(-velocity[0] * m_config.coefficientRestitution);
-        } else if (position[0] > box.m_origin[0] + box.m_length - radius) {
-            particle.setX(box.m_origin[0] + box.m_length - radius);
+        } else if (position[0] > box.origin_[0] + box.length_ - radius) {
+            particle.setX(box.origin_[0] + box.length_ - radius);
             particle.setVX(-velocity[0] * m_config.coefficientRestitution);
         }
         // Check for collision on box Y-sides
-        if (position[1] < box.m_origin[1] + radius) {
-            particle.setY(box.m_origin[1] + radius);
+        if (position[1] < box.origin_[1] + radius) {
+            particle.setY(box.origin_[1] + radius);
             particle.setVY(-velocity[1] * m_config.coefficientRestitution);
-        } else if (position[1] > box.m_origin[1] + box.m_height - radius) {
-            particle.setY(box.m_origin[1] + box.m_height - radius);
+        } else if (position[1] > box.origin_[1] + box.height_ - radius) {
+            particle.setY(box.origin_[1] + box.height_ - radius);
             particle.setVY(-velocity[1] * m_config.coefficientRestitution);
         }
         // Check for collision on box Z-sides
-        if (position[2] < box.m_origin[2] + radius) {
-            particle.setZ(box.m_origin[2] + radius);
+        if (position[2] < box.origin_[2] + radius) {
+            particle.setZ(box.origin_[2] + radius);
             particle.setVZ(-velocity[2] * m_config.coefficientRestitution);
-        } else if (position[2] > box.m_origin[2] + box.m_depth - radius) {
-            particle.setZ(box.m_origin[2] + box.m_depth - radius);
+        } else if (position[2] > box.origin_[2] + box.depth_ - radius) {
+            particle.setZ(box.origin_[2] + box.depth_ - radius);
             particle.setVZ(-velocity[2] * m_config.coefficientRestitution);
         }
     }
