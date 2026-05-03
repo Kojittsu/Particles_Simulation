@@ -9,24 +9,17 @@
 
 class Camera {
 public:
-    Camera(const glm::vec3& position = glm::vec3(0.0f, 0.0f, 0.0f),
-           const glm::vec3& front    = glm::vec3(1.0f, 0.0f, 0.0f),
-           const glm::vec3& up       = glm::vec3(0.0f, 1.0f, 0.0f),
-           float azimuth   = 0.0f,
-           float elevation = 0.0f,
-           float speed     = 50.0f,
-           float fov       = 45.0f,
-           const float minRenderDistance = 1,
-           const float maxRenderDistance = 10000);
+    /**
+    * @brief      Initialize camera.
+    */
+    Camera() = default;
 
     /**
      * @brief      Configure camera perspective.
      *
      * @param[in]  aspectRatio  The aspect ratio
      */
-    void configurePerspective(double aspectRatio);
-
-
+    void configurePerspective(const double aspectRatio);
 
     /**
      * @brief      Updates the camera position and orientation.
@@ -39,7 +32,7 @@ public:
      * @param keyStates Array of all key states.
      * @param deltaTime Time since the last frame (in seconds).
      */
-    void computeNewPosition(const std::array<bool, 1024>& keyStates, float deltaTime);
+    void computeNewPosition(const std::array<bool, 1024>& keyStates, const float deltaTime);
 
     /**
      * @brief      Compute new camera orientation.
@@ -56,29 +49,27 @@ public:
 
     // Setters
     void setPosition(const glm::vec3& position);
-    void setSpeed(float speed);
+    void setSpeed(const float& speed);
 
     // Getters
-    const glm::vec3 getPosition() const { return m_position; }
-    const glm::vec3 getFront() const { return m_front; }
-    const glm::vec3 getUp() const { return m_up; }
-    const float getSpeed() const { return m_speed; }
+    glm::vec3 getPosition() const { return position_; }
+    glm::vec3 getFront() const { return front_; }
+    glm::vec3 getUp() const { return up_; }
+    float getSpeed() const { return speed_; }
 
 private:
+    glm::vec3 position_ = glm::vec3(0.0f, 0.0f, 0.0f);          ///< Camera position (in scene unit).
+    glm::vec3 front_    = glm::vec3(1.0f, 0.0f, 0.0f);          ///< Normalized direction towards which the camera is oriented (in scene unit).
+    glm::vec3 up_       = glm::vec3(0.0f, 1.0f, 0.0f);          ///< Normalized direction to top of camera (in scene unit).
+    glm::vec3 right_ = glm::normalize(glm::cross(front_, up_)); ///< Normalized direction to the right of camera (in scene unit).
 
-    glm::vec3 m_position; ///< Camera position (in scene unit).
-    glm::vec3 m_front;    ///< Normalized direction towards which the camera is oriented (in scene unit).
-    glm::vec3 m_up;       ///< Normalized direction to top of camera (in scene unit).
-    glm::vec3 m_right;    ///< Normalized direction to the right of camera (in scene unit).
-
-    float m_azimuth;   ///< Azimut angle of the camera (in °).
-    float m_elevation; ///< Elevation angle of the camera (in °).
-
-    float m_speed; ///< Camera speed (in scene unit/sec).
-    float m_fov;   ///< Camera field of view (in °).
-
-    float m_minRenderDistance; ///< Minimal rendering distance (in scene unit).
-    float m_maxRenderDistance; ///< Maximal rendering distance (in scene unit).
+    float azimuth_ = 0.0f;   ///< Azimut angle of the camera (in °).
+    float elevation_ = 0.0f; ///< Elevation angle of the camera (in °).
+    float speed_ = 50.0f; ///< Camera speed (in scene unit/sec).
+    static constexpr float sensitivity_ = 0.1f; ///< Camera sensitivity.
+    static constexpr float fov_ = 45.0f;   ///< Camera field of view (in °).
+    static constexpr float minRenderDistance_ = 1.0;     ///< Minimal rendering distance (in scene unit).
+    static constexpr float maxRenderDistance_ = 10000.0; ///< Maximal rendering distance (in scene unit).
 };
 
 #endif // CAMERA_H

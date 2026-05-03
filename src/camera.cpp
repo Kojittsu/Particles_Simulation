@@ -1,87 +1,60 @@
 #include "camera.h"
 
-Camera::Camera(const glm::vec3& position,
-    const glm::vec3& front,
-    const glm::vec3& up,
-    const float azimuth,
-    const float elevation,
-    const float speed,
-    const float fov,
-    const float minRenderDistance,
-    const float maxRenderDistance
-    ):
-        m_position(position),
-        m_front(front),
-        m_up(up),
-        m_azimuth(azimuth),
-        m_elevation(elevation),
-        m_speed(speed),
-        m_fov(fov),
-        m_minRenderDistance(minRenderDistance),
-        m_maxRenderDistance(maxRenderDistance)
-{
-    m_right = glm::normalize(glm::cross(m_front, m_up));
-}
-
-void Camera::configurePerspective(double aspectRatio) {
-    gluPerspective(m_fov, aspectRatio, m_minRenderDistance, m_maxRenderDistance);
+void Camera::configurePerspective(const double aspectRatio) {
+    gluPerspective(fov_, aspectRatio, minRenderDistance_, maxRenderDistance_);
 }
 
 void Camera::update() {
     glLoadIdentity();
-    glm::vec3 cameraTarget = m_position + m_front;
+    glm::vec3 cameraTarget = position_ + front_;
     gluLookAt(
-        m_position.x, m_position.y, m_position.z,
+        position_.x, position_.y, position_.z,
         cameraTarget.x, cameraTarget.y, cameraTarget.z,
-        m_up.x, m_up.y, m_up.z
+        up_.x, up_.y, up_.z
     );
 }
 
-
-void Camera::computeNewPosition(const std::array<bool, 1024>& keyStates, float deltaTime) {
-    float velocity = m_speed * deltaTime;
+void Camera::computeNewPosition(const std::array<bool, 1024>& keyStates, const float deltaTime) {
+    float velocity = speed_ * deltaTime;
 
     if (keyStates[GLFW_KEY_W]) {
-        m_position += m_front * velocity;
+        position_ += front_ * velocity;
     }
     if (keyStates[GLFW_KEY_S]) {
-        m_position -= m_front * velocity;
+        position_ -= front_ * velocity;
     }
     if (keyStates[GLFW_KEY_A]) {
-        m_position -= m_right * velocity;
+        position_ -= right_ * velocity;
     }
     if (keyStates[GLFW_KEY_D]) {
-        m_position += m_right * velocity;
+        position_ += right_ * velocity;
     }
     if (keyStates[GLFW_KEY_SPACE]) {
-        m_position += m_up * velocity;
+        position_ += up_ * velocity;
     }
     if (keyStates[GLFW_KEY_LEFT_SHIFT]) {
-        m_position -= m_up * velocity;
+        position_ -= up_ * velocity;
     }
 }
 
-void Camera::computeNewOrientation(double xOffset, double yOffset) {
-    float sensitivity = 0.1f;
-    xOffset *= sensitivity;
-    yOffset *= sensitivity;
+void Camera::computeNewOrientation(const double xOffset, const double yOffset) {
 
-    m_azimuth += xOffset;
-    m_elevation += yOffset;
+    azimuth_ += xOffset * sensitivity_;
+    elevation_ += yOffset * sensitivity_;
 
-    if (m_elevation > 89.0f) m_elevation = 89.0f;
-    if (m_elevation < -89.0f) m_elevation = -89.0f;
+    if (elevation_ > 89.0f) elevation_ = 89.0f;
+    if (elevation_ < -89.0f) elevation_ = -89.0f;
 
-    float azimuthRad = glm::radians(m_azimuth);
-    float elevationRad = glm::radians(m_elevation);
+    float azimuthRad = glm::radians(azimuth_);
+    float elevationRad = glm::radians(elevation_);
 
-    m_front = glm::normalize(glm::vec3(
+    front_ = glm::normalize(glm::vec3(
         cos(elevationRad) * cos(azimuthRad),
         sin(elevationRad),
         cos(elevationRad) * sin(azimuthRad)
     ));
 
-    m_right = glm::normalize(glm::cross(m_front, m_up));
+    right_ = glm::normalize(glm::cross(front_, up_));
 }
 
 void Camera::reset() {
@@ -89,9 +62,9 @@ void Camera::reset() {
 }
 
 void Camera::setPosition(const glm::vec3& position) {
-    m_position = position;
+    position_ = position;
 }
 
-void Camera::setSpeed(float speed) {
-    m_speed = speed;
+void Camera::setSpeed(const float& speed) {
+    speed_ = speed;
 }
