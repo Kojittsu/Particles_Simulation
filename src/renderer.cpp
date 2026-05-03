@@ -518,7 +518,7 @@ void Renderer::ImGuiParticleViewerMenu() {
         ImGui::Text("Particle count : %ld", universeParticles.size());
         ImGui::Text(" ");
         for (Particle& particle : universeParticles) {
-            ImGui::Text("Name : %s", particle.m_name.c_str());
+            ImGui::Text("Name : %s", particle.getName().c_str());
             ImGui::Text("Position : (%.3e, %.3e, %.3e) m", particle.getX(), particle.getY(), particle.getZ());
             ImGui::Text("Velocity : (%.3e, %.3e, %.3e) m/s. %.3e m/s", particle.getVX(), particle.getVY(), particle.getVZ(), getMagnitude(particle.getVelocity()));
             ImGui::Text("Mass : %.3e Kg", particle.getMass());
@@ -541,7 +541,7 @@ void Renderer::ImGuiParticleEditorMenu() {
         // Left column (list particles)
         int particleIndex = 0;
         for (Particle& particle : universeParticles) {
-            std::string label = particle.m_name.empty() ? "Unnamed##" + std::to_string(particleIndex) : particle.m_name;
+            std::string label = particle.getName().empty() ? "Unnamed##" + std::to_string(particleIndex) : particle.getName();
             if (ImGui::Selectable(label.c_str(), selectedIndex == particleIndex)) {
                 selectedIndex = particleIndex;
             }
@@ -551,7 +551,7 @@ void Renderer::ImGuiParticleEditorMenu() {
         // Right column (edit selected particle)
         ImGui::NextColumn();
         Particle& selectedParticle = universeParticles[selectedIndex];
-        ImGui::Text("%s", selectedParticle.m_name.c_str());
+        ImGui::Text("%s", selectedParticle.getName().c_str());
 
         static std::array<double, 3> newPosition     = {0.0, 0.0, 0.0};
         ImGui::Text("Position : (%.3e, %.3e, %.3e) m", selectedParticle.getX(), selectedParticle.getY(), selectedParticle.getZ());

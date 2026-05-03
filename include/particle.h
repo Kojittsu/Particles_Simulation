@@ -8,9 +8,6 @@
 
 class Particle {
 public:
-    
-
-
     /**
      * @brief      Initialize particle.
      *
@@ -30,13 +27,13 @@ public:
         const std::array<int, 3>& color,
         const std::string& name = ""
         );
-    
+
     /**
      * @brief      Gets the position.
      *
      * @return     The position.
      */
-    std::array<double, 3> getPosition() const;
+    std::array<double, 3> getPosition() const {return position_;}
 
 
     /**
@@ -44,182 +41,189 @@ public:
      *
      * @return     The x.
      */
-    double getX() const;
+    double getX() const {return position_[0];}
 
     /**
      * @brief      Gets the y coordinate of the posision.
      *
      * @return     The y.
      */
-    double getY() const;
+    double getY() const {return position_[1];}
 
     /**
      * @brief      Gets the y coordinate of the posision.
      *
      * @return     The y.
      */
-    double getZ() const;
+    double getZ() const {return position_[2];}
 
     /**
      * @brief      Sets the position.
      *
      * @param[in]  position  The position
      */
-    void setPosition(const std::array<double, 3>& position);
+    void setPosition(const std::array<double, 3>& position) {position_ = position;}
 
     /**
      * @brief      Sets the x coordinate of the position.
      *
      * @param[in]  x     The new value
      */
-    void setX(double x);
-    
+    void setX(const double x) {position_[0] = x;}
+
     /**
      * @brief      Sets the y coordinate of the position.
      *
      * @param[in]  y     The new value
      */
-    void setY(double y);
+    void setY(const double y) {position_[1] = y;}
 
     /**
      * @brief      Sets the z coordinate of the position.
      *
      * @param[in]  z     The new value
      */
-    void setZ(double z);
+    void setZ(const double z) {position_[2] = z;}
 
     /**
      * @brief      Gets the velocity.
      *
      * @return     The velocity.
      */
-    std::array<double, 3> getVelocity() const ;
+    std::array<double, 3> getVelocity() const {return velocity_;}
 
     /**
      * @brief      Gets the x coordinate of the velocity.
      *
      * @return     The x.
      */
-    double getVX() const;
+    double getVX() const {return velocity_[0];}
 
     /**
      * @brief      Gets the y coordinate of the velocity.
      *
      * @return     The y.
      */
-    double getVY() const;
+    double getVY() const {return velocity_[1];}
 
     /**
      * @brief      Gets the z coordinate of the velocity.
      *
      * @return     The z.
      */
-    double getVZ() const;
+    double getVZ() const {return velocity_[2];}
 
     /**
      * @brief      Sets the velocity.
      *
      * @param[in]  velocity  The velocity
      */
-    void setVelocity(const std::array<double, 3>& velocity);
+    void setVelocity(const std::array<double, 3>& velocity) {velocity_ = velocity;}
 
     /**
      * @brief      Sets the x coordinate of the velocity.
      *
      * @param[in]  vx    The new value
      */
-    void setVX(double vx);
+    void setVX(const double vx) {velocity_[0] = vx;}
 
     /**
      * @brief      Sets the y coordinate of the velocity.
      *
      * @param[in]  vy    The new value
      */
-    void setVY(double vy);
+    void setVY(const double vy) {velocity_[1] = vy;}
 
     /**
      * @brief      Sets the z coordinate of the velocity.
      *
      * @param[in]  vz    The new value
      */
-    void setVZ(double vz);
+    void setVZ(const double vz) {velocity_[2] = vz;}
 
     /**
      * @brief      Gets the acceleration.
      *
      * @return     The acceleration.
      */
-    std::array<double, 3> getAcceleration() const;
+    std::array<double, 3> getAcceleration() const {return acceleration_;}
 
     /**
      * @brief      Sets the acceleration.
      *
      * @param[in]  acceleration  The acceleration
      */
-    void setAcceleration(const std::array<double, 3>& acceleration);
+    void setAcceleration(const std::array<double, 3>& acceleration) {acceleration_ = acceleration;}
 
     /**
      * @brief      Sets the x coordinate of the acceleration.
      *
      * @param[in]  ax    The new value
      */
-    void setAX(double ax);
+    void setAX(const double ax) {acceleration_[0] = ax;}
 
     /**
      * @brief      Sets the y coordinate of the acceleration.
      *
      * @param[in]  ay    The new value
      */
-    void setAY(double ay);
+    void setAY(const double ay) {acceleration_[1] = ay;}
 
     /**
      * @brief      Sets the z coordinate of the acceleration.
      *
      * @param[in]  az    The new value
      */
-    void setAZ(double az);
+    void setAZ(const double az) {acceleration_[2] = az;}
 
     /**
      * @brief      Gets the radius.
      *
      * @return     The radius.
      */
-    double getRadius() const;
+    double getRadius() const {return radius_;}
 
     /**
      * @brief      Sets the radius.
      *
      * @param[in]  radius  The radius
      */
-    void setRadius(double radius);
+    void setRadius(const double radius) {radius_ = radius;}
 
     /**
      * @brief      Gets the mass.
      *
      * @return     The mass.
      */
-    double getMass() const;
+    double getMass() const {return mass_;}
 
     /**
      * @brief      Sets the mass.
      *
      * @param[in]  mass  The mass
      */
-    void setMass(double mass);
+    void setMass(const double mass) {mass_ = mass;}
 
     /**
      * @brief      Gets the color.
      *
      * @return     The color.
      */
-    std::array<int, 3> getColor() const;
+    const std::array<int, 3> getColor() const {return color_;}
+
+    /**
+     * @brief      Gets the name.
+     *
+     * @return     The name.
+     */
+    const std::string& getName() const {return name_;}
 
     /**
      * @brief      Updates the particle.
      *
      * @param[in]  deltaTime  The delta time
      */
-    void update(double deltaTime);
+    void update(const double deltaTime);
 
     /**
      * @brief      Adds a trail point.
@@ -233,21 +237,19 @@ public:
      *
      * @return     The trail.
      */
-    const std::deque<std::array<double, 3>>& getTrail() const;
+    const std::deque<std::array<double, 3>>& getTrail() const {return trail_;}
 
 private:
-    std::array<double, 3> m_position;     ///< Particle position (in m).
-    std::array<double, 3> m_velocity;     ///< Particle velocity (in m/s).
-    std::array<double, 3> m_acceleration; ///< Particle acceleration (in m/s²).
-    double m_radius;                      ///< Particle radius (in m).
-    double m_mass;                        ///< Particle mass (in kg).
-    std::array<int, 3> m_color;           ///< Particle colors.
+    std::array<double, 3> position_;     ///< Particle position (in m).
+    std::array<double, 3> velocity_;     ///< Particle velocity (in m/s).
+    std::array<double, 3> acceleration_; ///< Particle acceleration (in m/s²).
+    double radius_;                      ///< Particle radius (in m).
+    double mass_;                        ///< Particle mass (in kg).
+    std::array<int, 3> color_;           ///< Particle colors.
+    const std::string name_;             ///< particle name.
 
-    std::deque<std::array<double, 3>> m_trail;       ///< trail particle.
-    static constexpr size_t m_maxTrailLength = 5000; ///< max trail particle length.
-
-public:
-    const std::string m_name; ///< particle name.
+    std::deque<std::array<double, 3>> trail_;       ///< trail particle.
+    static constexpr size_t maxTrailLength_ = 5000; ///< max trail particle length.
 };
 
 #endif
