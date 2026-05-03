@@ -52,10 +52,10 @@ public:
     void setSpeed(const float& speed);
 
     // Getters
-    glm::vec3 getPosition() const { return position_; }
-    glm::vec3 getFront() const { return front_; }
-    glm::vec3 getUp() const { return up_; }
-    float getSpeed() const { return speed_; }
+    glm::vec3 getPosition() const {return position_;}
+    glm::vec3 getFront() const {return front_;}
+    glm::vec3 getUp() const {return up_;}
+    float getSpeed() const {return speed_;}
 
 private:
     glm::vec3 position_ = glm::vec3(0.0f, 0.0f, 0.0f);          ///< Camera position (in scene unit).
