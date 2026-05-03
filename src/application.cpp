@@ -2,38 +2,38 @@
 
 Application::Application()
 :
-    m_renderer()
+    renderer_()
 {
-    // Set m_renderer callbacks
-    m_renderer.setLoadConfigCallback([this](const std::string& configFilePath) {
+    // Set renderer callbacks
+    renderer_.setLoadConfigCallback([this](const std::string& configFilePath) {
         // Read configuration
         Config config;
         if (readConfig(configFilePath, config)) {
             loadConfig(config);
         }
     });
-    m_renderer.setUnloadConfigCallback([this]() {
+    renderer_.setUnloadConfigCallback([this]() {
         unloadConfig();
     });
 }
 
 void Application::loadConfig(const Config& config) {
-    m_universe = std::make_unique<Universe>(config.universeConfig);
-    m_renderer.setUniversePtr(m_universe.get());
-    m_renderer.updateConfig(config.rendererConfig);
+    universe_ = std::make_unique<Universe>(config.universeConfig);
+    renderer_.setUniversePtr(universe_.get());
+    renderer_.updateConfig(config.rendererConfig);
 }
 
 void Application::unloadConfig() {
-    m_universe.reset();
-    m_renderer.resetCurrentUniverse();
+    universe_.reset();
+    renderer_.resetCurrentUniverse();
 }
 
 void Application::start() {
 
-    while (m_renderer.isRunning()) {
-        if (m_universe && m_universe->m_isRunning && m_renderer.universeShouldMakeStep()) {
-            m_universe->makeStep();
+    while (renderer_.isRunning()) {
+        if (universe_ && universe_->m_isRunning && renderer_.universeShouldMakeStep()) {
+            universe_->makeStep();
         }
-        m_renderer.renderFrame();
+        renderer_.renderFrame();
     }
 }

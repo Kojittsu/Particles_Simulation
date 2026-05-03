@@ -1,8 +1,6 @@
 #ifndef APPLICATION_H
 #define APPLICATION_H
 
-#include <fstream>
-
 #include "config.h"
 #include "universe.h"
 #include "renderer.h"
@@ -32,8 +30,8 @@ public:
     void start();
 
 private:
-    std::unique_ptr<Universe> m_universe;
-    Renderer m_renderer;
+    std::unique_ptr<Universe> universe_;
+    Renderer renderer_;
 };
 
 #endif
