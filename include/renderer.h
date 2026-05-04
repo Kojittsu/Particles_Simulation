@@ -195,46 +195,46 @@ public:
      *
      * @return     The run time
      */
-    const double& getRuntime() const { return m_currentUniverseRuntime; }
+    const double& getRuntime() const { return currentUniverseRuntime_; }
 
 
 private:
-    GLFWwindow* m_window = nullptr;     ///< GLFW window pointer.
-    Universe* m_universePtr = nullptr;  ///< Universe pointer.
-    GLUquadric* m_quadric;              ///< GLU Utility for rendering quadratic shapes.
-    Camera m_camera;
+    GLFWwindow* window_ = nullptr;     ///< GLFW window pointer.
+    Universe* universePtr_ = nullptr;  ///< Universe pointer.
+    GLUquadric* quadric_;              ///< GLU Utility for rendering quadratic shapes.
+    Camera camera_;
 
-    std::function<void(const std::string&)> m_loadConfigCallback;  ///< Callback for loading config
-    std::function<void()> m_unloadConfigCallback;                  ///< Callback for unloading config
+    std::function<void(const std::string&)> loadConfigCallback_;  ///< Callback for loading config
+    std::function<void()> unloadConfigCallback_;                  ///< Callback for unloading config
 
     // ImGui flags
-    ImGuiWindowFlags m_windowFlags = ImGuiWindowFlags_AlwaysAutoResize | ImGuiWindowFlags_NoBackground;
-    ImGuiDockNodeFlags m_dockSpaceFlags = ImGuiDockNodeFlags_PassthruCentralNode;
+    ImGuiWindowFlags windowFlags_ = ImGuiWindowFlags_AlwaysAutoResize | ImGuiWindowFlags_NoBackground;
+    ImGuiDockNodeFlags dockSpaceFlags_ = ImGuiDockNodeFlags_PassthruCentralNode;
 
-    float m_lastX = 0.0f;       ///< Last cursor X position (in pixels).
-    float m_lastY = 0.0f;       ///< Last cursor Y position (in pixels).
+    float lastX_ = 0.0f;       ///< Last cursor X position (in pixels).
+    float lastY_ = 0.0f;       ///< Last cursor Y position (in pixels).
 
-    double m_lastFrameTime = 0.0;   ///< GLFW time of the last frame (in seconds).
+    double lastFrameTime_ = 0.0;   ///< GLFW time of the last frame (in seconds).
 
     // current universe variables
-    double m_currentUniverseTimePaused = 0.0;
-    double m_currentUniverseRuntime = 0.0;
-    double m_speedFactor = 1.0; ///< Speed factor applied for rendering universe at different speeds.
-    double m_scaleFactor = 1.0; ///< Scale factor applied for rendering : 1 SU = 1 meter * scaleFactor. (SU mean System Unit)
+    double currentUniverseTimePaused_ = 0.0;
+    double currentUniverseRuntime_ = 0.0;
+    double speedFactor_ = 1.0; ///< Speed factor applied for rendering universe at different speeds.
+    double scaleFactor_ = 1.0; ///< Scale factor applied for rendering : 1 SU = 1 meter * scaleFactor. (SU mean System Unit)
 
-    std::array<bool, 1024> m_keyStates{ {false} }; ///< States of the keys.
+    std::array<bool, 1024> keyStates_{ {false} }; ///< States of the keys.
 
-    bool m_isSpectatorMode = false; ///< Determines if spectator is enable.
-    bool m_renderParticleTrails = false; ///< Determines if renderer should render particle trails.
+    bool isSpectatorMode_ = false; ///< Determines if spectator is enable.
+    bool renderParticleTrails_ = false; ///< Determines if renderer should render particle trails.
 
-    std::vector<float> m_lastFrameratesBuffer; ///< vector of last framerates values
-    std::vector<float> m_lastFrameratesIndexes; ///< vector of last framerates indexes
+    std::vector<float> lastFrameratesBuffer_; ///< vector of last framerates values
+    std::vector<float> lastFrameratesIndexes_; ///< vector of last framerates indexes
 
     // grid members
-    bool m_renderGrid = false; ///< Determines if renderer should render grid.
-    static constexpr float m_gridLength = 10000; ///< grid length (in SU)
-    static constexpr float m_gridOpacity = 0.3; ///< grid opacity (in [0,1])
-    static constexpr float m_gridStep = 100.0; ///< grid step length (in SU)
+    bool renderGrid_ = false; ///< Determines if renderer should render grid.
+    static constexpr float gridLength_ = 10000; ///< grid length (in SU)
+    static constexpr float gridOpacity_ = 0.3; ///< grid opacity (in [0,1])
+    static constexpr float gridStep_ = 100.0; ///< grid step length (in SU)
 };
 
 #endif // RENDERER_H
