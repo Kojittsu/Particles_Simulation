@@ -94,17 +94,17 @@ public:
     bool getIsGravity();
 
 
-    double m_simuationTime = 0; ///< Current time in the universe.
-    bool m_isRunning = false;   ///< Universe running state.
+    double simuationTime_ = 0; ///< Current time in the universe.
+    bool isRunning_ = false;   ///< Universe running state.
 
 private:
-    const UniverseConfig m_config;              ///< Configuration of the universe.
-    std::ofstream m_logFile;                    ///< Log file containing particles data.
-    std::vector<Particle> m_particles;          ///< Vector containing all particles.
-    std::vector<Box> m_boxes;                   ///< Vector containing all boxes.
-    bool m_applyGravity;                        ///< Vector containing all boxes.
-    std::array<double, 3> m_globalAcceleration; ///< Acceleration force apply on all universe.
-    const double m_G = 6.67430e-11;             ///< Gravitational constant
+    const UniverseConfig config_;              ///< Configuration of the universe.
+    std::ofstream logFile_;                    ///< Log file containing particles data.
+    std::vector<Particle> particles_;          ///< Vector containing all particles.
+    std::vector<Box> boxes_;                   ///< Vector containing all boxes.
+    bool applyGravity_;                        ///< Vector containing all boxes.
+    std::array<double, 3> globalAcceleration_; ///< Acceleration force apply on all universe.
+    const double G_ = 6.67430e-11;             ///< Gravitational constant
 
 };
 

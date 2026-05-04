@@ -31,7 +31,7 @@ void Application::unloadConfig() {
 void Application::start() {
 
     while (renderer_.isRunning()) {
-        if (universe_ && universe_->m_isRunning && renderer_.universeShouldMakeStep()) {
+        if (universe_ && universe_->isRunning_ && renderer_.universeShouldMakeStep()) {
             universe_->makeStep();
         }
         renderer_.renderFrame();

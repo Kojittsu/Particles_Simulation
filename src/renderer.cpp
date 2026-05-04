@@ -189,7 +189,7 @@ void Renderer::renderScene() {
         lastFrameTime_ = currentFrame;
 
         // compute currentUniverseRuntime_ & currentUniverseTimePaused_
-        if(universePtr_->m_isRunning) {
+        if(universePtr_->isRunning_) {
             currentUniverseRuntime_ = currentFrame - currentUniverseTimePaused_;
         }
         else {
@@ -370,8 +370,8 @@ void Renderer::ImGuiControlsMenu() {
     }
 
     if (universePtr_ && ImGui::CollapsingHeader("Simulation controls")) {
-        if (ImGui::Button(universePtr_->m_isRunning ? "Pause simulation" : "Start simulation")) {
-            universePtr_->m_isRunning = !universePtr_->m_isRunning;
+        if (ImGui::Button(universePtr_->isRunning_ ? "Pause simulation" : "Start simulation")) {
+            universePtr_->isRunning_ = !universePtr_->isRunning_;
         }
 
         if (ImGui::Button("Toggle gravity")) {
@@ -489,7 +489,7 @@ void Renderer::ImGuiInformationMenu() {
     }
 
     if(universePtr_) {
-        double universeSimulationTime = universePtr_->m_simuationTime;
+        double universeSimulationTime = universePtr_->simuationTime_;
         int days    = static_cast<int>(universeSimulationTime / 86400);
         int hours   = static_cast<int>(static_cast<int>(universeSimulationTime) % 86400 / 3600);
         int minutes = static_cast<int>(static_cast<int>(universeSimulationTime) % 3600 / 60);
@@ -603,5 +603,5 @@ bool Renderer::isRunning() {
 }
 
 bool Renderer::universeShouldMakeStep() {
-    return getRuntime() * speedFactor_ > universePtr_->m_simuationTime;
+    return getRuntime() * speedFactor_ > universePtr_->simuationTime_;
 }
