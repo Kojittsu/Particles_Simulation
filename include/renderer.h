@@ -208,8 +208,8 @@ private:
     std::function<void()> unloadConfigCallback_;                  ///< Callback for unloading config
 
     // ImGui flags
-    ImGuiWindowFlags windowFlags_ = ImGuiWindowFlags_AlwaysAutoResize | ImGuiWindowFlags_NoBackground;
-    ImGuiDockNodeFlags dockSpaceFlags_ = ImGuiDockNodeFlags_PassthruCentralNode;
+    static constexpr ImGuiWindowFlags windowFlags_ = ImGuiWindowFlags_AlwaysAutoResize | ImGuiWindowFlags_NoBackground;
+    static constexpr ImGuiDockNodeFlags dockSpaceFlags_ = ImGuiDockNodeFlags_PassthruCentralNode;
 
     float lastX_ = 0.0f;       ///< Last cursor X position (in pixels).
     float lastY_ = 0.0f;       ///< Last cursor Y position (in pixels).
