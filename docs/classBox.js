@@ -1,8 +1,8 @@
 var classBox =
 [
-    [ "Box", "classBox.html#a5c51e99653118706d835b358e7a0f103", null ],
-    [ "m_depth", "classBox.html#a9f6d7e03a0f10a8dac46e11b309972f0", null ],
-    [ "m_height", "classBox.html#a07ef2fd90ba97a48d1ef0ae6fa573031", null ],
-    [ "m_length", "classBox.html#abd4843689494af45a6b3e1122eb97451", null ],
-    [ "m_origin", "classBox.html#a0a224f1bb6c6666193bb5cfd79cb0bb2", null ]
+    [ "Box", "classBox.html#a03da664ed67933661ce579ed8f33fc14", null ],
+    [ "depth_", "classBox.html#ad37781c33397912d67426eef9791b15a", null ],
+    [ "height_", "classBox.html#acae58a80d6757efa59ede67aafea8d14", null ],
+    [ "length_", "classBox.html#aa99246da2a301014d1e14492f1d8b114", null ],
+    [ "origin_", "classBox.html#a394c1e33f5ddffaef62fb16a05d1b695", null ]
 ];

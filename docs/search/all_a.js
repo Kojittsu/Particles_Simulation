@@ -1,9 +1,12 @@
 var searchData=
 [
-  ['operator_2a_0',['operator*',['../array_8h.html#a49a43beea9f15e3e0237e041b1e8abd9',1,'operator*(const std::array&lt; double, 3 &gt; &amp;lhs, const std::array&lt; double, 3 &gt; &amp;rhs):&#160;array.cpp'],['../array_8h.html#a4d127d1fb95554cc4bfe50e72ce82108',1,'operator*(const std::array&lt; double, 3 &gt; &amp;lhs, double scalar):&#160;array.cpp'],['../array_8h.html#a055e1ee3fa0567b2b6a930d6c0a54c22',1,'operator*(double scalar, const std::array&lt; double, 3 &gt; &amp;rhs):&#160;array.cpp'],['../array_8cpp.html#a49a43beea9f15e3e0237e041b1e8abd9',1,'operator*(const std::array&lt; double, 3 &gt; &amp;lhs, const std::array&lt; double, 3 &gt; &amp;rhs):&#160;array.cpp'],['../array_8cpp.html#a4d127d1fb95554cc4bfe50e72ce82108',1,'operator*(const std::array&lt; double, 3 &gt; &amp;lhs, double scalar):&#160;array.cpp'],['../array_8cpp.html#a055e1ee3fa0567b2b6a930d6c0a54c22',1,'operator*(double scalar, const std::array&lt; double, 3 &gt; &amp;rhs):&#160;array.cpp']]],
-  ['operator_2b_1',['operator+',['../array_8h.html#a3c368695e45ff06ab41955b009148fe4',1,'operator+(const std::array&lt; double, 3 &gt; &amp;lhs, const std::array&lt; double, 3 &gt; &amp;rhs):&#160;array.cpp'],['../array_8cpp.html#a3c368695e45ff06ab41955b009148fe4',1,'operator+(const std::array&lt; double, 3 &gt; &amp;lhs, const std::array&lt; double, 3 &gt; &amp;rhs):&#160;array.cpp']]],
-  ['operator_2b_3d_2',['operator+=',['../array_8h.html#a87586114f98e21fdf8e78c19f3427ec7',1,'operator+=(std::array&lt; double, 3 &gt; &amp;lhs, const std::array&lt; double, 3 &gt; &amp;rhs):&#160;array.cpp'],['../array_8cpp.html#a87586114f98e21fdf8e78c19f3427ec7',1,'operator+=(std::array&lt; double, 3 &gt; &amp;lhs, const std::array&lt; double, 3 &gt; &amp;rhs):&#160;array.cpp']]],
-  ['operator_2d_3',['operator-',['../array_8h.html#a576770b2e09fe71040532e9e4085e827',1,'operator-(const std::array&lt; double, 3 &gt; &amp;lhs, const std::array&lt; double, 3 &gt; &amp;rhs):&#160;array.cpp'],['../array_8cpp.html#a576770b2e09fe71040532e9e4085e827',1,'operator-(const std::array&lt; double, 3 &gt; &amp;lhs, const std::array&lt; double, 3 &gt; &amp;rhs):&#160;array.cpp']]],
-  ['overview_4',['📖 Overview',['../index.html#autotoc_md0',1,'']]],
-  ['overview_2emd_5',['overview.md',['../overview_8md.html',1,'']]]
+  ['lastframeratesbuffer_5f_0',['lastFrameratesBuffer_',['../classRenderer.html#a3406d84c4cd5b1e4db0453399a88cc22',1,'Renderer']]],
+  ['lastframeratesindexes_5f_1',['lastFrameratesIndexes_',['../classRenderer.html#a010f340cee476182c719d1554d77b5e1',1,'Renderer']]],
+  ['lastframetime_5f_2',['lastFrameTime_',['../classRenderer.html#a0cf2a30a0ad16815611c7ee4b2612d40',1,'Renderer']]],
+  ['lastx_5f_3',['lastX_',['../classRenderer.html#a5fc6471c251a978ba5a7ee89d94f4a2b',1,'Renderer']]],
+  ['lasty_5f_4',['lastY_',['../classRenderer.html#ad33212bd00ec6c08ac67347ba7e241ea',1,'Renderer']]],
+  ['length_5f_5',['length_',['../classBox.html#aa99246da2a301014d1e14492f1d8b114',1,'Box']]],
+  ['loadconfig_6',['loadConfig',['../classApplication.html#af58997caa0e220bc1defd094bd3da180',1,'Application']]],
+  ['loadconfigcallback_5f_7',['loadConfigCallback_',['../classRenderer.html#a29e8a7ec7cbaabb462fb869b8059818e',1,'Renderer']]],
+  ['logfile_5f_8',['logFile_',['../classUniverse.html#a0775184a4fbf545973b8a8a65f4ca118',1,'Universe']]]
 ];

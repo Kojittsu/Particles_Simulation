@@ -165,48 +165,52 @@ Public Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pri-attribs" class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
-<tr class="memitem:af40474065067d28ba33f7e5477866d9d" id="r_af40474065067d28ba33f7e5477866d9d"><td class="memItemLeft">GLFWwindow *&#160;</td><td class="memItemRight"><a class="el" href="#af40474065067d28ba33f7e5477866d9d">m_window</a> = nullptr</td></tr>
-<tr class="memdesc:af40474065067d28ba33f7e5477866d9d"><td class="mdescLeft">&#160;</td><td class="mdescRight">GLFW window pointer.  <br /></td></tr>
-<tr class="memitem:ac6f6135aee6a9942839cfe00e9022ab3" id="r_ac6f6135aee6a9942839cfe00e9022ab3"><td class="memItemLeft"><a class="el" href="classUniverse.html">Universe</a> *&#160;</td><td class="memItemRight"><a class="el" href="#ac6f6135aee6a9942839cfe00e9022ab3">m_universePtr</a> = nullptr</td></tr>
-<tr class="memdesc:ac6f6135aee6a9942839cfe00e9022ab3"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classUniverse.html">Universe</a> pointer.  <br /></td></tr>
-<tr class="memitem:a36f17dd88324e285ee31a129b5e9fa31" id="r_a36f17dd88324e285ee31a129b5e9fa31"><td class="memItemLeft">GLUquadric *&#160;</td><td class="memItemRight"><a class="el" href="#a36f17dd88324e285ee31a129b5e9fa31">m_quadric</a></td></tr>
-<tr class="memdesc:a36f17dd88324e285ee31a129b5e9fa31"><td class="mdescLeft">&#160;</td><td class="mdescRight">GLU Utility for rendering quadratic shapes.  <br /></td></tr>
-<tr class="memitem:a2df1e635ecdcb423766b70eb29154a4f" id="r_a2df1e635ecdcb423766b70eb29154a4f"><td class="memItemLeft"><a class="el" href="classCamera.html">Camera</a>&#160;</td><td class="memItemRight"><a class="el" href="#a2df1e635ecdcb423766b70eb29154a4f">m_camera</a></td></tr>
-<tr class="memitem:ad03252d5e00d4f2a94b5003b2a6e4985" id="r_ad03252d5e00d4f2a94b5003b2a6e4985"><td class="memItemLeft">std::function&lt; void(const std::string &amp;)&gt;&#160;</td><td class="memItemRight"><a class="el" href="#ad03252d5e00d4f2a94b5003b2a6e4985">m_loadConfigCallback</a></td></tr>
-<tr class="memdesc:ad03252d5e00d4f2a94b5003b2a6e4985"><td class="mdescLeft">&#160;</td><td class="mdescRight">Callback for loading config.  <br /></td></tr>
-<tr class="memitem:a5dc39dede2a8db96c3be825da1ef7cf1" id="r_a5dc39dede2a8db96c3be825da1ef7cf1"><td class="memItemLeft">std::function&lt; void()&gt;&#160;</td><td class="memItemRight"><a class="el" href="#a5dc39dede2a8db96c3be825da1ef7cf1">m_unloadConfigCallback</a></td></tr>
-<tr class="memdesc:a5dc39dede2a8db96c3be825da1ef7cf1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Callback for unloading config.  <br /></td></tr>
-<tr class="memitem:a6983c9105e0fae537fe813021537f713" id="r_a6983c9105e0fae537fe813021537f713"><td class="memItemLeft">ImGuiWindowFlags&#160;</td><td class="memItemRight"><a class="el" href="#a6983c9105e0fae537fe813021537f713">m_windowFlags</a> = ImGuiWindowFlags_AlwaysAutoResize | ImGuiWindowFlags_NoBackground</td></tr>
-<tr class="memitem:a131c8591f180dfd82468bd8f14ea4d65" id="r_a131c8591f180dfd82468bd8f14ea4d65"><td class="memItemLeft">ImGuiDockNodeFlags&#160;</td><td class="memItemRight"><a class="el" href="#a131c8591f180dfd82468bd8f14ea4d65">m_dockSpaceFlags</a> = ImGuiDockNodeFlags_PassthruCentralNode</td></tr>
-<tr class="memitem:a0254c1267250bf28387ecb601015789c" id="r_a0254c1267250bf28387ecb601015789c"><td class="memItemLeft">float&#160;</td><td class="memItemRight"><a class="el" href="#a0254c1267250bf28387ecb601015789c">m_lastX</a> = 0.0f</td></tr>
-<tr class="memdesc:a0254c1267250bf28387ecb601015789c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Last cursor X position (in pixels).  <br /></td></tr>
-<tr class="memitem:a64abded5a5ffb0bc07ab04d042978161" id="r_a64abded5a5ffb0bc07ab04d042978161"><td class="memItemLeft">float&#160;</td><td class="memItemRight"><a class="el" href="#a64abded5a5ffb0bc07ab04d042978161">m_lastY</a> = 0.0f</td></tr>
-<tr class="memdesc:a64abded5a5ffb0bc07ab04d042978161"><td class="mdescLeft">&#160;</td><td class="mdescRight">Last cursor Y position (in pixels).  <br /></td></tr>
-<tr class="memitem:a733a05fc09820708dc1e2813db5170cf" id="r_a733a05fc09820708dc1e2813db5170cf"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="#a733a05fc09820708dc1e2813db5170cf">m_lastFrameTime</a> = 0.0</td></tr>
-<tr class="memdesc:a733a05fc09820708dc1e2813db5170cf"><td class="mdescLeft">&#160;</td><td class="mdescRight">GLFW time of the last frame (in seconds).  <br /></td></tr>
-<tr class="memitem:ab2ecc5a2e807e9b09adde03bcbb4666e" id="r_ab2ecc5a2e807e9b09adde03bcbb4666e"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="#ab2ecc5a2e807e9b09adde03bcbb4666e">m_currentUniverseTimePaused</a> = 0.0</td></tr>
-<tr class="memitem:afdf859e3bcf245401e0b497c428b7a7e" id="r_afdf859e3bcf245401e0b497c428b7a7e"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="#afdf859e3bcf245401e0b497c428b7a7e">m_currentUniverseRuntime</a> = 0.0</td></tr>
-<tr class="memitem:af4b443eb83d42be55ee236d86a560b7b" id="r_af4b443eb83d42be55ee236d86a560b7b"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="#af4b443eb83d42be55ee236d86a560b7b">m_speedFactor</a> = 1.0</td></tr>
-<tr class="memdesc:af4b443eb83d42be55ee236d86a560b7b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Speed factor applied for rendering universe at different speeds.  <br /></td></tr>
-<tr class="memitem:a4d1be5f9be58e2d78edcf8959d4377c4" id="r_a4d1be5f9be58e2d78edcf8959d4377c4"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="#a4d1be5f9be58e2d78edcf8959d4377c4">m_scaleFactor</a> = 1.0</td></tr>
-<tr class="memdesc:a4d1be5f9be58e2d78edcf8959d4377c4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Scale factor applied for rendering : 1 SU = 1 meter * scaleFactor. (SU mean System Unit).  <br /></td></tr>
-<tr class="memitem:ac49a656d49b36f202aaec5f530c3927b" id="r_ac49a656d49b36f202aaec5f530c3927b"><td class="memItemLeft">std::array&lt; bool, 1024 &gt;&#160;</td><td class="memItemRight"><a class="el" href="#ac49a656d49b36f202aaec5f530c3927b">m_keyStates</a> { {false} }</td></tr>
-<tr class="memdesc:ac49a656d49b36f202aaec5f530c3927b"><td class="mdescLeft">&#160;</td><td class="mdescRight">States of the keys.  <br /></td></tr>
-<tr class="memitem:af9c701b2cbb3d311039a2dbf7a53f4c7" id="r_af9c701b2cbb3d311039a2dbf7a53f4c7"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#af9c701b2cbb3d311039a2dbf7a53f4c7">m_isSpectatorMode</a> = false</td></tr>
-<tr class="memdesc:af9c701b2cbb3d311039a2dbf7a53f4c7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Determines if spectator is enable.  <br /></td></tr>
-<tr class="memitem:a3ad73ac8054357790bf6b2a14cdceacf" id="r_a3ad73ac8054357790bf6b2a14cdceacf"><td class="memItemLeft">std::vector&lt; float &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a3ad73ac8054357790bf6b2a14cdceacf">m_lastFrameratesBuffer</a></td></tr>
-<tr class="memdesc:a3ad73ac8054357790bf6b2a14cdceacf"><td class="mdescLeft">&#160;</td><td class="mdescRight">vector of last framerates values  <br /></td></tr>
-<tr class="memitem:ae44e22e15b7bff59f7e9911af26cd989" id="r_ae44e22e15b7bff59f7e9911af26cd989"><td class="memItemLeft">std::vector&lt; float &gt;&#160;</td><td class="memItemRight"><a class="el" href="#ae44e22e15b7bff59f7e9911af26cd989">m_lastFrameratesIndexes</a></td></tr>
-<tr class="memdesc:ae44e22e15b7bff59f7e9911af26cd989"><td class="mdescLeft">&#160;</td><td class="mdescRight">vector of last framerates indexes  <br /></td></tr>
+<tr class="memitem:aecc58d1a101e9249f5dae6c0d9a44568" id="r_aecc58d1a101e9249f5dae6c0d9a44568"><td class="memItemLeft">GLFWwindow *&#160;</td><td class="memItemRight"><a class="el" href="#aecc58d1a101e9249f5dae6c0d9a44568">window_</a> = nullptr</td></tr>
+<tr class="memdesc:aecc58d1a101e9249f5dae6c0d9a44568"><td class="mdescLeft">&#160;</td><td class="mdescRight">GLFW window pointer.  <br /></td></tr>
+<tr class="memitem:a750cbb9225bef0b0b211aca89342e9be" id="r_a750cbb9225bef0b0b211aca89342e9be"><td class="memItemLeft"><a class="el" href="classUniverse.html">Universe</a> *&#160;</td><td class="memItemRight"><a class="el" href="#a750cbb9225bef0b0b211aca89342e9be">universePtr_</a> = nullptr</td></tr>
+<tr class="memdesc:a750cbb9225bef0b0b211aca89342e9be"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classUniverse.html">Universe</a> pointer.  <br /></td></tr>
+<tr class="memitem:acd80e2a5473918b2f370d47a8b8bb5b1" id="r_acd80e2a5473918b2f370d47a8b8bb5b1"><td class="memItemLeft">GLUquadric *&#160;</td><td class="memItemRight"><a class="el" href="#acd80e2a5473918b2f370d47a8b8bb5b1">quadric_</a></td></tr>
+<tr class="memdesc:acd80e2a5473918b2f370d47a8b8bb5b1"><td class="mdescLeft">&#160;</td><td class="mdescRight">GLU Utility for rendering quadratic shapes.  <br /></td></tr>
+<tr class="memitem:abd298553138dcc85b7f3492d144d54b2" id="r_abd298553138dcc85b7f3492d144d54b2"><td class="memItemLeft"><a class="el" href="classCamera.html">Camera</a>&#160;</td><td class="memItemRight"><a class="el" href="#abd298553138dcc85b7f3492d144d54b2">camera_</a></td></tr>
+<tr class="memitem:a29e8a7ec7cbaabb462fb869b8059818e" id="r_a29e8a7ec7cbaabb462fb869b8059818e"><td class="memItemLeft">std::function&lt; void(const std::string &amp;)&gt;&#160;</td><td class="memItemRight"><a class="el" href="#a29e8a7ec7cbaabb462fb869b8059818e">loadConfigCallback_</a></td></tr>
+<tr class="memdesc:a29e8a7ec7cbaabb462fb869b8059818e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Callback for loading config.  <br /></td></tr>
+<tr class="memitem:a2021bf15e6d6612b292aa9ec9e4945ff" id="r_a2021bf15e6d6612b292aa9ec9e4945ff"><td class="memItemLeft">std::function&lt; void()&gt;&#160;</td><td class="memItemRight"><a class="el" href="#a2021bf15e6d6612b292aa9ec9e4945ff">unloadConfigCallback_</a></td></tr>
+<tr class="memdesc:a2021bf15e6d6612b292aa9ec9e4945ff"><td class="mdescLeft">&#160;</td><td class="mdescRight">Callback for unloading config.  <br /></td></tr>
+<tr class="memitem:a5fc6471c251a978ba5a7ee89d94f4a2b" id="r_a5fc6471c251a978ba5a7ee89d94f4a2b"><td class="memItemLeft">float&#160;</td><td class="memItemRight"><a class="el" href="#a5fc6471c251a978ba5a7ee89d94f4a2b">lastX_</a> = 0.0f</td></tr>
+<tr class="memdesc:a5fc6471c251a978ba5a7ee89d94f4a2b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Last cursor X position (in pixels).  <br /></td></tr>
+<tr class="memitem:ad33212bd00ec6c08ac67347ba7e241ea" id="r_ad33212bd00ec6c08ac67347ba7e241ea"><td class="memItemLeft">float&#160;</td><td class="memItemRight"><a class="el" href="#ad33212bd00ec6c08ac67347ba7e241ea">lastY_</a> = 0.0f</td></tr>
+<tr class="memdesc:ad33212bd00ec6c08ac67347ba7e241ea"><td class="mdescLeft">&#160;</td><td class="mdescRight">Last cursor Y position (in pixels).  <br /></td></tr>
+<tr class="memitem:a0cf2a30a0ad16815611c7ee4b2612d40" id="r_a0cf2a30a0ad16815611c7ee4b2612d40"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="#a0cf2a30a0ad16815611c7ee4b2612d40">lastFrameTime_</a> = 0.0</td></tr>
+<tr class="memdesc:a0cf2a30a0ad16815611c7ee4b2612d40"><td class="mdescLeft">&#160;</td><td class="mdescRight">GLFW time of the last frame (in seconds).  <br /></td></tr>
+<tr class="memitem:a1f0043252be0752927574ef0bf904252" id="r_a1f0043252be0752927574ef0bf904252"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="#a1f0043252be0752927574ef0bf904252">currentUniverseTimePaused_</a> = 0.0</td></tr>
+<tr class="memitem:a5e509852c7362866295f4dc608085006" id="r_a5e509852c7362866295f4dc608085006"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="#a5e509852c7362866295f4dc608085006">currentUniverseRuntime_</a> = 0.0</td></tr>
+<tr class="memitem:a77733f65a2e9b814c7413d6cd1da9ad1" id="r_a77733f65a2e9b814c7413d6cd1da9ad1"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="#a77733f65a2e9b814c7413d6cd1da9ad1">speedFactor_</a> = 1.0</td></tr>
+<tr class="memdesc:a77733f65a2e9b814c7413d6cd1da9ad1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Speed factor applied for rendering universe at different speeds.  <br /></td></tr>
+<tr class="memitem:a62e71d50ff2020f403c8f605b16f4db4" id="r_a62e71d50ff2020f403c8f605b16f4db4"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="#a62e71d50ff2020f403c8f605b16f4db4">scaleFactor_</a> = 1.0</td></tr>
+<tr class="memdesc:a62e71d50ff2020f403c8f605b16f4db4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Scale factor applied for rendering : 1 SU = 1 meter * scaleFactor. (SU mean System Unit).  <br /></td></tr>
+<tr class="memitem:a97e6f0b81c6459c459c9edbf4ca961c4" id="r_a97e6f0b81c6459c459c9edbf4ca961c4"><td class="memItemLeft">std::array&lt; bool, 1024 &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a97e6f0b81c6459c459c9edbf4ca961c4">keyStates_</a> { {false} }</td></tr>
+<tr class="memdesc:a97e6f0b81c6459c459c9edbf4ca961c4"><td class="mdescLeft">&#160;</td><td class="mdescRight">States of the keys.  <br /></td></tr>
+<tr class="memitem:ac10037eaf37f3737b0a486f0b2748acc" id="r_ac10037eaf37f3737b0a486f0b2748acc"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#ac10037eaf37f3737b0a486f0b2748acc">isSpectatorMode_</a> = false</td></tr>
+<tr class="memdesc:ac10037eaf37f3737b0a486f0b2748acc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Determines if spectator is enable.  <br /></td></tr>
+<tr class="memitem:a4bffa2804203d541797da73758d1530a" id="r_a4bffa2804203d541797da73758d1530a"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a4bffa2804203d541797da73758d1530a">renderParticleTrails_</a> = false</td></tr>
+<tr class="memdesc:a4bffa2804203d541797da73758d1530a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Determines if renderer should render particle trails.  <br /></td></tr>
+<tr class="memitem:a3406d84c4cd5b1e4db0453399a88cc22" id="r_a3406d84c4cd5b1e4db0453399a88cc22"><td class="memItemLeft">std::vector&lt; float &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a3406d84c4cd5b1e4db0453399a88cc22">lastFrameratesBuffer_</a></td></tr>
+<tr class="memdesc:a3406d84c4cd5b1e4db0453399a88cc22"><td class="mdescLeft">&#160;</td><td class="mdescRight">vector of last framerates values  <br /></td></tr>
+<tr class="memitem:a010f340cee476182c719d1554d77b5e1" id="r_a010f340cee476182c719d1554d77b5e1"><td class="memItemLeft">std::vector&lt; float &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a010f340cee476182c719d1554d77b5e1">lastFrameratesIndexes_</a></td></tr>
+<tr class="memdesc:a010f340cee476182c719d1554d77b5e1"><td class="mdescLeft">&#160;</td><td class="mdescRight">vector of last framerates indexes  <br /></td></tr>
+<tr class="memitem:ac010693d7fadd770d445d41799f20357" id="r_ac010693d7fadd770d445d41799f20357"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#ac010693d7fadd770d445d41799f20357">renderGrid_</a> = false</td></tr>
+<tr class="memdesc:ac010693d7fadd770d445d41799f20357"><td class="mdescLeft">&#160;</td><td class="mdescRight">Determines if renderer should render grid.  <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pri-static-attribs" class="groupheader"><a id="pri-static-attribs" name="pri-static-attribs"></a>
 Static Private Attributes</h2></td></tr>
-<tr class="memitem:a155c5972bdda4d6d872e3f3d4b5371f2" id="r_a155c5972bdda4d6d872e3f3d4b5371f2"><td class="memItemLeft">static constexpr float&#160;</td><td class="memItemRight"><a class="el" href="#a155c5972bdda4d6d872e3f3d4b5371f2">m_gridLength</a> = 10000</td></tr>
-<tr class="memdesc:a155c5972bdda4d6d872e3f3d4b5371f2"><td class="mdescLeft">&#160;</td><td class="mdescRight">grid length (in SU)  <br /></td></tr>
-<tr class="memitem:abbb8a85eaf0d4f9ac5353d277077afac" id="r_abbb8a85eaf0d4f9ac5353d277077afac"><td class="memItemLeft">static constexpr float&#160;</td><td class="memItemRight"><a class="el" href="#abbb8a85eaf0d4f9ac5353d277077afac">m_gridOpacity</a> = 0.3</td></tr>
-<tr class="memdesc:abbb8a85eaf0d4f9ac5353d277077afac"><td class="mdescLeft">&#160;</td><td class="mdescRight">grid opacity (in [0,1])  <br /></td></tr>
-<tr class="memitem:abfe9e878292da252d82663295d17fcb2" id="r_abfe9e878292da252d82663295d17fcb2"><td class="memItemLeft">static constexpr float&#160;</td><td class="memItemRight"><a class="el" href="#abfe9e878292da252d82663295d17fcb2">m_gridStep</a> = 100.0</td></tr>
-<tr class="memdesc:abfe9e878292da252d82663295d17fcb2"><td class="mdescLeft">&#160;</td><td class="mdescRight">grid step length (in SU)  <br /></td></tr>
+<tr class="memitem:a660d7e6ed11ea20d1a830b38d29718a3" id="r_a660d7e6ed11ea20d1a830b38d29718a3"><td class="memItemLeft">static constexpr ImGuiWindowFlags&#160;</td><td class="memItemRight"><a class="el" href="#a660d7e6ed11ea20d1a830b38d29718a3">windowFlags_</a> = ImGuiWindowFlags_AlwaysAutoResize | ImGuiWindowFlags_NoBackground</td></tr>
+<tr class="memitem:a7e124ca9f76e861c2d171d5dd43b84b2" id="r_a7e124ca9f76e861c2d171d5dd43b84b2"><td class="memItemLeft">static constexpr ImGuiDockNodeFlags&#160;</td><td class="memItemRight"><a class="el" href="#a7e124ca9f76e861c2d171d5dd43b84b2">dockSpaceFlags_</a> = ImGuiDockNodeFlags_PassthruCentralNode</td></tr>
+<tr class="memitem:a46c87ad0307fef715a3b5b47a1adee9f" id="r_a46c87ad0307fef715a3b5b47a1adee9f"><td class="memItemLeft">static constexpr float&#160;</td><td class="memItemRight"><a class="el" href="#a46c87ad0307fef715a3b5b47a1adee9f">gridLength_</a> = 10000</td></tr>
+<tr class="memdesc:a46c87ad0307fef715a3b5b47a1adee9f"><td class="mdescLeft">&#160;</td><td class="mdescRight">grid length (in SU)  <br /></td></tr>
+<tr class="memitem:a35d9337750a25f9121d488ace42f64c5" id="r_a35d9337750a25f9121d488ace42f64c5"><td class="memItemLeft">static constexpr float&#160;</td><td class="memItemRight"><a class="el" href="#a35d9337750a25f9121d488ace42f64c5">gridOpacity_</a> = 0.3</td></tr>
+<tr class="memdesc:a35d9337750a25f9121d488ace42f64c5"><td class="mdescLeft">&#160;</td><td class="mdescRight">grid opacity (in [0,1])  <br /></td></tr>
+<tr class="memitem:a71690c873e32dba33d1534e6499bbb59" id="r_a71690c873e32dba33d1534e6499bbb59"><td class="memItemLeft">static constexpr float&#160;</td><td class="memItemRight"><a class="el" href="#a71690c873e32dba33d1534e6499bbb59">gridStep_</a> = 100.0</td></tr>
+<tr class="memdesc:a71690c873e32dba33d1534e6499bbb59"><td class="mdescLeft">&#160;</td><td class="mdescRight">grid step length (in SU)  <br /></td></tr>
 </table>
 <a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a7ebf46f54dab9905f79b80f7fddb76a6" name="a7ebf46f54dab9905f79b80f7fddb76a6"></a>
@@ -854,8 +858,8 @@ Static Private Attributes</h2></td></tr>
 </div>
 </div>
 <a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">Member Data Documentation</h2>
-<a id="a2df1e635ecdcb423766b70eb29154a4f" name="a2df1e635ecdcb423766b70eb29154a4f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2df1e635ecdcb423766b70eb29154a4f">&#9670;&#160;</a></span>m_camera</h2>
+<a id="abd298553138dcc85b7f3492d144d54b2" name="abd298553138dcc85b7f3492d144d54b2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abd298553138dcc85b7f3492d144d54b2">&#9670;&#160;</a></span>camera_</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -864,7 +868,7 @@ Static Private Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classCamera.html">Camera</a> Renderer::m_camera</td>
+          <td class="memname"><a class="el" href="classCamera.html">Camera</a> Renderer::camera_</td>
         </tr>
       </table>
   </td>
@@ -876,8 +880,8 @@ Static Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="afdf859e3bcf245401e0b497c428b7a7e" name="afdf859e3bcf245401e0b497c428b7a7e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#afdf859e3bcf245401e0b497c428b7a7e">&#9670;&#160;</a></span>m_currentUniverseRuntime</h2>
+<a id="a5e509852c7362866295f4dc608085006" name="a5e509852c7362866295f4dc608085006"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5e509852c7362866295f4dc608085006">&#9670;&#160;</a></span>currentUniverseRuntime_</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -886,7 +890,7 @@ Static Private Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">double Renderer::m_currentUniverseRuntime = 0.0</td>
+          <td class="memname">double Renderer::currentUniverseRuntime_ = 0.0</td>
         </tr>
       </table>
   </td>
@@ -898,8 +902,8 @@ Static Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="ab2ecc5a2e807e9b09adde03bcbb4666e" name="ab2ecc5a2e807e9b09adde03bcbb4666e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab2ecc5a2e807e9b09adde03bcbb4666e">&#9670;&#160;</a></span>m_currentUniverseTimePaused</h2>
+<a id="a1f0043252be0752927574ef0bf904252" name="a1f0043252be0752927574ef0bf904252"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1f0043252be0752927574ef0bf904252">&#9670;&#160;</a></span>currentUniverseTimePaused_</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -908,7 +912,7 @@ Static Private Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">double Renderer::m_currentUniverseTimePaused = 0.0</td>
+          <td class="memname">double Renderer::currentUniverseTimePaused_ = 0.0</td>
         </tr>
       </table>
   </td>
@@ -920,8 +924,8 @@ Static Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="a131c8591f180dfd82468bd8f14ea4d65" name="a131c8591f180dfd82468bd8f14ea4d65"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a131c8591f180dfd82468bd8f14ea4d65">&#9670;&#160;</a></span>m_dockSpaceFlags</h2>
+<a id="a7e124ca9f76e861c2d171d5dd43b84b2" name="a7e124ca9f76e861c2d171d5dd43b84b2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7e124ca9f76e861c2d171d5dd43b84b2">&#9670;&#160;</a></span>dockSpaceFlags_</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -930,20 +934,20 @@ Static Private Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">ImGuiDockNodeFlags Renderer::m_dockSpaceFlags = ImGuiDockNodeFlags_PassthruCentralNode</td>
+          <td class="memname">ImGuiDockNodeFlags Renderer::dockSpaceFlags_ = ImGuiDockNodeFlags_PassthruCentralNode</td>
         </tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+<span class="mlabels"><span class="mlabel static">static</span><span class="mlabel constexpr">constexpr</span><span class="mlabel private">private</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
 </div>
 </div>
-<a id="a155c5972bdda4d6d872e3f3d4b5371f2" name="a155c5972bdda4d6d872e3f3d4b5371f2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a155c5972bdda4d6d872e3f3d4b5371f2">&#9670;&#160;</a></span>m_gridLength</h2>
+<a id="a46c87ad0307fef715a3b5b47a1adee9f" name="a46c87ad0307fef715a3b5b47a1adee9f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a46c87ad0307fef715a3b5b47a1adee9f">&#9670;&#160;</a></span>gridLength_</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -952,7 +956,7 @@ Static Private Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">float Renderer::m_gridLength = 10000</td>
+          <td class="memname">float Renderer::gridLength_ = 10000</td>
         </tr>
       </table>
   </td>
@@ -966,8 +970,8 @@ Static Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="abbb8a85eaf0d4f9ac5353d277077afac" name="abbb8a85eaf0d4f9ac5353d277077afac"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#abbb8a85eaf0d4f9ac5353d277077afac">&#9670;&#160;</a></span>m_gridOpacity</h2>
+<a id="a35d9337750a25f9121d488ace42f64c5" name="a35d9337750a25f9121d488ace42f64c5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a35d9337750a25f9121d488ace42f64c5">&#9670;&#160;</a></span>gridOpacity_</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -976,7 +980,7 @@ Static Private Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">float Renderer::m_gridOpacity = 0.3</td>
+          <td class="memname">float Renderer::gridOpacity_ = 0.3</td>
         </tr>
       </table>
   </td>
@@ -990,8 +994,8 @@ Static Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="abfe9e878292da252d82663295d17fcb2" name="abfe9e878292da252d82663295d17fcb2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#abfe9e878292da252d82663295d17fcb2">&#9670;&#160;</a></span>m_gridStep</h2>
+<a id="a71690c873e32dba33d1534e6499bbb59" name="a71690c873e32dba33d1534e6499bbb59"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a71690c873e32dba33d1534e6499bbb59">&#9670;&#160;</a></span>gridStep_</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1000,7 +1004,7 @@ Static Private Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">float Renderer::m_gridStep = 100.0</td>
+          <td class="memname">float Renderer::gridStep_ = 100.0</td>
         </tr>
       </table>
   </td>
@@ -1014,8 +1018,8 @@ Static Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="af9c701b2cbb3d311039a2dbf7a53f4c7" name="af9c701b2cbb3d311039a2dbf7a53f4c7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af9c701b2cbb3d311039a2dbf7a53f4c7">&#9670;&#160;</a></span>m_isSpectatorMode</h2>
+<a id="ac10037eaf37f3737b0a486f0b2748acc" name="ac10037eaf37f3737b0a486f0b2748acc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac10037eaf37f3737b0a486f0b2748acc">&#9670;&#160;</a></span>isSpectatorMode_</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1024,7 +1028,7 @@ Static Private Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">bool Renderer::m_isSpectatorMode = false</td>
+          <td class="memname">bool Renderer::isSpectatorMode_ = false</td>
         </tr>
       </table>
   </td>
@@ -1038,8 +1042,8 @@ Static Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="ac49a656d49b36f202aaec5f530c3927b" name="ac49a656d49b36f202aaec5f530c3927b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac49a656d49b36f202aaec5f530c3927b">&#9670;&#160;</a></span>m_keyStates</h2>
+<a id="a97e6f0b81c6459c459c9edbf4ca961c4" name="a97e6f0b81c6459c459c9edbf4ca961c4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a97e6f0b81c6459c459c9edbf4ca961c4">&#9670;&#160;</a></span>keyStates_</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1048,7 +1052,7 @@ Static Private Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">std::array&lt;bool, 1024&gt; Renderer::m_keyStates { {false} }</td>
+          <td class="memname">std::array&lt;bool, 1024&gt; Renderer::keyStates_ { {false} }</td>
         </tr>
       </table>
   </td>
@@ -1062,8 +1066,8 @@ Static Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="a3ad73ac8054357790bf6b2a14cdceacf" name="a3ad73ac8054357790bf6b2a14cdceacf"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3ad73ac8054357790bf6b2a14cdceacf">&#9670;&#160;</a></span>m_lastFrameratesBuffer</h2>
+<a id="a3406d84c4cd5b1e4db0453399a88cc22" name="a3406d84c4cd5b1e4db0453399a88cc22"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3406d84c4cd5b1e4db0453399a88cc22">&#9670;&#160;</a></span>lastFrameratesBuffer_</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1072,7 +1076,7 @@ Static Private Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">std::vector&lt;float&gt; Renderer::m_lastFrameratesBuffer</td>
+          <td class="memname">std::vector&lt;float&gt; Renderer::lastFrameratesBuffer_</td>
         </tr>
       </table>
   </td>
@@ -1086,8 +1090,8 @@ Static Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="ae44e22e15b7bff59f7e9911af26cd989" name="ae44e22e15b7bff59f7e9911af26cd989"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae44e22e15b7bff59f7e9911af26cd989">&#9670;&#160;</a></span>m_lastFrameratesIndexes</h2>
+<a id="a010f340cee476182c719d1554d77b5e1" name="a010f340cee476182c719d1554d77b5e1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a010f340cee476182c719d1554d77b5e1">&#9670;&#160;</a></span>lastFrameratesIndexes_</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1096,7 +1100,7 @@ Static Private Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">std::vector&lt;float&gt; Renderer::m_lastFrameratesIndexes</td>
+          <td class="memname">std::vector&lt;float&gt; Renderer::lastFrameratesIndexes_</td>
         </tr>
       </table>
   </td>
@@ -1110,8 +1114,8 @@ Static Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="a733a05fc09820708dc1e2813db5170cf" name="a733a05fc09820708dc1e2813db5170cf"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a733a05fc09820708dc1e2813db5170cf">&#9670;&#160;</a></span>m_lastFrameTime</h2>
+<a id="a0cf2a30a0ad16815611c7ee4b2612d40" name="a0cf2a30a0ad16815611c7ee4b2612d40"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0cf2a30a0ad16815611c7ee4b2612d40">&#9670;&#160;</a></span>lastFrameTime_</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1120,7 +1124,7 @@ Static Private Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">double Renderer::m_lastFrameTime = 0.0</td>
+          <td class="memname">double Renderer::lastFrameTime_ = 0.0</td>
         </tr>
       </table>
   </td>
@@ -1134,8 +1138,8 @@ Static Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="a0254c1267250bf28387ecb601015789c" name="a0254c1267250bf28387ecb601015789c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0254c1267250bf28387ecb601015789c">&#9670;&#160;</a></span>m_lastX</h2>
+<a id="a5fc6471c251a978ba5a7ee89d94f4a2b" name="a5fc6471c251a978ba5a7ee89d94f4a2b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5fc6471c251a978ba5a7ee89d94f4a2b">&#9670;&#160;</a></span>lastX_</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1144,7 +1148,7 @@ Static Private Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">float Renderer::m_lastX = 0.0f</td>
+          <td class="memname">float Renderer::lastX_ = 0.0f</td>
         </tr>
       </table>
   </td>
@@ -1158,8 +1162,8 @@ Static Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="a64abded5a5ffb0bc07ab04d042978161" name="a64abded5a5ffb0bc07ab04d042978161"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a64abded5a5ffb0bc07ab04d042978161">&#9670;&#160;</a></span>m_lastY</h2>
+<a id="ad33212bd00ec6c08ac67347ba7e241ea" name="ad33212bd00ec6c08ac67347ba7e241ea"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad33212bd00ec6c08ac67347ba7e241ea">&#9670;&#160;</a></span>lastY_</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1168,7 +1172,7 @@ Static Private Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">float Renderer::m_lastY = 0.0f</td>
+          <td class="memname">float Renderer::lastY_ = 0.0f</td>
         </tr>
       </table>
   </td>
@@ -1182,8 +1186,8 @@ Static Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="ad03252d5e00d4f2a94b5003b2a6e4985" name="ad03252d5e00d4f2a94b5003b2a6e4985"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad03252d5e00d4f2a94b5003b2a6e4985">&#9670;&#160;</a></span>m_loadConfigCallback</h2>
+<a id="a29e8a7ec7cbaabb462fb869b8059818e" name="a29e8a7ec7cbaabb462fb869b8059818e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a29e8a7ec7cbaabb462fb869b8059818e">&#9670;&#160;</a></span>loadConfigCallback_</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1192,7 +1196,7 @@ Static Private Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">std::function&lt;void(const std::string&amp;)&gt; Renderer::m_loadConfigCallback</td>
+          <td class="memname">std::function&lt;void(const std::string&amp;)&gt; Renderer::loadConfigCallback_</td>
         </tr>
       </table>
   </td>
@@ -1206,8 +1210,8 @@ Static Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="a36f17dd88324e285ee31a129b5e9fa31" name="a36f17dd88324e285ee31a129b5e9fa31"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a36f17dd88324e285ee31a129b5e9fa31">&#9670;&#160;</a></span>m_quadric</h2>
+<a id="acd80e2a5473918b2f370d47a8b8bb5b1" name="acd80e2a5473918b2f370d47a8b8bb5b1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acd80e2a5473918b2f370d47a8b8bb5b1">&#9670;&#160;</a></span>quadric_</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1216,7 +1220,7 @@ Static Private Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">GLUquadric* Renderer::m_quadric</td>
+          <td class="memname">GLUquadric* Renderer::quadric_</td>
         </tr>
       </table>
   </td>
@@ -1230,8 +1234,8 @@ Static Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="a4d1be5f9be58e2d78edcf8959d4377c4" name="a4d1be5f9be58e2d78edcf8959d4377c4"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4d1be5f9be58e2d78edcf8959d4377c4">&#9670;&#160;</a></span>m_scaleFactor</h2>
+<a id="ac010693d7fadd770d445d41799f20357" name="ac010693d7fadd770d445d41799f20357"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac010693d7fadd770d445d41799f20357">&#9670;&#160;</a></span>renderGrid_</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1240,7 +1244,55 @@ Static Private Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">double Renderer::m_scaleFactor = 1.0</td>
+          <td class="memname">bool Renderer::renderGrid_ = false</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Determines if renderer should render grid. </p>
+
+</div>
+</div>
+<a id="a4bffa2804203d541797da73758d1530a" name="a4bffa2804203d541797da73758d1530a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4bffa2804203d541797da73758d1530a">&#9670;&#160;</a></span>renderParticleTrails_</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Renderer::renderParticleTrails_ = false</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Determines if renderer should render particle trails. </p>
+
+</div>
+</div>
+<a id="a62e71d50ff2020f403c8f605b16f4db4" name="a62e71d50ff2020f403c8f605b16f4db4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a62e71d50ff2020f403c8f605b16f4db4">&#9670;&#160;</a></span>scaleFactor_</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">double Renderer::scaleFactor_ = 1.0</td>
         </tr>
       </table>
   </td>
@@ -1254,8 +1306,8 @@ Static Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="af4b443eb83d42be55ee236d86a560b7b" name="af4b443eb83d42be55ee236d86a560b7b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af4b443eb83d42be55ee236d86a560b7b">&#9670;&#160;</a></span>m_speedFactor</h2>
+<a id="a77733f65a2e9b814c7413d6cd1da9ad1" name="a77733f65a2e9b814c7413d6cd1da9ad1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a77733f65a2e9b814c7413d6cd1da9ad1">&#9670;&#160;</a></span>speedFactor_</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1264,7 +1316,7 @@ Static Private Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">double Renderer::m_speedFactor = 1.0</td>
+          <td class="memname">double Renderer::speedFactor_ = 1.0</td>
         </tr>
       </table>
   </td>
@@ -1278,8 +1330,8 @@ Static Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="ac6f6135aee6a9942839cfe00e9022ab3" name="ac6f6135aee6a9942839cfe00e9022ab3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac6f6135aee6a9942839cfe00e9022ab3">&#9670;&#160;</a></span>m_universePtr</h2>
+<a id="a750cbb9225bef0b0b211aca89342e9be" name="a750cbb9225bef0b0b211aca89342e9be"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a750cbb9225bef0b0b211aca89342e9be">&#9670;&#160;</a></span>universePtr_</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1288,7 +1340,7 @@ Static Private Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classUniverse.html">Universe</a>* Renderer::m_universePtr = nullptr</td>
+          <td class="memname"><a class="el" href="classUniverse.html">Universe</a>* Renderer::universePtr_ = nullptr</td>
         </tr>
       </table>
   </td>
@@ -1302,8 +1354,8 @@ Static Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="a5dc39dede2a8db96c3be825da1ef7cf1" name="a5dc39dede2a8db96c3be825da1ef7cf1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5dc39dede2a8db96c3be825da1ef7cf1">&#9670;&#160;</a></span>m_unloadConfigCallback</h2>
+<a id="a2021bf15e6d6612b292aa9ec9e4945ff" name="a2021bf15e6d6612b292aa9ec9e4945ff"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2021bf15e6d6612b292aa9ec9e4945ff">&#9670;&#160;</a></span>unloadConfigCallback_</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1312,7 +1364,7 @@ Static Private Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">std::function&lt;void()&gt; Renderer::m_unloadConfigCallback</td>
+          <td class="memname">std::function&lt;void()&gt; Renderer::unloadConfigCallback_</td>
         </tr>
       </table>
   </td>
@@ -1326,8 +1378,8 @@ Static Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="af40474065067d28ba33f7e5477866d9d" name="af40474065067d28ba33f7e5477866d9d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af40474065067d28ba33f7e5477866d9d">&#9670;&#160;</a></span>m_window</h2>
+<a id="aecc58d1a101e9249f5dae6c0d9a44568" name="aecc58d1a101e9249f5dae6c0d9a44568"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aecc58d1a101e9249f5dae6c0d9a44568">&#9670;&#160;</a></span>window_</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1336,7 +1388,7 @@ Static Private Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">GLFWwindow* Renderer::m_window = nullptr</td>
+          <td class="memname">GLFWwindow* Renderer::window_ = nullptr</td>
         </tr>
       </table>
   </td>
@@ -1350,8 +1402,8 @@ Static Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="a6983c9105e0fae537fe813021537f713" name="a6983c9105e0fae537fe813021537f713"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6983c9105e0fae537fe813021537f713">&#9670;&#160;</a></span>m_windowFlags</h2>
+<a id="a660d7e6ed11ea20d1a830b38d29718a3" name="a660d7e6ed11ea20d1a830b38d29718a3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a660d7e6ed11ea20d1a830b38d29718a3">&#9670;&#160;</a></span>windowFlags_</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1360,12 +1412,12 @@ Static Private Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">ImGuiWindowFlags Renderer::m_windowFlags = ImGuiWindowFlags_AlwaysAutoResize | ImGuiWindowFlags_NoBackground</td>
+          <td class="memname">ImGuiWindowFlags Renderer::windowFlags_ = ImGuiWindowFlags_AlwaysAutoResize | ImGuiWindowFlags_NoBackground</td>
         </tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+<span class="mlabels"><span class="mlabel static">static</span><span class="mlabel constexpr">constexpr</span><span class="mlabel private">private</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">

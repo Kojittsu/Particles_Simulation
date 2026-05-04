@@ -25,7 +25,7 @@
 var NAVTREE =
 [
   [ "Particle​ Simulation Documentation", "index.html", [
-    [ "📖 Overview", "index.html#autotoc_md0", null ],
+    [ "📖 Overview", "index.html", null ],
     [ "Classes", "annotated.html", [
       [ "Class List", "annotated.html", "annotated_dup" ],
       [ "Class Index", "classes.html", null ],

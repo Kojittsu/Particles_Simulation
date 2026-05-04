@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['universeconfig_0',['universeConfig',['../structConfig.html#a8074e5561f4f05d39db4d1a79b4b36e6',1,'Config']]]
+  ['keystates_5f_0',['keyStates_',['../classRenderer.html#a97e6f0b81c6459c459c9edbf4ca961c4',1,'Renderer']]]
 ];

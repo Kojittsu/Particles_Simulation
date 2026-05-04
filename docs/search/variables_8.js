@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['scalefactor_0',['scaleFactor',['../structRendererConfig.html#a964c3f6567fb9eff29adb7d99a34e323',1,'RendererConfig']]],
-  ['speedfactor_1',['speedFactor',['../structRendererConfig.html#ad831485816c218997803fc594449d6e8',1,'RendererConfig']]]
+  ['isrunning_5f_0',['isRunning_',['../classUniverse.html#ac175ee37716af69e0dd7cf3431a75895',1,'Universe']]],
+  ['isspectatormode_5f_1',['isSpectatorMode_',['../classRenderer.html#ac10037eaf37f3737b0a486f0b2748acc',1,'Renderer']]]
 ];

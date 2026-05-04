@@ -13,13 +13,13 @@ var classUniverse =
     [ "makeStep", "classUniverse.html#a76eb413d0e5e74f293d40a9a89605ebd", null ],
     [ "saveStep", "classUniverse.html#af9749e8437dc5c9bfdc842888b467501", null ],
     [ "toggleGravity", "classUniverse.html#ac40eb3995b94e95c20dc116376573b68", null ],
-    [ "m_applyGravity", "classUniverse.html#af977a731f3613ee3dae84d8493ff6bd5", null ],
-    [ "m_boxes", "classUniverse.html#a551a4a74c0cbf0279a9e1919d2bf4512", null ],
-    [ "m_config", "classUniverse.html#af290359ae71bb053cabedfc05e4245a7", null ],
-    [ "m_G", "classUniverse.html#a972c1f88f1330858262029fb868d5b47", null ],
-    [ "m_globalAcceleration", "classUniverse.html#a6491a89a5b460a74d86436007001c8fa", null ],
-    [ "m_isRunning", "classUniverse.html#a1667c3b823233f853e772124a894dbca", null ],
-    [ "m_logFile", "classUniverse.html#afbef146ecfaa65470473873ee99d4fa3", null ],
-    [ "m_particles", "classUniverse.html#a380a5a941c69620dc5e062bfca62c7ab", null ],
-    [ "m_simuationTime", "classUniverse.html#a476a1cd18bbf219013bcd6f5e869c474", null ]
+    [ "applyGravity_", "classUniverse.html#aac6541c17d0910839c2d6c0b8438645d", null ],
+    [ "boxes_", "classUniverse.html#afac4b9b8c1b112edd3fc4855b20d09d2", null ],
+    [ "config_", "classUniverse.html#a698d176ff3290f50cae98388d364d9c0", null ],
+    [ "G_", "classUniverse.html#a6b44e9e93b72d21c8653fb0b69dd408f", null ],
+    [ "globalAcceleration_", "classUniverse.html#ac5c6b55e2eabd0a8c9c4cef0300b6520", null ],
+    [ "isRunning_", "classUniverse.html#ac175ee37716af69e0dd7cf3431a75895", null ],
+    [ "logFile_", "classUniverse.html#a0775184a4fbf545973b8a8a65f4ca118", null ],
+    [ "particles_", "classUniverse.html#adb197f2c2341128958f5bf256886f955", null ],
+    [ "simuationTime_", "classUniverse.html#a43b222bbb122454266e4745e1889bd01", null ]
 ];

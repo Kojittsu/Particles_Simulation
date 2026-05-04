@@ -1,26 +1,10 @@
 var searchData=
 [
-  ['savestep_0',['saveStep',['../classUniverse.html#af9749e8437dc5c9bfdc842888b467501',1,'Universe']]],
-  ['scalefactor_1',['scaleFactor',['../structRendererConfig.html#a964c3f6567fb9eff29adb7d99a34e323',1,'RendererConfig']]],
-  ['setacceleration_2',['setAcceleration',['../classParticle.html#aa554d35d28364d690c5b3c89b7fbe66e',1,'Particle']]],
-  ['setax_3',['setAX',['../classParticle.html#aaf5afe060cfef82eb800adda5cb8f2b7',1,'Particle']]],
-  ['setay_4',['setAY',['../classParticle.html#a77e0156e71b54ad214f958b0996e9f4e',1,'Particle']]],
-  ['setaz_5',['setAZ',['../classParticle.html#ab0c5f1ec37f9cc2ec7e6eacb5f62e7fa',1,'Particle']]],
-  ['setloadconfigcallback_6',['setLoadConfigCallback',['../classRenderer.html#a9c95e0f47088761b26c4eae3a0d1252b',1,'Renderer']]],
-  ['setmass_7',['setMass',['../classParticle.html#a98ecbe7072d66cf9e8ba0f41cd40574e',1,'Particle']]],
-  ['setposition_8',['setPosition',['../classCamera.html#a6c80882e87be75bde67f432ca3b21607',1,'Camera::setPosition()'],['../classParticle.html#a23ac81778f2df7c57abe4770401522fb',1,'Particle::setPosition(const std::array&lt; double, 3 &gt; &amp;position)']]],
-  ['setradius_9',['setRadius',['../classParticle.html#ac005e3a0a82d8e4d75a704c47bf31adb',1,'Particle']]],
-  ['setspeed_10',['setSpeed',['../classCamera.html#af073e5018dbe94c9a074c660cb4b731f',1,'Camera']]],
-  ['setuniverseptr_11',['setUniversePtr',['../classRenderer.html#af104166a99526dad49a3a8d96250205a',1,'Renderer']]],
-  ['setunloadconfigcallback_12',['setUnloadConfigCallback',['../classRenderer.html#ab8d6186c9dac00a3031db486a69eaf35',1,'Renderer']]],
-  ['setvelocity_13',['setVelocity',['../classParticle.html#ac224e83ca5fbcd2bcbaa98741cddcaa8',1,'Particle']]],
-  ['setvx_14',['setVX',['../classParticle.html#aa45d934d61d41672c9cb3b6bf457ba0e',1,'Particle']]],
-  ['setvy_15',['setVY',['../classParticle.html#a81de2f06905ac5c22f2cfa59f6340131',1,'Particle']]],
-  ['setvz_16',['setVZ',['../classParticle.html#a7b3230137d70476f54ed089f3f1aaf92',1,'Particle']]],
-  ['setx_17',['setX',['../classParticle.html#ac76e254b7e09ef2b59d1b72ccdd4e767',1,'Particle']]],
-  ['sety_18',['setY',['../classParticle.html#a7b2eeb3239ab34be85a4bbf5005cbbd7',1,'Particle']]],
-  ['setz_19',['setZ',['../classParticle.html#ac5576247fc017ba980dc307abe7ba167',1,'Particle']]],
-  ['simulation_20documentation_20',['Particle​ Simulation Documentation',['../index.html',1,'']]],
-  ['speedfactor_21',['speedFactor',['../structRendererConfig.html#ad831485816c218997803fc594449d6e8',1,'RendererConfig']]],
-  ['start_22',['start',['../classApplication.html#aa38ca47b50935092078cef4281ab66bc',1,'Application']]]
+  ['operator_2a_0',['operator*',['../array_8h.html#a49a43beea9f15e3e0237e041b1e8abd9',1,'operator*(const std::array&lt; double, 3 &gt; &amp;lhs, const std::array&lt; double, 3 &gt; &amp;rhs):&#160;array.cpp'],['../array_8h.html#a4d127d1fb95554cc4bfe50e72ce82108',1,'operator*(const std::array&lt; double, 3 &gt; &amp;lhs, double scalar):&#160;array.cpp'],['../array_8h.html#a055e1ee3fa0567b2b6a930d6c0a54c22',1,'operator*(double scalar, const std::array&lt; double, 3 &gt; &amp;rhs):&#160;array.cpp'],['../array_8cpp.html#a49a43beea9f15e3e0237e041b1e8abd9',1,'operator*(const std::array&lt; double, 3 &gt; &amp;lhs, const std::array&lt; double, 3 &gt; &amp;rhs):&#160;array.cpp'],['../array_8cpp.html#a4d127d1fb95554cc4bfe50e72ce82108',1,'operator*(const std::array&lt; double, 3 &gt; &amp;lhs, double scalar):&#160;array.cpp'],['../array_8cpp.html#a055e1ee3fa0567b2b6a930d6c0a54c22',1,'operator*(double scalar, const std::array&lt; double, 3 &gt; &amp;rhs):&#160;array.cpp']]],
+  ['operator_2b_1',['operator+',['../array_8h.html#a3c368695e45ff06ab41955b009148fe4',1,'operator+(const std::array&lt; double, 3 &gt; &amp;lhs, const std::array&lt; double, 3 &gt; &amp;rhs):&#160;array.cpp'],['../array_8cpp.html#a3c368695e45ff06ab41955b009148fe4',1,'operator+(const std::array&lt; double, 3 &gt; &amp;lhs, const std::array&lt; double, 3 &gt; &amp;rhs):&#160;array.cpp']]],
+  ['operator_2b_3d_2',['operator+=',['../array_8h.html#a87586114f98e21fdf8e78c19f3427ec7',1,'operator+=(std::array&lt; double, 3 &gt; &amp;lhs, const std::array&lt; double, 3 &gt; &amp;rhs):&#160;array.cpp'],['../array_8cpp.html#a87586114f98e21fdf8e78c19f3427ec7',1,'operator+=(std::array&lt; double, 3 &gt; &amp;lhs, const std::array&lt; double, 3 &gt; &amp;rhs):&#160;array.cpp']]],
+  ['operator_2d_3',['operator-',['../array_8h.html#a576770b2e09fe71040532e9e4085e827',1,'operator-(const std::array&lt; double, 3 &gt; &amp;lhs, const std::array&lt; double, 3 &gt; &amp;rhs):&#160;array.cpp'],['../array_8cpp.html#a576770b2e09fe71040532e9e4085e827',1,'operator-(const std::array&lt; double, 3 &gt; &amp;lhs, const std::array&lt; double, 3 &gt; &amp;rhs):&#160;array.cpp']]],
+  ['origin_5f_4',['origin_',['../classBox.html#a394c1e33f5ddffaef62fb16a05d1b695',1,'Box']]],
+  ['overview_5',['📖 Overview',['../index.html',1,'']]],
+  ['overview_2emd_6',['overview.md',['../overview_8md.html',1,'']]]
 ];
