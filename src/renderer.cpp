@@ -517,13 +517,24 @@ void Renderer::ImGuiParticleViewerMenu() {
         ImGui::Begin("Particles viewer", nullptr, windowFlags_);
         ImGui::Text("Particle count : %ld", universeParticles.size());
         ImGui::Text(" ");
+
+        int particleIndex = 0;
         for (Particle& particle : universeParticles) {
             ImGui::Text("Name : %s", particle.getName().c_str());
             ImGui::Text("Position : (%.3e, %.3e, %.3e) m", particle.getX(), particle.getY(), particle.getZ());
             ImGui::Text("Velocity : (%.3e, %.3e, %.3e) m/s. %.3e m/s", particle.getVX(), particle.getVY(), particle.getVZ(), getMagnitude(particle.getVelocity()));
             ImGui::Text("Mass : %.3e Kg", particle.getMass());
             ImGui::Text("Radius : %.3e m", particle.getRadius());
+
+            ImGui::Text("Color : ");
+            ImGui::SameLine();
+            std::string label = particle.getName().empty() ? "Unnamed##" + std::to_string(particleIndex) : particle.getName();
+            std::array<int, 3> color = particle.getColor();
+            ImVec4 imguiColor(color[0] / 255.0f, color[1] / 255.0f, color[2] / 255.0f, 1.0f);
+            ImGui::ColorButton(label.c_str(), imguiColor);
+
             ImGui::Text(" ");
+            particleIndex++;
         }
         ImGui::End();
     }
