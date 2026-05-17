@@ -499,11 +499,11 @@ void Renderer::ImGuiInformationMenu() {
     }
 
     ImGui::Text("Current universe runtime (s) : %.3f", currentUniverseRuntime_);
-    ImGui::Text(" ");
+    ImGui::Spacing();
     ImGui::Text("Camera position : (%.3e, %.3e, %.3e) m", cameraPosition.x, cameraPosition.y, cameraPosition.z);
     ImGui::Text("Camera front : (%.1f, %.1f, %.1f)", cameraFront.x, cameraFront.y, cameraFront.z);
     ImGui::Text("Camera up : (%.1f, %.1f, %.1f)", cameraUp.x, cameraUp.y, cameraUp.z);
-    ImGui::Text(" ");
+    ImGui::Spacing();
     ImGui::Text("OpenGL version : %s", glGetString(GL_VERSION));
     ImGui::Text("ImGui version : %s", ImGui::GetVersion());
     ImGui::Text("ImPlot version : %s", IMPLOT_VERSION);
@@ -516,7 +516,7 @@ void Renderer::ImGuiParticleViewerMenu() {
 
         ImGui::Begin("Particles viewer", nullptr, windowFlags_);
         ImGui::Text("Particle count : %ld", universeParticles.size());
-        ImGui::Text(" ");
+        ImGui::Spacing();
 
         int particleIndex = 0;
         for (Particle& particle : universeParticles) {
@@ -533,7 +533,7 @@ void Renderer::ImGuiParticleViewerMenu() {
             ImVec4 imguiColor(color[0] / 255.0f, color[1] / 255.0f, color[2] / 255.0f, 1.0f);
             ImGui::ColorButton(label.c_str(), imguiColor);
 
-            ImGui::Text(" ");
+            ImGui::Spacing();
             particleIndex++;
         }
         ImGui::End();
