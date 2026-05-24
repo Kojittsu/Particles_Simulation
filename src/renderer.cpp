@@ -543,7 +543,6 @@ void Renderer::ImGuiParticleEditorMenu() {
     if(universePtr_) {
         std::vector<Particle>& universeParticles = universePtr_->getParticles();
 
-
         ImGui::Begin("Particle editor", nullptr, windowFlags_);
         ImGui::Columns(2, nullptr, true);
 
@@ -562,10 +561,25 @@ void Renderer::ImGuiParticleEditorMenu() {
         // Right column (edit selected particle)
         if(isSelected) {
             ImGui::NextColumn();
-            Particle& selectedParticle = universeParticles[selectedIndex];
-            ImGui::Text("%s", selectedParticleName.c_str());
 
-            static std::array<double, 3> newPosition     = {0.0, 0.0, 0.0};
+            Particle& selectedParticle = universeParticles[selectedIndex];
+
+            static char newName[256] = "";
+            ImGui::Text("Name : %s", selectedParticleName.c_str());
+            ImGui::Text("New Name:"); ImGui::SameLine();
+            ImGui::PushItemWidth(80);
+            ImGui::InputText("##Name", newName, IM_ARRAYSIZE(newName)); ImGui::SameLine();
+            ImGui::PopItemWidth();
+            if(ImGui::Button("Confirm###NameConfirmButton")) {
+                std::string newNameStr(newName);
+                selectedParticle.setName(newNameStr);
+                selectedParticleName = newNameStr;
+                newName[0] = '\0';
+            }
+
+            ImGui::Spacing();
+
+            static std::array<double, 3> newPosition = {0.0, 0.0, 0.0};
             ImGui::Text("Position : (%.3e, %.3e, %.3e) m", selectedParticle.getX(), selectedParticle.getY(), selectedParticle.getZ());
             ImGui::Text("New Position:"); ImGui::SameLine();
             ImGui::PushItemWidth(80);
@@ -580,7 +594,7 @@ void Renderer::ImGuiParticleEditorMenu() {
 
             ImGui::Spacing();
 
-            static std::array<double, 3> newVelocity     = {0.0, 0.0, 0.0};
+            static std::array<double, 3> newVelocity = {0.0, 0.0, 0.0};
             ImGui::Text("Velocity : (%.3e, %.3e, %.3e) m", selectedParticle.getVX(), selectedParticle.getVY(), selectedParticle.getVZ());
             ImGui::Text("New Velocity:"); ImGui::SameLine();
             ImGui::PushItemWidth(80);
@@ -592,6 +606,33 @@ void Renderer::ImGuiParticleEditorMenu() {
                 selectedParticle.setVelocity(newVelocity);
                 newVelocity = {0.0, 0.0, 0.0};
             }
+
+            ImGui::Spacing();
+
+            static double newMass = 0.0;
+            ImGui::Text("Mass : %.3e Kg", selectedParticle.getMass());
+            ImGui::Text("New Mass:"); ImGui::SameLine();
+            ImGui::PushItemWidth(80);
+            ImGui::InputDouble("##Mass", &newMass, 0, 0, "%.3f"); ImGui::SameLine();
+            ImGui::PopItemWidth();
+            if(ImGui::Button("Confirm###MassConfirmButton")) {
+                selectedParticle.setMass(newMass);
+                newMass = 0.0;
+            }
+
+            ImGui::Spacing();
+
+            static double newRadius = 0.0;
+            ImGui::Text("Radius : %.3e Kg", selectedParticle.getRadius());
+            ImGui::Text("New Radius:"); ImGui::SameLine();
+            ImGui::PushItemWidth(80);
+            ImGui::InputDouble("##Radius", &newRadius, 0, 0, "%.3f"); ImGui::SameLine();
+            ImGui::PopItemWidth();
+            if(ImGui::Button("Confirm###RadiusConfirmButton")) {
+                selectedParticle.setRadius(newRadius);
+                newRadius = 0.0;
+            }
+
         }
         ImGui::End();
     }

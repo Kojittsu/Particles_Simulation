@@ -31,7 +31,7 @@ public:
     /**
      * @brief      Gets the position.
      *
-     * @return     The position.
+     * @return     The position
      */
     std::array<double, 3> getPosition() const {return position_;}
 
@@ -39,21 +39,21 @@ public:
     /**
      * @brief      Gets the x coordinate of the posision.
      *
-     * @return     The x.
+     * @return     The x coordinate
      */
     double getX() const {return position_[0];}
 
     /**
      * @brief      Gets the y coordinate of the posision.
      *
-     * @return     The y.
+     * @return     The y coordinate
      */
     double getY() const {return position_[1];}
 
     /**
      * @brief      Gets the y coordinate of the posision.
      *
-     * @return     The y.
+     * @return     The z coordinate
      */
     double getZ() const {return position_[2];}
 
@@ -88,28 +88,28 @@ public:
     /**
      * @brief      Gets the velocity.
      *
-     * @return     The velocity.
+     * @return     The velocity
      */
     std::array<double, 3> getVelocity() const {return velocity_;}
 
     /**
      * @brief      Gets the x coordinate of the velocity.
      *
-     * @return     The x.
+     * @return     The x coordinate
      */
     double getVX() const {return velocity_[0];}
 
     /**
      * @brief      Gets the y coordinate of the velocity.
      *
-     * @return     The y.
+     * @return     The y coordinate
      */
     double getVY() const {return velocity_[1];}
 
     /**
      * @brief      Gets the z coordinate of the velocity.
      *
-     * @return     The z.
+     * @return     The z coordinate
      */
     double getVZ() const {return velocity_[2];}
 
@@ -144,7 +144,7 @@ public:
     /**
      * @brief      Gets the acceleration.
      *
-     * @return     The acceleration.
+     * @return     The acceleration
      */
     std::array<double, 3> getAcceleration() const {return acceleration_;}
 
@@ -179,7 +179,7 @@ public:
     /**
      * @brief      Gets the radius.
      *
-     * @return     The radius.
+     * @return     The radius
      */
     double getRadius() const {return radius_;}
 
@@ -193,7 +193,7 @@ public:
     /**
      * @brief      Gets the mass.
      *
-     * @return     The mass.
+     * @return     The mass
      */
     double getMass() const {return mass_;}
 
@@ -207,16 +207,24 @@ public:
     /**
      * @brief      Gets the color.
      *
-     * @return     The color.
+     * @return     The color
      */
     const std::array<int, 3> getColor() const {return color_;}
 
     /**
      * @brief      Gets the name.
      *
-     * @return     The name.
+     * @return     The name
      */
     const std::string& getName() const {return name_;}
+
+    /**
+     * @brief      Sets the name.
+     *
+     * @param[in]  The name
+     * @return
+     */
+    void setName(const std::string name) {name_ = name;}
 
     /**
      * @brief      Updates the particle.
@@ -235,7 +243,7 @@ public:
     /**
      * @brief      Gets the trail.
      *
-     * @return     The trail.
+     * @return     The trail
      */
     const std::deque<std::array<double, 3>>& getTrail() const {return trail_;}
 
@@ -246,7 +254,7 @@ private:
     double radius_;                      ///< Particle radius (in m).
     double mass_;                        ///< Particle mass (in kg).
     std::array<int, 3> color_;           ///< Particle colors.
-    const std::string name_;             ///< particle name.
+    std::string name_;                   ///< particle name.
 
     std::deque<std::array<double, 3>> trail_;       ///< trail particle.
     static constexpr size_t maxTrailLength_ = 5000; ///< max trail particle length.
