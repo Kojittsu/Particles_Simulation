@@ -27,6 +27,11 @@
         yaml-cpp
       ];
 
+      postPatch = ''
+        substituteInPlace include/application.h \
+          --replace "@CONFIG_EXAMPLES_DIR@" "$out/share/particle-simulation-config-examples/"
+      '';
+
       buildPhase = "make";
 
       installPhase = ''

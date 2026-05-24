@@ -10,7 +10,6 @@
 #include "imgui_impl_glfw.h"
 #include "imgui_impl_opengl3.h"
 #include "implot.h"
-#include "tinyfiledialogs.h"
 
 class Renderer {
 public:
@@ -79,7 +78,7 @@ public:
      * @brief      Set the callback for loading config.
      * @param[in]  cb  The callback function
      */
-    void setLoadConfigCallback(std::function<void(const std::string&)> cb);
+    void setLoadConfigCallback(std::function<void()> cb);
 
     /**
      * @brief      Set the callback for unloading config.
@@ -204,8 +203,8 @@ private:
     GLUquadric* quadric_;              ///< GLU Utility for rendering quadratic shapes.
     Camera camera_;
 
-    std::function<void(const std::string&)> loadConfigCallback_;  ///< Callback for loading config
-    std::function<void()> unloadConfigCallback_;                  ///< Callback for unloading config
+    std::function<void()> loadConfigCallback_;   ///< Callback for loading config
+    std::function<void()> unloadConfigCallback_; ///< Callback for unloading config
 
     // ImGui flags
     static constexpr ImGuiWindowFlags windowFlags_ = ImGuiWindowFlags_AlwaysAutoResize | ImGuiWindowFlags_NoBackground;

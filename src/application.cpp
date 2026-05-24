@@ -5,13 +5,21 @@ Application::Application()
     renderer_()
 {
     // Set renderer callbacks
-    renderer_.setLoadConfigCallback([this](const std::string& configFilePath) {
-        // Read configuration
-        Config config;
-        if (readConfig(configFilePath, config)) {
-            loadConfig(config);
+    renderer_.setLoadConfigCallback([this]() {
+
+        const char* configFilePath = tinyfd_openFileDialog("Select a file", CONFIG_EXAMPLES_DIR_, 0, NULL, NULL, 0);
+
+        // Check if file selected
+        if (configFilePath) {
+            const std::string configFilePathStr(configFilePath);
+            // Read configuration
+            Config config;
+            if (readConfig(configFilePathStr, config)) {
+                loadConfig(config);
+            }
         }
     });
+
     renderer_.setUnloadConfigCallback([this]() {
         unloadConfig();
     });

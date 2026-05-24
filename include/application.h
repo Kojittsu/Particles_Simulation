@@ -4,6 +4,7 @@
 #include "config.h"
 #include "universe.h"
 #include "renderer.h"
+#include "tinyfiledialogs.h"
 
 class Application {
 public:
@@ -32,6 +33,8 @@ public:
 private:
     std::unique_ptr<Universe> universe_;
     Renderer renderer_;
+
+    #define CONFIG_EXAMPLES_DIR_ "@CONFIG_EXAMPLES_DIR@"
 };
 
 #endif

@@ -143,7 +143,7 @@ void Renderer::initializeImPlot() {
     }
 }
 
-void Renderer::setLoadConfigCallback(std::function<void(const std::string&)> cb) {
+void Renderer::setLoadConfigCallback(std::function<void()> cb) {
     loadConfigCallback_ = cb;
 }
 
@@ -355,13 +355,7 @@ void Renderer::ImGuiControlsMenu() {
 
     if (ImGui::CollapsingHeader("Configuration loader")) {
         if (ImGui::Button("Load configuration") && loadConfigCallback_) {
-            const char* filePath = tinyfd_openFileDialog("Select a file", "", 0, NULL, NULL, 0);
-
-            // Check if file selected
-            if (filePath) {
-                const std::string configFilePathStr(filePath);
-                loadConfigCallback_(configFilePathStr);
-            }
+            loadConfigCallback_();
         }
 
         if (ImGui::Button("Unload current configuration") && unloadConfigCallback_) {
