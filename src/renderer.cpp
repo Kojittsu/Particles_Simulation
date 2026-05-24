@@ -536,10 +536,13 @@ void Renderer::ImGuiParticleViewerMenu() {
 }
 
 void Renderer::ImGuiParticleEditorMenu() {
+    static bool isSelected = false;
+    static int selectedIndex = 0;
+    static std::string selectedParticleName = "";
+
     if(universePtr_) {
         std::vector<Particle>& universeParticles = universePtr_->getParticles();
 
-        static int selectedIndex = 0;
 
         ImGui::Begin("Particle editor", nullptr, windowFlags_);
         ImGui::Columns(2, nullptr, true);
@@ -547,46 +550,56 @@ void Renderer::ImGuiParticleEditorMenu() {
         // Left column (list particles)
         int particleIndex = 0;
         for (Particle& particle : universeParticles) {
-            std::string label = particle.getName().empty() ? "Unnamed##" + std::to_string(particleIndex) : particle.getName();
-            if (ImGui::Selectable(label.c_str(), selectedIndex == particleIndex)) {
+            std::string particleName = particle.getName().empty() ? "Unnamed_" + std::to_string(particleIndex) : particle.getName();
+            if (ImGui::Selectable(particleName.c_str(), selectedIndex == particleIndex)) {
                 selectedIndex = particleIndex;
+                selectedParticleName = particleName;
+                isSelected = true;
             }
             particleIndex++;
         }
 
         // Right column (edit selected particle)
-        ImGui::NextColumn();
-        Particle& selectedParticle = universeParticles[selectedIndex];
-        ImGui::Text("%s", selectedParticle.getName().c_str());
+        if(isSelected) {
+            ImGui::NextColumn();
+            Particle& selectedParticle = universeParticles[selectedIndex];
+            ImGui::Text("%s", selectedParticleName.c_str());
 
-        static std::array<double, 3> newPosition     = {0.0, 0.0, 0.0};
-        ImGui::Text("Position : (%.3e, %.3e, %.3e) m", selectedParticle.getX(), selectedParticle.getY(), selectedParticle.getZ());
-        ImGui::Text("New Position:"); ImGui::SameLine();
-        ImGui::PushItemWidth(80);
-        ImGui::InputDouble("##X", &newPosition[0], 0, 0, "%.3f"); ImGui::SameLine();
-        ImGui::InputDouble("##Y", &newPosition[1], 0, 0, "%.3f"); ImGui::SameLine();
-        ImGui::InputDouble("##Z", &newPosition[2], 0, 0, "%.3f"); ImGui::SameLine();
-        ImGui::PopItemWidth();
-        if(ImGui::Button("Confirm###PositionConfirmButton")) {
-            selectedParticle.setPosition(newPosition);
-            newPosition = {0.0, 0.0, 0.0};
-        }
+            static std::array<double, 3> newPosition     = {0.0, 0.0, 0.0};
+            ImGui::Text("Position : (%.3e, %.3e, %.3e) m", selectedParticle.getX(), selectedParticle.getY(), selectedParticle.getZ());
+            ImGui::Text("New Position:"); ImGui::SameLine();
+            ImGui::PushItemWidth(80);
+            ImGui::InputDouble("##X", &newPosition[0], 0, 0, "%.3f"); ImGui::SameLine();
+            ImGui::InputDouble("##Y", &newPosition[1], 0, 0, "%.3f"); ImGui::SameLine();
+            ImGui::InputDouble("##Z", &newPosition[2], 0, 0, "%.3f"); ImGui::SameLine();
+            ImGui::PopItemWidth();
+            if(ImGui::Button("Confirm###PositionConfirmButton")) {
+                selectedParticle.setPosition(newPosition);
+                newPosition = {0.0, 0.0, 0.0};
+            }
 
-        ImGui::Spacing();
+            ImGui::Spacing();
 
-        static std::array<double, 3> newVelocity     = {0.0, 0.0, 0.0};
-        ImGui::Text("Velocity : (%.3e, %.3e, %.3e) m", selectedParticle.getVX(), selectedParticle.getVY(), selectedParticle.getVZ());
-        ImGui::Text("New Velocity:"); ImGui::SameLine();
-        ImGui::PushItemWidth(80);
-        ImGui::InputDouble("##VX", &newVelocity[0], 0, 0, "%.3f"); ImGui::SameLine();
-        ImGui::InputDouble("##VY", &newVelocity[1], 0, 0, "%.3f"); ImGui::SameLine();
-        ImGui::InputDouble("##VZ", &newVelocity[2], 0, 0, "%.3f"); ImGui::SameLine();
-        ImGui::PopItemWidth();
-        if(ImGui::Button("Confirm###VelocityConfirmButton")) {
-            selectedParticle.setVelocity(newVelocity);
-            newVelocity = {0.0, 0.0, 0.0};
+            static std::array<double, 3> newVelocity     = {0.0, 0.0, 0.0};
+            ImGui::Text("Velocity : (%.3e, %.3e, %.3e) m", selectedParticle.getVX(), selectedParticle.getVY(), selectedParticle.getVZ());
+            ImGui::Text("New Velocity:"); ImGui::SameLine();
+            ImGui::PushItemWidth(80);
+            ImGui::InputDouble("##VX", &newVelocity[0], 0, 0, "%.3f"); ImGui::SameLine();
+            ImGui::InputDouble("##VY", &newVelocity[1], 0, 0, "%.3f"); ImGui::SameLine();
+            ImGui::InputDouble("##VZ", &newVelocity[2], 0, 0, "%.3f"); ImGui::SameLine();
+            ImGui::PopItemWidth();
+            if(ImGui::Button("Confirm###VelocityConfirmButton")) {
+                selectedParticle.setVelocity(newVelocity);
+                newVelocity = {0.0, 0.0, 0.0};
+            }
         }
         ImGui::End();
+    }
+    else {
+        // reset variables when no universe loaded
+        isSelected = false;
+        selectedIndex = 0;
+        selectedParticleName = "";
     }
 }
 
