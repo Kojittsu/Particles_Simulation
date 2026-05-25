@@ -3,7 +3,6 @@
 Renderer::Renderer()
 {
     quadric_ = gluNewQuadric();
-    Camera camera_;
     initializeGLFW();
     initializeImGui();
     initializeImPlot();
