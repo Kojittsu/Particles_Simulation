@@ -24,7 +24,7 @@ public:
         const std::array<double, 3>& velocity,
         const std::array<double, 3>& acceleration,
         const double radius, const double mass,
-        const std::array<int, 3>& color,
+        const std::array<float, 3>& color,
         const std::string& name = ""
         );
 
@@ -209,7 +209,7 @@ public:
      *
      * @return     The color
      */
-    const std::array<int, 3> getColor() const {return color_;}
+    std::array<float, 3>& getColor() {return color_;}
 
     /**
      * @brief      Gets the name.
@@ -253,7 +253,7 @@ private:
     std::array<double, 3> acceleration_; ///< Particle acceleration (in m/s²).
     double radius_;                      ///< Particle radius (in m).
     double mass_;                        ///< Particle mass (in kg).
-    std::array<int, 3> color_;           ///< Particle colors.
+    std::array<float, 3> color_;         ///< Particle color.
     std::string name_;                   ///< particle name.
 
     std::deque<std::array<double, 3>> trail_;       ///< trail particle.

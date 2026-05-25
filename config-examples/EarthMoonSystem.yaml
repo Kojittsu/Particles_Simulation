@@ -3,14 +3,14 @@ particles:
     velocity: [0.0, 0.0, 0.0]
     radius: 6378100.0
     mass: 5.9724e24
-    color: [0, 102, 204]
+    color: [0.0, 0.4, 0.8]
     name: "Earth"
 
   - position: [384400000.0, 0.0, 0.0]
     velocity: [0.0, 0.0, 1022.0]
     radius: 1738100.0
     mass: 0.07346e24
-    color: [200, 200, 200]
+    color: [0.78, 0.78, 0.78]
     name: "Moon"
 
 universe:

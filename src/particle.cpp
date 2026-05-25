@@ -4,7 +4,7 @@ Particle::Particle(const std::array<double, 3>& position,
     const std::array<double, 3>& velocity,
     const std::array<double, 3>& acceleration,
     const double radius, const double mass,
-    const std::array<int, 3>& color,
+    const std::array<float, 3>& color,
     const std::string& name
     ):
       position_(position),
@@ -23,9 +23,9 @@ Particle::Particle(const std::array<double, 3>& position,
         throw std::invalid_argument("Mass cannot be negative");
     }
     // Validate the color components
-    for (int component : color) {
-        if (component < 0 || component > 255) {
-            throw std::invalid_argument("Color components must be in the range [0, 255]");
+    for (float component : color) {
+        if (component < 0 || component > 1) {
+            throw std::invalid_argument("Color components must be in the range [0,1]");
         }
     }
 }

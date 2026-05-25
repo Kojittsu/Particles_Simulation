@@ -71,7 +71,7 @@ particles:
     velocity: [double, double, double] # Particle velocity in meters
     radius: double                     # Particle radius in meters
     mass: double                       # Particle mass in kilograms
-    color: [int, int, int]             # Particle color in RGB format
+    color: [float, float, float]       # Particle color (components must be in [0,1])
     name: string                       # Particle name (can be empty)
 
   # Add as many particles as you want

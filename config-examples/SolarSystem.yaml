@@ -3,63 +3,63 @@ particles:
     velocity: [0.0, 0.0, 0.0]
     radius: 696340000.0
     mass: 1.9885e30
-    color: [255, 204, 0]
+    color: [1.0, 0.8, 0.0]
     name: "Sun"
 
   - position: [57900000000.0, 0.0, 0.0]
     velocity: [0.0, 0.0, 47870.0]
     radius: 2439700000.0 # 1000 times bigger than in reality in order to properly see this particle
     mass: 3.3011e23
-    color: [169, 169, 169]
+    color: [0.66, 0.66, 0.66]
     name: "Mercury"
 
   - position: [108200000000.0, 0.0, 0.0]
     velocity: [0.0, 0.0, 35020.0]
     radius: 6051800000.0 # 1000 times bigger than in reality in order to properly see this particle
     mass: 4.8675e24
-    color: [255, 204, 153]
+    color: [1.0, 0.8, 0.6]
     name: "Venus"
 
   - position: [149600000000.0, 0.0, 0.0]
     velocity: [0.0, 0.0, 29780.0]
     radius: 6378100000.0 # 1000 times bigger than in reality in order to properly see this particle
     mass: 5.9724e24
-    color: [0, 102, 204]
+    color: [0.0, 0.4, 0.8]
     name: "Earth"
 
   - position: [227900000000.0, 0.0, 0.0]
     velocity: [0.0, 0.0, 24070.0]
     radius: 3389500000.0 # 1000 times bigger than in reality in order to properly see this particle
     mass: 6.4171e23
-    color: [255, 102, 0]
+    color: [1.0, 0.4, 0.0]
     name: "Mars"
 
   - position: [778500000000.0, 0.0, 0.0]
     velocity: [0.0, 0.0, 13070.0]
     radius: 69911000000.0 # 1000 times bigger than in reality in order to properly see this particle
     mass: 1.8982e27
-    color: [204, 153, 102]
+    color: [0.8, 0.6, 0.4]
     name: "Jupiter"
 
   - position: [1433000000000.0, 0.0, 0.0]
     velocity: [0.0, 0.0, 9690.0]
     radius: 58232000000.0 # 1000 times bigger than in reality in order to properly see this particle
     mass: 5.6834e26
-    color: [204, 204, 153]
+    color: [0.8, 0.8, 0.6]
     name: "Saturn"
 
   - position: [2871000000000.0, 0.0, 0.0]
     velocity: [0.0, 0.0, 6810.0]
     radius: 25362000000.0 # 1000 times bigger than in reality in order to properly see this particle
     mass: 8.6810e25
-    color: [102, 204, 255]
+    color: [0.4, 0.8, 1.0]
     name: "Uranus"
 
   - position: [4495000000000.0, 0.0, 0.0]
     velocity: [0.0, 0.0, 5430.0]
     radius: 24622000000.0 # 1000 times bigger than in reality in order to properly see this particle
     mass: 1.02413e26
-    color: [0, 102, 204]
+    color: [0.0, 0.4, 0.8]
     name: "Neptune"
 
 universe:

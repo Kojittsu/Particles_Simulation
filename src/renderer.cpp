@@ -205,12 +205,12 @@ void Renderer::renderScene() {
 
         auto& particles = universePtr_->getParticles();
 
-        for (const auto& particle : particles) {
+        for (Particle& particle : particles) {
             renderParticle(particle);
         }
 
         if(renderParticleTrails_) {
-            for (const auto& particle : particles) {
+            for (Particle& particle : particles) {
                 renderParticleTrail(particle);
             }
         }
@@ -223,13 +223,13 @@ void Renderer::renderScene() {
     }
 }
 
-void Renderer::renderParticle(const Particle& particle) {
+void Renderer::renderParticle(Particle& particle) {
     auto position = particle.getPosition() * scaleFactor_; // transform particle position from meter to SU
-    auto color = particle.getColor();
+    std::array<float, 3> color = particle.getColor();
     double radius = particle.getRadius() * scaleFactor_; // transform particle radius from meter to SU
 
     // Define material properties
-    GLfloat mat_diffuse[] = { color[0] / 255.0f, color[1] / 255.0f, color[2] / 255.0f, 1.0f };
+    GLfloat mat_diffuse[] = { color[0], color[1], color[2], 1.0f };
     GLfloat mat_specular[] = { 1.0f, 1.0f, 1.0f, 1.0f };
     GLfloat mat_shininess[] = { 50.0f };
     glMaterialfv(GL_FRONT, GL_DIFFUSE, mat_diffuse);
@@ -242,7 +242,7 @@ void Renderer::renderParticle(const Particle& particle) {
     glPopMatrix();
 }
 
-void Renderer::renderParticleTrail(const Particle& particle) {
+void Renderer::renderParticleTrail(Particle& particle) {
     const auto& trail = particle.getTrail();
     if (trail.size() < 2) { return; }
 
@@ -250,8 +250,8 @@ void Renderer::renderParticleTrail(const Particle& particle) {
     glBegin(GL_LINE_STRIP);
 
     // set trail color
-    auto color = particle.getColor();
-    glColor3ub(color[0], color[1], color[2]);
+    std::array<float, 3> color = particle.getColor();
+    glColor3f(color[0], color[1], color[2]);
 
     for (const auto& point : trail) {
         glVertex3d(point[0] * scaleFactor_, point[1] * scaleFactor_, point[2] * scaleFactor_);
@@ -416,34 +416,31 @@ void Renderer::ImGuiControlsMenu() {
         static std::array<double, 3> acceleration = {0.0, 0.0, 0.0};
         static double radius = 0.0;
         static double mass   = 0.0;
-        static std::array<int, 3> color = {0, 0, 0};
+        static std::array<float, 3> color = {0.0, 0.0, 0.0};
 
-        ImGui::Text("Position:");
+        ImGui::Text("Position :");
         ImGui::InputDouble("X (m)", &position[0]);
         ImGui::InputDouble("Y (m)", &position[1]);
         ImGui::InputDouble("Z (m)", &position[2]);
 
-        ImGui::Text("Velocity:");
+        ImGui::Text("Velocity :");
         ImGui::InputDouble("Vx (m/s)", &velocity[0]);
         ImGui::InputDouble("Vy (m/s)", &velocity[1]);
         ImGui::InputDouble("Vz (m/s)", &velocity[2]);
 
-        ImGui::Text("Radius:");
+        ImGui::Text("Radius :");
         ImGui::InputDouble("Radius (m)", &radius);
 
-        ImGui::Text("Mass:");
+        ImGui::Text("Mass :");
         ImGui::InputDouble("Mass (Kg)", &mass);
 
-        ImGui::Text("Color:");
+        ImGui::Text("Color : "); ImGui::SameLine();
+        ImGui::ColorEdit3("##Color", color.data(), ImGuiColorEditFlags_NoInputs); ImGui::SameLine();
         if (ImGui::Button("Random")) {
-            color[0] = rand() % 256;
-            color[1] = rand() % 256;
-            color[2] = rand() % 256;
+            color[0] = (float)(rand()) / (float)(RAND_MAX);
+            color[1] = (float)(rand()) / (float)(RAND_MAX);
+            color[2] = (float)(rand()) / (float)(RAND_MAX);
         }
-        ImGui::SliderInt("R", &color[0], 0, 255);
-        ImGui::SliderInt("G", &color[1], 0, 255);
-        ImGui::SliderInt("B", &color[2], 0, 255);
-
 
         if (ImGui::Button("Confirm")) {
             try {
@@ -522,10 +519,9 @@ void Renderer::ImGuiParticleViewerMenu() {
             ImGui::Text("Mass : %.3e Kg", particle.getMass());
             ImGui::Text("Radius : %.3e m", particle.getRadius());
 
-            ImGui::Text("Color : ");
-            ImGui::SameLine();
-            std::array<int, 3> color = particle.getColor();
-            ImVec4 imguiColor(color[0] / 255.0f, color[1] / 255.0f, color[2] / 255.0f, 1.0f);
+            ImGui::Text("Color : "); ImGui::SameLine();
+            std::array<float, 3> color = particle.getColor();
+            ImVec4 imguiColor(color[0], color[1], color[2], 1.0f);
             ImGui::ColorButton(particleName.c_str(), imguiColor);
 
             ImGui::Spacing();
@@ -632,6 +628,11 @@ void Renderer::ImGuiParticleEditorMenu() {
                 selectedParticle.setRadius(newRadius);
                 newRadius = 0.0;
             }
+
+            ImGui::Spacing();
+
+            ImGui::Text("Color : "); ImGui::SameLine();
+            ImGui::ColorEdit3("##Color", selectedParticle.getColor().data(), ImGuiColorEditFlags_NoInputs);
 
         }
         ImGui::End();

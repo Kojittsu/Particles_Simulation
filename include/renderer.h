@@ -119,14 +119,14 @@ public:
      *
      * @param      particle  The particle
      */
-    void renderParticle(const Particle& particle);
+    void renderParticle(Particle& particle);
 
     /**
      * @brief      Render the trail of the given particle.
      *
      * @param      particle  The particle
      */
-    void renderParticleTrail(const Particle& particle);
+    void renderParticleTrail(Particle& particle);
 
     /**
      * @brief      Render the current universe boxes.

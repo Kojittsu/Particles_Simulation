@@ -3,35 +3,35 @@ particles:
     velocity: [1.0, 2.0, 3.0]
     radius: 1.0
     mass: 1.0e12
-    color: [255, 255, 255]
+    color: [1.0, 1.0, 1.0]
     name: ""
 
   - position: [48.0, 50.0, 50.0]
     velocity: [1.0, 2.0, 3.0]
     radius: 1.0
     mass: 1.0e12
-    color: [255, 0, 0]
+    color: [1.0, 0.0, 0.0]
     name: ""
 
   - position: [52.0, 50.0, 50.0]
     velocity: [1.0, 2.0, 3.0]
     radius: 1.0
     mass: 1.0e12
-    color: [0, 255, 0]
+    color: [0.0, 1.0, 0.0]
     name: ""
 
   - position: [50.0, 50.0, 48.0]
     velocity: [1.0, 2.0, 3.0]
     radius: 1.0
     mass: 1.0e12
-    color: [0, 0, 255]
+    color: [0.0, 0.0, 1.0]
     name: ""
 
   - position: [50.0, 50.0, 52.0]
     velocity: [1.0, 2.0, 3.0]
     radius: 1.0
     mass: 1.0e12
-    color: [255, 255, 0]
+    color: [1.0, 1.0, 0.0]
     name: ""
 
 boxes:

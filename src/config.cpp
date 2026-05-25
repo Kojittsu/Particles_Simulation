@@ -37,7 +37,7 @@ bool readConfig(const std::string& filename, Config& config) {
             std::array<double, 3> velocity = particleNode["velocity"].as<std::array<double, 3>>();
             double radius                  = particleNode["radius"].as<double>();
             double mass                    = particleNode["mass"].as<double>();
-            std::array<int, 3> color       = particleNode["color"].as<std::array<int, 3>>();
+            std::array<float, 3> color     = particleNode["color"].as<std::array<float, 3>>();
             std::string name               = particleNode["name"].as<std::string>();
 
             // Check particle validity
@@ -48,8 +48,8 @@ bool readConfig(const std::string& filename, Config& config) {
                 throw std::invalid_argument("Invalid particle: mass must be > 0");
             }
             for (int c : color) {
-                if (c < 0 || c > 255) {
-                    throw std::invalid_argument("Invalid particle: color components must be in [0, 255]");
+                if (c < 0 || c > 1) {
+                    throw std::invalid_argument("Invalid particle: color components must be in [0,1]");
                 }
             }
 
