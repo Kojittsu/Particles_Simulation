@@ -631,8 +631,14 @@ void Renderer::ImGuiParticleEditorMenu() {
 
             ImGui::Spacing();
 
+            std::array<float, 3>& color = selectedParticle.getColor();
             ImGui::Text("Color : "); ImGui::SameLine();
-            ImGui::ColorEdit3("##Color", selectedParticle.getColor().data(), ImGuiColorEditFlags_NoInputs);
+            ImGui::ColorEdit3("##Color", color.data(), ImGuiColorEditFlags_NoInputs); ImGui::SameLine();
+            if (ImGui::Button("Random")) {
+                color[0] = (float)(rand()) / (float)(RAND_MAX);
+                color[1] = (float)(rand()) / (float)(RAND_MAX);
+                color[2] = (float)(rand()) / (float)(RAND_MAX);
+            }
 
         }
         ImGui::End();
