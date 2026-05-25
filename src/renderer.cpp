@@ -619,7 +619,7 @@ void Renderer::ImGuiParticleEditorMenu() {
             ImGui::Spacing();
 
             static double newRadius = 0.0;
-            ImGui::Text("Radius : %.3e Kg", selectedParticle.getRadius());
+            ImGui::Text("Radius : %.3e m", selectedParticle.getRadius());
             ImGui::Text("New Radius:"); ImGui::SameLine();
             ImGui::PushItemWidth(80);
             ImGui::InputDouble("##Radius", &newRadius, 0, 0, "%.3f"); ImGui::SameLine();
