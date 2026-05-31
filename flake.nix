@@ -25,6 +25,7 @@
         glew
         glfw
         yaml-cpp
+        yad
       ];
 
       postPatch = ''
@@ -39,7 +40,7 @@
         cp particle-simulation-executable $out/bin/particle-simulation
 
         wrapProgram $out/bin/particle-simulation \
-          --prefix PATH : ${pkgs.zenity}/bin
+          --prefix PATH : ${pkgs.yad}/bin
 
         # Add config-example files
         mkdir -p $out/share/particle-simulation-config-examples
@@ -66,7 +67,7 @@
         glew
         glfw
         yaml-cpp
-        zenity
+        yad
 
         doxygen
       ];
